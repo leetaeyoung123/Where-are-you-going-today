@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.varxyz.wgt.board.dao.BoardDao;
+import com.varxyz.wgt.login.dao.LoginDao;
+import com.varxyz.wgt.user.dao.UserDao;
 
 
 @Configuration
