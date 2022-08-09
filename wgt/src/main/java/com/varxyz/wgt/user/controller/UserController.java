@@ -19,13 +19,17 @@ public class UserController {
 		return "user/addUser";
 	}
 	
-	@PostMapping("addUser") 
+	@PostMapping("/addUser") 
 	public String addUser(User user) {
 		
 		userService.addUser(user);
 		UserService.context.close();
 		
 		return "user/addUser";
-		
 	}
+	
+	// 회원가입 수정
+	
+	
+	
 }

@@ -6,3 +6,5 @@ CREATE TABLE User(
 	phone		VARCHAR(20)		NOT NULL,
 	addr		VARCHAR(100)	NOT NULL
 );
+
+SELECT * FROM User;
