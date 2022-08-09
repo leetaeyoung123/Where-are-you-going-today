@@ -37,7 +37,7 @@
 	</form>
 </div>
  <div class = "feedImage">
-   <img src = "./img/yas.png" width = "500px" height = "500px">
+   <img src = "../resources/board/img/yas.png" width = "500px" height = "500px">
  </div>
   <div class = "feedReactionButton">
    <div class = "reactionButton1">
