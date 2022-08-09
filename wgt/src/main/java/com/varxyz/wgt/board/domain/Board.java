@@ -11,9 +11,8 @@ public class Board {
 	private int number;
 	private String title;
 	private String content;
-	private String userId;
 	private Date regDate;
-	private String image;
+	private String imgname;
 	private int view;
 	
 	public Board() {
@@ -21,7 +20,7 @@ public class Board {
 	}
 	
 	public String toString() {
-		return "번호 : " + number + "작성자 : " + userId + "제목 : " + title 
+		return "번호 : " + number +  "제목 : " + title 
 				+ "내용 : " + content + "날짜 : " + regDate;
 	}
 }

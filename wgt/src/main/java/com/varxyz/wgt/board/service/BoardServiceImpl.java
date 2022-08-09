@@ -24,8 +24,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board read(Integer boardNo) {
-		return dao.read(boardNo);
+	public List<Board> read(Board board) {
+		return dao.read(board);
 	}
 
 	@Override
@@ -58,6 +58,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Board> search(Page page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Board read(Integer boardNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
