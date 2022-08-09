@@ -18,28 +18,25 @@ public class BoardDao {
 	      jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public List<Board> list() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	//게시글 생성
 	public void create(Board board) {
-		String sql = "INSERT INTO Board (number, title, content, image)" + " VALUES (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, board.getNumber(), board.getTitle(), board.getContent(), board.getImage());
+		String sql = "INSERT INTO Board (title, content, imgname)" + " VALUES (?, ?, ?)";
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
 	}
+	
 	//게시글 읽기
-	public Board read(Integer boardNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Board> read(Board board) {
+		String sql = "SELECT * FROM Board";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 	}
+	
 	//게시글 수정
 	public void update(Board board) {
-		String sql = "UPDATE Board SET title = ?, content = ?, image =? WHERE userId = ?";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImage(), board.getUserId());
+		String sql = "UPDATE Board SET title = ?, content = ?, imgname =? WHERE userId = ?";
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
 	}
 
-	// 게시글 삭제
+	//게시글 삭제
 	public List<Board> delete(String userId) {
 		String sql = "DELETE FROM Board WHERE userId = ?";
 		List<Board> list = new ArrayList<>();
@@ -47,5 +44,12 @@ public class BoardDao {
 		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 		return list;
 	}
-
+	
+	//ID로 게시글 찾기
+	public List<Board> find(String userId) {
+		String sql = "SELECT * FROM Board WHERE userId = ?";
+		List<Board> list = new ArrayList<>();
+		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
+		return list;
+	}
 }

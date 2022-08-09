@@ -1,0 +1,62 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'KOTRAHOPE';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+html{
+	width: 390px;
+	height: 844px;
+}
+
+body{
+	font-family: 'KOTRAHOPE';
+	margin: 0;
+	width: 390px;
+	height: 844px;
+	box-sizing: border-box;
+}
+
+.container_1 {
+	width: 390px;
+	height: 844px;
+	background:red;
+}
+
+.selectbox {
+	font-family: 'KOTRAHOPE';
+	font-size: 20px;
+	border-radius: 10px;
+	color: black;
+	border: 2px solid #DA0037;
+	width: 60px;
+	height: 35px;
+	margin: 10px 0 10px 10px;
+	text-align: center;
+	z-index: 99;
+}
+
+.inputtext{
+	font-family: 'KOTRAHOPE';
+	font-size: 20px;
+	padding: 0 8px 0 8px;
+	border-radius: 10px;
+	border: 2px solid #DA0037;
+	display: inline-block;
+	width: 287px;
+	height: 30px;
+}
+
+.searchbtn{
+	font-family: 'KOTRAHOPE';
+	font-size: 20px;
+	background-color: #DA0037;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 370px;
+    height: 30px;
+    margin-top: 25px;
+    margin-left: 10px;
+}

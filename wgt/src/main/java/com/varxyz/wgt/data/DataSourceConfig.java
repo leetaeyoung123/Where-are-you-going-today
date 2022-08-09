@@ -1,14 +1,22 @@
 package com.varxyz.wgt.data;
 
+import java.security.acl.Owner;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.varxyz.wgt.board.dao.BoardDao;
+import com.varxyz.wgt.login.dao.LoginDao;
+import com.varxyz.wgt.user.dao.UserDao;
+
 
 @Configuration
+@ComponentScan(basePackageClasses = {UserDao.class, LoginDao.class, Owner.class, BoardDao.class})
 public class DataSourceConfig {
-	
+
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		DataSource ds = new DataSource();
@@ -21,9 +29,10 @@ public class DataSourceConfig {
 		ds.setMaxIdle(10);    //풀에 유지할 수 있는 최대 커넥션 수(기본값은 maxActive와 동일)
 		return ds;
 	}
-	
+
 	@Bean
 	public JdbcTemplate jdbcTemplate() {
 		return new JdbcTemplate(dataSource());
 	}
+
 }

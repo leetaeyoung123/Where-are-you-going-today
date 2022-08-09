@@ -26,6 +26,7 @@ public interface BoardService {
 		
 		// 게시글 읽기
 		public Board read(Integer boardNo);
+		public List<Board> read(Board board);
 		
 		// 게시글 수정
 		public void update(Board board);
