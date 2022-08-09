@@ -1,4 +1,4 @@
-package com.varxyz.wgt.board;
+package com.varxyz.wgt.board.dao;
 
 import java.util.ArrayList;
 import java.util.List;
