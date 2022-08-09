@@ -32,7 +32,7 @@ public class BoardController {
 	
 	@GetMapping("/")
 	public String list(Model model) {
-		List<Board> list = service.getlist();
+		
 	}
 	
 	// 게시글 목록 화면
