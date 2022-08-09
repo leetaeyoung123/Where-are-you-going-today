@@ -1,62 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
-<title>게시판 - 목록</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
-<link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/boardstyle.css'/>"/>
+<link rel="stylesheet" type="text/css" href="../resources/board/home.css">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<title>게시판</title>
+</head>
 <body>
 
-<div class="navbar navbar-dark bg-dark shadow-sm mb-3">
-  <div class="container d-flex justify-content-between">
-    <a href="/" class="navbar-brand d-flex align-items-center">
-      <strong>게시판</strong>
-    </a>
-  </div>
-</div>
-
-<header th:insert="common/header.html"></header>
-    <div class="container">
-      <table class="table">
-        <thead class="thead-light">
-          <tr class="text-center">
-            <th scope="col">#</th>
-            <th scope="col">제목</th>
-            <th scope="col">작성자</th>
-            <th scope="col">작성일</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="text-center" th:each="post : ${postList}">
-            <th scope="row">
-              <span th:text="${post.id}"></span>
-            </th>
-            <td>
-              <a th:href="@{'/post/' + ${post.id}}">
-                <span th:text="${post.title}"></span>
-              </a>
-            </td>
-            <td>
-              <span th:text="${post.author}"></span>
-            </td>
-            <td>
-              <span th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="row">
-        <div class="col-auto mr-auto"></div>
-        <div class="col-auto">
-          <a class="btn btn-primary" th:href="@{/post}" role="button">글쓰기</a>
-        </div>
-      </div>
+<header class = "headerContainer"> <!--상단 탭 만들기 뼈대구조-->
+  <div class = "headerContents"> <!--상단 탭 내용물 감싼구조-->
+    <div class = "WestagramTag"> <!--상단 좌측 내용물-->    
+     <a href = " "><i class="fab fa-instagram"></i> | Wgtagram</a>
     </div>
-    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+  <div class = "headerSearchBar"><!--상단 중앙 내용물-->
+    <i class="fas fa-search"></i>
+    <input type = "text" placeholder="검색">
+  </div>
+	<form action="home" method="post">
+		<button type="submit" value="글쓰기">글쓰기</button>
+	</form>
+ </div>
+</header>
+<div class = "body1">
+<div class="number">
+<form action="home" method="post">
+		<c:forEach var="item" items="${board}">
+			<h4>No.${item.number}</h4>
+		</c:forEach>
+	</form>
+</div>
+ <div class = "feedImage">
+   <img src = "./img/yas.png" width = "500px" height = "500px">
+ </div>
+  <div class = "feedReactionButton">
+   <div class = "reactionButton1">
+   <button><i class="far fa-heart"></i></button>
+ <div class = "feedReaction">
+   <span>좋아요 갯수</span>
+ </div>
+  </div> 
+  <div class="write">
+  <form action="home" method="post">
+		<c:forEach var="item" items="${board}">
+			<span>${item.title}</span><br>
+			${item.content}<br>
+		</c:forEach>
+	</form>
+	</div>
+</div>
+ </div>
 </body>
 </html>

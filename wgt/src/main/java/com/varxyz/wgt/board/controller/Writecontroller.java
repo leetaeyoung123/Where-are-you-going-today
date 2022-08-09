@@ -1,6 +1,5 @@
 package com.varxyz.wgt.board.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,22 +10,22 @@ import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
 
 @Controller
-public class BoardController {
+public class Writecontroller {
 	BoardService service = new BoardServiceImpl();
 	
-	// 게시판 화면
-	@GetMapping("/board/home")
-	public String list(Model model, Board board) {
-		service.read(board);
-		model.addAttribute("board", service.read(board));
-//		System.out.println(board);
-		return "board/home";
+	// 등록하기 화면
+	@GetMapping("/board/write")
+	public String postForm(Model model) {
+		return "/board/write";
 	}
-
-	@PostMapping("/board/home")
+	
+	@PostMapping("/board/write")
 	public String post(Board board, Model model) {
-
-		return "redirect:/board/write";
+		model.addAttribute("Board", board);
+		service.create(board);
+		model.addAttribute("msg", "게시글 작성 완료하였습니다.");
+		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+		return "alert/alert";
 	}
 	
 	

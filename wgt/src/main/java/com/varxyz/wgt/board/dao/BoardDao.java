@@ -20,22 +20,20 @@ public class BoardDao {
 
 	//게시글 생성
 	public void create(Board board) {
-		String sql = "INSERT INTO Board (number, title, content, image)" + " VALUES (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, board.getNumber(), board.getTitle(), board.getContent(), board.getImage());
+		String sql = "INSERT INTO Board (title, content, imgname)" + " VALUES (?, ?, ?)";
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
 	}
 	
 	//게시글 읽기
-	public List<Board> read() {
+	public List<Board> read(Board board) {
 		String sql = "SELECT * FROM Board";
-		List<Board> list = new ArrayList<>();
-		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
-		return null;
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 	}
 	
 	//게시글 수정
 	public void update(Board board) {
-		String sql = "UPDATE Board SET title = ?, content = ?, image =? WHERE userId = ?";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImage(), board.getUserId());
+		String sql = "UPDATE Board SET title = ?, content = ?, imgname =? WHERE userId = ?";
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
 	}
 
 	//게시글 삭제

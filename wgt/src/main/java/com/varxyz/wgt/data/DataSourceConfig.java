@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.varxyz.wgt.board.dao.BoardDao;
+
 
 @Configuration
 public class DataSourceConfig {
@@ -25,5 +27,10 @@ public class DataSourceConfig {
 	@Bean
 	public JdbcTemplate jdbcTemplate() {
 		return new JdbcTemplate(dataSource());
+	}
+	
+	@Bean
+	public BoardDao boardDao() {
+		return new BoardDao(dataSource());
 	}
 }
