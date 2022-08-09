@@ -1,5 +1,6 @@
 package com.varxyz.wgt.board.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -38,4 +39,5 @@ public interface BoardService {
 		
 		public Integer totalCount() throws Exception;
 
+		public List<Board> boardList = new ArrayList<>();
 }

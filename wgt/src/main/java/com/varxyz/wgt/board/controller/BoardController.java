@@ -1,6 +1,8 @@
 package com.varxyz.wgt.board.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,26 +10,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.varxyz.wgt.Service.BoardService;
-import com.varxyz.wgt.board.Page;
+import com.varxyz.wgt.board.domain.Board;
+import com.varxyz.wgt.board.domain.Page;
+import com.varxyz.wgt.board.service.BoardService;
 
 @Controller
 public class BoardController {
 
-	@GetMapping("/wgt/home")
+	@GetMapping("/board/home")
 	public String list() {
-		return "/wgt/home";
+		return "/board/home";
 	}
 	
-	@GetMapping("/wgt/board")
-	public String post() {
-		return "/wgt/board";
+	@GetMapping("/board/board")
+	public String wirte() {
+		return "/board/board";
 	}
 	
 	@Autowired
 	private BoardService service;
 	
-	@GetMapping("")
+	@GetMapping("/")
+	public String list(Model model) {
+		List<Board> list = service.getlist();
+	}
 	
 	// 게시글 목록 화면
 		@RequestMapping(value = "/waiting/home", method = RequestMethod.GET)
