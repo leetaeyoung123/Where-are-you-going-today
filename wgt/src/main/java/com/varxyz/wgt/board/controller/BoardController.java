@@ -36,7 +36,7 @@ public class BoardController {
 	}
 	
 	// 게시글 목록 화면
-		@RequestMapping(value = "/waiting/home", method = RequestMethod.GET)
+		@RequestMapping(value = "/board/home", method = RequestMethod.GET)
 		public void list(Model model, Page page) throws Exception {
 			Integer totalCount = null;
 			Integer rowsPerPage = null;
