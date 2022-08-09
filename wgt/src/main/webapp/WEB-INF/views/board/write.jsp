@@ -14,10 +14,10 @@
 
 <h3>게시판 글작성 페이지</h3>
 	<form action="write" method="post">
-	제목: <input type="text" name="title"><br>
+	제목: <input type="text" name="title" required="required"><br>
 	내용: <input type="text" name="content"><br>
-	사진 첨부 : <input type="image" name="imgname"><br>
-		<input type="submit" value="등록">
+	사진 첨부 : <br>
+		<input type="submit" class="add" value="등록">
 	</form>
 
 </body>
