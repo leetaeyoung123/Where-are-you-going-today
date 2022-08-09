@@ -11,17 +11,19 @@
   </head>
   <body>
     <div id="wrap">
-      <header id="header"><h1>1/5</h1><h1>가게 &nbsp;등록</h1></header>
+      <header id="header"><h1>3/5</h1><h1>가게 사진 등록</h1></header>
       <hr>
       <div id="content">
         <div class="inner">
-          <form action="add_shop2" method="post" id="addForm">
-            <p>사업자 등록 번호</p>
-            <input type="text" name="bns_num" class="input_box">
-            <p>가게 이름</p>
-            <input type="text" name="shop_name" class="input_box">
-            <p>가게 주소</p>
-            <input type="text" name="shop_address" class="input_box">
+          <form action="add_shop4" method="post" id="addForm">
+            <p>사장님만의 자신있는<br>가게 사진을 등록해주세요!</p>
+            <div class="file_upload_wrap">
+              <label for="upload_file" class="upload_label">사진 등록</label>
+              <input id="upload_file" type="file" name="shop_img">
+              <br>
+              <span style="margin-bottom: 15px; font-size: 28px;">미리보기</span>
+              <img src="" alt="" style="width: 380px; height: 400px;">
+            </div>
             <hr>
             <div class="btn_wrap">
               <input type="button" value="취소하기" onclick="" class="prev_btn">

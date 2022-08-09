@@ -11,16 +11,16 @@
   </head>
   <body>
     <div id="wrap">
-      <header id="header"><h1>1/5</h1><h1>가게 &nbsp;등록</h1></header>
+      <header id="header"><h1>2/5</h1><h1>가게 등록</h1></header>
       <hr>
       <div id="content">
         <div class="inner">
-          <form action="add_shop2" method="post" id="addForm">
-            <p>사업자 등록 번호</p>
+          <form action="add_shop3" method="post" id="addForm">
+            <p>가게 영업 시간</p>
             <input type="text" name="bns_num" class="input_box">
-            <p>가게 이름</p>
+            <p>가게 테이블 수</p>
             <input type="text" name="shop_name" class="input_box">
-            <p>가게 주소</p>
+            <p>테이블당 최대 수용 인원 수</p>
             <input type="text" name="shop_address" class="input_box">
             <hr>
             <div class="btn_wrap">
