@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.varxyz.wgt.user.domain.User;
 
+@Repository("userDao")
 public class UserDao {
 	private JdbcTemplate jdbcTemplate;
 	
