@@ -19,4 +19,9 @@ public class Board {
 	public Board() {
 		super();
 	}
+	
+	public String toString() {
+		return "번호 : " + number + "작성자 : " + userId + "제목 : " + title 
+				+ "내용 : " + content + "날짜 : " + regDate;
+	}
 }
