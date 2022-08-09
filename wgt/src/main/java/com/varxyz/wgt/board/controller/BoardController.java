@@ -15,10 +15,10 @@ import com.varxyz.wgt.board.service.BoardServiceImpl;
 public class BoardController {
 	BoardService service = new BoardServiceImpl();
 
-//	@GetMapping("/board/home")
-//	public String list() {
-//		return "/board/home";
-//	}
+	@GetMapping("/board/home")
+	public String list() {
+		return "/board/home";
+	}
 	
 	@GetMapping("/board/board")
 	public String wirte() {
