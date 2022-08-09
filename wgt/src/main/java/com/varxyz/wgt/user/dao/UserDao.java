@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.varxyz.wgt.user.domain.User;
 
-@Repository("userDao")
 public class UserDao {
 	private JdbcTemplate jdbcTemplate;
 	
@@ -18,7 +17,7 @@ public class UserDao {
 	// 회원가입
 	public void addUser(User user) {
 		String sql = "INSERT INTO User (userId, passwd, name, ssn, phone, addr) "
-				+ "VALUES (?, ?, ?, ?, ?, ?) ";
+				+ " VALUES (?, ?, ?, ?, ?, ?) ";
 		
 		jdbcTemplate.update(sql, user.getUserId(), user.getPasswd(), user.getName(), 
 								user.getSsn(), user.getPhone(), user.getAddr());

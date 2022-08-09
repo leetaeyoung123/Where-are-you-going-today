@@ -1,6 +1,5 @@
 package com.varxyz.wgt.user.serviceImpl;
 
-import com.varxyz.wgt.login.dao.LoginDao;
 import com.varxyz.wgt.user.domain.User;
 import com.varxyz.wgt.user.service.UserService;
 
