@@ -17,12 +17,12 @@ public class BoardDao {
 	public BoardDao(DataSource dataSource) {
 	      jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
+
 	public List<Board> list() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	//게시글 생성
 	public void create(Board board) {
 		String sql = "INSERT INTO Board (number, title, content, image)" + " VALUES (?, ?, ?, ?)";
@@ -38,7 +38,7 @@ public class BoardDao {
 		String sql = "UPDATE Board SET title = ?, content = ?, image =? WHERE userId = ?";
 		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImage(), board.getUserId());
 	}
-	
+
 	// 게시글 삭제
 	public List<Board> delete(String userId) {
 		String sql = "DELETE FROM Board WHERE userId = ?";
