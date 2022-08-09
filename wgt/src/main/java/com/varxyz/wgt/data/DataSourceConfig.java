@@ -13,7 +13,7 @@ import com.varxyz.wgt.user.dao.UserDao;
 
 
 @Configuration
-@ComponentScan(basePackageClasses = {UserDao.class, LoginDao.class, Owner.class, BoardDao.class})
+@ComponentScan(basePackageClasses = {UserDao.class, LoginDao.class, OwnerDao.class, BoardDao.class})
 public class DataSourceConfig {
 
 	@Bean(destroyMethod = "close")
