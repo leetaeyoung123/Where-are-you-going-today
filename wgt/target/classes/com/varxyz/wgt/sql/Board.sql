@@ -3,6 +3,7 @@ CREATE TABLE Board(
    userId	VARCHAR(20)		NOT NULL,
    title	VARCHAR(100)	NOT NULL,
    content	VARCHAR(150)	NOT NULL,
+   views	INT				DEFAULT 0,
    regDate	TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
    CONSTRAINT Board_userId_FK FOREIGN KEY (userId) REFERENCES User(userId)
 );
