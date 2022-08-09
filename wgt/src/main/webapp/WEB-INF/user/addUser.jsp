@@ -7,6 +7,8 @@
 <title>회원가입</title>
 </head>
 <body>
-
+	<form action="addUser" method="post">
+		
+	</form>
 </body>
 </html>
