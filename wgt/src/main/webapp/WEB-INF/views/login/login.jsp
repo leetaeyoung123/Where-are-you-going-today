@@ -6,7 +6,9 @@
 <title>로그인</title>
 </head>
 <body>
+	<button type="button" onclick="location.href='ownerLogin';">점주전용</button>
 	<form action="login" method="post">
+		<div>회원 로그인</div>
 		<div>아이디</div><input type="text" name="userId">
 		<div>비밀번호</div><input type="password" name="passwd"><br>
 		<input type="submit" value="로그인"><br>

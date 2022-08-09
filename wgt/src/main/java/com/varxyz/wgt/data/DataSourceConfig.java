@@ -1,7 +1,5 @@
 package com.varxyz.wgt.data;
 
-import java.security.acl.Owner;
-
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.varxyz.wgt.board.dao.BoardDao;
 import com.varxyz.wgt.login.dao.LoginDao;
+import com.varxyz.wgt.owner.dao.OwnerDao;
 import com.varxyz.wgt.user.dao.UserDao;
 
 

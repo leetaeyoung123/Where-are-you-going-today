@@ -1,6 +1,7 @@
 package com.varxyz.wgt.user.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -18,18 +19,14 @@ public class UserController {
 		
 		return "user/addUser";
 	}
-	
+
 	@PostMapping("/addUser") 
-	public String addUser(User user) {
+	public String addUser(User user, Model model) {
 		
 		userService.addUser(user);
 		UserService.context.close();
-		
-		return "user/addUser";
+			
+		return "login/login";
 	}
-	
-	// 회원가입 수정
-	
-	
 	
 }

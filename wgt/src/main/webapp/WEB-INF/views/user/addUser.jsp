@@ -5,10 +5,12 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
+
 <body>
 	<form action="addUser" method="post">
 		<div>회원가입</div>
-		<div>회원 아이디 <input type="text" name="userId" required></div><br> <!-- required는 입력을 안할시 자동으로 입력하라고 알림창을 띄움 -->
+		<!-- required는 입력을 안할시 자동으로 입력하라고 알림창을 띄움 -->
+		<div>회원 아이디 <input type="text" name="userId" required> </div><br> 
 		<div>비밀번호 <input type="password" name="passwd" required></div><br>
 		<div>이름 <input type="text" name="name" required></div><br>
 		<div>주민번호 <input type="text" name="ssn" required></div><br>

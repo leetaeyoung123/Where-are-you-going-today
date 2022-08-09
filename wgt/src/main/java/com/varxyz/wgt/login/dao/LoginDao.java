@@ -15,7 +15,7 @@ public class LoginDao {
 		jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	// 로그인
+	// 회원 로그인
 	public User login(String userId) {
 		String sql = "SELECT * FROM User WHERE userId = ?";
 		
