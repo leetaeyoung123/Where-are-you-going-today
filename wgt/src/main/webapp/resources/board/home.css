@@ -176,6 +176,7 @@ article{
 	font-weight: bold;
 }
 .headerContents button {
+	cursor: pointer;
 	font-size: 18px;
     width: 80px;
     height: 35px;
