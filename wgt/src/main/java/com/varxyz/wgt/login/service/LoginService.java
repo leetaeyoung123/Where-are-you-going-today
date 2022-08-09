@@ -13,6 +13,6 @@ public interface LoginService {
 	LoginDao loginDao = context.getBean("loginDao", LoginDao.class);
 	
 	// 로그인
-	User login(String userId);
+	public User login(String userId);
 
 }

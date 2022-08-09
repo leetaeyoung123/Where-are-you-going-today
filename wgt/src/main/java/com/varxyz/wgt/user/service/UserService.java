@@ -1,5 +1,7 @@
 package com.varxyz.wgt.user.service;
 
+import java.util.List;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.varxyz.wgt.data.DataSourceConfig;
@@ -13,4 +15,6 @@ public interface UserService {
 	UserDao userDao = context.getBean("userDao", UserDao.class);
 	
 	public void addUser(User user);
+	
+	List<User> findAllUser(String userId);
 }

@@ -3,6 +3,7 @@ package com.varxyz.wgt.login.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,16 +29,34 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	@PostMapping("/login/login")
+	@PostMapping("/login")
 	public String login(User user, HttpSession session, HttpServletRequest request,
 							Model model) {
 		
 		User dbUser = new User();
-		dbUser = loginService.login(user.getUserId());
 		
-		session.setAttribute("userId", dbUser);
+		try {
+			dbUser = loginService.login(user.getUserId());
+			
+			session.setAttribute("userId", dbUser);
+			
+			if(user.getUserId().equals(dbUser.getUserId()) && user.getPasswd().equals(dbUser.getPasswd())) {
+				
+			return "map/map";
+			}
+			
+		} catch (EmptyResultDataAccessException e) {
+//			e.printStackTrace(); // 무슨 에러가 나는지 콘솔창에서 알려줌
+			model.addAttribute("msg", "아이디를 다시 확인하세요!!");
+			model.addAttribute("url", "login");
+			
+			return "error/error";
+		}
 		
-		return null;
+		model.addAttribute("msg", "비밀번호를 다시 확인하세요!!");
+		model.addAttribute("url", "login");
+		
+		return  "error/error";
 	}
-	
+
 }

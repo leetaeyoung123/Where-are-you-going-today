@@ -1,7 +1,10 @@
 package com.varxyz.wgt.user.dao;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +25,12 @@ public class UserDao {
 		jdbcTemplate.update(sql, user.getUserId(), user.getPasswd(), user.getName(), 
 								user.getSsn(), user.getPhone(), user.getAddr());
 	}
+
+	public List<User> findUserId(String userId) {
+		String sql = "SELECT * FROM User WHERE userId = ?";
+		
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), userId);
+	}
+	
+	
 }

@@ -17,8 +17,7 @@ public class LoginDao {
 	
 	// 로그인
 	public User login(String userId) {
-		String sql = "SELECT userId, passwd "
-				+ "FROM User WHERE userId = ?";
+		String sql = "SELECT * FROM User WHERE userId = ?";
 		
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), userId);
 	}

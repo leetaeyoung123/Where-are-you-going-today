@@ -1,14 +1,19 @@
 package com.varxyz.wgt.data;
 
+import java.security.acl.Owner;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.varxyz.wgt.login.dao.LoginDao;
 import com.varxyz.wgt.user.dao.UserDao;
 
 
 @Configuration
+@ComponentScan(basePackageClasses = {UserDao.class, LoginDao.class, Owner.class})
 public class DataSourceConfig {
 	
 	@Bean(destroyMethod = "close")
@@ -29,8 +34,4 @@ public class DataSourceConfig {
 		return new JdbcTemplate(dataSource());
 	}
 	
-	@Bean
-	public UserDao userDao() {
-		return new UserDao(dataSource());
-	}
 }
