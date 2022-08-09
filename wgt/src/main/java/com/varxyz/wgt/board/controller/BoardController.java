@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Page;
 import com.varxyz.wgt.board.service.BoardService;
+import com.varxyz.wgt.board.service.BoardServiceImpl;
 
 @Controller
 public class BoardController {
+	BoardService service = new BoardServiceImpl();
 
 	@GetMapping("/board/home")
 	public String list() {
@@ -27,13 +29,7 @@ public class BoardController {
 		return "/board/board";
 	}
 	
-	@Autowired
-	private BoardService service;
 	
-	@GetMapping("/")
-	public String list(Model model) {
-		
-	}
 	
 	// 게시글 목록 화면
 		@RequestMapping(value = "/board/home", method = RequestMethod.GET)
