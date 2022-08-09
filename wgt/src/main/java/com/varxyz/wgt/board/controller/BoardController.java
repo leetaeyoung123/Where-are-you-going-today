@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.varxyz.wgt.Service.BoardService;
-import com.varxyz.wgt.board.Page;
+import com.varxyz.wgt.board.domain.Page;
+import com.varxyz.wgt.board.service.BoardService;
+
 
 @Controller
 public class BoardController {
