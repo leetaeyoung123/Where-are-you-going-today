@@ -9,7 +9,8 @@
 <title>Get Waiting</title>
 </head>
 <body>
-	<h1>현재 웨이팅 내역</h1>
-	${waiting}
+	<h3>현재 웨이팅 내역</h3>
+	${waiting.BarName}
+	${waiting.barName}
 </body>
 </html>

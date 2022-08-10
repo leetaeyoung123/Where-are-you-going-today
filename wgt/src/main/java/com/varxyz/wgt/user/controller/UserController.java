@@ -19,36 +19,36 @@ import com.varxyz.wgt.user.serviceImpl.UserServiceImpl;
 public class UserController {
 	// 유저 서비스 객체 생성
 	UserService userService = new UserServiceImpl();
-	
-	
-	// 회원가입 
+
+
+	// 회원가입
 	@GetMapping("/addUser")
 	public String addUserForm() {
-		
+
 		return "user/addUser";
 	}
 
 	@PostMapping("/addUser") 
 	public String addUser(User user, Model model) {
-		
+
 		userService.addUser(user);
 		UserService.context.close();
-			
+
 		return "login/login";
 	}
-	
+
 	// 회원정보 가져오기
 	@GetMapping("/modifyUser")
 	public String findAllUser(String users, HttpServletRequest request, HttpSession session, Model model) {
-		
+
 		session.getAttribute("userId");
-		
+
 		User user = new User();
 		user = (User) userService.findAllUser(request.getParameter("userId"));
-		
+
 		request.setAttribute("users", user);
-		
+
 		return "user/modifyUser";
 	}
-	
+
 }
