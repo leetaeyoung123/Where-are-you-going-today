@@ -8,3 +8,4 @@ CREATE TABLE User(
 );
 
 SELECT * FROM User;
+
