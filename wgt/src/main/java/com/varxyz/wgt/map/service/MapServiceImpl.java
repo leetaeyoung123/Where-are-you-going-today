@@ -10,4 +10,9 @@ public class MapServiceImpl implements MapService{
 	public List<Map> search(String name) {
 		return dao.search(name);
 	}
+
+	@Override
+	public List<Map> findAll() {
+		return dao.findAll();
+	}
 }
