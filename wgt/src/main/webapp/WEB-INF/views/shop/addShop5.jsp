@@ -11,23 +11,11 @@
   </head>
   <body>
     <div id="wrap">
-      <header id="header"><h1>1/4</h1><h1>가게 &nbsp;등록</h1></header>
+      <header id="header"><h1>성공!</h1></header>
       <hr>
       <div id="content">
         <div class="inner">
-          <form action="add_shop2" method="post" id="addForm">
-            <p>사업자 등록 번호</p>
-            <input type="text" name="bns_num" class="input_box">
-            <p>가게 이름</p>
-            <input type="text" name="shop_name" class="input_box">
-            <p>가게 주소</p>
-            <input type="text" name="shop_address" class="input_box">
-            <hr>
-            <div class="btn_wrap">
-              <input type="button" value="취소하기" onclick="" class="prev_btn">
-              <input type="submit" value="다음으로" class="next_btn">
-            </div>
-          </form>
+          <h1>가게 등록 완료!</h1>
         </div>
       </div>
       <hr>
