@@ -41,8 +41,6 @@ public class UserController {
 	@GetMapping("/modifyUser")
 	public String findAllUserForm(HttpServletRequest request, HttpSession session, Model model) {
 		
-		System.out.println(session.getAttribute("userId"));
-		
 		List<User> userList = new ArrayList<User>();
 		userList = userService.findAllUser((String)session.getAttribute("userId"));	// 세션을 가져옴
 		model.addAttribute("userList", userList);
@@ -50,10 +48,18 @@ public class UserController {
 		return "user/modifyUser";
 	}
 	
-//	@PostMapping("/modifyUser")
-//	public String findAllUserForm
+	// 회원정보 수정
+	@PostMapping("/modifyUser")
+	public String findAllUserForm(User user, HttpServletRequest request, HttpSession session, Model model) {
+		
+		List<User> userList = new ArrayList<User>();
+		userList = userService.modifyUser(user);
+		System.out.println(userList.get(0).getPasswd());
+		
+		return "login/login";
+	}
 	
-	// 회원 정보 수정
+	
 	@GetMapping
 	public String modifyUser(HttpServletRequest request, HttpSession session, Model model) {
 		

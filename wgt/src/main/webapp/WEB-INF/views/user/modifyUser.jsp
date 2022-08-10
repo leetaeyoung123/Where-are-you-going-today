@@ -18,7 +18,7 @@
 		<c:forEach var="user" items="${userList}">
 		<div style="font-size: 100px; text-align: center; padding-top: 40px;">회원수정</div>
 		<!-- required는 입력을 안할시 자동으로 입력하라고 알림창을 띄움 -->
-		<div style="text-align: center; padding-top: 20px; font-size: 30px;">아이디 <input type="text" name="userId" value="${user.userId}"></div><br> 
+		<div style="text-align: center; padding-top: 20px; font-size: 30px;">아이디 <input type="text" name="userId" value="${user.userId}" readonly></div><br> 
 		<div style="margin-left: 55px; padding-top: 20px; font-size: 30px;">비밀번호 <input type="password" name="passwd" value="${user.passwd}" required></div><br>
 		<div style="margin-left: 95px; padding-top: 20px; font-size: 30px;">이름 <input type="text" name="name" value="${user.name}" required></div><br>
 		<div style="margin-left: 55px; padding-top: 20px; font-size: 30px;">주민번호 <input type="text" name="ssn" value="${user.ssn}" readonly></div><br>
