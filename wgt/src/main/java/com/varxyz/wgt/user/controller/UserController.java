@@ -1,5 +1,8 @@
 package com.varxyz.wgt.user.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -16,8 +19,6 @@ public class UserController {
 	// 유저 서비스 객체 생성
 	UserService userService = new UserServiceImpl();
 	
-	// 유저 리스트 생성
-	User user = new User();
 	
 	// 회원가입 
 	@GetMapping("/addUser")
@@ -35,15 +36,19 @@ public class UserController {
 		return "login/login";
 	}
 	
-//	// 회원정보 수정
-//	@GetMapping("/modifyUser")
-//	public String modifyUserForm(User user, HttpSession session, Model model) {
-//		
-//		model.addAttribute(user.getUserId());
-//		model.addAttribute(user.getPasswd());
-//
-//		
-//		return "user/modifyUser";
-//	}
+	// 회원정보 가져오기
+	@GetMapping("/modifyUser")
+	public String findAllUser(User user, HttpSession session, Model model) {
+		
+		session.getAttribute("userId");
+		List<User> userList = new ArrayList<User>();
+		userList = userService.findAllUser();
+		System.out.println(userList.get(0).getUserId());
+		
+		model.addAttribute("userList", userList);
+
+		
+		return "user/modifyUser";
+	}
 	
 }
