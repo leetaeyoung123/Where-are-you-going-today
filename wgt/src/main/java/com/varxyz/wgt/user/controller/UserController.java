@@ -3,6 +3,7 @@ package com.varxyz.wgt.user.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -38,15 +39,14 @@ public class UserController {
 	
 	// 회원정보 가져오기
 	@GetMapping("/modifyUser")
-	public String findAllUser(User user, HttpSession session, Model model) {
+	public String findAllUser(String users, HttpServletRequest request, HttpSession session, Model model) {
 		
 		session.getAttribute("userId");
-		List<User> userList = new ArrayList<User>();
-		userList = userService.findAllUser();
-		System.out.println(userList.get(0).getUserId());
 		
-		model.addAttribute("userList", userList);
-
+		User user = new User();
+		user = (User) userService.findAllUser(request.getParameter("userId"));
+		
+		request.setAttribute("users", user);
 		
 		return "user/modifyUser";
 	}
