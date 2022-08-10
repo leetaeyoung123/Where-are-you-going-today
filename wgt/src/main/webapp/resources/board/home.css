@@ -1,6 +1,12 @@
 @charset "UTF-8";
-
+@font-face {
+    font-family: 'KOTRAHOPE';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 body{
+	font-family: 'KOTRAHOPE';
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -71,7 +77,7 @@ body{
     color :black;  
 }
 .body1{
-    display : grid;
+    display : contents;
     justify-content: center;
     align-content: center;
     gap: 10px;
@@ -118,7 +124,8 @@ article{
     background-color: transparent;
 }
 .reactionButton1 {
-	display: flex;
+	position: relative;
+	margin-left: 5%;
 }
 .feedReaction{
     display : flex;
@@ -170,8 +177,9 @@ article{
 .title_top h4{
     position: relative;
 	margin: auto;
-	margin-top: 28px;
+	margin-top: 70px;
     left: 3%;
+    font-size: 22px;
 }
 .feedReaction span {
 	margin-top: 3px;
@@ -192,9 +200,9 @@ article{
 }
 .headerContents button {
 	cursor: pointer;
-	font-size: 18px;
-    width: 80px;
-    height: 35px;
+	font-size: 15px;
+    width: 70px;
+    height: 30px;
     border: 5px;
     border-radius: 8px;
     background-color: #DA0037;

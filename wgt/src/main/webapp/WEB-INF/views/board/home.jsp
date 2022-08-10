@@ -37,14 +37,16 @@
 	</form>
 </div>
  <div class = "feedImage">
-   <img src = "../resources/board/img/yas.png" width = "370px" height = "330px">
+   <img src = "../resources/board/img/yas.png" width = "400px" height = "370px">
  </div>
   <div class = "feedReactionButton">
    <div class = "reactionButton1">
-   	<!-- <div class = "emptyheart">
-   		<img src = "../resources/board/img/emptyheart.png" width = "25px" height = "25px">
-	</div> -->
-   <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button>
+   	<div class = "emptyheart">
+   		<button onclick="changeImg()"><img id ="img1" src = "../resources/board/img/emptyheart.png" width = "20px" height = "20px" style="cursor:pointer;"></button>
+   		
+   		<!-- <img id ="img2" src = "../resources/board/img/redheart.png" width = "20px" height = "20px" onclick="imgToggle"> -->
+	</div>
+   <!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
  <div class = "feedReaction">
    <span>좋아요 ??개</span>
  </div>
@@ -59,13 +61,17 @@
 </div>
  </div>
  
- <script>
- const heartbtn = document.querySelector(".heartbtn")
- function handleClick() {
-	 heartbtn.style.color ="#DA0037";
+ <script type="text/javascript">
+ function changeImg() {
+	 document.getElementById("img1").src="../resources/board/img/redheart.png";
  }
- 	heartbtn.addEventListener("click", handleClick);
+ function addLike() {
+	    likeBtn.classList.toggle("pop");
+	    setTimeout(() => {redHeart.style.display = "inline"}, 200);
+	    likes.innerHTML = "좋아요 20개";
+	}
  </script>
+ 
  <script>
  var count = 1324;
  function countPlus(){
