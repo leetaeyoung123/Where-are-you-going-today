@@ -21,6 +21,6 @@ public interface UserService {
 	public List<User> findAllUser(String userId);
 	
 	// 회원 수정
-	public void modifyUser(User user);
+	public List<User> modifyUser(User user);
 
 }

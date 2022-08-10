@@ -35,10 +35,11 @@ public class UserDao {
 	}
 	
 	// 회원정보 수정
-	public void modifyUser(User user) {
+	public List<User> modifyUser(User user) {
 		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr = ? WHERE userId = ?";
 		
-		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr(), user.getUserId());
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), user);
+		
 	}
 	
 	// 회원탈퇴
