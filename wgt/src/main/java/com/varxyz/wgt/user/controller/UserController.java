@@ -39,16 +39,12 @@ public class UserController {
 	
 	// 회원정보 가져오기
 	@GetMapping("/modifyUser")
-	public String findAllUser(String users, HttpServletRequest request, HttpSession session, Model model) {
+	public String findAllUser(HttpServletRequest request, HttpSession session, Model model) {
 		
-		request.getAttribute("users");
+		List<User> user = new ArrayList<User>();
+		user = userService.findAllUser();
 		
-		User user = new User();
-		
-//		request.setAttribute(users, model)
-		user = (User) userService.findAllUser(request.getParameter("userId"));
-		
-		request.setAttribute("users", user);
+		model.addAttribute("user", user);
 		
 		return "user/modifyUser";
 	}
