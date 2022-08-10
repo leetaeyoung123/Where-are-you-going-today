@@ -6,9 +6,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+
 import com.varxyz.wgt.board.dao.BoardDao;
 import com.varxyz.wgt.login.dao.LoginDao;
 import com.varxyz.wgt.user.dao.UserDao;
+import com.varxyz.wgt.map.dao.MapDao;
+
 
 
 @Configuration
@@ -32,5 +35,9 @@ public class DataSourceConfig {
 	public JdbcTemplate jdbcTemplate() {
 		return new JdbcTemplate(dataSource());
 	}
-
+	
+	@Bean
+	public MapDao mapDao() {
+		return new MapDao(dataSource());
+	}
 }
