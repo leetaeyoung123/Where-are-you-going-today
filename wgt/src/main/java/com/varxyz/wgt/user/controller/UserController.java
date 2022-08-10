@@ -28,7 +28,7 @@ public class UserController {
 		return "user/addUser";
 	}
 
-	@PostMapping("/addUser") 
+	@PostMapping("/addUser")
 	public String addUser(User user, Model model) {
 
 		userService.addUser(user);
@@ -44,6 +44,8 @@ public class UserController {
 		session.getAttribute("userId");
 
 		User user = new User();
+
+//		request.setAttribute(users, model)
 		user = (User) userService.findAllUser(request.getParameter("userId"));
 
 		request.setAttribute("users", user);
