@@ -1,9 +1,15 @@
 package com.varxyz.wgt.board.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.service.BoardService;
@@ -20,11 +26,37 @@ public class Writecontroller {
 	}
 	
 	@PostMapping("/board/write")
-	public String post(Board board, Model model) {
+	public String post(@RequestParam("file") MultipartFile file, Board board, Model model) {
 		model.addAttribute("Board", board);
 		service.create(board);
 		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
 		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+		
+		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+		long size = file.getSize(); //파일사이즈
+		
+		System.out.println("파일명 : "  + fileRealName);
+		System.out.println("용량크기(byte) : " + size);
+		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+		String uploadFolder = "C:\\test\\upload";
+	
+	UUID uuid = UUID.randomUUID();
+	System.out.println(uuid.toString());
+	String[] uuids = uuid.toString().split("-");
+	
+	String uniqueName = uuids[0];
+	System.out.println("생성된 고유문자열" + uniqueName);
+	System.out.println("확장자명" + fileExtension);
+	
+	File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
+	try {
+		file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+	} catch (IllegalStateException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
 		return "alert/alert";
 	}
 	
