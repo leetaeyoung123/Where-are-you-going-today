@@ -28,7 +28,15 @@ public class MypageController {
 		return "alert/alert";
 	}
 	
-	
+	@PostMapping("/board/delete")
+	public String delete(Board board, Model model) {
+		//board.getNumber 자리에 게시글 번호 받아온거 넣으면 되염
+//		service.delete(board.getNumber()); 
+		model.addAttribute("Board", board);
+		model.addAttribute("msg", "게시글 삭제를 완료하였습니다.");
+		model.addAttribute("url","home");
+		return "alert/alert";
+	}
 	
 
 }
