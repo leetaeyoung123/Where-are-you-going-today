@@ -11,7 +11,7 @@
   </head>
   <body>
     <div id="wrap">
-      <header id="header"><h1>4/5</h1><h1>메뉴 등록</h1></header>
+      <header id="header"><h1>4/4</h1><h1>메뉴 등록</h1></header>
       <hr>
       <div id="content">
         <div class="inner">
@@ -21,23 +21,21 @@
               <table>
                 <tr>
                   <td>
-                    <img src="" alt="" style="width: 150px; height: 150px;">
-                  </td>
-                  <td>
-                    <input type="text" name="" value="" class="menu_inputBox" placeholder="메뉴 이름을 입력해주세요">
-                    <input type="text" name="" value="" class="menu_inputBox" placeholder="메뉴 가격을 입력해주세요">
-                    <input type="text" name="" value="" class="menu_inputBox" placeholder="메뉴 소개를 입력해주세요">
+                    <input type="text" name="menu_name" class="menu_inputBox" placeholder="메뉴 이름을 입력해주세요">
+                    <input type="text" name="menu_price" class="menu_inputBox" placeholder="메뉴 가격을 입력해주세요">
+                    <input type="text" name="menu_intro" class="menu_inputBox" placeholder="메뉴 소개를 입력해주세요">
                   </td>
                 </tr>
               </table>
               <div class="btn_wrap">
                 <label for="upload_file" class="upload_label">메뉴 사진 등록</label>
-                <input id="upload_file" type="file" name="shop_img">
+                <input id="upload_file" type="file" name="menu_img" onchange="readURL(this)" accept="image/jpeg, image/png, image/jpg">
                 <input type="button" value="저장" class="upload_label" style="background: #444444; color: white;">
               </div>
             </div>
-            <button type="button" name="button">추가</button>
-            <hr>
+            <hr class="hr">
+            <button type="button" name="button" class="add" onclick="del()">삭제</button>
+            <button type="button" name="button" class="add" onclick="add()">추가</button>
             <div class="btn_wrap">
               <input type="button" value="취소하기" onclick="" class="prev_btn">
               <input type="submit" value="다음으로" class="next_btn">
@@ -48,5 +46,55 @@
       <hr>
       <footer id="footer">Copyright (c) 2022 Copyright Holder All Rights Reserved.</footer>
     </div>
+    <script type="text/javascript">
+      let i = 2;
+      var label = '<label for="upload_file"' + i + 'class = "upload_label">';
+      function add() {
+        if (document.getElementsByClassName('btn_wrap').length - 1 > 10) {
+          alert("최대 10개까지만 등록가능합니다");
+        }else {
+          document.querySelector("#addForm").innerHTML += '<div class="file_upload_wrap">'
+                                                                  + '<table>'
+                                                                  +'<tr>'
+                                                                  +'<td>'
+                                                                  +	 '<input type="text" name="menu_name" class="menu_inputBox" placeholder="메뉴 이름을 입력해주세요">'
+                                                                  +  '<input type="text" name="menu_price" class="menu_inputBox" placeholder="메뉴 가격을 입력해주세요">'
+                                                                  +  '<input type="text" name="menu_intro" class="menu_inputBox" placeholder="메뉴 소개를 입력해주세요">'
+                                                                  + '</td>'
+                                                                  + '</tr>'
+                                                                  + '</table>'
+                                                                  + '<div class="btn_wrap">'
+                                                                    + '<label for="' + i + '"class="upload_label">메뉴 사진 등록</label>'
+                                                                  + '<input class="upload_file"' + 'id = "' + i +  '" type="file" name="shop_img" onchange="readURL2(this)" accept="image/jpeg, image/png, image/jpg">'
+                                                                  + '<input type="button" value="저장" class="upload_label" style="background: #444444; color: white;">'
+                                                                  + '</div>'
+                                                                  + '</div>'
+          i ++;                                                        + "<hr>";
+          console.log(i);
+        }
+      }
+      function del() {
+        document.querySelector(".file_upload_wrap").classList.remove(".file_upload_wrap");
+      }
+  	function readURL(input) {
+		const type = input.files[0].name.split('.');
+		if(type[1] != "jpg" && type[1] != "png" &&  type[1] != "jpeg"){
+			alert("이미지 파일은 (jpg, png, jpeg) 형식만 등록 가능합니다.");
+			document.querySelector('.preview').src = "";
+			document.querySelector('.img').value = null;
+			return false;
+		}
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      document.querySelector('.preview').src = e.target.result;
+		    };
+		    reader.readAsDataURL(input.files[0]);
+		  } else {
+		    document.querySelector('.preview').src = "";
+		  }
+		}
+
+    </script>
   </body>
 </html>

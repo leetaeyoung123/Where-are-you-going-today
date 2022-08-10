@@ -11,6 +11,7 @@ import com.varxyz.wgt.board.dao.BoardDao;
 import com.varxyz.wgt.login.dao.LoginDao;
 import com.varxyz.wgt.user.dao.UserDao;
 import com.varxyz.wgt.map.dao.MapDao;
+import com.varxyz.wgt.owner.dao.OwnerDao;
 
 
 
