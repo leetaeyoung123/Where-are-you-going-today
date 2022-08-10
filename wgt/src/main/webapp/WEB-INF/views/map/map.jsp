@@ -127,7 +127,10 @@
 		src="../resources/mapcss/img/backicon.png"></a>
 	<input id="inputaddr" value="${addr}" />
 	<input id="autoName" value="${autoName}" />
-
+	<c:forEach var="item" items="${find}">
+		<input id=findName value="${item.name}"/>
+		<input id=findAddr value="${item.address}"/>
+	</c:forEach>
 	<a class="userInformation"> <span></span>
 	</a>
 	<form class="header_form" action="map" method="post">
@@ -165,36 +168,28 @@
 					});
 
 			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-			
-			var positions = [{
+
+			var positions = [
+				{
 				
-				title : '고영희식당',
+				title : '고영희식당',//document.getElementById("findName").value,
 				latlng : new kakao.maps.LatLng(35.86583282479493,
 												128.59449168013143),
-				addr : '대구 중구 달구벌대로 2109-10 1층',
-				subaddr : '(지번)덕산동 128-13',
+				addr : 1,//document.getElementById("findAddr").value,
+				subaddr: '(지번)덕산동 128-13',
 				phone: '053-256-0808'
-			}];
-			
-			/*var content = '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '             "+ 
-            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>'; */
-            
+				},
+				
+				{
+				title : '뜨돈',//document.getElementById("findName").value,
+				latlng : new kakao.maps.LatLng(35.866625070474846,
+												128.59403980555334),
+				addr : 2,//document.getElementById("findAddr").value,
+				subaddr: '(지번)덕산동 128-13',
+				phone: '053-256-0808'	
+				}
+			];
+
 			for (var i = 0; i < positions.length; i++) {
 				var content = '<div class="wrap">' + 
 	            '    <div class="info">' + 
@@ -230,18 +225,20 @@
 				var overlay = new kakao.maps.CustomOverlay({
 					content: content,
 					map: map,
-					position: marker.getPosition()
+					position: marker.getPosition() 
+				});
+				
+				overlay.setMap(null); // 클릭하기전에 값이 안보이게
+				
+				kakao.maps.event.addListener(marker, 'click', function() {
+					overlay.setMap(map);
 				});
 			}
-			overlay.setMap(null); // 클릭하기전에 값이 안보이게
-			kakao.maps.event.addListener(marker, 'click', function() {
-			//	overlay.setMap(map, marker);
-				overlay.setMap(map);
-			});
 
 			function closeOverlay() {
 				overlay.setMap(null);
 			}
+
 		</script>
 		<input class="searchbtn" type="submit" value="검색" />
 	</form>
