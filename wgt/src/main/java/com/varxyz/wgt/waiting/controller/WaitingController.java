@@ -80,9 +80,9 @@ public class WaitingController {
 		model.addAttribute("frontCount", frontCount);
 		model.addAttribute("allCount", allCount);
 		model.addAttribute("waiting", waitingService.findWaitingById("sssssg06"));
-		model.addAttribute("shopTel",shopService.findAllByShopName(waitingService.findWaitingById("sssssg06").get(0).getBarName()).get(0).getShopTel());
+		model.addAttribute("shopTel",shopService.findAllByShopName(
+				waitingService.findWaitingById("sssssg06").get(0).getBarName()).get(0).getShopTel());
 		
-
 		return "waiting/get_waiting";
 	}
 

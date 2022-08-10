@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" type="text/css" href="../resources/board/write.css">
+<link rel="stylesheet" type="text/css" href="../resources/board/mypage.css">
 <link rel="stylesheet" type="text/css" href="../resources/board/home.css">
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
@@ -25,12 +26,14 @@
     <i class="fas fa-search"></i>
     <input type = "text" placeholder="검색" style="border:none;">
   </div>
+  <div class="update">
 	<form action="update" method="post">
 		<button type="submit" value="수정" style="position:relative; left:31%; margin-top:55px;">수정</button>
 	</form>
 	<form action="delete" method="post">
-		<button type="submit" value="삭제" style="position:relative; left:31%; margin-top:55px;">삭제</button>
+		<button type="submit" value="삭제" style="position:relative; left:31%; margin-top:55px; margin-left: 20px;">삭제</button>
 	</form>
+  </div>
  </div>
 </header>
   <div class="mypage">

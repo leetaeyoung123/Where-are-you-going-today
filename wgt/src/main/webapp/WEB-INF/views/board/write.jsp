@@ -38,8 +38,8 @@
 	<span>내용</span><textarea class="content_area" name="content" required="required" maxlength="150" placeholder="내용을 입력하세요(최대 150자)"></textarea>
 	<!-- <span>제목: </span><br><input class="title_area" type="text" name="title" required="required" maxlength="50" placeholder="제목을 입력하세요(최대 50자)"><br>
 	<span>내용: </span><br><input class="content_area"type="text" name="content" maxlength="150" placeholder="내용을 입력하세요(최대 150자)"><br> -->
-	사진 첨부 : <br>
-		<input type="submit" class="add" value="등록"><br>
+	사진 선택 : <span><input type="file" multiple="multiple" name="files"><br></span>
+		<input type="submit" class="add" value="등록" required="required"><br>
 	</form>
 		<button class="go_home" onclick="location.href='home'">목록으로</button>
 </div>

@@ -19,7 +19,6 @@ public interface BoardService {
 
 	// 게시글 목록 조회
 		public List<Board> list();
-		public List<Board> list(Page page);
 		
 		// 게시글 쓰기
 		public void create(Board board);
@@ -36,7 +35,6 @@ public interface BoardService {
 		
 		// 게시글 검색
 		public List<Board> search(String keyword);
-		public List<Board> search(Page page);
 		
 		public Integer totalCount() throws Exception;
 
