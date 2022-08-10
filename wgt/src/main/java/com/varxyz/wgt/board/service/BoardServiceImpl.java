@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.varxyz.wgt.board.domain.Board;
-import com.varxyz.wgt.board.domain.Page;
-
 
 @Component("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -46,18 +44,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Integer totalCount() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Board> list(Page page) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Board> search(Page page) {
 		// TODO Auto-generated method stub
 		return null;
 	}

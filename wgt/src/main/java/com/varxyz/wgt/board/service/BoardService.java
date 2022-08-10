@@ -7,7 +7,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.varxyz.wgt.board.dao.BoardDao;
 import com.varxyz.wgt.board.domain.Board;
-import com.varxyz.wgt.board.domain.Page;
 import com.varxyz.wgt.data.DataSourceConfig;
 
 public interface BoardService {
