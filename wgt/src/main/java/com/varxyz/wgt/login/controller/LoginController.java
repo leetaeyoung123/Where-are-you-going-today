@@ -41,7 +41,7 @@ public class LoginController {
 			session.setAttribute("userId", dbUser);
 			
 			if(user.getUserId().equals(dbUser.getUserId()) && user.getPasswd().equals(dbUser.getPasswd())) {
-				
+				session.setAttribute("userId", user.getUserId());
 			return "map/map";
 			}
 			

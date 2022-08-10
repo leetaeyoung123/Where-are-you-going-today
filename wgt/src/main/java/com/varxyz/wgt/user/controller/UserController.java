@@ -41,9 +41,11 @@ public class UserController {
 	@GetMapping("/modifyUser")
 	public String findAllUser(String users, HttpServletRequest request, HttpSession session, Model model) {
 		
-		session.getAttribute("userId");
+		request.getAttribute("users");
 		
 		User user = new User();
+		
+//		request.setAttribute(users, model)
 		user = (User) userService.findAllUser(request.getParameter("userId"));
 		
 		request.setAttribute("users", user);
