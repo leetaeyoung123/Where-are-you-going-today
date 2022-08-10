@@ -20,7 +20,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	// 회원수정
-	public List<User> modifyUser(User user) {
-		return userDao.modifyUser(user);
+	public void modifyUser(User user) {
+		 userDao.modifyUser(user);
 	}
+	
 }

@@ -52,18 +52,16 @@ public class UserController {
 	@PostMapping("/modifyUser")
 	public String findAllUserForm(User user, HttpServletRequest request, HttpSession session, Model model) {
 		
-		List<User> userList = new ArrayList<User>();
-		userList = userService.modifyUser(user);
-		System.out.println(userList.get(0).getPasswd());
+		userService.modifyUser(user);
 		
 		return "login/login";
 	}
 	
 	
-	@GetMapping
-	public String modifyUser(HttpServletRequest request, HttpSession session, Model model) {
-		
-		return null;
-	}
+//	@GetMapping
+//	public String modifyUser(HttpServletRequest request, HttpSession session, Model model) {
+//		
+//		return null;
+//	}
 
 }
