@@ -4,7 +4,7 @@ CREATE TABLE shop (
 	SHOP_TEL			VARCHAR(12)		NOT NULL,
 	SHOP_ADDRESS		VARCHAR(50)		NOT NULL,
 	SHOP_HOURS			VARCHAR(8)		NOT NULL,
-	SHOP_IMG			VARCHAR(10)		NOT NULL DEFAULT 'default',
+	SHOP_IMG			VARCHAR(10)		NOT NULL DEFAULT 'default'
 );
 
 CREATE TABLE menu (
@@ -15,6 +15,10 @@ CREATE TABLE menu (
 	SHOP_MENU_IMG		VARCHAR(10)		NOT NULL DEFAULT 'default'
 );
 
-SELECT * shop;
+SELECT * FROM shop;
 
 DELETE FROM SHOP;
+
+--------------------------------------------------------------------
+INSERT INTO shop (BUSINESS_NUMBER, SHOP_NAME, SHOP_TEL, SHOP_ADDRESS, SHOP_HOURS, SHOP_IMG)
+	VALUES ("12314", "시류", "053-123-4567", "동성로", "?", "?");
