@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="../resources/board/home.css">
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
 <title>게시판</title>
 </head>
 <body>
@@ -28,6 +29,10 @@
 	</form>
  </div>
 </header>
+  <div class="mypage">
+  	<a href="mypage"><img id ="user" src = "../resources/board/img/user.png" width = "30px" height = "30px" style="cursor:pointer;"></a>
+  </div>
+  
 <div class = "body1">
 <div class="title_top">
 	<form action="home" method="post">
@@ -65,24 +70,6 @@
  function changeImg() {
 	 document.getElementById("img1").src="../resources/board/img/redheart.png";
  }
- function addLike() {
-	    likeBtn.classList.toggle("pop");
-	    setTimeout(() => {redHeart.style.display = "inline"}, 200);
-	    likes.innerHTML = "좋아요 20개";
-	}
- </script>
- 
- <script>
- var count = 1324;
- function countPlus(){
-         count=count+1;
-         document.querySelector(".like_count").innerHTML="좋아요 "+count +"개";
-     }
- function addLike() {
-	    heartBtn.classList.toggle("pop");
-	    setTimeout(() => {redHeart.style.display = "inline"}, 200);
-	    likes.innerHTML = "좋아요 20개";
-	}
  </script>
  
 </body>

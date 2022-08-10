@@ -28,7 +28,9 @@
 	</form> -->
  </div>
 </header>
-
+  <div class="mypage">
+  	<a href="mypage"><img id ="user" src = "../resources/board/img/user.png" width = "30px" height = "30px" style="cursor:pointer;"></a>
+  </div>
 <h3 style="text-align: center; margin-top: 35px;">게시글 작성</h3>
 <div class="write_area">
 	<form action="write" method="post" style="text-align:center; display:grid; justify-content:center; margin-top:40px;">

@@ -10,21 +10,21 @@ import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
 
 @Controller
-public class Writecontroller {
+public class MypageController {
 	BoardService service = new BoardServiceImpl();
 	
 	// 등록하기 화면
-	@GetMapping("/board/write")
+	@GetMapping("/board/mypage")
 	public String postForm(Model model) {
-		return "/board/write";
+		return "/board/mypage";
 	}
 	
-	@PostMapping("/board/write")
+	@PostMapping("/board/mypage")
 	public String post(Board board, Model model) {
 		model.addAttribute("Board", board);
 		service.create(board);
-		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
-		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+		model.addAttribute("msg", "게시글 수정을 완료하였습니다.");
+		model.addAttribute("url","home");
 		return "alert/alert";
 	}
 	

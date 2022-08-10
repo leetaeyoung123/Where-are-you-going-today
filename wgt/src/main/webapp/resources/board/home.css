@@ -209,13 +209,9 @@ article{
     color: white;
 }
 
-/*좋아요 하트 애니메이션*/
-@keyframes pop {
-    0% {transform: scale(1);}
-    100% {transform: scale(1.2);}
-}
-
-@keyframes shrink {
-    0% {transform: scale(1.2);}
-    100% {transform: scale(1);}
+.mypage img {
+	position: absolute;
+    cursor: pointer;
+    top: 15%;
+    right: 2%;
 }
