@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Menu {
-	private String shopName;
+	private String businessNumber;
 	private String menuName;
 	private int menuPrice;
 	private String menuIntro;

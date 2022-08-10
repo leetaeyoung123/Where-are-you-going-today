@@ -11,7 +11,7 @@ import com.varxyz.wgt.shop.domain.Shop;
 public interface ShopService {
 	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DataSourceConfig.class);
 	ShopDao dao = context.getBean("shopDao", ShopDao.class);
-	
+
 	// 매장명으로 매장 정보 가져오기
 	public List<Shop> findAllByShopName(String shopName);
 }

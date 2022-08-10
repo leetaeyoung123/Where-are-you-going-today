@@ -17,10 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.varxyz.wgt.shop.domain.Menu;
 import com.varxyz.wgt.shop.domain.Shop;
+import com.varxyz.wgt.shop.service.ShopService;
+import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
 @Controller
 public class AddShopController {
-	
+	Menu menu = new Menu();
 	Shop shop = new Shop();
 	List<Menu> menuList = new ArrayList<>();
 	
@@ -123,10 +125,10 @@ public class AddShopController {
 							   @RequestParam("menu_price") int menuPrice,
 							   @RequestParam("menu_intro") String menuIntro,
 							   Model model) {
-		Menu menu = new Menu();
 		menu.setMenuName(menuName);
 		menu.setMenuPrice(menuPrice);
 		menu.setMenuIntro(menuIntro);
+		menu.setBusinessNumber(shop.getShopBusinessNum());
 		
 		String fileRealName = file.getOriginalFilename(); // 실제 파일 명을 알수있는 메소드
 		long size = file.getSize(); // 파일 사이즈
@@ -136,8 +138,8 @@ public class AddShopController {
 			
 			menu.setMenuImg("default");
 			menuList.add(menu);
-			model.addAttribute("msg","사진이 기본 사진으로 설정 되었습니다.");
-			model.addAttribute("url","add_shop5");
+			model.addAttribute("msg","메뉴 사진을 등록해주세요!");
+			model.addAttribute("url","add_shop4");
 			return "alert/alert";
 		}
 		
@@ -177,13 +179,20 @@ public class AddShopController {
 			e.printStackTrace();
 		}
 		
-		menuList.add(menu);
-		
-		System.out.println(menuList.toString());
-		for (Menu item : menuList) {
-			System.out.println(item.getMenuName());
+		if (menuList.size() == 10) {
+			shop.setMenuList(menuList);
+			ShopService service = new ShopServiceImpl();
+			service.addShop(shop);
+			service.addMenu(menu);
+			
+			return "shop/addShop5";
+		}else {
+			menuList.add(menu);
+			model.addAttribute("menuListSize", menuList.size());
 		}
-		return "shop/addShop5";
+		
+		return "shop/addShop4";
+		
 	}
 	
 	@GetMapping("add_shop5")
