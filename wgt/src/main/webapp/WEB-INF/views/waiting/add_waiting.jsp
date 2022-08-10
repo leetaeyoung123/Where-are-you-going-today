@@ -3,18 +3,51 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.net.URLEncoder"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko" dir="ltr">
 <head>
-<meta charset="UTF-8">
+<link rel="stylesheet" href="../resources/initialize.css">
+<link rel="stylesheet" href="../resources/shopStyle.css">
+<link rel="stylesheet" href="../resources/waitingStyle.css">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
 <title>Add Waiting</title>
 </head>
 <body>
-	<h3>웨이팅</h3>
-	<form action="waiting" method="post">
-		<input placeholder="아이디" type="text" name="userId"> <input
-			placeholder="가게명" type="text" name="barName"> <input
-			placeholder="인원수" type="number" min="1" required name="num_people">
-		<button>Waiting</button>
-	</form>
+
+	<div id="wrap">
+		<header id="header">
+			<h3 style="font-size: 40px;">시류</h3>
+		</header>
+		<hr>
+		<div id="content">
+			<div style="text-align: center; font-size: 45px;" class="inner">
+				<c:forEach var="waiting" items="${nowWaiting}" varStatus="status">
+							현재 웨이팅 테이블 : ${status.index+1}
+				</c:forEach>
+			</div>
+			<div style="margin-top: 50px;" class="input_wrap">
+				<form class="form_style" action="waiting" method="post">
+					<h3 style="font-size: 25px;">인원수 입력</h3>
+					<input class="input_num" placeholder="인원수" name="num_people"
+						type="number" min="1" value="1">
+					<div class="input_wrap">
+						<input style="margin-left: 20px;" class="input_style" type=button
+							value="-" onClick="javascript:this.form.num_people.value--;">
+						<input class="input_style" type=button value="+"
+							onClick="javascript:this.form.num_people.value++;">
+					</div>
+			</div>
+			<div class="btn_wrap">
+				<input type="submit" value="뒤로가기" class="prev_btn"> <input
+					type="submit" value="웨이팅 하기" class="next_btn">
+			</div>
+			</form>
+		</div>
+		<hr>
+
+		<footer id="footer">Copyright (c) 2022 Copyright Holder All
+			Rights Reserved.</footer>
+	</div>
 </body>
 </html>
