@@ -17,10 +17,7 @@ CREATE TABLE menu (
 	FOREIGN KEY(BUSINESS_NUMBER) REFERENCES shop(BUSINESS_NUMBER)
 );
 
-SELECT * FROM shop;
+SELECT * shop;
 
-DELETE FROM SHOP;
-
---------------------------------------------------------------------
-INSERT INTO shop (BUSINESS_NUMBER, SHOP_NAME, SHOP_TEL, SHOP_ADDRESS, SHOP_HOURS, SHOP_IMG)
-	VALUES ("12314", "시류", "053-123-4567", "동성로", "?", "?");
+DROP TABLE shop;
+DROP TABLE menu;
