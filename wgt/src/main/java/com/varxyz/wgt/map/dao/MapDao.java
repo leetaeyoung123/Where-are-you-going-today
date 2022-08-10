@@ -20,7 +20,7 @@ public class MapDao {
 	}
 	
 	public List<Map> findAll(){
-		String sql = "SELECT * FROM text";
+		String sql = "SELECT * FROM test";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
 	}
 }

@@ -19,6 +19,7 @@ public class MapController {
 	public String mapForm(Map map,Model model) {
 		model.addAttribute("name", service.search(map.getName()));
 		model.addAttribute("find", service.findAll());
+		System.out.println(service.findAll());
 		return "map/map";
 	}
 	

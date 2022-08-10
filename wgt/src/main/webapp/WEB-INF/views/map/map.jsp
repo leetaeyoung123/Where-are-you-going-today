@@ -127,6 +127,7 @@
 		src="../resources/mapcss/img/backicon.png"></a>
 	<input id="inputaddr" value="${addr}" />
 	<input id="autoName" value="${autoName}" />
+
 	<a class="userInformation"> <span></span>
 	</a>
 	<form class="header_form" action="map" method="post">
@@ -164,7 +165,7 @@
 					});
 
 			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-					
+			
 			var positions = [{
 				
 				title : '고영희식당',
