@@ -17,7 +17,7 @@ import com.varxyz.wgt.map.dao.MapDao;
 
 
 @Configuration
-@ComponentScan(basePackageClasses = {UserDao.class, LoginDao.class, BoardDao.class})
+@ComponentScan(basePackageClasses = {UserDao.class, LoginDao.class, OwnerDao.class, BoardDao.class})
 public class DataSourceConfig {
 
 	@Bean(destroyMethod = "close")
@@ -37,7 +37,7 @@ public class DataSourceConfig {
 	public JdbcTemplate jdbcTemplate() {
 		return new JdbcTemplate(dataSource());
 	}
-	
+
 	@Bean
 	public MapDao mapDao() {
 		return new MapDao(dataSource());
