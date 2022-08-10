@@ -18,4 +18,9 @@ public class MapDao {
 		String sql = "SELECT * FROM test WHERE name = ?";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class), name);
 	}
+	
+	public List<Map> findAll(){
+		String sql = "SELECT * FROM test";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
+	}
 }

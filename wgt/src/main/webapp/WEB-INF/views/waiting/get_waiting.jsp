@@ -14,26 +14,32 @@
 <title>Add Waiting</title>
 </head>
 <body>
-
+	<script type="text/javascript">
+		function back() {
+			history.back();
+		}
+	</script>
 	<div id="wrap">
 		<header id="header">
-			<h3 style="font-size: 40px;">현재 웨이팅 내역</h3>
+			<h3 style="font-size: 40px;">나의 웨이팅 내역</h3>
 		</header>
 		<hr>
 		<div id="content">
 			<div style="text-align: center; font-size: 45px;" class="inner">
 				<c:forEach var="x" items="${waiting}" varStatus="status">
 							매장명 : ${x.barName} <br>
-							매장 전화번호 : <br>053-587-1234<br>
-							인원 : ${x.num_people}<br>
-							내 앞 대기팀 : 7
+							매장 전화번호 : <br>DB 끌고올예정<br>
+							인원 : ${x.num_people}명<br>
+							총 대기팀 : ${allCount}팀 <br>
+							내 앞 대기팀 : ${frontCount}팀
 				</c:forEach>
 
 			</div>
-			<div class="btn_wrap">
-				<input type="submit" value="뒤로가기" class="prev_btn"> <input
-					type="submit" value="웨이팅 취소" class="next_btn">
-			</div>
+			<form action="get_waiting" method="post" class="form_style" >
+				<div class="btn_wrap">
+					<input type="button" onclick="back()" value="뒤로가기" class="prev_btn"> <input
+						type="submit" value="웨이팅 취소" class="next_btn">
+				</div>
 			</form>
 		</div>
 		<hr>

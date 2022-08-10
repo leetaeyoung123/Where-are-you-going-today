@@ -11,17 +11,19 @@
   </head>
   <body>
     <div id="wrap">
-      <header id="header"><h1>2/5</h1><h1>가게 등록</h1></header>
+      <header id="header"><h1>2/4</h1><h1>가게 등록</h1></header>
       <hr>
       <div id="content">
         <div class="inner">
           <form action="add_shop3" method="post" id="addForm">
             <p>가게 영업 시간</p>
-            <input type="text" name="bns_num" class="input_box">
+            <input type="text" name="shop_hour" class="input_box">
             <p>가게 테이블 수</p>
-            <input type="text" name="shop_name" class="input_box">
+            <input type="text" name="shop_table" class="input_box">
             <p>테이블당 최대 수용 인원 수</p>
-            <input type="text" name="shop_address" class="input_box">
+            <input type="text" name="shop_max_people" class="input_box">
+            <p>가게 번호</p>
+            <input type="text" name="shop_tel" class="input_box">
             <hr>
             <div class="btn_wrap">
               <input type="button" value="취소하기" onclick="" class="prev_btn">
