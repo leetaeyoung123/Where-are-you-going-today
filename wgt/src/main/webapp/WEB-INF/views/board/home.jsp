@@ -29,32 +29,55 @@
  </div>
 </header>
 <div class = "body1">
-<div class="number">
+<div class="title_top">
 	<form action="home" method="post">
 		<c:forEach var="item" items="${board}">
-			<h4>No.${item.number}</h4>
+			<h4>${item.title}</h4>
 		</c:forEach>
 	</form>
 </div>
  <div class = "feedImage">
-   <img src = "../resources/board/img/yas.png" width = "330px" height = "330px">
+   <img src = "../resources/board/img/yas.png" width = "370px" height = "330px">
  </div>
   <div class = "feedReactionButton">
    <div class = "reactionButton1">
-   <button><i class="far fa-heart"></i></button>
+   	<!-- <div class = "emptyheart">
+   		<img src = "../resources/board/img/emptyheart.png" width = "25px" height = "25px">
+	</div> -->
+   <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button>
  <div class = "feedReaction">
-   <span>좋아요 갯수</span>
+   <span>좋아요 ??개</span>
  </div>
   </div> 
   <div class="write">
-  <form action="home" method="post">
+  <form action="home" method="post" style="padding: 2px 5px 2px 5px;">
 		<c:forEach var="item" items="${board}">
-			<span>${item.title}</span><br>
-			${item.content}<br>
+				  ${item.content}<br>
 		</c:forEach>
 	</form>
 	</div>
 </div>
  </div>
+ 
+ <script>
+ const heartbtn = document.querySelector(".heartbtn")
+ function handleClick() {
+	 heartbtn.style.color ="#DA0037";
+ }
+ 	heartbtn.addEventListener("click", handleClick);
+ </script>
+ <script>
+ var count = 1324;
+ function countPlus(){
+         count=count+1;
+         document.querySelector(".like_count").innerHTML="좋아요 "+count +"개";
+     }
+ function addLike() {
+	    heartBtn.classList.toggle("pop");
+	    setTimeout(() => {redHeart.style.display = "inline"}, 200);
+	    likes.innerHTML = "좋아요 20개";
+	}
+ </script>
+ 
 </body>
 </html>

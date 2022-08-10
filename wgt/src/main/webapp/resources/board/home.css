@@ -4,6 +4,7 @@ body{
     justify-content: center;
     align-content: center;
     align-items: center;
+    overflow: auto;
 }
 .fa-instagram:before {
     color: #DA0037;
@@ -166,19 +167,22 @@ article{
     color : rgba(var(--b6a,219,219,219),1);
 }
     
-.number h4{
+.title_top h4{
     position: relative;
 	margin: auto;
-	margin-top: 15px;
+	margin-top: 28px;
     left: 3%;
 }
 .feedReaction span {
 	margin-top: 3px;
 }
 .write {
+	position: relative;
+	width: 340px;
+	margin: 0 auto;
 	margin-top: 5px;
-    border: outset;
-    line-height: 1.8;
+    border: ridge;
+    line-height: 1.5;
 }
 .write span {
 	font-weight: bold;
@@ -195,4 +199,15 @@ article{
     border-radius: 8px;
     background-color: #DA0037;
     color: white;
+}
+
+/*좋아요 하트 애니메이션*/
+@keyframes pop {
+    0% {transform: scale(1);}
+    100% {transform: scale(1.2);}
+}
+
+@keyframes shrink {
+    0% {transform: scale(1.2);}
+    100% {transform: scale(1);}
 }
