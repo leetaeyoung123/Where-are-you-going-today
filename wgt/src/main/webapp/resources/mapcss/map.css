@@ -17,11 +17,68 @@ body{
 	height: 844px;
 	box-sizing: border-box;
 }
+#inputaddr, #autoName{
+	width: 0;
+	height: 0;
+	opacity: 0;
+	cursor: default;
+}
 
-.container_1 {
-	width: 390px;
-	height: 844px;
-	background:red;
+.header_form{
+	margin-top: -30px;
+}
+
+.back img{
+	margin-top: 5px;
+	margin-left: 5px;
+	width: 30px;
+	height: 30px;
+}
+
+.userInformation {
+	position: absolute;
+	right: 15px;
+	top: 8px;
+	width: 24px;
+	height: 24px;
+	overflow: hidden;
+	text-indent: 999px;
+	cursor: pointer;
+}
+
+.userInformation:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 2px;
+	width: 30px;
+	height: 2px;
+	background: #DA0037;
+	transform-origin: 0 0;
+	transition: all 0.3s;
+}
+
+.userInformation span {
+	position: absolute;
+    left: 0;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: #DA0037;
+    margin-top: -1px;
+    transition: opacity 0.3s;
+}
+
+.userInformation:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    width: 100%;
+    height: 2px;
+    background: #DA0037;
+    transform-origin: 0 100%;
+    transition: all 0.3s;
 }
 
 .selectbox {
@@ -57,6 +114,6 @@ body{
     border-radius: 10px;
     width: 370px;
     height: 30px;
-    margin-top: 25px;
+    margin-top: 15px;
     margin-left: 10px;
 }

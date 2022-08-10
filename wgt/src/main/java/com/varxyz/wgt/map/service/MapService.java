@@ -14,5 +14,5 @@ public interface MapService {
 	
 	MapDao dao = context.getBean("mapDao", MapDao.class);
 	
-	public List<Map> search(String searchName);
+	public List<Map> search(String name);
 }
