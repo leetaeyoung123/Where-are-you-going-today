@@ -13,7 +13,7 @@ import com.varxyz.wgt.waiting.serviceImpl.WaitingServiceImpl;
 
 @Controller("controller.waitingController")
 public class WaitingController {
-	
+
 	WaitingService waitingService = new WaitingServiceImpl();
 
 	@GetMapping("/controller/waiting")
@@ -22,17 +22,22 @@ public class WaitingController {
 		System.out.println(session.getAttribute("userId"));
 		return "waiting/add_waiting";
 	}
-	
+
 	@PostMapping("/controller/waiting")
 	public String waiting(Waiting waiting, Model model) {
+		// 가게 이름, 사용자ID 세션으로 받아와서 Dao
 //		waitingService.addWaiting(waiting.getBarName(), waiting.getUserId(), waiting.getNum_people());
-		System.out.println(waiting.getBarName());		
-		model.addAttribute("waiting", waiting);
-		return "redirect:/controller/get_waiting";
+		return "redirect:/controller/get_waiting"; // 이전페이지로 ㄱㄱ
 	}
-	
+
 	@GetMapping("/controller/get_waiting")
 	public String getWaitingForm(Model model) {
+		model.addAttribute("waiting", waitingService.findWaitingById("sssssg06"));
+		return "waiting/get_waiting";
+	}
+	
+	@PostMapping("/controller/get_waiting")
+	public String getWaiting(Model model) {
 		return "waiting/get_waiting";
 	}
 }
