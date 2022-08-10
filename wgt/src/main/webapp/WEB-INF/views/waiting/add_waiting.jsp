@@ -14,17 +14,19 @@
 <title>Add Waiting</title>
 </head>
 <body>
-
+<script type="text/javascript">
+		function back() {
+			history.back();
+		}
+	</script>
 	<div id="wrap">
 		<header id="header">
-			<h3 style="font-size: 40px;">시류</h3>
+			<h3 style="font-size: 40px;">${barName}</h3>
 		</header>
 		<hr>
 		<div id="content">
 			<div style="text-align: center; font-size: 45px;" class="inner">
-				<c:forEach var="waiting" items="${nowWaiting}" varStatus="status">
-							현재 웨이팅 테이블 : ${status.index+1}
-				</c:forEach>
+					현재 대기중인 팀 : ${nowWaiting}
 			</div>
 			<div style="margin-top: 50px;" class="input_wrap">
 				<form class="form_style" action="waiting" method="post">
@@ -39,7 +41,7 @@
 					</div>
 			</div>
 			<div class="btn_wrap">
-				<input type="submit" value="뒤로가기" class="prev_btn"> <input
+				<input type="submit" onclick="back()" value="뒤로가기" class="prev_btn"> <input
 					type="submit" value="웨이팅 하기" class="next_btn">
 			</div>
 			</form>

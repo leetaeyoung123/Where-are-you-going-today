@@ -1,16 +1,18 @@
 CREATE TABLE Waiting(
-	barName			VARCHAR(20)		PRIMARY KEY,
+	aid				BIGINT			PRIMARY KEY AUTO_INCREMENT,
+	barName			VARCHAR(20)		NOT NULL,
 	num_people		BIGINT			NOT NULL,
 	userId			VARCHAR(20)		NOT NULL,
 	regDate			TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT Waiting_userId_FK FOREIGN KEY (userId) REFERENCES User(userId)
 );
 
-SELECT * FROM Waiting;
+SELECT * FROM User;
 
 DROP TABLE Waiting;
 
-INSERT INTO Waiting VALUES ("미러볼", 3, "psg", regDate);
+INSERT INTO Waiting (barName, num_people, userId)
+			VALUES ("시류", 7, "lty");
 INSERT INTO User VALUES ("sssssg06", "1234", "박상규", "980618", "01034903180", "대구요");
 --------------------------------------------------------------------------------------------------
 
