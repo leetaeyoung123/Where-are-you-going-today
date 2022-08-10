@@ -1,0 +1,42 @@
+package com.varxyz.wgt.waiting.dao;
+
+import java.util.List;
+
+import org.apache.tomcat.jdbc.pool.DataSource;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.varxyz.wgt.waiting.domain.Waiting;
+
+public class WaitingDao {
+	private JdbcTemplate jdbcTemplate;
+	
+	public WaitingDao(DataSource dataSourceConfig) {
+		jdbcTemplate = new JdbcTemplate(dataSourceConfig);
+	}
+	
+	// 웨이팅 추가
+	public void addWaiting(String barName, String userId, long num_people) {
+		String sql = "INSERT INTO Waiting (barName, userId, num_people) VALUES (?, ?, ?)";
+		jdbcTemplate.update(sql, barName, userId, num_people);
+	}
+	
+	// 웨이팅 삭제
+	public void deleteWaiting(String userId) {
+		String sql = "DELETE FROM Waiting WHERE userId = ?";
+		jdbcTemplate.update(sql, userId);
+	}
+	
+	// 회원님의 현재 웨이팅 조회
+	public List<Waiting> findWaitingById(String userId){
+		String sql = "SELECT * FROM Waiting WHERE userId = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Waiting>(Waiting.class), userId);
+	}
+	
+	// 술집의 현재 웨이팅 내역
+	public List<Waiting> findAllWaiting(String barName){
+		String sql = "SELECT * FROM Waiting WHERE barName = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Waiting>(Waiting.class), barName);
+	}
+	
+}
