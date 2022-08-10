@@ -37,12 +37,9 @@ public class BoardDao {
 	}
 
 	//게시글 삭제
-	public List<Board> delete(String userId) {
-		String sql = "DELETE FROM Board WHERE userId = ?";
-		List<Board> list = new ArrayList<>();
-		jdbcTemplate.update(sql, userId);
-		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
-		return list;
+	public List<Board> delete(long number) {
+		String sql = "DELETE FROM Board WHERE number = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class), number);
 	}
 	
 	//ID로 게시글 찾기

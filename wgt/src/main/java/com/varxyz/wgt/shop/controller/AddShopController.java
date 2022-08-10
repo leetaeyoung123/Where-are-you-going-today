@@ -22,7 +22,6 @@ import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
 @Controller
 public class AddShopController {
-	Menu menu = new Menu();
 	Shop shop = new Shop();
 	List<Menu> menuList = new ArrayList<>();
 	
@@ -48,10 +47,12 @@ public class AddShopController {
 	@PostMapping("/add_shop3")
 	public String addShop3Form(@RequestParam("shop_hour") String shopHour,
 							   @RequestParam("shop_table") String shopTables,
-							   @RequestParam("shop_max_people") String shopMaxPeople, HttpSession session) {
+							   @RequestParam("shop_max_people") String shopMaxPeople,
+							   @RequestParam("shop_tel") String shopTel, HttpSession session) {
 		shop.setShopHours(shopHour);
 		shop.setShopTables(shopTables);
 		shop.setShopMaxPeople(shopMaxPeople);
+		shop.setShopTel(shopTel);
 		return "shop/addShop3";
 	}
 	
@@ -125,6 +126,7 @@ public class AddShopController {
 							   @RequestParam("menu_price") int menuPrice,
 							   @RequestParam("menu_intro") String menuIntro,
 							   Model model) {
+		Menu menu = new Menu();
 		menu.setMenuName(menuName);
 		menu.setMenuPrice(menuPrice);
 		menu.setMenuIntro(menuIntro);
@@ -179,12 +181,13 @@ public class AddShopController {
 			e.printStackTrace();
 		}
 		
-		if (menuList.size() == 10) {
+		if (menuList.size() > 3) {
 			shop.setMenuList(menuList);
 			ShopService service = new ShopServiceImpl();
 			service.addShop(shop);
-			service.addMenu(menu);
-			
+			for (Menu menuItem : menuList) {
+				service.addMenu(menuItem);
+			}
 			return "shop/addShop5";
 		}else {
 			menuList.add(menu);
