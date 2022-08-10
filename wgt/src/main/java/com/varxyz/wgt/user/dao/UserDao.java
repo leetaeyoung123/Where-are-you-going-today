@@ -28,7 +28,7 @@ public class UserDao {
 	}
 	
 	// 회원 조회
-	public List<User> findUserId() {
+	public List<User> findUserId(String user) {
 		String sql = "SELECT * FROM User";
 		
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class));

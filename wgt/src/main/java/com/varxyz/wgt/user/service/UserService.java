@@ -18,7 +18,7 @@ public interface UserService {
 	public void addUser(User user);
 	
 	// 회원 조회
-	public List<User> findAllUser();
+	public List<User> findAllUser(String user);
 	
 	// 회원 수정
 	public void modifyUser(User user);
