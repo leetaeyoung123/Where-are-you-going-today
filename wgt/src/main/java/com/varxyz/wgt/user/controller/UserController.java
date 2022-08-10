@@ -41,9 +41,10 @@ public class UserController {
 	@GetMapping("/modifyUser")
 	public String findAllUserForm(HttpServletRequest request, HttpSession session, Model model) {
 		
+		System.out.println(session.getAttribute("userId"));
+		
 		List<User> userList = new ArrayList<User>();
-		userList = userService.findAllUser();
-
+		userList = userService.findAllUser((String)session.getAttribute("userId"));	// 세션을 가져옴
 		model.addAttribute("userList", userList);
 
 		return "user/modifyUser";

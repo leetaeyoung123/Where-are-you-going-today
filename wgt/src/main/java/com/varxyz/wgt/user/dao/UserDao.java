@@ -28,10 +28,10 @@ public class UserDao {
 	}
 	
 	// 회원 조회
-	public List<User> findUser() {
-		String sql = "SELECT * FROM User";
+	public List<User> findUser(String userId) {
+		String sql = "SELECT * FROM User WHERE userId = ?";
 		
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class));
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), userId);
 	}
 	
 	// 회원정보 수정

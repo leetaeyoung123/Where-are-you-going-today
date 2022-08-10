@@ -33,14 +33,14 @@ public class LoginController {
 	public String login(User user, HttpSession session, HttpServletRequest request,
 							Model model) {
 		
-		User dbUser = new User();
+		User userList = new User();
 		
 		try {
-			dbUser = loginService.login(user.getUserId());
+			userList = loginService.login(user.getUserId());
 			
-			session.setAttribute("userId", dbUser);
+			session.setAttribute("userList", userList);
 			
-			if(user.getUserId().equals(dbUser.getUserId()) && user.getPasswd().equals(dbUser.getPasswd())) {
+			if(user.getUserId().equals(userList.getUserId()) && user.getPasswd().equals(userList.getPasswd())) {
 				session.setAttribute("userId", user.getUserId());
 			return "map/map";
 			}
