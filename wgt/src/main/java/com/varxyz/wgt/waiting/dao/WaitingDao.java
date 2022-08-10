@@ -1,5 +1,6 @@
 package com.varxyz.wgt.waiting.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
@@ -30,6 +31,14 @@ public class WaitingDao {
 	// 회원님의 현재 웨이팅 조회
 	public List<Waiting> findWaitingById(String userId){
 		String sql = "SELECT * FROM Waiting WHERE userId = ?";
+		if ( jdbcTemplate.query(sql, new BeanPropertyRowMapper<Waiting>(Waiting.class), userId).isEmpty() ) {
+			List<Waiting> waiting = new ArrayList<Waiting>();
+			Waiting error = new Waiting();
+			error.setBarName("없음");
+			error.setNum_people(0);
+			waiting.add(error);
+			return waiting;
+		}
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Waiting>(Waiting.class), userId);
 	}
 	
