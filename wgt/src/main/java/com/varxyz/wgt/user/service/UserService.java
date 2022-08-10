@@ -14,9 +14,13 @@ public interface UserService {
 	
 	UserDao userDao = context.getBean("userDao", UserDao.class);
 	
-	// 유저 추가
+	// 회원 추가
 	public void addUser(User user);
 	
-	// 유저 조회
+	// 회원 조회
 	List<User> findAllUser(String userId);
+	
+	// 회원 수정
+	public void modifyUser(User user);
+
 }

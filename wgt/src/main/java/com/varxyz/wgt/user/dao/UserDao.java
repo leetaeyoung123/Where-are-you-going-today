@@ -26,11 +26,19 @@ public class UserDao {
 		jdbcTemplate.update(sql, user.getUserId(), user.getPasswd(), user.getName(), 
 								user.getSsn(), user.getPhone(), user.getAddr());
 	}
-
+	
+	// 회원 조회
 	public List<User> findUserId(String userId) {
 		String sql = "SELECT * FROM User WHERE userId = ?";
 		
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), userId);
+	}
+	
+	// 회원정보 수정
+	public void modifyUser(User user) {
+		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr = ? WHERE userId = ?";
+		
+		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr(), user.getUserId());
 	}
 	
 	
