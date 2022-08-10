@@ -17,27 +17,27 @@
 <header class = "headerContainer"> <!--상단 탭 만들기 뼈대구조-->
   <div class = "headerContents"> <!--상단 탭 내용물 감싼구조-->
     <div class = "WestagramTag"> <!--상단 좌측 내용물-->    
-     <a href = " "><i class="fab fa-instagram"></i> | Wgtagram</a>
+     <a href = "home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
     </div>
   <div class = "headerSearchBar"><!--상단 중앙 내용물-->
     <i class="fas fa-search"></i>
-    <input type = "text" placeholder="검색">
+    <input type = "text" placeholder="검색" style="border:none;">
   </div>
 	<form action="home" method="post">
-		<button type="submit" value="글쓰기">글쓰기</button>
+		<button type="submit" value="글쓰기" style="position:relative; left:31%; margin-top:55px;">글쓰기</button>
 	</form>
  </div>
 </header>
 <div class = "body1">
 <div class="number">
-<form action="home" method="post">
+	<form action="home" method="post">
 		<c:forEach var="item" items="${board}">
 			<h4>No.${item.number}</h4>
 		</c:forEach>
 	</form>
 </div>
  <div class = "feedImage">
-   <img src = "../resources/board/img/yas.png" width = "500px" height = "500px">
+   <img src = "../resources/board/img/yas.png" width = "330px" height = "330px">
  </div>
   <div class = "feedReactionButton">
    <div class = "reactionButton1">
