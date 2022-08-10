@@ -1,5 +1,7 @@
 package com.varxyz.wgt.map.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +17,16 @@ public class MapController {
 
 	@GetMapping("/map/map")
 	public String mapForm(Map map,Model model) {
-		model.addAttribute("map", map.getAddress());
-		System.out.println(map.getAddress());
+		model.addAttribute("name", service.search(map.getName()));
 		return "map/map";
 	}
 	
 	@PostMapping("/map/map")
 	public String map(Map map, Model model) {
-		model.addAttribute("searchName", service.search(map.getSearchName()));
-		System.out.println("1: " + model.addAttribute("searchName", service.search(map.getSearchName())));
+		model.addAttribute("name", service.search(map.getName()));
+		List<Map> a = service.search(map.getName());
+		model.addAttribute("addr", a.get(0).getAddress());
+		model.addAttribute("autoName", a.get(0).getName());
 		return "map/map";
 	}
 }

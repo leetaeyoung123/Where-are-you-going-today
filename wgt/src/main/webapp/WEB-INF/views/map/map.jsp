@@ -12,30 +12,35 @@
 	<!-- width 370 height= 700 margin-left 10  -->
 </head>
 <body>
-	<form class="header_form" action="map" method="post">
+	<a class="back" href="<c:url value='/login'/>"><img src="../resources/mapcss/img/backicon.png"></a>
+			<input id="inputaddr" value="${addr}"/>
+			<input id="autoName" value="${autoName}"/>
+	<a class="userInformation">
+	<span></span>
+	</a>
+	<form class="header_form" action="map" method="post"><br>
 		<select class="selectbox">
 			<option >주소</option>
 			<option >메뉴</option>
 		</select>
-		<input id="inputSearch" class="inputtext" type="text" name="searchName">
+		<input id="inputSearch" class="inputtext" type="text" name="name">
+
 				<div id="map" style="width:370px;height:700px;margin-left:10px;"></div>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(35.864402760, 128.593350427), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
-var inputText = document.getElementById("inputSearch").value;
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch(document.getElementById("inputSearch").value, function(result, status) {
-console.log(document.getElementById("inputSearch").value)
+geocoder.addressSearch(document.getElementById("inputaddr").value, function(result, status) {
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
 
@@ -49,7 +54,7 @@ console.log(document.getElementById("inputSearch").value)
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+            content: document.getElementById("autoName").value
         });
         infowindow.open(map, marker);
 

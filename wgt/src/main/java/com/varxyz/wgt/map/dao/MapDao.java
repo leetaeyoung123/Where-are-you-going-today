@@ -14,8 +14,8 @@ public class MapDao {
 	public MapDao(DataSource dataSourceConfig) {
 		jdbcTemplate = new JdbcTemplate(dataSourceConfig);
 	}
-	public List<Map> search(String searchName) {
-		String sql = "SELECT * FROM test WHERE searchName = ?";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class), searchName);
+	public List<Map> search(String name) {
+		String sql = "SELECT * FROM test WHERE name = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class), name);
 	}
 }
