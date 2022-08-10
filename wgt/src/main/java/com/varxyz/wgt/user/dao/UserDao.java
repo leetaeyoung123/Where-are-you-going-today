@@ -28,10 +28,10 @@ public class UserDao {
 	}
 	
 	// 회원 조회
-	public List<User> findUserId() {
-		String sql = "SELECT * FROM User";
+	public List<User> findUser(String userId) {
+		String sql = "SELECT * FROM User WHERE userId = ?";
 		
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class));
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), userId);
 	}
 	
 	// 회원정보 수정
@@ -41,5 +41,11 @@ public class UserDao {
 		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr(), user.getUserId());
 	}
 	
+	// 회원탈퇴
+	public void delete(User user) {
+		String sql = "DELETE FROM User WHERE userId = ?";
+		
+		jdbcTemplate.update(sql, user.getUserId(), user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr());
+	}
 	
 }

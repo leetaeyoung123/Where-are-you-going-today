@@ -1,9 +1,7 @@
 package com.varxyz.wgt.waiting.controller;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.varxyz.wgt.shop.service.ShopService;
+import com.varxyz.wgt.shop.service.ShopServiceImpl;
 import com.varxyz.wgt.waiting.domain.Waiting;
 import com.varxyz.wgt.waiting.service.WaitingService;
 import com.varxyz.wgt.waiting.serviceImpl.WaitingServiceImpl;
@@ -21,8 +21,10 @@ import com.varxyz.wgt.waiting.serviceImpl.WaitingServiceImpl;
 @Controller("controller.waitingController")
 public class WaitingController {
 
-	WaitingService waitingService = new WaitingServiceImpl();
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+	WaitingService waitingService = new WaitingServiceImpl();
+	ShopService shopService = new ShopServiceImpl();
 
 	@GetMapping("/controller/waiting")
 	public String waitingForm(Model model, HttpSession session) {
@@ -50,6 +52,7 @@ public class WaitingController {
 			model.addAttribute("frontCount", "0");
 			model.addAttribute("allCount", "0");
 			model.addAttribute("waiting", noWaiting);
+			model.addAttribute("shopTel", "-");
 			return "waiting/get_waiting";
 		}
 		
@@ -77,7 +80,9 @@ public class WaitingController {
 		model.addAttribute("frontCount", frontCount);
 		model.addAttribute("allCount", allCount);
 		model.addAttribute("waiting", waitingService.findWaitingById("sssssg06"));
-
+		model.addAttribute("shopTel",shopService.findAllByShopName(
+				waitingService.findWaitingById("sssssg06").get(0).getBarName()).get(0).getShopTel());
+		
 		return "waiting/get_waiting";
 	}
 

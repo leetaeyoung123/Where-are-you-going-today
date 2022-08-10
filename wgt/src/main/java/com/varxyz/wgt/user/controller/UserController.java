@@ -1,5 +1,8 @@
 package com.varxyz.wgt.user.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -36,14 +39,25 @@ public class UserController {
 
 	// 회원정보 가져오기
 	@GetMapping("/modifyUser")
-	public String findAllUser(HttpServletRequest request, HttpSession session, Model model) {
+	public String findAllUserForm(HttpServletRequest request, HttpSession session, Model model) {
 		
-		List<User> user = new ArrayList<User>();
-		user = userService.findAllUser();
-
-		model.addAttribute("user", user);
+		System.out.println(session.getAttribute("userId"));
+		
+		List<User> userList = new ArrayList<User>();
+		userList = userService.findAllUser((String)session.getAttribute("userId"));	// 세션을 가져옴
+		model.addAttribute("userList", userList);
 
 		return "user/modifyUser";
+	}
+	
+//	@PostMapping("/modifyUser")
+//	public String findAllUserForm
+	
+	// 회원 정보 수정
+	@GetMapping
+	public String modifyUser(HttpServletRequest request, HttpSession session, Model model) {
+		
+		return null;
 	}
 
 }
