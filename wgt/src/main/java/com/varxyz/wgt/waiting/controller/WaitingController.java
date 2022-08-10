@@ -1,5 +1,7 @@
 package com.varxyz.wgt.waiting.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,19 +17,22 @@ public class WaitingController {
 	WaitingService waitingService = new WaitingServiceImpl();
 
 	@GetMapping("/controller/waiting")
-	public String waitingForm() {
+	public String waitingForm(Model model, HttpSession session) {
+		model.addAttribute("nowWaiting", waitingService.findAllWaiting("시류"));
+		System.out.println(session.getAttribute("userId"));
 		return "waiting/add_waiting";
 	}
 	
 	@PostMapping("/controller/waiting")
 	public String waiting(Waiting waiting, Model model) {
 //		waitingService.addWaiting(waiting.getBarName(), waiting.getUserId(), waiting.getNum_people());
+		System.out.println(waiting.getBarName());		
 		model.addAttribute("waiting", waiting);
-		return "controller/get_waiting";
+		return "redirect:/controller/get_waiting";
 	}
 	
 	@GetMapping("/controller/get_waiting")
-	public String getWaitingForm() {
+	public String getWaitingForm(Model model) {
 		return "waiting/get_waiting";
 	}
 }

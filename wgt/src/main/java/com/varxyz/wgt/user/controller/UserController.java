@@ -36,14 +36,15 @@ public class UserController {
 	}
 	
 //	// 회원정보 수정
-//	@GetMapping("/modifyUser")
-//	public String modifyUserForm(User user, HttpSession session, Model model) {
-//		
-//		model.addAttribute(user.getUserId());
-//		model.addAttribute(user.getPasswd());
-//
-//		
-//		return "user/modifyUser";
-//	}
+	@GetMapping("/modifyUser")
+	public String modifyUserForm(User user, HttpSession session, Model model) {
+		
+		
+		model.addAttribute(user.getUserId());
+		model.addAttribute(user.getPasswd());
+
+		
+		return "user/modifyUser";
+	}
 	
 }
