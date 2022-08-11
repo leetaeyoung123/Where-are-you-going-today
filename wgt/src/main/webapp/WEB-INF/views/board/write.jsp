@@ -36,7 +36,7 @@
 	<form action="write" method="post" enctype="multipart/form-data" style="text-align:center; display:grid; justify-content:center; margin-top:40px;">
 	<span>제목</span><textarea class="title_area" name="title" required="required" maxlength="50" placeholder="제목을 입력하세요(최대 50자)"></textarea>
 	<span>내용</span><textarea class="content_area" name="content" required="required" maxlength="150" placeholder="내용을 입력하세요(최대 150자)"></textarea>
-	사진 선택 : <span><input type="file" name="file" required="required"><br></span>
+	사진 선택 : <span><input type="file" accept=".jpg" name="file" required="required"><br></span>
 		<input type="submit" class="add" value="등록" required="required"><br>
 	</form>
 		<button class="go_home" onclick="location.href='home'">목록으로</button>

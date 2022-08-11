@@ -17,9 +17,7 @@ public class BoardController {
 	// 게시판 화면
 	@GetMapping("/board/home")
 	public String list(Model model, Board board) {
-		service.read(board);
 		model.addAttribute("board", service.read(board));
-//		System.out.println(board);
 		return "board/home";
 	}
 

@@ -2,9 +2,15 @@ package com.varxyz.wgt.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.LastModified;
 
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.service.BoardService;
@@ -28,8 +35,7 @@ public class Writecontroller {
 	}
 	
 	@PostMapping("/board/write")
-	public String post(@RequestParam("file") MultipartFile file,Board board, Model model, String imgName) {
-
+	public String post(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model) {
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일사이즈
 		
@@ -51,16 +57,25 @@ public class Writecontroller {
 		
 		try {
 			file.transferTo(saveFile); // 실제 파일 저장메소드(filewriter 작업을 손쉽게 한방에 처리해준다.
+			
 		}catch (IllegalStateException e) {
 			e.printStackTrace();
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("Board", board);
-		service.create(board, imgName);
-		System.out.println(uniqueName);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
+		Board board = new Board();
+		board.setTitle(request.getParameter("title"));
+		board.setContent(request.getParameter("content"));
+		
+		service.create(board, uniqueName);
+		model.addAttribute(formatter);
+		System.out.println("foramtter");
 		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
 		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+		
+		
 			return "alert/alert";
 		}
 	

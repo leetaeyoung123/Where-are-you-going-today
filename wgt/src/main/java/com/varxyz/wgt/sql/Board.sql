@@ -6,8 +6,10 @@ CREATE TABLE Board(
    regDate		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
    imgname		VARCHAR(100)	DEFAULT NULL
 );
-   CONSTRAINT Board_userId_FK FOREIGN KEY (userId) REFERENCES User(userId);
+	CONSTRAINT Board_userId_FK FOREIGN KEY (userId) REFERENCES User(userId);
 
 SELECT * FROM Board;
 
 DROP TABLE Board;
+
+SELECT DATE_FORMAT(regDate,'%y년 %m월 %d일 %H시 %i분') AS DATE FROM Board;

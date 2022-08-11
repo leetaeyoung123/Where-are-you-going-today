@@ -23,12 +23,12 @@ public class MapController {
 	public String mapForm(Map map,Model model, HttpSession session) {
 		model.addAttribute("name", service.search(map.getName()));
 		model.addAttribute("find", service.findAll());
-		
+
 		/*
 		 *  여기로 올때 temp 에 올렸던 이미지들을 자동으로 삭제한다.
-		 *  2022-08-11 한태우(Shop 담당)  
+		 *  2022-08-11 한태우(Shop 담당)
 		 */
-		
+
 		// 가게 메뉴 삭제
 		System.out.println(session.getAttribute("tempShopImg"));
 		if(session.getAttribute("tempShopImg") != null) {
@@ -37,19 +37,19 @@ public class MapController {
 				menuImg.delete();
 			}
 			session.removeAttribute("tempImgList");
-			
+
 			// 가게 이미지 삭제
 			String img = (String)session.getAttribute("tempShopImg");
 			File shopImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg" );
 			shopImg.delete();
 			session.removeAttribute("tempShopImg");
-			// 문제 될시 주석 처리만 해주세용			
+			// 문제 될시 주석 처리만 해주세용
 		}
-		
+
 		System.out.println(service.findAll());
 		return "map/map";
 	}
-	
+
 	@PostMapping("/map/map")
 	public String map(Map map, Model model) {
 		model.addAttribute("name", service.search(map.getName()));
