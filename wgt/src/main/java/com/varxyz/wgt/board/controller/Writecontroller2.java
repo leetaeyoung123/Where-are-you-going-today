@@ -30,7 +30,7 @@ public class Writecontroller2 {
 	}
 	
 	@PostMapping("/board/write2")
-	public String post(@RequestParam("file") MultipartFile file, Board board, Model model, String imgName) {
+	public String post(@RequestParam("file") MultipartFile file, Model model) {
 
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일사이즈

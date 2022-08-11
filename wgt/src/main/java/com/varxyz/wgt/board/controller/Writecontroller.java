@@ -20,8 +20,6 @@ import com.varxyz.wgt.board.service.BoardServiceImpl;
 @Controller
 public class Writecontroller {
 	BoardService service = new BoardServiceImpl();
-	Board board = new Board();
-	List<Board> boardList = new ArrayList<>();
 	
 	// 등록하기 화면
 	@GetMapping("/board/write")
@@ -30,7 +28,7 @@ public class Writecontroller {
 	}
 	
 	@PostMapping("/board/write")
-	public String post(@RequestParam("file") MultipartFile file, Board board, Model model, String imgName) {
+	public String post(@RequestParam("file") MultipartFile file,Board board, Model model, String imgName) {
 
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일사이즈
