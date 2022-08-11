@@ -27,7 +27,7 @@
 		<div id="content">
 			<div style="text-align: center; font-size: 45px;" class="inner">
 				<c:forEach var="x" items="${waiting}" varStatus="status">
-							매장명 : ${x.barName} <br>
+							매장명 : <br>${x.barName}<br>
 							매장 전화번호 : <br>${shopTel}<br>
 							인원 : ${x.num_people}명<br>
 							총 대기팀 : ${allCount}팀 <br>
