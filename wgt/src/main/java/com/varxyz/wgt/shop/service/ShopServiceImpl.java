@@ -29,4 +29,14 @@ public class ShopServiceImpl implements ShopService {
 		return dao.addMenu(menu);
 	}
 
+	@Override
+	public Shop findShopByBnsNum(String bnsNum) {
+		return dao.findShopByBnsNum(bnsNum);
+	}
+
+	@Override
+	public List<Menu> findShopMenuByBnsNum(String bnsNum) {
+		return dao.findShopMenuByBnsNum(bnsNum);
+	}
+
 }
