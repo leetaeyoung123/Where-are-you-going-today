@@ -30,7 +30,12 @@ public class Writecontroller {
 	}
 	
 	@PostMapping("/board/write")
+<<<<<<< HEAD
 	public String post(@RequestParam("file") MultipartFile file, Board board, Model model, String imgName) {
+=======
+	public String post(@RequestParam("files") MultipartFile file, Board board, Model model) {
+		
+>>>>>>> main
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일 사이즈
 		
@@ -48,6 +53,10 @@ public class Writecontroller {
 		System.out.println("확장자명" + fileExtension);
 		
 		File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
+<<<<<<< HEAD
+=======
+		
+>>>>>>> main
 		try {
 			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
 		} catch (IllegalStateException e) {
@@ -55,11 +64,47 @@ public class Writecontroller {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		model.addAttribute("Board", board);
 		service.create(board, imgName);
 		System.out.println(uniqueName);
 		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
 		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
 		return "alert/alert";
+=======
+		System.out.println(board.getImgname());
+		model.addAttribute("Board", board);
+		service.create(board, uniqueName);
+		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
+		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+		
+			return "alert/alert";
+		}
+	
+	@PostMapping("/board/write2")
+	public String upload2(MultipartHttpServletRequest files) {
+		
+		//서버에서 저장 할 경로
+		String uploadFolder = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
+		List<MultipartFile> list = files.getFiles("files");
+		for(int i = 0; i<list.size(); i++) {
+			String fileRealName = list.get(i).getOriginalFilename();
+			long size = list.get(i).getSize();
+			
+			System.out.println("파일명 :" + fileRealName);
+			System.out.println("사이즈" + size);
+			
+			File saveFile = new File(uploadFolder + "\\" + fileRealName);
+			try {
+				list.get(i).transferTo(saveFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	
+		return "board/write";
+>>>>>>> main
 	}
 }
