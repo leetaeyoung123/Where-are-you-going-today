@@ -2,3 +2,4 @@
 .metadata/.lock
 .metadata/.log
 /.metadata/
+wgt/target/m2e-wtp/web-resources/META-INF/maven/com.varxyz/wgt/pom.properties
