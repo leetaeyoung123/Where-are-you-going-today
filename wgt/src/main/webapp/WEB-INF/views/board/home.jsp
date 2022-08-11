@@ -49,12 +49,6 @@
 	</div>
 
 	<div class="body1">
-		<div class="title_top">
-			<c:forEach var="item" items="${board}">
-				<h4>${item.title}</h4>
-			</c:forEach>
-		</div>
-
 		<div class="feedReactionButton">
 			<div class="reactionButton1">
 				<div class="emptyheart">
@@ -68,12 +62,9 @@
 			</div>
 			<div class="write">
 				<c:forEach var="item" items="${board}">
-				  ${item.content}<br>
-				</c:forEach>
-			</div>
-			<div class="write">
-				<c:forEach var="item" items="${board}">
-					<img src="../resources/board/img/upload/${item.imgname}.jpg">
+					<img src="../resources/board/img/upload/${item.imgname}.jpg"><br>
+					<h4>${item.title}</h4><br>
+					${item.content}<br>
 				</c:forEach>
 			</div>
 		</div>
