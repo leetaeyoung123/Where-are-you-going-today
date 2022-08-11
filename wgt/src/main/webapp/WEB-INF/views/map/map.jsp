@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.List, java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,6 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/mapcss/map.css'/>" />
 <style>
-   
 </style>
 </head>
 
@@ -26,12 +25,16 @@
 	<form class="header_form" action="map" method="post">
 		<br> <select class="selectbox">
 			<option>주소</option>
-			<option>메뉴</option>
+			<option>메뉴</option> 
 		</select> <input id="inputSearch" class="inputtext" type="text" name="name">
 
 		<div id="map" style="width: 370px; height: 700px; margin-left: 10px;"></div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
+		<c:forEach var="shop" items="${find}">
+		</c:forEach>
+			<% List<String> shopList = (List<String>)request.getAttribute("shopList");
+ 			%> 
 		<script>
 		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 	    MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
@@ -58,10 +61,15 @@
 	    ],
 	    selectedMarker = null; // 클릭한 마커를 담을 변수
 	    selectedContent = null;
-
+	
 	var content = [
-		'<div class="wrap"><div class="info"><div class="title">고영희 식당</div></div></div>',
-		'<div class="wrap"><div class="info"><div class="title">뜨돈</div></div></div>'
+		<%
+	      for(String x : shopList){
+	   %>
+		'<div class="wrap"><div class="info"><div class="title">'+<%=x%>+'</div></div></div>',
+	   <%
+	   } 
+	   %>
 	]
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -169,10 +177,8 @@
 	    }
 	});
 		</script>
-		<div class="bottomShop">
-		
-		</div>
-		
+		<div class="bottomShop"></div>
+
 		<input class="searchbtn" type="submit" value="검색" />
 	</form>
 </body>
