@@ -22,7 +22,7 @@ public class MypageController {
 	@PostMapping("/board/mypage")
 	public String post(Board board, Model model) {
 		model.addAttribute("Board", board);
-		service.create(board);
+		service.create(board,"imgName");
 		model.addAttribute("msg", "게시글 수정을 완료하였습니다.");
 		model.addAttribute("url","home");
 		return "alert/alert";
