@@ -29,10 +29,7 @@ public class Writecontroller {
 	
 	@PostMapping("/board/write")
 	public String post(@RequestParam("file") MultipartFile file, Board board, Model model) {
-		model.addAttribute("Board", board);
-		service.create(board);
-		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
-		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+		
 		
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일사이즈
@@ -52,6 +49,10 @@ public class Writecontroller {
 		System.out.println("확장자명" + fileExtension);
 		
 		File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
+		model.addAttribute("Board", board);
+		service.create(board);
+		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
+		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
 		try {
 			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
 		} catch (IllegalStateException e) {
@@ -62,11 +63,11 @@ public class Writecontroller {
 			return "alert/alert";
 		}
 	
-	@PostMapping("/upload_ok2")
+	@PostMapping("/board/write2")
 	public String upload2(MultipartHttpServletRequest files) {
 		
 		//서버에서 저장 할 경로
-		String uploadFolder = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img";
+		String uploadFolder = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
 		List<MultipartFile> list = files.getFiles("files");
 		for(int i = 0; i<list.size(); i++) {
 			String fileRealName = list.get(i).getOriginalFilename();
@@ -84,6 +85,7 @@ public class Writecontroller {
 				e.printStackTrace();
 			}
 		}
-		return "alert/alert";
+	
+		return "board/write";
 	}
 }
