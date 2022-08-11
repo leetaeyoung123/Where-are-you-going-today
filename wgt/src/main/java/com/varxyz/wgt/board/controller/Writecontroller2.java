@@ -18,18 +18,18 @@ import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
 
 @Controller
-public class Writecontroller {
+public class Writecontroller2 {
 	BoardService service = new BoardServiceImpl();
 	Board board = new Board();
 	List<Board> boardList = new ArrayList<>();
 	
 	// 등록하기 화면
-	@GetMapping("/board/write")
+	@GetMapping("/board/write2")
 	public String post(Model model) {
-		return "/board/write";
+		return "/board/write2";
 	}
 	
-	@PostMapping("/board/write")
+	@PostMapping("/board/write2")
 	public String post(@RequestParam("file") MultipartFile file, Board board, Model model, String imgName) {
 
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
@@ -58,11 +58,8 @@ public class Writecontroller {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("Board", board);
-		service.create(board, imgName);
-		System.out.println(uniqueName);
-		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
-		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+			model.addAttribute("msg", "사진등록을 완료하였습니다.");
+			model.addAttribute("url","home");
 			return "alert/alert";
 		}
 	

@@ -7,7 +7,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.varxyz.wgt.board.dao.BoardDao;
 import com.varxyz.wgt.board.domain.Board;
-import com.varxyz.wgt.board.domain.Page;
 import com.varxyz.wgt.data.DataSourceConfig;
 
 public interface BoardService {
@@ -21,7 +20,8 @@ public interface BoardService {
 		public List<Board> list();
 		
 		// 게시글 쓰기
-		public void create(Board board);
+		public void create(Board board, String imgName);
+		public void create2();
 		
 		// 게시글 읽기
 		public Board read(Integer boardNo);
@@ -31,7 +31,7 @@ public interface BoardService {
 		public void update(Board board);
 		
 		// 게시글 삭제
-		public List<Board> delete(long boardNum);
+		public List<Board> delete(int number);
 		
 		// 게시글 검색
 		public List<Board> search(String keyword);

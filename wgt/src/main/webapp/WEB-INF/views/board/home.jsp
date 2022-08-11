@@ -24,9 +24,11 @@
     <i class="fas fa-search"></i>
     <input type = "text" placeholder="검색" style="border:none;">
   </div>
+  <div class="write_btn">
 	<form action="home" method="post">
-		<button type="submit" value="글쓰기" style="position:relative; left:31%; margin-top:55px;">글쓰기</button>
+		<button type="submit" value="글쓰기" style="position:relative; left:31%; margin-top:55px; cursor:pointer;">글쓰기</button>
 	</form>
+  </div>
  </div>
 </header>
   <div class="mypage">
@@ -41,20 +43,17 @@
 		</c:forEach>
 	</form>
 </div>
- <div class = "feedImage">
-   <img src = "../resources/board/img/yas.png" width = "400px" height = "370px">
- </div>
+
   <div class = "feedReactionButton">
    <div class = "reactionButton1">
    	<div class = "emptyheart">
-   		<button onclick="changeImg()"><img id ="img1" src = "../resources/board/img/emptyheart.png" width = "20px" height = "20px" style="cursor:pointer;"></button>
-   		
+   		<!-- <button onclick="changeImg()"><img id ="img1" src = "../resources/board/img/emptyheart.png" width = "20px" height = "20px" style="cursor:pointer;"></button> -->
    		<!-- <img id ="img2" src = "../resources/board/img/redheart.png" width = "20px" height = "20px" onclick="imgToggle"> -->
 	</div>
    <!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
- <div class = "feedReaction">
+<!--  <div class = "feedReaction">
    <span>좋아요 ??개</span>
- </div>
+ </div> -->
   </div> 
   <div class="write">
   <form action="home" method="post" style="padding: 2px 5px 2px 5px;">

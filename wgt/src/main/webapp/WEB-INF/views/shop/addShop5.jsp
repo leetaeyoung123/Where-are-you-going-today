@@ -11,11 +11,13 @@
   </head>
   <body>
     <div id="wrap">
-      <header id="header"><h1>성공!</h1></header>
+      <header id="header"><h1>축하합니다</h1></header>
       <hr>
       <div id="content">
         <div class="inner">
           <h1>가게 등록 완료!</h1>
+          <p>사장님의 가게가 성공적으로 등록이 완료되었어요<br>아래의 버튼을 눌러 지금 바로 등록한 가게를 조회해 보세요!</p>
+          <button onclick="location.href='shop/viewMyShop'">내 가게 조회</button>
         </div>
       </div>
       <hr>

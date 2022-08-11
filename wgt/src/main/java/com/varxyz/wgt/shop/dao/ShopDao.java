@@ -24,18 +24,30 @@ private JdbcTemplate jdbcTemplate;
 	}
 
 	public boolean addShop(Shop shop) {
-		String sql = "INSERT INTO SHOP (BUSINESS_NUMBER, SHOP_NAME, SHOP_TEL, SHOP_ADDRESS, SHOP_HOURS, SHOP_IMG) "
-				+ " VALUES(?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sql, shop.getShopBusinessNum(), shop.getShopName(), shop.getShopTel(), 
-								shop.getShopAddress(), shop.getShopHours(), shop.getShopImg());
+		String sql = "INSERT INTO SHOP (BUSINESS_NUMBER, SHOP_NAME, SHOP_TEL, SHOP_ADDRESS, "
+				+ " SHOP_HOURS, SHOP_TABLES, SHOP_MAX_PEOPLES, SHOP_IMG) "
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, shop.getBusinessNumber(), shop.getShopName(), shop.getShopTel(), 
+								shop.getShopAddress(), shop.getShopHours(), shop.getShopTables(), 
+								shop.getShopTables(), shop.getShopImg());
 		return true;
 	}
 
 	public boolean addMenu(Menu menu) {
-		String sql = "INSERT INTO MENU (BUSINESS_NUMBER, SHOP_MENU_NAME, SHOP_MENU_INTRO, SHOP_MENU_PRICE, SHOP_MENU_IMG) "
+		String sql = "INSERT INTO MENU (BUSINESS_NUMBER, MENU_NAME, MENU_INTRO, MENU_PRICE, MENU_IMG) "
 				+ " VALUES(?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, menu.getBusinessNumber(), menu.getMenuName(), menu.getMenuIntro(), 
 								menu.getMenuPrice(), menu.getMenuImg());
 		return true;
+	}
+
+	public Shop findShopByBnsNum(String bnsNum) {
+		String sql = "SELECT * FROM shop WHERE BUSINESS_NUMBER = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), bnsNum);
+	}
+
+	public List<Menu> findShopMenuByBnsNum(String bnsNum) {
+		String sql = "SELECT * FROM menu WHERE BUSINESS_NUMBER = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(Menu.class), bnsNum);
 	}
 }

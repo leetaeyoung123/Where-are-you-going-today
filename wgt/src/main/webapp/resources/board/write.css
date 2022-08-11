@@ -60,7 +60,9 @@ body{
 }
 .go_home {
 	position: relative;
-	cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
     font-size: 18px;
     width: 97px;
     height: 35px;
@@ -68,7 +70,7 @@ body{
     border-radius: 8px;
     background-color: #DA0037;
     color: white;
-    left: 36%;
+    right: 4px;
 }
 .wirte_area form{
 	display: grid;
