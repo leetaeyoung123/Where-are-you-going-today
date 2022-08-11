@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mysql.cj.Session;
 import com.varxyz.wgt.shop.domain.Menu;
 import com.varxyz.wgt.shop.domain.Shop;
 import com.varxyz.wgt.shop.service.ShopService;
@@ -24,7 +26,7 @@ import com.varxyz.wgt.shop.service.ShopServiceImpl;
 public class AddShopController {
 	Shop shop = new Shop();
 	List<Menu> menuList = new ArrayList<>();
-	
+	List<String> tempImgList = new ArrayList<>();
 	// 첫번째 폼
 	@GetMapping("/add_shop")
 	public String addShopGo() {
@@ -58,7 +60,7 @@ public class AddShopController {
 	
 	//3번째 폼 작성 후 4번째 폼 이동 이 폼에서는 가게의 사진을 업로드하는 과정이 이루어짐
 	@PostMapping("/add_shop4")
-	public String addShop4Form(@RequestParam("shop_img") MultipartFile file, Model model) {
+	public String addShop4Form(@RequestParam("shop_img") MultipartFile file, Model model, HttpSession session) {
 		
 		
 		String fileRealName = file.getOriginalFilename(); // 실제 파일 명을 알수있는 메소드
@@ -66,9 +68,8 @@ public class AddShopController {
 		
 		// 사용자가 이미지를 업로드 하지 않았을 경우 예외 처리
 		if (fileRealName == null || fileRealName.length() == 0) {
-			
-			shop.setShopImg("default");
-			model.addAttribute("msg","사진이 기본 사진으로 설정 되었습니다.");
+
+			model.addAttribute("msg","메뉴 사진을 등록해주세요!");
 			model.addAttribute("url","add_shop4");
 			return "alert/alert";
 			
@@ -97,6 +98,7 @@ public class AddShopController {
 		
 		String uniqueName = uuids[0];
 		System.out.println("생성된 고유 문자열 : " + uniqueName );
+		session.setAttribute("tempShopImg", uniqueName);
 		shop.setShopImg(uniqueName);
 		System.out.println("확장자명 : " + fileExtension);
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
@@ -120,12 +122,24 @@ public class AddShopController {
 		return "shop/addShop4";
 	}
 	
+	@GetMapping("add_shop5")
+	public String addShop5Go(Model model) {
+		if (menuList.size() == 0) {
+			
+			model.addAttribute("msg", "최소 1개 이상의 메뉴가 등록되어야 합니다!");
+			model.addAttribute("url", "add_shop4");
+			return "alert/alert";
+		}
+		
+		return "shop/addShop5";
+	}
+	
 	@PostMapping("/add_shop5")
 	public String addShop5Form(@RequestParam("menu_img") MultipartFile file,
 							   @RequestParam("menu_name") String menuName,
 							   @RequestParam("menu_price") int menuPrice,
 							   @RequestParam("menu_intro") String menuIntro,
-							   Model model) {
+							   Model model, HttpSession session) {
 		Menu menu = new Menu();
 		menu.setMenuName(menuName);
 		menu.setMenuPrice(menuPrice);
@@ -137,8 +151,6 @@ public class AddShopController {
 		
 		// 사용자가 이미지를 업로드 하지 않았을 경우 예외 처리
 		if (fileRealName == null || fileRealName.length() == 0) {
-			
-			menu.setMenuImg("default");
 			menuList.add(menu);
 			model.addAttribute("msg","메뉴 사진을 등록해주세요!");
 			model.addAttribute("url","add_shop4");
@@ -168,6 +180,9 @@ public class AddShopController {
 		
 		String uniqueName = uuids[0];
 		System.out.println("생성된 고유 문자열 : " + uniqueName );
+		// 등록 도중 등록 취소시 map/map으로 이동 후에 temp에 올렸던 것들 전부 삭제를 위한 세션 생성
+		tempImgList.add(uniqueName);
+		session.setAttribute("tempImgList", tempImgList) ;
 		menu.setMenuImg(uniqueName);
 		System.out.println("확장자명 : " + fileExtension);
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
@@ -187,6 +202,26 @@ public class AddShopController {
 			for (Menu menuItem : menuList) {
 				service.addMenu(menuItem);
 			}
+			for (String img : (List<String>)session.getAttribute("tempImgList")) {
+				File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+				File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + img + ".jpg");
+				
+				try {
+					FileUtils.moveFile(tempImg, newImg);
+				}catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			session.removeAttribute("tempImgList");
+			String img = (String)session.getAttribute("tempShopImg");
+			File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+			File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_img\\" + img + ".jpg");
+			try {
+				FileUtils.moveFile(tempImg, newImg);
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+			session.removeAttribute("tempShopImg");
 			return "shop/addShop5";
 		}else {
 			menuList.add(menu);
@@ -197,8 +232,4 @@ public class AddShopController {
 		
 	}
 	
-	@GetMapping("add_shop5")
-	public String addShop5Go() {
-		return "shop/addShop5";
-	}
  }

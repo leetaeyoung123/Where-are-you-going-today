@@ -6,11 +6,24 @@
     font-style: normal;
 }
 
+.title {
+  font-size: 42px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.text {
+  font-size: 22px;
+  text-align: center;
+}
+
 body,html {
   font-family: 'KOTRAHOPE';
 }
+
 #wrap {
   display: flex;
+  text-align: center;
   flex-direction: column;
   align-content: center;
   justify-content: center;
