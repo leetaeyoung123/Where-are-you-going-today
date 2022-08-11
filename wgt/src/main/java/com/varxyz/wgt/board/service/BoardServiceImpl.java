@@ -17,8 +17,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void create(Board board) {
-		dao.create(board);
+	public void create(Board board, String imgName) {
+		dao.create(board, imgName);
 	}
 
 	@Override
@@ -32,8 +32,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> delete(long boardNum) {
-		return dao.delete(boardNum);
+	public List<Board> delete(int number) {
+		return dao.delete(number);
 	}
 
 	@Override
