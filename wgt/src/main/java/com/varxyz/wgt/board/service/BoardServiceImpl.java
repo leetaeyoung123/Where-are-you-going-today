@@ -32,8 +32,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> delete(String writer) {
-		return dao.delete(writer);
+	public List<Board> delete(long boardNum) {
+		return dao.delete(boardNum);
 	}
 
 	@Override
