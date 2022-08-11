@@ -49,6 +49,11 @@ public class BoardDao {
 		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 		return list;
 	}
+
+	public void create() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	//가게이름으로 찾기
 	
