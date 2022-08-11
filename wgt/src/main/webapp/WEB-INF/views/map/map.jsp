@@ -1,6 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.List, java.net.URLEncoder" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,10 +32,10 @@
 		<div id="map" style="width: 370px; height: 700px; margin-left: 10px;"></div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
-		<c:forEach var="shop" items="${find}">
+		<c:forEach var="shop" items="${find}" varStatus="status">
+			<input id="findname${status.index}" value="${shop.name}"/>
 		</c:forEach>
-			<% List<String> shopList = (List<String>)request.getAttribute("shopList");
- 			%> 
+			
 		<script>
 		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 	    MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
@@ -61,16 +62,16 @@
 	    ],
 	    selectedMarker = null; // 클릭한 마커를 담을 변수
 	    selectedContent = null;
+	var content = []
 	
-	var content = [
-		<%
-	      for(String x : shopList){
-	   %>
-		'<div class="wrap"><div class="info"><div class="title">'+<%=x%>+'</div></div></div>',
-	   <%
-	   } 
-	   %>
-	]
+		
+	for (var i = 0; i < positions.length; i++){
+		var findname = "findname" + i;
+		content += document.getElementById(findname).value
+		var content2 = ['<div class="wrap"><div class="info"><div class="title">' + content + '</div></div></div>'];
+	}
+	console.log(content2);
+
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	    mapOption = { 

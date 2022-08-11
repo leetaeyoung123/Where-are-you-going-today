@@ -22,13 +22,11 @@ public class MapController {
 	public String mapForm(Map map,Model model, HttpServletRequest request) {
 		model.addAttribute("name", service.search(map.getName()));
 		model.addAttribute("find", service.findAll());
-		
 		List<String> shopList = new ArrayList<String>();
 		for (int i = 0; i < service.findAll().size(); i++) {
 			shopList.add(service.findAll().get(i).getName());
 		}
 		request.setAttribute("shopList", shopList);
-		
 		System.out.println(service.findAll());
 		return "map/map";
 	}
