@@ -20,7 +20,7 @@ public interface BoardService {
 		public List<Board> list();
 		
 		// 게시글 쓰기
-		public void create(Board board);
+		public void create(Board board, String imgName);
 		
 		// 게시글 읽기
 		public Board read(Integer boardNo);

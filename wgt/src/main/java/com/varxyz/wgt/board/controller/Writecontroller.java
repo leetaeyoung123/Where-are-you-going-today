@@ -28,8 +28,7 @@ public class Writecontroller {
 	}
 	
 	@PostMapping("/board/write")
-	public String post(@RequestParam("file") MultipartFile file, Board board, Model model) {
-		
+	public String post(@RequestParam("files") MultipartFile file, Board board, Model model) {
 		
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일사이즈
@@ -49,10 +48,7 @@ public class Writecontroller {
 		System.out.println("확장자명" + fileExtension);
 		
 		File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
-		model.addAttribute("Board", board);
-		service.create(board);
-		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
-		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+		
 		try {
 			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
 		} catch (IllegalStateException e) {
@@ -60,6 +56,12 @@ public class Writecontroller {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(board.getImgname());
+		model.addAttribute("Board", board);
+		service.create(board, uniqueName);
+		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
+		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+		
 			return "alert/alert";
 		}
 	

@@ -19,9 +19,9 @@ public class BoardDao {
 	}
 
 	//게시글 생성
-	public void create(Board board) {
+	public void create(Board board, String imgName) {
 		String sql = "INSERT INTO Board (title, content, imgname)" + " VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName);
 	}
 	
 	//게시글 읽기

@@ -17,8 +17,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void create(Board board) {
-		dao.create(board);
+	public void create(Board board, String imgName) {
+		dao.create(board, imgName);
 	}
 
 	@Override
