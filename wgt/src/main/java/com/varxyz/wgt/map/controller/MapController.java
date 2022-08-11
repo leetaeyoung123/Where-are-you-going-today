@@ -1,6 +1,9 @@
 package com.varxyz.wgt.map.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +19,16 @@ public class MapController {
 	MapService service = new MapServiceImpl();
 
 	@GetMapping("/map/map")
-	public String mapForm(Map map,Model model) {
+	public String mapForm(Map map,Model model, HttpServletRequest request) {
 		model.addAttribute("name", service.search(map.getName()));
 		model.addAttribute("find", service.findAll());
+		
+		List<String> shopList = new ArrayList<String>();
+		for (int i = 0; i < service.findAll().size(); i++) {
+			shopList.add(service.findAll().get(i).getName());
+		}
+		request.setAttribute("shopList", shopList);
+		
 		System.out.println(service.findAll());
 		return "map/map";
 	}
