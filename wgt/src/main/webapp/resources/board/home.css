@@ -11,7 +11,10 @@ body{
     align-content: center;
     align-items: center;
     overflow: auto;
-    overflow-x: hidden;
+    overflow-x: hidden; 
+ }
+::-webkit-scrollbar {
+  display: none;
 }
 .fa-instagram:before {
     color: #DA0037;
@@ -214,10 +217,18 @@ article{
     background-color: #DA0037;
     color: white;
 }
-
 .mypage img {
 	position: absolute;
     cursor: pointer;
     top: 15%;
     right: 2%;
+}
+/*날짜 표시*/
+.emptyheart {
+	display: flex;
+}
+.emptyheart p {
+	margin: 0;
+	position: relative;
+    left: 50%;
 }
