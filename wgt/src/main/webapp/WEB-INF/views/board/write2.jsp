@@ -33,9 +33,7 @@
   </div>
 <h3 style="text-align: center; margin-top: 35px;">게시글 작성</h3>
 <div class="write_area">
-	<form action="write" method="post" enctype="multipart/form-data" style="text-align:center; display:grid; justify-content:center; margin-top:40px;">
-	<span>제목</span><textarea class="title_area" name="title" required="required" maxlength="50" placeholder="제목을 입력하세요(최대 50자)"></textarea>
-	<span>내용</span><textarea class="content_area" name="content" required="required" maxlength="150" placeholder="내용을 입력하세요(최대 150자)"></textarea>
+	<form action="write2" method="post" enctype="multipart/form-data" style="text-align:center; display:grid; justify-content:center; margin-top:40px;">
 	사진 선택 : <span><input type="file" name="file" required="required"><br></span>
 		<input type="submit" class="add" value="등록" required="required"><br>
 	</form>

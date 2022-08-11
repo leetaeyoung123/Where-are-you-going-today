@@ -2,9 +2,9 @@ package com.varxyz.wgt.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,17 +18,20 @@ import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
 
 @Controller
-public class Writecontroller {
+public class Writecontroller2 {
 	BoardService service = new BoardServiceImpl();
+	Board board = new Board();
+	List<Board> boardList = new ArrayList<>();
 	
 	// 등록하기 화면
-	@GetMapping("/board/write")
+	@GetMapping("/board/write2")
 	public String post(Model model) {
-		return "/board/write";
+		return "/board/write2";
 	}
 	
-	@PostMapping("/board/write")
-	public String post(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model) {
+	@PostMapping("/board/write2")
+	public String post(@RequestParam("file") MultipartFile file, Board board, Model model, String imgName) {
+
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일사이즈
 		
@@ -36,9 +39,7 @@ public class Writecontroller {
 		System.out.println("용량크기(byte) : " + size);
 		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-//		String uploadFolder = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
-		String uploadFolder = "C:\\NCS\\back\\backend\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
-		
+		String uploadFolder = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
 	
 		UUID uuid = UUID.randomUUID();
 		System.out.println(uuid.toString());
@@ -57,16 +58,8 @@ public class Writecontroller {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		Board board = new Board();
-		board.setTitle(request.getParameter("title"));
-		board.setContent(request.getParameter("content"));
-		
-		service.create(board, uniqueName);
-		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
-		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
-		
-		
+			model.addAttribute("msg", "사진등록을 완료하였습니다.");
+			model.addAttribute("url","home");
 			return "alert/alert";
 		}
 	

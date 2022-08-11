@@ -19,9 +19,9 @@ public class BoardDao {
 	}
 
 	//게시글 생성
-	public void create(Board board) {
-		String sql = "INSERT INTO Board (title, content, imgname)" + " VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
+	public void create(Board board, String imgName) {
+		String sql = "INSERT INTO Board (title, content, imgname) VALUES (?, ?, ?)";
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName);
 	}
 	
 	//게시글 읽기
@@ -49,4 +49,12 @@ public class BoardDao {
 		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 		return list;
 	}
+
+	public void create() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	//가게이름으로 찾기
+	
 }

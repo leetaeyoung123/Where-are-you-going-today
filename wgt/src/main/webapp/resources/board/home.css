@@ -190,9 +190,10 @@ article{
 	width: 340px;
 	margin: 0 auto;
 	margin-top: 5px;
-    border: ridge;
     line-height: 1.5;
+    /*border: ridge;*/
 }
+
 .write span {
 	font-weight: bold;
 }

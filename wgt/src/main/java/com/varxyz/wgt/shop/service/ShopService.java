@@ -15,4 +15,10 @@ public interface ShopService {
 	
 	// 매장 메뉴 추가
 	public boolean addMenu(Menu menu);
+	
+	// 자신의 매장 조회 ( 사업자 번호로 )
+	public Shop findShopByBnsNum(String bnsNum);
+	
+	// 매장 메뉴 조회 ( 사업자 번호로 )
+	public List<Menu> findShopMenuByBnsNum(String bnsNum);
 }

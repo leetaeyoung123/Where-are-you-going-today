@@ -26,7 +26,7 @@
                   <td>
                     <input type="text" name="menu_name" class="menu_inputBox" placeholder="메뉴 이름을 입력해주세요">
                     <input type="text" name="menu_price" class="menu_inputBox" placeholder="메뉴 가격을 입력해주세요">
-                    <input type="text" name="menu_intro" class="menu_inputBox" placeholder="메뉴 소개를 입력해주세요">
+                    <input type="text" name="menu_intro" class="menu_inputBox" placeholder="메뉴 소개를 입력해주세요">                  
                   </td>
                 </tr>
               </table>
@@ -49,54 +49,24 @@
       <footer id="footer">Copyright (c) 2022 Copyright Holder All Rights Reserved.</footer>
     </div>
     <script type="text/javascript">
-      let i = 2;
-      var label = '<label for="upload_file"' + i + 'class = "upload_label">';
-      function add() {
-        if (document.getElementsByClassName('btn_wrap').length - 1 > 10) {
-          alert("최대 10개까지만 등록가능합니다");
-        }else {
-          document.querySelector("#addForm").innerHTML += '<div class="file_upload_wrap">'
-                                                                  + '<table>'
-                                                                  +'<tr>'
-                                                                    +'<td>'
-                                                                    +'<img class="preview2 img" style="min-width: 150px; height: 150px;" />'
-                                                                  + '</td>'
-                                                                  +'<td>'
-                                                                  +	 '<input type="text" name="menu_name" class="menu_inputBox" placeholder="메뉴 이름을 입력해주세요">'
-                                                                  +  '<input type="text" name="menu_price" class="menu_inputBox" placeholder="메뉴 가격을 입력해주세요">'
-                                                                  +  '<input type="text" name="menu_intro" class="menu_inputBox" placeholder="메뉴 소개를 입력해주세요">'
-                                                                  + '</td>'
-                                                                  + '</tr>'
-                                                                  + '</table>'
-                                                                  + '<div class="btn_wrap">'
-                                                                    + '<label for="' + i + '"class="upload_label">메뉴 사진 등록</label>'
-                                                                  + '<input class="upload_file"' + 'id = "' + i +  '" type="file" name="shop_img" onchange="readURL2(this)" accept="image/jpeg, image/png, image/jpg">'
-                                                                  + '<input type="button" value="저장" class="upload_label" style="background: #444444; color: white;">'
-                                                                  + '</div>'
-                                                                  + '</div>'
-          i ++;                                                        + "<hr>";
-          console.log(i);
-        }
-      }
-  	function readURL(input) {
-		const type = input.files[0].name.split('.');
-		if(type[1] != "jpg" && type[1] != "png" &&  type[1] != "jpeg"){
-			alert("이미지 파일은 (jpg, png, jpeg) 형식만 등록 가능합니다.");
-			document.querySelector('.preview').src = "";
-			document.querySelector('.img').value = null;
-			return false;
-		}
-		  if (input.files && input.files[0]) {
-		    var reader = new FileReader();
-		    reader.onload = function(e) {
-		      document.querySelector('.preview').src = e.target.result;
-		    };
-		    reader.readAsDataURL(input.files[0]);
-		  } else {
-		    document.querySelector('.preview').src = "";
-		  }
-		}
-  	
+	  	function readURL(input) {
+			const type = input.files[0].name.split('.');
+			if(type[1] != "jpg" && type[1] != "png" &&  type[1] != "jpeg"){
+				alert("이미지 파일은 (jpg, png, jpeg) 형식만 등록 가능합니다.");
+				document.querySelector('.preview').src = "";
+				document.querySelector('.img').value = null;
+				return false;
+			}
+			  if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function(e) {
+			      document.querySelector('.preview').src = e.target.result;
+			    };
+			    reader.readAsDataURL(input.files[0]);
+			  } else {
+			    document.querySelector('.preview').src = "";
+			  }
+			}
     </script>
   </body>
 </html>

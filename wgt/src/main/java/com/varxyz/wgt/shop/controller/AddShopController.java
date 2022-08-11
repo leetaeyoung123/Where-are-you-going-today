@@ -36,7 +36,7 @@ public class AddShopController {
 	public String addShop2Form(@RequestParam("bns_num") String bnsNum,
 							   @RequestParam("shop_name") String shopName,
 							   @RequestParam("shop_address") String shopAddress, HttpSession session){
-		shop.setShopBusinessNum(bnsNum);
+		shop.setBusinessNumber(bnsNum);
 		shop.setShopName(shopName);
 		shop.setShopAddress(shopAddress);
 		
@@ -51,7 +51,7 @@ public class AddShopController {
 							   @RequestParam("shop_tel") String shopTel, HttpSession session) {
 		shop.setShopHours(shopHour);
 		shop.setShopTables(shopTables);
-		shop.setShopMaxPeople(shopMaxPeople);
+		shop.setShopMaxPeoples(shopMaxPeople);
 		shop.setShopTel(shopTel);
 		return "shop/addShop3";
 	}
@@ -130,7 +130,7 @@ public class AddShopController {
 		menu.setMenuName(menuName);
 		menu.setMenuPrice(menuPrice);
 		menu.setMenuIntro(menuIntro);
-		menu.setBusinessNumber(shop.getShopBusinessNum());
+		menu.setBusinessNumber(shop.getBusinessNumber());
 		
 		String fileRealName = file.getOriginalFilename(); // 실제 파일 명을 알수있는 메소드
 		long size = file.getSize(); // 파일 사이즈
@@ -180,9 +180,8 @@ public class AddShopController {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		if (menuList.size() > 3) {
-			shop.setMenuList(menuList);
+		if (menuList.size() > 0) {
+			menuList.add(menu);
 			ShopService service = new ShopServiceImpl();
 			service.addShop(shop);
 			for (Menu menuItem : menuList) {
