@@ -22,5 +22,8 @@ public interface UserService {
 	
 	// 회원 수정
 	public void modifyUser(User user);
+	
+	// 회원 탈퇴
+	public void delete(String userId);
 
 }

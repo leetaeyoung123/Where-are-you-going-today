@@ -1,5 +1,9 @@
 package com.varxyz.wgt.owner.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,15 +17,8 @@ import com.varxyz.wgt.owner.serviceImpl.OwnerServiceImpl;
 
 @Controller
 public class OwnerController {
+	// 점주 서비스 객체 생성
 	OwnerService ownerService = new OwnerServiceImpl();
-	
-	// 점주 로그인
-	@GetMapping("/ownerLogin")
-	public String ownerForm(HttpSession session) {
-		session.invalidate();	// 세션 단절
-		
-		return "login/ownerLogin";
-	}
 	
 	// 점주가입
 	@GetMapping("/addOwner")
@@ -36,6 +33,42 @@ public class OwnerController {
 		ownerService.addOwner(owner);
 		OwnerService.context.close();
 		
-		return "login/login";
+		return "login/ownerLogin";
+	}
+	
+
+	// 점주 정보 가져오기
+	@GetMapping("/modifyOwner") 
+	public String findAllOwnerForm(HttpServletRequest request, HttpSession session, Model model) {
+		
+		List<Owner> ownerList = new ArrayList<Owner>();
+		ownerList = ownerService.findAllOwner((String)session.getAttribute("ownerId"));
+		model.addAttribute("ownerList", ownerList);
+		
+		return "owner/modifyOwner";
+	}
+	
+	// 점주 정보 수정
+	@PostMapping("/modifyOwner")
+	public String modifyOwnerForm(Owner owner, HttpServletRequest request, HttpSession session, Model model) {
+		
+		ownerService.modifyOwner(owner);
+		
+		return "owner/successModifyOwner";
+	}
+	
+	// 점주 탈퇴
+	@GetMapping("/deleteOwner")
+	public String deleteOwnerForm(HttpServletRequest request, HttpSession session, Model model) {
+		
+		return "login/ownerLogin";
+	}
+	
+	@PostMapping("/deleteOwner")
+	public String delete(HttpServletRequest request, HttpSession session, Model model) {
+		
+		ownerService.delete((String)session.getAttribute("ownerId"));	// 세션 ownerId를 가져와서 삭제
+		
+		return "owner/deleteOwner";
 	}
 }

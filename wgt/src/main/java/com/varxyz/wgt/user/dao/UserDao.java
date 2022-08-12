@@ -38,15 +38,15 @@ public class UserDao {
 	public void modifyUser(User user) {
 		String sql = "UPDATE User SET passwd = ?, name = ?, phone = ?, addr = ? WHERE userId = ?";
 		
-		jdbcTemplate.update(sql, new BeanPropertyRowMapper<User>(User.class), user.getPasswd(), user.getName(), user.getPhone(), user.getAddr());
+		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getPhone(), user.getAddr(), user.getUserId());
 		
 	}
 	
 	// 회원탈퇴
-	public void delete(User user) {
+	public void delete(String userId) {
 		String sql = "DELETE FROM User WHERE userId = ?";
 		
-		jdbcTemplate.update(sql, user.getUserId(), user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr());
+		jdbcTemplate.update(sql, userId);
 	}
 	
 }

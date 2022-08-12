@@ -24,4 +24,8 @@ public class UserServiceImpl implements UserService {
 		 userDao.modifyUser(user);
 	}
 	
+	// 회원탈퇴
+	public void delete(String userId) {
+		userDao.delete(userId);
+	}
 }
