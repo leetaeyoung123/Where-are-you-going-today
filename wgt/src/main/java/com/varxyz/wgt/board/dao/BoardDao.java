@@ -26,7 +26,7 @@ public class BoardDao {
 	
 	//게시글 읽기
 	public List<Board> read(Board board) {
-		String sql = "SELECT * FROM Board";
+		String sql = "SELECT * FROM Board ORDER BY regDate DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 	}
 	

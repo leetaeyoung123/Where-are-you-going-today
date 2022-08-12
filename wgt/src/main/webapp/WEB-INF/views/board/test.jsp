@@ -25,7 +25,7 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
-<title>게시판</title>
+<title>test</title>
 </head>
 <body>
 

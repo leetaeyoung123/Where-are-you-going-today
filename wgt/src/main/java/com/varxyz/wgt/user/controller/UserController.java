@@ -29,19 +29,28 @@ public class UserController {
 
 	@PostMapping("/addUser")
 	public String addUser(User user, Model model) {
-
-		userService.addUser(user);
-		UserService.context.close();
-
-		return "login/login";
-	}
+		
+		List<User> userList = new ArrayList<User>();
+		userList = userService.inquiryUser(user.getUserId());
+		if(user.getUserId().equals(userList.get(0).getUserId())) {
+			model.addAttribute("msg", "중복된 아이디 입니다!!");
+			model.addAttribute("url", "addUser");
+			
+			return "error/error";
+		} 
+			// 생성되기 전에 위에서 중복검사를 하고 유저를 여기서 추가해야함
+			userService.addUser(user);
+			UserService.context.close();
+			
+			return "login/login";
+}
 
 	// 회원정보 가져오기
 	@GetMapping("/modifyUser")
 	public String findAllUserForm(HttpServletRequest request, HttpSession session, Model model) {
 		
 		List<User> userList = new ArrayList<User>();
-		userList = userService.findAllUser((String)session.getAttribute("userId"));	// 세션을 가져옴
+		userList = userService.inquiryUser((String)session.getAttribute("userId"));	// 세션을 가져옴
 		model.addAttribute("userList", userList);
 
 		return "user/modifyUser";

@@ -2,14 +2,7 @@ package com.varxyz.wgt.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.LastModified;
 
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.service.BoardService;
@@ -57,8 +49,6 @@ public class Writecontroller {
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
 		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
 
-
-		File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);  // 적용 후
 		try {
 			file.transferTo(saveFile); // 실제 파일 저장메소드(filewriter 작업을 손쉽게 한방에 처리해준다.
 
@@ -67,7 +57,7 @@ public class Writecontroller {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
 		
 		Board board = new Board();
@@ -80,8 +70,7 @@ public class Writecontroller {
 		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
 		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
 
-
-			return "alert/alert";
+		return "alert/alert";
 		}
 
 }
