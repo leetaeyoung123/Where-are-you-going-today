@@ -1,6 +1,7 @@
 package com.varxyz.wgt.board.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,8 @@ public class MypageController {
 	// 회원정보 가져오기
 	@GetMapping("/board/mypage")
 	public String postForm(HttpSession session, Model model) {
-//		model.addAttribute("user", user);
+		List<User> userList = userService.inquiryUser((String)session.getAttribute("userId"));
+		model.addAttribute("userList", userList);
 		return "/board/mypage";
 	}
 	

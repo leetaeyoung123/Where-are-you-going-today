@@ -19,7 +19,7 @@ import com.varxyz.wgt.user.serviceImpl.UserServiceImpl;
 public class UserController {
 	// 유저 서비스 객체 생성
 	UserService userService = new UserServiceImpl();
-
+	
 	// 회원가입
 	@GetMapping("/addUser")
 	public String addUserForm() {
@@ -38,6 +38,7 @@ public class UserController {
 			
 			return "error/error";
 		} 
+		
 			// 생성되기 전에 위에서 중복검사를 하고 유저를 여기서 추가해야함
 			userService.addUser(user);
 			UserService.context.close();
@@ -65,7 +66,7 @@ public class UserController {
 		return "user/successModifyUser";
 	}
 
-//	 회원 탈퇴
+	// 회원 탈퇴
 	@GetMapping("/deleteUser")
 	public String deleteUserForm(HttpServletRequest request, HttpSession session, Model model) {
 		

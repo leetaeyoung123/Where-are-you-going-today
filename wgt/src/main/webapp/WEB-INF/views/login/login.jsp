@@ -17,9 +17,9 @@
 	<form action="login" method="post">
 		<div class="login">로그인</div>
 		<div style="text-align: center; margin-bottom: 20px; font-size: 50px;">아이디</div>
-		<div style="text-align: center;"><input type="text" name="userId" style="width: 150px; height: 20px; text-align: center;"></div>
+		<div style="text-align: center;"><input type="text" name="userId" style="width: 150px; height: 20px; text-align: center;" required></div>
 		<div style="text-align: center; margin-top: 30px; margin-bottom: 20px; font-size: 50px;">비밀번호</div><div style="text-align: center;">
-		<input type="password" name="passwd" style="width: 150px; height: 20px; text-align: center;"></div><br>
+		<input type="password" name="passwd" style="width: 150px; height: 20px; text-align: center;" required></div><br>
 		<input type="submit" value="로그인" class="loginBtn"><br>
 	</form>
 	<button type="button" class="addBtn" onclick="location.href='addUser';">회원가입</button>

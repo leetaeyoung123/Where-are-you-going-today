@@ -19,44 +19,44 @@ import com.varxyz.wgt.user.serviceImpl.UserServiceImpl;
 @Controller
 public class LoginController {
 	LoginService loginService = new LoginServiceImpl();
-	
+
 	UserService userService = new UserServiceImpl();
-	
+
 	// 로그인 화면
 	@GetMapping("/login")
 	public String loginForm(HttpSession session) {
 		session.invalidate();	// 세션 단절
-		
+
 		return "login/login";
 	}
-	
+
 	@PostMapping("/login")
 	public String login(User user, HttpSession session, HttpServletRequest request, HttpServletResponse response,
 							Model model) {
-		
+
 		User userList = new User();
-		
+
 		try {
 			userList = loginService.login(user.getUserId());
-			
+
 			session.setAttribute("userList", userList);
-			
+
 			if(user.getUserId().equals(userList.getUserId()) && user.getPasswd().equals(userList.getPasswd())) {
 				session.setAttribute("userId", user.getUserId());
-			return "map/map";
+			return "redirect:/map/map";
 			}
-			
+
 		} catch (EmptyResultDataAccessException e) {
 //			e.printStackTrace(); // 무슨 에러가 나는지 콘솔창에서 알려줌
 			model.addAttribute("msg", "아이디를 다시 확인하세요!!");
 			model.addAttribute("url", "login");
-			
+
 			return "error/error";
 		}
-		
+
 		model.addAttribute("msg", "비밀번호를 다시 확인하세요!!");
 		model.addAttribute("url", "login");
-		
+
 		return  "error/error";
 	}
 

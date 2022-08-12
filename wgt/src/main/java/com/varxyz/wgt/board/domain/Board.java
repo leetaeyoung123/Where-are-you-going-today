@@ -23,7 +23,5 @@ public class Board {
 		return "번호 : " + number +  "제목 : " + title 
 				+ "내용 : " + content + "날짜 : " + regDate;
 	}
-	public String toString2() {
-		return "";
-	}
+
 }
