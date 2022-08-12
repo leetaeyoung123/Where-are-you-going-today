@@ -20,12 +20,12 @@ public class UserDao {
 	}
 	
 	// 회원가입
-	public void addUser(User user) {
-		String sql = "INSERT INTO User (userId, passwd, name, ssn, phone, addr) "
-				+ " VALUES (?, ?, ?, ?, ?, ?) ";
+	public void addUser(User user, String imgName) {
+		String sql = "INSERT INTO User (userId, passwd, name, ssn, phone, addr, imgName) "
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?) ";
 		
 		jdbcTemplate.update(sql, user.getUserId(), user.getPasswd(), user.getName(), 
-								user.getSsn(), user.getPhone(), user.getAddr());
+								user.getSsn(), user.getPhone(), user.getAddr(), imgName);
 	}
 	
 	// 회원 조회

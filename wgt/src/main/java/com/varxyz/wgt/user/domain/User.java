@@ -14,4 +14,5 @@ public class User {
 	private String ssn;
 	private String phone;
 	private String addr;
+	private String imgName;
 }
