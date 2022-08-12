@@ -22,12 +22,8 @@ public class MypageController {
 	
 	// 회원정보 가져오기
 	@GetMapping("/board/mypage")
-	public String postForm(HttpServletRequest request, HttpSession session, Model model) {
-		User user = new User();
-		user.setUserId(request.getParameter("userId"));
-		user.setName(request.getParameter("name"));
-		user.setPhone(request.getParameter("phone"));
-		model.addAttribute("user", user);
+	public String postForm(HttpSession session, Model model) {
+//		model.addAttribute("user", user);
 		return "/board/mypage";
 	}
 	
