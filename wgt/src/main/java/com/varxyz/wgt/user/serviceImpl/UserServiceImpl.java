@@ -9,8 +9,8 @@ public class UserServiceImpl implements UserService {
 
 	// 회원생성
 	@Override
-	public void addUser(User user) {
-		userDao.addUser(user);
+	public void addUser(User user, String imgName) {
+		userDao.addUser(user, imgName);
 	}
 
 	// 회원조회

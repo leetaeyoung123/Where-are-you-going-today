@@ -15,7 +15,7 @@ public interface UserService {
 	UserDao userDao = context.getBean("userDao", UserDao.class);
 	
 	// 회원 추가
-	public void addUser(User user);
+	public void addUser(User user, String imgName);
 	
 	// 회원 조회
 	public List<User> inquiryUser(String userId);
@@ -25,5 +25,6 @@ public interface UserService {
 	
 	// 회원 탈퇴
 	public void delete(String userId);
+
 
 }
