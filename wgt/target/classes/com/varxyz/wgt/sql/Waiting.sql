@@ -12,9 +12,12 @@ SELECT * FROM Waiting;
 
 DROP TABLE Waiting;
 
+INSERT INTO shop 
+			VALUES ("1", "시류", "053-587-3180", "대구","1", "10", "50", "ㅇㄴㅇ");
+
 INSERT INTO Waiting (barName, num_people, userId)
 			VALUES ("시류", 7, "lty");
-INSERT INTO User VALUES ("sssssg06", "1234", "박상규", "980618", "01034903180", "대구요");
+INSERT INTO User VALUES ("psg", "1234", "상규박", "980618", "01034903180", "대구요", "dsds");
 --------------------------------------------------------------------------------------------------
 
 UPDATE Account SET balance = 1000000 WHERE customerId = 'lty';
