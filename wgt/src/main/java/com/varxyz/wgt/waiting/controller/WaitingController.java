@@ -92,41 +92,52 @@ public class WaitingController {
 		model.addAttribute("shopTel",
 				shopService.findAllByShopName(
 						waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName())
-						.get(0).getShopTel());
-		
+						.getShopTel());
+
 		// 내 앞 대기팀이 0팀 일때
 		if (frontCount == 0) {
 			// waitingStartTime이 0 일때
-			if(waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getWaitingStartTime().equals("0")) {
+			if (waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getWaitingStartTime()
+					.equals("0")) {
 				DateFormat outputFormat = new SimpleDateFormat("HH:mm:ss");
 				Date nowDate = new Date();
 				Calendar cal = Calendar.getInstance();
-			    cal.setTime(nowDate);
-			    cal.add(Calendar.MINUTE, 5);
-			    String outputText = outputFormat.format(cal.getTime());
-			    
+				cal.setTime(nowDate);
+				cal.add(Calendar.MINUTE, 1);
+				String outputText = outputFormat.format(cal.getTime());
+
 				waitingService.addWaitingTime((String) session.getAttribute("userId"), outputText);
-				String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getWaitingStartTime();
-				System.out.println(waitingTime);
-				model.addAttribute("msg", waitingTime +" 까지 와주시기 바랍니다. (자동취소 예정)");
+				String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
+						.getWaitingStartTime();
+				model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
 				return "waiting/get_waiting";
+			} else {
+				SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+				Date nowDate = new Date();
+				String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
+						.getWaitingStartTime();
+
+				model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
+
+				if (nowDate.after(format.parse(waitingTime))) {
+					waitingService.deleteWaiting((String) session.getAttribute("userId"));
+					return "waiting/get_waiting";
+				}
 			}
-			
 		}
-		String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getWaitingStartTime();
-		model.addAttribute("msg", waitingTime +" 까지 와주시기 바랍니다. (자동취소 예정)");
 		return "waiting/get_waiting";
 	}
 
 	@PostMapping("/controller/get_waiting")
 	public String getWaiting(Model model, HttpSession session) {
 		waitingService.deleteWaiting((String) session.getAttribute("userId"));
-		return "waiting/get_waiting";
+		return "redirect:/controller/get_waiting";
 	}
 
 	@GetMapping("/controller/waiting_management")
 	public String waitingManagement(HttpSession session, Model model) {
 		List<Waiting> waitingList = waitingService.findAllWaiting("시류");
+
 		model.addAttribute("MyShopWaitingList", waitingList);
 		return "waiting/waiting_management";
 	}

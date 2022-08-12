@@ -37,10 +37,17 @@
 
 			</div>
 			<form action="get_waiting" method="post" class="form_style" >
+				<c:if test="${shopTel != '-'}">
 				<div class="btn_wrap">
 					<input type="button" onclick="back()" value="뒤로가기" class="prev_btn"> <input
 						type="submit" value="웨이팅 취소" class="next_btn">
 				</div>
+				</c:if>
+				<c:if test="${shopTel == '-'}">
+				<div class="btn_wrap">
+					<input type="button" onclick="back()" value="뒤로가기" class="prev_btn"> 
+				</div>
+				</c:if>
 			</form>
 		</div>
 		<hr>

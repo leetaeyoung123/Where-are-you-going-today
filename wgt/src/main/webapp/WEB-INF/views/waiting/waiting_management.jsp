@@ -21,30 +21,48 @@
 	</script>
 	<div id="wrap">
 		<header id="header">
-			<h3 style="font-size: 40px;">나의 매장 웨이팅 내역</h3>
+			<h3 style="font-size: 40px;">나의 매장 웨이팅 현황</h3>
 		</header>
 		<hr>
 		<div id="content">
 			<div style="text-align: center; font-size: 45px;" class="inner">
 				<c:forEach var="waiting" items="${MyShopWaitingList}"
 					varStatus="status">
-					<form action="waitingCheck" method="post">
-						순번 : ${status.index+1}<br>
-						고객ID : <input name="userId"
-							value="${waiting.userId}"
-							style="opacity: 0; width: 0; height: 0;">${waiting.userId}<br>
-						인원수 : ${waiting.num_people}
-						<div>
-							<input type="submit" value="확인" class="prev_btn">
-						</div>
-					</form>
+					<c:if test="${waiting.userId != '없음'}">
+						<form action="waitingCheck" method="post">
+							순번 : ${status.index+1}<br> 고객ID : <input name="userId"
+								value="${waiting.userId}"
+								style="opacity: 0; width: 0; height: 0;">${waiting.userId}<br>
+							인원수 : ${waiting.num_people}
+							<div>
+								<input type="submit" value="확인" class="prev_btn"
+									style="width: 150px; background: #333333; border-radius: 25px;">
+							</div>
+						</form>
+					</c:if>
+					<c:if test="${waiting.userId == '없음'}">
+						<div
+							style="height: 430px; display: flex; align-items: center; justify-content: center;">
+							현재 웨이팅 테이블 없음</div>
+					</c:if>
 				</c:forEach>
 			</div>
 			<form action="allWaitingClear" method="post" class="form_style">
-				<div class="btn_wrap">
-					<input type="button" onclick="back()" value="뒤로가기" class="prev_btn">
-					<input type="submit" value="내역 초기화" class="next_btn">
-				</div>
+				<c:forEach var="waiting" items="${MyShopWaitingList}">
+					<c:if test="${waiting.userId != '없음'}">
+						<div class="btn_wrap">
+							<input type="button" onclick="back()" value="뒤로가기"
+								class="prev_btn"> <input type="submit" value="내역 초기화"
+								class="next_btn">
+						</div>
+					</c:if>
+					<c:if test="${waiting.userId == '없음'}">
+						<div class="btn_wrap">
+							<input type="button" onclick="back()" value="뒤로가기"
+								class="prev_btn">
+						</div>
+					</c:if>
+				</c:forEach>
 			</form>
 		</div>
 		<hr>
