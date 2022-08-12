@@ -15,6 +15,9 @@ public interface WaitingService {
 	// 웨이팅 추가
 	public void addWaiting(String barName, String userId, long num_people);
 	
+	// 
+	public void addWaitingTime(String userId, String time);
+	
 	// 웨이팅 삭제
 	public void deleteWaiting(String userId);
 	
@@ -23,4 +26,7 @@ public interface WaitingService {
 	
 	// 술집의 현재 웨이팅 내역
 	public List<Waiting> findAllWaiting(String barName);
+	
+	// 특정 매장 내 모든 웨이팅 삭제
+	public void deteleAllWaiting(String barName);
 }

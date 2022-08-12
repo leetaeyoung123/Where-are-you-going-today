@@ -26,5 +26,15 @@ public class WaitingServiceImpl implements WaitingService{
 	public List<Waiting> findAllWaiting(String barName) {
 		return dao.findAllWaiting(barName);
 	}
+
+	@Override
+	public void deteleAllWaiting(String barName) {
+		dao.deleteWaiting(barName);
+	}
+
+	@Override
+	public void addWaitingTime(String userId, String time) {
+		dao.addWaitingTime(userId, time);
+	}
 	
 }

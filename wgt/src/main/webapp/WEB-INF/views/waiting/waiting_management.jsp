@@ -14,39 +14,41 @@
 <title>Add Waiting</title>
 </head>
 <body>
-<script type="text/javascript">
+	<script type="text/javascript">
 		function back() {
 			history.back();
 		}
 	</script>
 	<div id="wrap">
 		<header id="header">
-			<h3 style="font-size: 40px;">${barName}</h3>
+			<h3 style="font-size: 40px;">나의 매장 웨이팅 내역</h3>
 		</header>
 		<hr>
 		<div id="content">
 			<div style="text-align: center; font-size: 45px;" class="inner">
-					현재 대기중인 팀 : ${nowWaiting}
+				<c:forEach var="waiting" items="${MyShopWaitingList}"
+					varStatus="status">
+					<form action="waitingCheck" method="post">
+						순번 : ${status.index+1}<br>
+						고객ID : <input name="userId"
+							value="${waiting.userId}"
+							style="opacity: 0; width: 0; height: 0;">${waiting.userId}<br>
+						인원수 : ${waiting.num_people}
+						<div>
+							<input type="submit" value="확인" class="prev_btn">
+						</div>
+					</form>
+				</c:forEach>
 			</div>
-			<div style="margin-top: 50px;" class="input_wrap">
-				<form class="form_style" action="waiting" method="post">
-					<h3 style="font-size: 25px;">인원수 입력</h3>
-					<input class="input_num" placeholder="인원수" name="num_people"
-						type="number" min="1" value="1">
-					<div class="input_wrap">
-						<input style="margin-left: 20px;" class="input_style" type=button
-							value="-" onClick="javascript:this.form.num_people.value--;">
-						<input class="input_style" type=button value="+"
-							onClick="javascript:this.form.num_people.value++;">
-					</div>
-			</div>
-			<div class="btn_wrap">
-				<input type="submit" onclick="back()" value="뒤로가기" class="prev_btn"> <input
-					type="submit" value="웨이팅 하기" class="next_btn">
-			</div>
+			<form action="allWaitingClear" method="post" class="form_style">
+				<div class="btn_wrap">
+					<input type="button" onclick="back()" value="뒤로가기" class="prev_btn">
+					<input type="submit" value="내역 초기화" class="next_btn">
+				</div>
 			</form>
 		</div>
 		<hr>
+
 		<footer id="footer">Copyright (c) 2022 Copyright Holder All
 			Rights Reserved.</footer>
 	</div>
