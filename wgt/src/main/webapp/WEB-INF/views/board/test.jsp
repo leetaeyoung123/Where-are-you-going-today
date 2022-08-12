@@ -64,13 +64,15 @@
 				<div class="write" style="margin-bottom: 30px;">
 					<img src="../resources/board/img/upload/${item.imgname}.jpg" style="width:370px;height:330px"><br>
 				<div class="emptyheart">
-					<button onclick="changeImg()" style="display:flex;padding-left:1px;"><img id ="img1" src = "../resources/board/img/emptyheart.png" width = "18px" height = "18px" style="cursor:pointer;"></button>
+					<button class="likebtn" style="display:flex;padding-left:1px;">
+						<img id ="img1" src = "../resources/board/img/emptyheart.png" width = "18px" height = "18px" style="cursor:pointer;">
+						<img id ="img2" src = "../resources/board/img/redheart.png" width = "18px" height = "18px" style="display:none;">
+					</button>
 				 	  <div class = "feedReaction">
    						<span>좋아요 ??개</span>
  					  </div>
 					<%-- <p><%= sf.format(nowTime) %></p> --%>
 					<%-- <p>${item.regDate}</p> --%>
-					<!-- <img id ="img2" src = "../resources/board/img/redheart.png" width = "20px" height = "20px" onclick="imgToggle"> -->
 				</div>
 					<p><fmt:formatDate pattern="yy년MM월dd일 a hh:mm" value="${item.regDate}"/></p>
 					<h4>${item.title}</h4>
@@ -81,11 +83,21 @@
 		</div>
 	</div>
 
-	<script type="text/javascript">
-		function changeImg() {
-			document.getElementById("img1").src = "../resources/board/img/redheart.png";
-		}
-	</script>
+<script>
+	function changeImg(../resources/board/img/emptyheart.png, ../resources/board/img/redheart.png){
+	var img1 = getElementById("img1");
+	if(img1.length==0) return;
+	if(img.src.indexOf(../resources/board/img/emptyheart.png)>=0){
+		img.src=../resources/board/img/redheart.png;
+		return;
+	}
+	if(img.src.indexOf(../resources/board/img/redheart.png)>=0){
+		img.src=../resources/board/img/emptyheart.png;
+		return;
+	}
+	return;
+	}
+</script>
 
 </body>
 </html>
