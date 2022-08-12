@@ -10,6 +10,8 @@ CREATE TABLE Board(
 );
 
 
+	SELECT * FROM Board ORDER BY regDate DESC;
+
 SELECT * FROM Board;
 
 DROP TABLE Board;

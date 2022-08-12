@@ -5,6 +5,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.io.*, java.text.*, java.util.*" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	Date nowTime = new Date();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
@@ -68,7 +69,8 @@
 				<div class="emptyheart">
 					<button onclick="changeImg()" style="display:flex;"><img id ="img1" src = "../resources/board/img/emptyheart.png" width = "18px" height = "18px" style="cursor:pointer;"></button>
 					<%-- <p><%= sf.format(nowTime) %></p> --%>
-					<p>${item.regDate}</p>
+					<%-- <p>${item.regDate}</p> --%>
+					<p><fmt:formatDate pattern="yy년MM월dd일 a hh:mm" value="${item.regDate}"/></p>
 					<!-- <img id ="img2" src = "../resources/board/img/redheart.png" width = "20px" height = "20px" onclick="imgToggle"> -->
 				</div>
 					<h4>${item.title}</h4>
