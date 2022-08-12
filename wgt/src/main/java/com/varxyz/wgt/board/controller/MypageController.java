@@ -1,5 +1,8 @@
 package com.varxyz.wgt.board.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,14 +11,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
+import com.varxyz.wgt.user.domain.User;
+import com.varxyz.wgt.user.service.UserService;
+import com.varxyz.wgt.user.serviceImpl.UserServiceImpl;
 
 @Controller
 public class MypageController {
 	BoardService service = new BoardServiceImpl();
+	UserService userService = new UserServiceImpl();
 	
-	// 등록하기 화면
+	// 회원정보 가져오기
 	@GetMapping("/board/mypage")
-	public String postForm(Model model) {
+	public String postForm(HttpServletRequest request, HttpSession session, Model model) {
+		User user = new User();
+		user.setUserId(request.getParameter("userId"));
+		user.setName(request.getParameter("name"));
+		user.setPhone(request.getParameter("phone"));
+		model.addAttribute("user", user);
 		return "/board/mypage";
 	}
 	
