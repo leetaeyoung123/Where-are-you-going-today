@@ -28,7 +28,7 @@
 		</c:forEach>
 	</form>
 	
-	<form action="deleteUser" method="post">
+	<form action="deleteOwner" method="post">
 		<button type="submit" class="dBtn">회원탈퇴</button>
 	</form>
 </body>

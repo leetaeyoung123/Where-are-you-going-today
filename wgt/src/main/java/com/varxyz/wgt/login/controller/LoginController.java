@@ -1,6 +1,7 @@
 package com.varxyz.wgt.login.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -30,7 +31,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String login(User user, HttpSession session, HttpServletRequest request,
+	public String login(User user, HttpSession session, HttpServletRequest request, HttpServletResponse response,
 							Model model) {
 		
 		User userList = new User();
