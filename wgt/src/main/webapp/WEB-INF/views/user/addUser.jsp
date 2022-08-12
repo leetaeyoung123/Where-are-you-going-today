@@ -23,6 +23,7 @@
 		<div style="margin-left: 45px; font-size: 30px; padding-top: 30px;">주민번호 <input type="text" name="ssn" required style="margin-left: 20px; height: 20px;"></div><br>
 		<div style="margin-left: 40px; font-size: 30px; padding-top: 30px;">전화번호 <input type="text" name="phone" required style="margin-left: 20px; height: 20px;"></div><br>
 		<div style="margin-left: 90px; font-size: 30px; padding-top: 30px;">주소 <input type="text" name="addr" required style="margin-left: 20px; height: 20px;"></div><br>
+		<div style="margin-left: 20px; font-size: 30px; padding-top: 30px;">프로필 사진 <input type="file" class="add" value="등록" required></div>
 		<input type="submit" value="회원가입" class="btn" />
 	</form>
 </body> 

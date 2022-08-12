@@ -39,7 +39,6 @@ public class UserController {
 			return "error/error";
 		} 
 		
-		if(user.getUserId().equals(userList))
 			// 생성되기 전에 위에서 중복검사를 하고 유저를 여기서 추가해야함
 			userService.addUser(user);
 			UserService.context.close();
