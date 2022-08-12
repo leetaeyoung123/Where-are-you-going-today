@@ -31,7 +31,8 @@
 							매장 전화번호 : <br>${shopTel}<br>
 							인원 : ${x.num_people}명<br>
 							총 대기팀 : ${allCount}팀 <br>
-							내 앞 대기팀 : ${frontCount}팀
+							내 앞 대기팀 : ${frontCount}팀<br>
+							<span style="color:red;">${msg}</span>
 				</c:forEach>
 
 			</div>

@@ -12,4 +12,5 @@ public class Waiting {
 	private long num_people;
 	private String userId;
 	private String regDate;
+	private String waitingStartTime;
 }

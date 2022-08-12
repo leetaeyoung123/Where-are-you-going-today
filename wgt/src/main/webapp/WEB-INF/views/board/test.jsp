@@ -25,7 +25,7 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
-<title>test</title>
+<title>Board Home</title>
 </head>
 <body>
 
@@ -37,10 +37,10 @@
 				<!--상단 좌측 내용물-->
 				<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
 			</div>
-			<div class="headerSearchBar">
+			<div class="headerSearchBar" style="border-radius:5px;">
 				<!--상단 중앙 내용물-->
 				<i class="fas fa-search"></i> <input type="text" placeholder="검색"
-					style="border: none;">
+					style="border: none;outline:none;">
 			</div>
 			<div class="write_btn">
 				<form action="home" method="post">
@@ -63,19 +63,17 @@
 			<c:forEach var="item" items="${board}">
 				<div class="write" style="margin-bottom: 30px;">
 					<img src="../resources/board/img/upload/${item.imgname}.jpg" style="width:370px;height:330px"><br>
-				<div class="emptyheart">
-					<a class="likebtn" style="display:flex;padding-left:1px;">
-
-					</a>
+				<div class="emptyheart" onclick="liekscount">
+					<a class="likebtn" style="display:flex;padding-left:1px;margin-top:1px;"></a>
 				 	  <div class = "feedReaction">
-   						<span>좋아요 ??개</span>
+   						<span class="liketext">좋아요 <span id="likesresult">0</span>개</span>
  					  </div>
 					<%-- <p><%= sf.format(nowTime) %></p> --%>
 					<%-- <p>${item.regDate}</p> --%>
 				</div>
 					<p><fmt:formatDate pattern="yy년MM월dd일 a hh:mm" value="${item.regDate}"/></p>
-					<h4>${item.title}</h4>
-					<br> ${item.content}<br>
+					<h4>${item.title}</h4><br>
+						${item.content}<br>
 				</div>
 			</c:forEach>
 			</div>
@@ -85,11 +83,11 @@
 <script>
 	let like = document.querySelectorAll(".likebtn")
 	
-	for(let i = 0; i < like.length; i++){
+	for(let i = 0; i < like.length; i++) {
 		like[i].addEventListener('click', ()=> {
 			like[i].classList.toggle('open')
 		})
-	}
+	}	
 
 </script>
 
