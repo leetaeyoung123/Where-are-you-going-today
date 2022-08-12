@@ -96,6 +96,7 @@ hr {
   font-size: 28px;
   font-family: 'KOTRAHOPE';
   color: #EDEDED;
+  transition: .1s;
 }
 
 .next_btn {
@@ -107,6 +108,19 @@ hr {
   font-size: 28px;
   font-family: 'KOTRAHOPE';
   color: #EDEDED;
+  transition: .1s;
+}
+
+.next_btn:active {
+	position: relative;
+	top: 2px;
+	box-shadow: none !important;
+}
+
+.prev_btn:active {
+	position: relative;
+	top: 2px;
+	box-shadow: none !important;
 }
 
 .file_upload_wrap {
@@ -205,6 +219,24 @@ td,th {
   font-family: 'KOTRAHOPE';
 }
 
+.readonlyinput {
+	width: 200px;
+	padding: 0 10px;
+	font-size: 26px;
+	font-family: 'KOTRAHOPE';
+}
+
+.readonlyinput:focus-visible {
+	outline: none;
+}
+
+.flexForm {
+	display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 #footer {
   position: relative;
   width: 100%;

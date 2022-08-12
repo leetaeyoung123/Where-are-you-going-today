@@ -11,13 +11,21 @@ import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
 @Controller
 public class SelectShopController {
+	ShopService service = new ShopServiceImpl();
 	
-	@GetMapping("shop/viewMyShop")
-	public String viewMyShop(Model model, HttpSession session) {
-		ShopService service = new ShopServiceImpl();
+	@GetMapping("shop/viewTempMyShop")
+	public String viewTempMyShop(Model model, HttpSession session) {
 		
 		session.removeAttribute("tempImgList");
 		
+		model.addAttribute("shop", service.findShopByBnsNum("123-4568-7891"));
+		
+		model.addAttribute("menus", service.findShopMenuByBnsNum("123-4568-7891"));
+		return "shop/view/viewTempMyShop";
+	}
+	
+	@GetMapping("shop/viewMyShop")
+	public String viewMyShop(Model model) {
 		model.addAttribute("shop", service.findShopByBnsNum("123-4568-7891"));
 		
 		model.addAttribute("menus", service.findShopMenuByBnsNum("123-4568-7891"));
