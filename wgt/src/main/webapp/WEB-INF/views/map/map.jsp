@@ -1,6 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.List, java.net.URLEncoder" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,10 @@
 		<div id="map" style="width: 370px; height: 700px; margin-left: 10px;"></div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
-		<c:forEach var="shop" items="${find}">
+		<c:forEach var="shop" items="${find}" varStatus="status">
+			<input id="findname${status.index}" value="${shop.name}"/>
+			<input id="longitude${status.index}" value="${shop.longitude}"/>
+			<input id="latitude${status.index}" value="${shop.latitude}"/>
 		</c:forEach>
 			
 		<script>
@@ -48,18 +52,17 @@
 	    
 	    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
 	    // 마커 이미지를 생성합니다    
-	var markerSize = new kakao.maps.Size(MARKER_WIDTH, MARKER_HEIGHT), // 기본, 클릭 마커의 크기
-	    markerOffset = new kakao.maps.Point(OFFSET_X, OFFSET_Y), // 기본, 클릭 마커의 기준좌표
-	    overMarkerSize = new kakao.maps.Size(OVER_MARKER_WIDTH, OVER_MARKER_HEIGHT), // 오버 마커의 크기
-	    overMarkerOffset = new kakao.maps.Point(OVER_OFFSET_X, OVER_OFFSET_Y), // 오버 마커의 기준 좌표
-	    clickMarkerSize = new kakao.maps.Size(CLICK_MARKER_WIDTH, CLICK_MARKER_HEIGHT);
+		var markerSize = new kakao.maps.Size(MARKER_WIDTH, MARKER_HEIGHT), // 기본, 클릭 마커의 크기
+	   		markerOffset = new kakao.maps.Point(OFFSET_X, OFFSET_Y), // 기본, 클릭 마커의 기준좌표
+	    	overMarkerSize = new kakao.maps.Size(OVER_MARKER_WIDTH, OVER_MARKER_HEIGHT), // 오버 마커의 크기
+	    	overMarkerOffset = new kakao.maps.Point(OVER_OFFSET_X, OVER_OFFSET_Y), // 오버 마커의 기준 좌표
+	    	clickMarkerSize = new kakao.maps.Size(CLICK_MARKER_WIDTH, CLICK_MARKER_HEIGHT);
 		
-	var positions = [  // 마커의 위치
-	        new kakao.maps.LatLng(35.865841870566946, 128.59448909365926),
-	        new kakao.maps.LatLng(35.86662957499517, 128.5940398957839),
-	    ],
+		
+	    
 	    selectedMarker = null; // 클릭한 마커를 담을 변수
 	    selectedContent = null;
+<<<<<<< HEAD
 	    <% List<String> shopList = (List<String>)request.getAttribute("shopList");%> 
 	var content = [
 		<% for(String x : shopList){ %>
@@ -67,16 +70,21 @@
 	   <% } %>
 	]
 
+=======
+	    
+>>>>>>> map
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	    mapOption = { 
 	        center: new kakao.maps.LatLng(35.865491251524496, 128.5934081998044), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨
 	    };
-
+	
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	var positions = []//좌표값을 받을 배열
+	var content = [] //가게 이름을 받을 배열
 
 	// 지도 위에 마커를 표시합니다
-	for (var i = 0, len = positions.length; i < len; i++) {
+	for (var i = 0, len = 2; i < len; i++) {
 	    var gapX = (MARKER_WIDTH), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
 	        originY = (MARKER_HEIGHT) * i, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
 	        overOriginY = (OVER_MARKER_HEIGHT) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
@@ -84,8 +92,12 @@
 	        clickOrigin = new kakao.maps.Point(gapX, originY), // 스프라이트 이미지에서 마우스오버 마커로 사용할 영역의 좌상단 좌표
 	        overOrigin = new kakao.maps.Point(gapX * 2, overOriginY); // 스프라이트 이미지에서 클릭 마커로 사용할 영역의 좌상단 좌표
 	        
-	    // 마커를 생성하고 지도위에 표시합니다
+	        positions.push(new kakao.maps.LatLng(document.getElementById("longitude" + i ).value, document.getElementById("latitude" + i ).value)); //좌표값을 받아와 배열에 추가하여 마커를 표시
+	        content.push('<div class="wrap"><div class="info"><div class="title">'+document.getElementById("findname" + i ).value+'</div></div></div>');//가게이름을 받아와 배열에 추가
+	    	console.log(document.getElementById(("coordinates" + i).value));
+	        // 마커를 생성하고 지도위에 표시합니다
 	    addMarker(positions[i],content[i], normalOrigin, overOrigin, clickOrigin);
+		
 	}
 	
 	// 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다

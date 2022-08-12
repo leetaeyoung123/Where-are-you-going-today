@@ -24,6 +24,7 @@ public class MapController {
 		model.addAttribute("name", service.search(map.getName()));
 		model.addAttribute("find", service.findAll());
 
+
 		/*
 		 *  여기로 올때 temp 에 올렸던 이미지들을 자동으로 삭제한다.
 		 *  2022-08-11 한태우(Shop 담당)
@@ -56,6 +57,7 @@ public class MapController {
 		List<Map> a = service.search(map.getName());
 		model.addAttribute("addr", a.get(0).getAddress());
 		model.addAttribute("autoName", a.get(0).getName());
+		model.addAttribute("find", service.findAll());
 		return "map/map";
 	}
 }
