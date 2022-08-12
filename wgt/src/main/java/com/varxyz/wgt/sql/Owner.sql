@@ -8,4 +8,3 @@ CREATE TABLE Owner(
 );
 
 SELECT * FROM Owner
-
