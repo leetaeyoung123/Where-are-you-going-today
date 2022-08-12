@@ -40,13 +40,11 @@
   	<a href="mypage"><img id ="user" src = "../resources/board/img/user.png" width = "30px" height = "30px" style="cursor:pointer;"></a>
   </div>
   
-<%--   <c:forEach var="item" items="${user}">
- 	${item.userId}
- 	${item.name}
-  	${item.phone}
-  </c:forEach> --%>
-  	userId, name, phone 받아와서 띄우기
-	게시물 수정 및 삭제
+<c:forEach var="user" items="${userList}">
+ 	${user.userId}
+ 	${user.name}
+  	${user.phone}
+  </c:forEach>
  
 </body>
 </html>
