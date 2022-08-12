@@ -9,19 +9,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
+import com.varxyz.wgt.user.service.UserService;
+import com.varxyz.wgt.user.serviceImpl.UserServiceImpl;
 
 @Controller
-public class BoardController {
+public class TestController {
 	BoardService service = new BoardServiceImpl();
+	UserService us = new UserServiceImpl();
 	
 	// 게시판 화면
-	@GetMapping("/board/home")
+	@GetMapping("/board/test")
 	public String list(Model model, Board board) {
 		model.addAttribute("board", service.read(board));
-		return "board/home";
+		return "board/test";
 	}
 
-	@PostMapping("/board/home")
+	@PostMapping("/board/test")
 	public String post(Board board, Model model) {
 		
 		return "redirect:/board/write";
