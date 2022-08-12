@@ -64,9 +64,9 @@
 				<div class="write" style="margin-bottom: 30px;">
 					<img src="../resources/board/img/upload/${item.imgname}.jpg" style="width:370px;height:330px"><br>
 				<div class="emptyheart">
-					<button class="likebtn" style="display:flex;padding-left:1px;">
-						<img class="img" id ="img1" src = "../resources/board/img/emptyheart.png" width = "18px" height = "18px" style="cursor:pointer;">
-					</button>
+					<a class="likebtn" style="display:flex;padding-left:1px;">
+
+					</a>
 				 	  <div class = "feedReaction">
    						<span>좋아요 ??개</span>
  					  </div>
@@ -83,9 +83,12 @@
 	</div>
 
 <script>
-	function like() {
-		let like = document.querySelector(".likebtn");
-		like.classList.toggle("open");
+	let like = document.querySelectorAll(".likebtn")
+	
+	for(let i = 0; i < like.length; i++){
+		like[i].addEventListener('click', ()=> {
+			like[i].classList.toggle('open')
+		})
 	}
 
 </script>
