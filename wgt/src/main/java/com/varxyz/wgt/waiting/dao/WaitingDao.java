@@ -7,6 +7,7 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.varxyz.wgt.owner.doamin.Owner;
 import com.varxyz.wgt.waiting.domain.Waiting;
 
 public class WaitingDao {
@@ -22,11 +23,26 @@ public class WaitingDao {
 		jdbcTemplate.update(sql, barName, userId, num_people);
 	}
 	
-	// 웨이팅 삭제
+	// 웨이팅 마지노선 시간 추가
+	public void addWaitingTime(String userId, String time) {
+		String sql = "UPDATE Waiting SET waitingStartTime = ? WHERE userId = ?";
+		
+		jdbcTemplate.update(sql, time, userId);
+	}
+	
+	
+	// 선택적 웨이팅 삭제
 	public void deleteWaiting(String userId) {
 		String sql = "DELETE FROM Waiting WHERE userId = ?";
 		jdbcTemplate.update(sql, userId);
 	}
+	
+	// 특정 매장 내 모든 웨이팅 삭제
+	public void deteleAllWaiting(String shopName) {
+		String sql = "DELETE FROM Waiting WHERE barName = ?";
+		jdbcTemplate.update(sql, shopName);
+	}
+	
 	
 	// 회원님의 현재 웨이팅 조회
 	public List<Waiting> findWaitingById(String userId){
