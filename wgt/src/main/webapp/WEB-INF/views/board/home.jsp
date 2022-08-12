@@ -63,7 +63,7 @@
 			<c:forEach var="item" items="${board}">
 				<div class="write" style="margin-bottom: 30px;">
 					<img src="../resources/board/img/upload/${item.imgname}.jpg" style="width:370px;height:330px"><br>
-				<div class="emptyheart">
+				<div class="comment">
 					<button onclick="changeImg()" style="display:flex;padding-left:1px;"><img id ="img1" src = "../resources/board/img/emptyheart.png" width = "18px" height = "18px" style="cursor:pointer;"></button>
 				 	  <div class = "feedReaction">
    						<span>좋아요 ??개</span>
