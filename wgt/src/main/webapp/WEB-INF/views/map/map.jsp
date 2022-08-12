@@ -64,11 +64,11 @@
 	    selectedContent = null;
 <<<<<<< HEAD
 	    <% List<String> shopList = (List<String>)request.getAttribute("shopList");%> 
-	var content = [
 		<% for(String x : shopList){ %>
+	var content = [
 		'<div class="wrap"><div class="info"><div class="title">'+<%=x%>+'</div></div></div>',
-	   <% } %>
 	]
+	   <% } %>
 
 =======
 	    
