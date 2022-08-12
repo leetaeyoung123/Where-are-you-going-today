@@ -64,11 +64,11 @@
 				<div class="write" style="margin-bottom: 30px;">
 					<img src="../resources/board/img/upload/${item.imgname}.jpg" style="width:370px;height:330px"><br>
 				<div class="emptyheart">
-					<a class="likebtn" style="display:flex;padding-left:1px;">
+					<a class="likebtn" style="display:flex;padding-left:1px;margin-top:1px;">
 
 					</a>
 				 	  <div class = "feedReaction">
-   						<span class="liketext">좋아요 ??개</span>
+   						<span class="liketext">좋아요 <span class="likesresult">0</span>개</span>
  					  </div>
 					<%-- <p><%= sf.format(nowTime) %></p> --%>
 					<%-- <p>${item.regDate}</p> --%>
