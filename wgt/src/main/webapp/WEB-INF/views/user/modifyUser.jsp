@@ -14,6 +14,7 @@
 </head>
 
 <body>
+	<a class="back" href="<c:url value='/map/map'/>"><img src="resources/mapcss/img/backicon.png"></a>
 	<form action="modifyUser" method="post">
 		<c:forEach var="user" items="${userList}">
 		<div style="font-size: 100px; text-align: center; padding-top: 40px;">회원수정</div>
@@ -28,7 +29,7 @@
 		</c:forEach>
 	</form>
 	
-	<form action="delete/deleteUser">
+	<form action="deleteUser" method="post">
 		<button type="submit" class="dBtn">회원탈퇴</button>
 	</form>
 </body>

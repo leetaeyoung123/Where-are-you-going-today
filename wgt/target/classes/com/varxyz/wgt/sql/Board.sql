@@ -4,9 +4,11 @@ CREATE TABLE Board(
    content		VARCHAR(150)	NOT NULL,
    likecount	INT				DEFAULT 0,
    regDate		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
-   imgname		VARCHAR(100)	DEFAULT NULL
-);
+   imgname		VARCHAR(100)	DEFAULT NULL,
+   userId		VARCHAR(20)		NOT NULL,
    CONSTRAINT Board_userId_FK FOREIGN KEY (userId) REFERENCES User(userId)
+);
+ 
 
 SELECT * FROM Board;
 

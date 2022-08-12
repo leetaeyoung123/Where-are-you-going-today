@@ -20,7 +20,6 @@ public class UserController {
 	// 유저 서비스 객체 생성
 	UserService userService = new UserServiceImpl();
 
-
 	// 회원가입
 	@GetMapping("/addUser")
 	public String addUserForm() {
@@ -50,18 +49,26 @@ public class UserController {
 	
 	// 회원정보 수정
 	@PostMapping("/modifyUser")
-	public String findAllUserForm(User user, HttpServletRequest request, HttpSession session, Model model) {
+	public String modifyUserForm(User user, HttpServletRequest request, HttpSession session, Model model) {
 		
 		userService.modifyUser(user);
+		
+		return "user/successModifyUser";
+	}
+
+//	 회원 탈퇴
+	@GetMapping("/deleteUser")
+	public String deleteUserForm(HttpServletRequest request, HttpSession session, Model model) {
 		
 		return "login/login";
 	}
 	
-	
-//	@GetMapping
-//	public String modifyUser(HttpServletRequest request, HttpSession session, Model model) {
-//		
-//		return null;
-//	}
+	@PostMapping("/deleteUser")
+	public String delete(HttpServletRequest request, HttpSession session, Model model) {
+		
+		userService.delete((String)session.getAttribute("userId"));	// 세션 userId 가져와서 삭제
+		
+		return "user/deleteUser";
+	}
 
 }
