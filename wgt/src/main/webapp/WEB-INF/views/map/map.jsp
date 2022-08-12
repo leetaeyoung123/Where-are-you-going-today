@@ -62,17 +62,7 @@
 	    
 	    selectedMarker = null; // 클릭한 마커를 담을 변수
 	    selectedContent = null;
-<<<<<<< HEAD
-	    <% List<String> shopList = (List<String>)request.getAttribute("shopList");%> 
-	var content = [
-		<% for(String x : shopList){ %>
-		'<div class="wrap"><div class="info"><div class="title">'+<%=x%>+'</div></div></div>',
-	   <% } %>
-	]
 
-=======
-	    
->>>>>>> map
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	    mapOption = { 
 	        center: new kakao.maps.LatLng(35.865491251524496, 128.5934081998044), // 지도의 중심좌표
@@ -171,6 +161,9 @@
 	        overlay.setMap(null);     
 	    }
 	}    
+	function historyback() {
+		history.back();
+	}
 	var geocoder = new kakao.maps.services.Geocoder();
 	geocoder.addressSearch(document.getElementById("inputaddr").value, function(result, status) {
 
