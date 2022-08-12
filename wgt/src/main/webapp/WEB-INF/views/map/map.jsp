@@ -20,25 +20,43 @@
 	<a class="back" href="<c:url value='/login'/>"><img
 		src="../resources/mapcss/img/backicon.png"></a>
 	<input id="inputaddr" value="${addr}" />
-	<input id="autoName" value="${autoName}" />
-	<a class="userInformation"> <span></span>
+	<a class="userInformation"> 
+	<span></span>
 	</a>
 	<form class="header_form" action="map" method="post">
 		<br> <select class="selectbox">
 			<option>주소</option>
 			<option>메뉴</option> 
 		</select> <input id="inputSearch" class="inputtext" type="text" name="name">
-
+		<%int count = 0;%>
 		<div id="map" style="width: 370px; height: 700px; margin-left: 10px;"></div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
 		<c:forEach var="shop" items="${find}" varStatus="status">
-			<input id="findname${status.index}" value="${shop.name}"/>
-			<input id="longitude${status.index}" value="${shop.longitude}"/>
-			<input id="latitude${status.index}" value="${shop.latitude}"/>
+			<input id="findname${status.index}" value="${shop.name}" style="width:0;height:0;opacity:0;cursor:default;" />
+			<input id="longitude${status.index}" value="${shop.longitude}" style="width:0;height:0;opacity:0;cursor:default;"/>
+			<input id="latitude${status.index}" value="${shop.latitude}" style="width:0;height:0;opacity:0;cursor:default;"/>
+			<%
+			count++;
+			%>
 		</c:forEach>
+			<input id="count" value="<%=count%>" style="width:0;height:0;opacity:0;cursor:default;"/>
 			
 		<script>
+		const toggleBtn = document.querySelector(".userInformation")
+		
+		function toggleHandler() {
+   			toggleBtn.classList.toggle("open")
+		}
+		
+		function init() {
+    		toggleBtn.addEventListener("click",toggleHandler)
+		}
+		
+		init()
+		
+
+		
 		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 	    MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
 	    OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
@@ -72,9 +90,8 @@
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	var positions = []//좌표값을 받을 배열
 	var content = [] //가게 이름을 받을 배열
-
 	// 지도 위에 마커를 표시합니다
-	for (var i = 0, len = 2; i < len; i++) {
+	for (var i = 0, len = document.getElementById("count").value; i < len; i++) {
 	    var gapX = (MARKER_WIDTH), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
 	        originY = (MARKER_HEIGHT) * i, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
 	        overOriginY = (OVER_MARKER_HEIGHT) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
@@ -83,12 +100,14 @@
 	        overOrigin = new kakao.maps.Point(gapX * 2, overOriginY); // 스프라이트 이미지에서 클릭 마커로 사용할 영역의 좌상단 좌표
 	        
 	        positions.push(new kakao.maps.LatLng(document.getElementById("longitude" + i ).value, document.getElementById("latitude" + i ).value)); //좌표값을 받아와 배열에 추가하여 마커를 표시
-	        content.push('<div class="wrap"><div class="info"><div class="title">'+document.getElementById("findname" + i ).value+'</div></div></div>');//가게이름을 받아와 배열에 추가
-	    	console.log(document.getElementById(("coordinates" + i).value));
+	        content.push('<div class="wrap"><div class="info"><div class="title">' + 
+	        		document.getElementById("findname" + i ).value + 
+	        		'<div class="close" onclick="closeOverlay()"></div></div></div></div>');//가게이름을 받아와 배열에 추가
 	        // 마커를 생성하고 지도위에 표시합니다
 	    addMarker(positions[i],content[i], normalOrigin, overOrigin, clickOrigin);
 		
 	}
+	
 	
 	// 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
 	function addMarker(position, content, normalOrigin, overOrigin, clickOrigin) {
@@ -149,9 +168,6 @@
 	            marker.setImage(clickMarker);
 	            overlay.setMap(map);   
 	        }
-	        else {
-	        	overlay.setMap(null);
-	        }
 	        // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
 	        selectedMarker = marker;
 	        
@@ -161,10 +177,7 @@
 	        overlay.setMap(null);     
 	    }
 	}    
-	function historyback() {
-		history.back();
-	}
-	var geocoder = new kakao.maps.services.Geocoder();
+ 	var geocoder = new kakao.maps.services.Geocoder();
 	geocoder.addressSearch(document.getElementById("inputaddr").value, function(result, status) {
 
 	    // 정상적으로 검색이 완료됐으면 

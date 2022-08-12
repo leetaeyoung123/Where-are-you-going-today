@@ -20,7 +20,7 @@ public class MapController {
 
 	@GetMapping("/map/map")
 	public String mapForm(Map map,Model model, HttpSession session) {
-		model.addAttribute("name", service.search(map.getName()));
+
 		model.addAttribute("find", service.findAll());
 
 
@@ -31,6 +31,7 @@ public class MapController {
 
 		// 가게 메뉴 삭제
 		System.out.println(session.getAttribute("tempShopImg"));
+		
 		if(session.getAttribute("tempShopImg") != null) {
 			for (String img : (List<String>)session.getAttribute("tempImgList")) {
 				File menuImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
@@ -46,16 +47,14 @@ public class MapController {
 			// 문제 될시 주석 처리만 해주세용
 		}
 
-		System.out.println(service.findAll());
 		return "map/map";
 	}
 
 	@PostMapping("/map/map")
 	public String map(Map map, Model model) {
-		model.addAttribute("name", service.search(map.getName()));
-		List<Map> a = service.search(map.getName());
-		model.addAttribute("addr", a.get(0).getAddress());
-		model.addAttribute("autoName", a.get(0).getName());
+		List<Map> list = service.search(map.getName());
+		model.addAttribute("name", list);
+		model.addAttribute("addr", list.get(0).getAddress());
 		model.addAttribute("find", service.findAll());
 		return "map/map";
 	}
