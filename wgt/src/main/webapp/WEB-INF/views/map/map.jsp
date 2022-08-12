@@ -61,11 +61,11 @@
 	    selectedMarker = null; // 클릭한 마커를 담을 변수
 	    selectedContent = null;
 	    <% List<String> shopList = (List<String>)request.getAttribute("shopList");%> 
-	var content = [
 		<% for(String x : shopList){ %>
+	var content = [
 		'<div class="wrap"><div class="info"><div class="title">'+<%=x%>+'</div></div></div>',
-	   <% } %>
 	]
+	   <% } %>
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	    mapOption = { 
