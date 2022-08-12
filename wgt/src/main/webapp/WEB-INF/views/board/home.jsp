@@ -2,6 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.io.*, java.text.*, java.util.*" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -37,7 +44,7 @@
 			<div class="write_btn">
 				<form action="home" method="post">
 					<button type="submit" value="글쓰기"
-						style="position: relative; left: 31%; margin-top: 55px; cursor: pointer;">글쓰기</button>
+						style="position: relative; left: 31%; margin-top: 55px; cursor: pointer; z-index: 1000;">글쓰기</button>
 				</form>
 			</div>
 		</div>
@@ -50,22 +57,24 @@
 
 	<div class="body1">
 		<div class="feedReactionButton">
-			<div class="reactionButton1">
-				<div class="emptyheart">
-					<!-- <button onclick="changeImg()"><img id ="img1" src = "../resources/board/img/emptyheart.png" width = "20px" height = "20px" style="cursor:pointer;"></button> -->
-					<!-- <img id ="img2" src = "../resources/board/img/redheart.png" width = "20px" height = "20px" onclick="imgToggle"> -->
-				</div>
 				<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
 				<!--  <div class = "feedReaction">
-   <span>좋아요 ??개</span>
- </div> -->
-			</div>
-			<div class="write">
-				<c:forEach var="item" items="${board}">
-					<img src="../resources/board/img/upload/${item.imgname}.jpg"><br>
-					<h4>${item.title}</h4><br>
-					${item.content}<br>
-				</c:forEach>
+   						<span>좋아요 ??개</span>
+ 					  </div> -->
+			<div class="boardarea">
+			<c:forEach var="item" items="${board}">
+				<div class="write" style="margin-bottom: 30px;">
+					<img src="../resources/board/img/upload/${item.imgname}.jpg" style="width:370px;height:330px"><br>
+				<div class="emptyheart">
+					<button onclick="changeImg()" style="display:flex;"><img id ="img1" src = "../resources/board/img/emptyheart.png" width = "18px" height = "18px" style="cursor:pointer;"></button>
+					<%-- <p><%= sf.format(nowTime) %></p> --%>
+					<p>${item.regDate}</p>
+					<!-- <img id ="img2" src = "../resources/board/img/redheart.png" width = "20px" height = "20px" onclick="imgToggle"> -->
+				</div>
+					<h4>${item.title}</h4>
+					<br> ${item.content}<br>
+				</div>
+			</c:forEach>
 			</div>
 		</div>
 	</div>

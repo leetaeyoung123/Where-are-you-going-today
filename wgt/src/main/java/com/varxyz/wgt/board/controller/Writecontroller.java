@@ -2,6 +2,12 @@ package com.varxyz.wgt.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.LastModified;
 
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.service.BoardService;
@@ -36,9 +43,7 @@ public class Writecontroller {
 		System.out.println("용량크기(byte) : " + size);
 		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-//		String uploadFolder = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
-		String uploadFolder = "C:\\NCS\\back\\backend\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
-		
+		String uploadFolder = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
 	
 		UUID uuid = UUID.randomUUID();
 		System.out.println(uuid.toString());
@@ -52,17 +57,21 @@ public class Writecontroller {
 		
 		try {
 			file.transferTo(saveFile); // 실제 파일 저장메소드(filewriter 작업을 손쉽게 한방에 처리해준다.
+			
 		}catch (IllegalStateException e) {
 			e.printStackTrace();
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
 		Board board = new Board();
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
 		
 		service.create(board, uniqueName);
+		model.addAttribute(formatter);
+		System.out.println("foramtter");
 		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
 		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
 		
