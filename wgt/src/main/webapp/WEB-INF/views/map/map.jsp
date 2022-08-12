@@ -33,8 +33,7 @@
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
 		<c:forEach var="shop" items="${find}">
 		</c:forEach>
-			<% List<String> shopList = (List<String>)request.getAttribute("shopList");
- 			%> 
+			
 		<script>
 		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 	    MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
@@ -61,15 +60,11 @@
 	    ],
 	    selectedMarker = null; // 클릭한 마커를 담을 변수
 	    selectedContent = null;
-	
+	    <% List<String> shopList = (List<String>)request.getAttribute("shopList");%> 
 	var content = [
-		<%
-	      for(String x : shopList){
-	   %>
+		<% for(String x : shopList){ %>
 		'<div class="wrap"><div class="info"><div class="title">'+<%=x%>+'</div></div></div>',
-	   <%
-	   } 
-	   %>
+	   <% } %>
 	]
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
