@@ -236,3 +236,10 @@ article{
 	position: relative;
     left: 55%;
 }
+
+.likebtn.open .img {
+	width: 18px;
+	height: 18px;
+	cursor:pointer;
+	background: url('img/redheart.png');
+}
