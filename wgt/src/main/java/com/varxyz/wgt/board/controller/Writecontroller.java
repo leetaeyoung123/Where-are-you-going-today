@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,6 +67,7 @@ public class Writecontroller {
 		}
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
+		
 		Board board = new Board();
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));

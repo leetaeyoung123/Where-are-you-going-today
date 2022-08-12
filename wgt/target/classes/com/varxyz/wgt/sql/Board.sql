@@ -8,6 +8,8 @@ CREATE TABLE Board(
 );
 	CONSTRAINT Board_userId_FK FOREIGN KEY (userId) REFERENCES User(userId);
 
+	SELECT * FROM Board ORDER BY regDate DESC;
+
 SELECT * FROM Board;
 
 DROP TABLE Board;
