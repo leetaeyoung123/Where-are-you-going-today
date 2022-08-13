@@ -18,17 +18,17 @@ public class SelectShopController {
 		
 		session.removeAttribute("tempImgList");
 		
-		model.addAttribute("shop", service.findShopByBnsNum("123-4568-7891"));
+		model.addAttribute("shop", service.findShopByBnsNum("123-456-789"));
 		
-		model.addAttribute("menus", service.findShopMenuByBnsNum("123-4568-7891"));
+		model.addAttribute("menus", service.findShopMenuByBnsNum("123-456-789"));
 		return "shop/view/viewTempMyShop";
 	}
 	
 	@GetMapping("shop/viewMyShop")
 	public String viewMyShop(Model model) {
-		model.addAttribute("shop", service.findShopByBnsNum("123-4568-7891"));
+		model.addAttribute("shop", service.findShopByBnsNum("123-456-789"));
 		
-		model.addAttribute("menus", service.findShopMenuByBnsNum("123-4568-7891"));
+		model.addAttribute("menus", service.findShopMenuByBnsNum("123-456-789"));
 		return "shop/view/viewMyShop";
 	}
 }
