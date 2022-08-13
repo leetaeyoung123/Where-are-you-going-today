@@ -28,7 +28,11 @@ public class AddMenuController {
 	
 	@PostMapping("shop/addMenu")
 	public String addMenuForm(@RequestParam("shop_img") MultipartFile file, Model model, HttpSession session){
-//		service.findMenuByMenuName();
+		if(service.findShopMenuByBnsNum("123-456-789").size() > 0) {
+			model.addAttribute("msg", "메뉴 등록은 최대 10개 까지만 가능합니다.");
+			model.addAttribute("viewMyShop");
+			return "alert/alert";
+		}
 		
 		String fileRealName = file.getOriginalFilename(); // 실제 파일 명을 알수있는 메소드
 		long size = file.getSize(); // 파일 사이즈
