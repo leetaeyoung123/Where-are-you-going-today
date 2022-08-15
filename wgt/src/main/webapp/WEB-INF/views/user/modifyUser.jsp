@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page isELIgnored="false" %>
+<%@ page import="java.io.*, java.text.*, java.util.*" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
@@ -34,12 +36,13 @@
 		<div style="margin-left: 47px; padding-top: 20px; font-size: 30px;">전화번호 
 		<input type="text" name="phone" value="${user.phone}" required></div><br>
 		
-		<div style="margin-left: 95px; padding-top: 20px; font-size: 30px;">주소 
-		<input type="text" name="addr" value="${user.addr}" required></div><br>
+		<div style="margin-left: 95px; padding-top: 20px; font-size: 30px;">주소
+		<input type="text" name="addr" value="${user.addr}" required></div><br> 
 		
 		<div style="text-align: center; font-size: 30px; padding-top: 10px;">프로필 사진<br>
-		<img id="profileImg" name="imgName" src="resources/user/img/${user.imgName}.jpg, png" style="width: 100px; height: 100px;" ><br></div>
-		<input type="file" multiple="multiple" accept=".jpg, png" name="file" onchange="preview()" style="margin-left: 130px;padding-top: 10px;"> 
+		<img src="resources/user/img/${user.imgName}.jpg" id="profileImg" name="imgName" style="width: 100px; height: 100px;" /><br></div>
+		<!-- <img src = "<spring:url value='resources/user/img/${user.imgName}.jpg'/>" id="profileImg" name="imgName" style="width: 100px; height: 100px;" /><br></div> --> 
+		<input type="file" multiple="multiple" accept="image/jpg, image/png" name="file" onchange="preview()" style="margin-left: 130px;padding-top: 10px;"> 
 		
 		<button type="submit" class="mBtn">수정완료</button>
 		</c:forEach>

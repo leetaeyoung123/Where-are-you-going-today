@@ -15,7 +15,7 @@ import com.varxyz.wgt.user.domain.User;
 @Repository("userDao")
 public class UserDao {
 	private JdbcTemplate jdbcTemplate;
-	private Object imgName;
+	private User imgName;
 	
 	public UserDao(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
@@ -39,6 +39,7 @@ public class UserDao {
 			User user = new User();
 			user.setUserId(""); // 유저에다가 "" 빈값을 넣어줌
 			userList.add(user);	// 그리고 리스트에다가 추가
+			userList.add(imgName);
 			return userList;
 		}
 		
@@ -48,7 +49,8 @@ public class UserDao {
 	// 회원정보 수정
 	public void modifyUser(User user, String imgName) {
 		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr = ?, imgName = ? WHERE userId = ?";
-
+		
+		// 기존 이미지와 
 		if(!imgName.equals(user.getImgName())) {
 			File file = new File("C:\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img\\" + imgName + ".jpg");
 			file.delete();

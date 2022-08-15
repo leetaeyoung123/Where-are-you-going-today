@@ -1,7 +1,9 @@
 package com.varxyz.wgt.user.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +27,7 @@ import com.varxyz.wgt.user.serviceImpl.UserServiceImpl;
 public class UserController {
 	// 유저 서비스 객체 생성
 	UserService userService = new UserServiceImpl();
+//	private Object imgName;
 	
 	// 회원가입
 	@GetMapping("/addUser")
@@ -33,7 +37,7 @@ public class UserController {
 	}
 
 	@PostMapping("/addUser")
-	public String addUser(@RequestParam("file") MultipartFile file ,HttpServletRequest request, Model model) {
+	public String addUser(@RequestParam("file") MultipartFile file ,HttpServletRequest request, HttpSession session,  Model model) {
 		String fileRealName = file.getOriginalFilename(); // 파일명을 얻어낼 수 있는 메소드
 		long size = file.getSize(); // 파일 사이즈
 		
@@ -42,6 +46,7 @@ public class UserController {
 		
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
 		String uploadFolder = "C:\\Users\\tjdgh\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img";
+		
 		
 		// 고유한 랜덤 문자생성 해서 db와 서버에 저장할 파일명을 새롭게 만들어 주는 코드
 		UUID uuid = UUID.randomUUID();
@@ -90,11 +95,12 @@ public class UserController {
 
 	// 회원정보 가져오기
 	@GetMapping("/modifyUser")
-	public String findAllUserForm(HttpServletRequest request, HttpSession session, Model model) {
+	public String findAllUserForm(MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
 		
 		List<User> userList = new ArrayList<User>();
 		userList = userService.inquiryUser((String)session.getAttribute("userId"));	// 세션을 가져옴
 		model.addAttribute("userList", userList);
+		System.out.println(userList.get(0).getImgName());
 
 		return "user/modifyUser";
 	}
@@ -129,7 +135,7 @@ public class UserController {
 		System.out.println("파일크기 : " + size);
 		
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img";
+		String uploadFolder = "C:\\Users\\tjdgh\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img"; 
 		
 		// 고유한 랜덤 문자생성 해서 db와 서버에 저장할 파일명을 새롭게 만들어 주는 코드
 		UUID uuid = UUID.randomUUID();
