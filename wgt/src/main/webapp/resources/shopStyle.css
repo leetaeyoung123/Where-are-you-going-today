@@ -220,7 +220,7 @@ td,th {
 }
 
 .readonlyinput {
-	width: 200px;
+	width: 100%;
 	padding: 0 10px;
 	font-size: 26px;
 	font-family: 'KOTRAHOPE';

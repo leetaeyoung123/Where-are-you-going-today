@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.varxyz.wgt.shop.domain.Menu;
+import com.varxyz.wgt.shop.domain.MenuCommand;
 import com.varxyz.wgt.shop.domain.Shop;
 
 public class ShopDao {
@@ -61,12 +62,14 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	// 매장 메뉴 수정
-	public boolean updateShopMenu(Menu updatedMenu, Menu oldMenu) {
+	public boolean updateShopMenu(MenuCommand updatedMenu, Menu oldMenu) {
 		String sql = "UPDATE menu SET MENU_NAME=?, MENU_INTRO=?, MENU_PRICE=?, MENU_IMG=? "
 				+ " WHERE MENU_NAME = ?";
-		jdbcTemplate.update(sql, updatedMenu.getMenuName(), updatedMenu.getMenuIntro(), updatedMenu.getMenuPrice(), 
+		jdbcTemplate.update(sql, updatedMenu.getMenuName(), updatedMenu.getMenuIntro(), 
 								 updatedMenu.getMenuPrice(), updatedMenu.getMenuImg(), oldMenu.getMenuName());
-		File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + oldMenu.getMenuImg() + ".jpg");
+//		File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + oldMenu.getMenuImg() + ".jpg");
+		// 집 경로
+		File file = new File("C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img" + oldMenu.getMenuImg() + ".jpg");
 		if(!updatedMenu.getMenuImg().equals(oldMenu.getMenuImg())) {
 			file.delete();
 		}

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.varxyz.wgt.data.DataSourceConfig;
 import com.varxyz.wgt.shop.dao.ShopDao;
 import com.varxyz.wgt.shop.domain.Menu;
+import com.varxyz.wgt.shop.domain.MenuCommand;
 import com.varxyz.wgt.shop.domain.Shop;
 
 public class ShopServiceImpl implements ShopService {
@@ -40,7 +41,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public boolean updateShopMenu(Menu updatedMenu, Menu oldMenu) {
+	public boolean updateShopMenu(MenuCommand updatedMenu, Menu oldMenu) {
 		return dao.updateShopMenu(updatedMenu, oldMenu);
 	}
 

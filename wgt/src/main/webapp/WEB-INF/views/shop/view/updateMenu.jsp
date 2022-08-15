@@ -11,35 +11,33 @@
   </head>
   <body>
     <div id="wrap">
-      <header id="header"><h1>메뉴 등록</h1></header>
+      <header id="header"><h1>메뉴 수정</h1></header>
       <hr>
       <div id="content">
         <div class="inner">
-          <form action="addMenu" method="post" id="addForm" enctype="multipart/form-data">
-            <p>메뉴는 최대 10개까지만 등록가능합니다.</p>
+          <form action="updateMenu" method="post" id="addForm" enctype="multipart/form-data">
             <div class="file_upload_wrap">
               <table>
                 <tr>
                   <td>
-                    <img class="preview img" style="min-width: 150px; height: 150px;" />
+                    <img class="preview img" src="../resources/shop/menu_img/${menu.menuImg }.jpg" style="min-width: 150px; height: 150px;" />
                   </td>
                   <td>
-                    <input type="text" name="menu_name" class="menu_inputBox" placeholder="메뉴 이름을 입력해주세요">
-                    <input type="text" name="menu_price" class="menu_inputBox" placeholder="메뉴 가격을 입력해주세요">
-                    <input type="text" name="menu_intro" class="menu_inputBox" placeholder="메뉴 소개를 입력해주세요">                  
+                    <input type="text" name="menuName" class="menu_inputBox" value="${menu.menuName }">
+                    <input type="number" name="menuPrice" class="menu_inputBox" value="${menu.menuPrice }">
+                    <input type="text" name="menuIntro" class="menu_inputBox" value="${menu.menuIntro }">                  
                   </td>
                 </tr>
               </table>
               <div class="btn_wrap">
                 <label for="upload_file" class="upload_label">메뉴 사진 등록</label>
-                <input id="upload_file" type="file" name="menu_img" onchange="readURL(this)" accept="image/jpeg, image/png, image/jpg">
+                <input id="upload_file" type="file" name="menuImg" onchange="readURL(this)" accept="image/jpeg, image/png, image/jpg" value="${menu.menuImg }">
               </div>
             </div>
             <hr class="hr">
-            현재 메뉴는 ${menuListSize }개 등록 되어있습니다.
             <div class="btn_wrap">
               <input type="button" value="취소하기" onclick="location.href='viewMyShop'" class="prev_btn">
-              <input type="submit" value="등록완료" class="next_btn">
+              <input type="submit" value="수정완료" class="next_btn">
             </div>
           </form>
         </div>
