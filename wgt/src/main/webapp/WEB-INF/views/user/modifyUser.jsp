@@ -40,8 +40,7 @@
 		<input type="text" name="addr" value="${user.addr}" required></div><br> 
 		
 		<div style="text-align: center; font-size: 30px; padding-top: 10px;">프로필 사진<br>
-		<img src="resources/user/img/${user.imgName}.jpg" id="profileImg" name="imgName" style="width: 100px; height: 100px;" /><br></div>
-		<!-- <img src = "<spring:url value='resources/user/img/${user.imgName}.jpg'/>" id="profileImg" name="imgName" style="width: 100px; height: 100px;" /><br></div> --> 
+		<img src="resources/user/img/${user.imgName}.jpg" id="profileImg" name="imgName" style="width: 100px; height: 100px;" /><br></div> 
 		<input type="file" multiple="multiple" accept="image/jpg, image/png" name="file" onchange="preview()" style="margin-left: 130px;padding-top: 10px;"> 
 		
 		<button type="submit" class="mBtn">수정완료</button>
