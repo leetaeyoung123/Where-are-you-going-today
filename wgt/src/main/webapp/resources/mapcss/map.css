@@ -22,6 +22,15 @@ body {
 	box-sizing: border-box;
 }
 
+ul, li {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
 #inputaddr, #autoName{
 	width: 0;
 	height: 0;
@@ -41,14 +50,14 @@ body {
 }
 
 .userInformation {
-	position: absolute;
-	right: 15px;
-	top: 8px;
-	width: 24px;
-	height: 24px;
-	overflow: hidden;
-	text-indent: 999px;
-	cursor: pointer;
+    margin-left: 306px;
+    position: fixed;
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    text-indent: 999px;
+    cursor: pointer;
 }
 .userInformation .openbody {
 	width: 0;
@@ -120,6 +129,24 @@ body {
 	background: black;
 }
 
+#gnb {
+	position: fixed;
+    right: -60%;
+    top: 50px;
+    z-index: 1000;
+    background: #ffffff;
+    width: 60%;
+    height: calc(100% - 50px);
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 50px 15px 60px 30px;
+    color: #3b3b3d;
+    transition: all 0.5s;
+}
+
+#gnb.on {
+	right: 0;
+}
 
 .selectbox {
 	font-family: 'KOTRAHOPE';
