@@ -37,7 +37,7 @@
 		
 		<div style="text-align: center; font-size: 30px; padding-top: 10px;">프로필 사진<br> 
 		<img id="profileImg" style="width: 100px; height: 100px;"></div>
-		<input type="file" accept=".jpg, png" name="file" onchange="preview()" style="margin-left: 130px;padding-top: 10px;">
+		<input type="file" multiple="multiple" accept=".jpg, png" name="file" onchange="preview()" style="margin-left: 130px;padding-top: 10px;">
 		
 		<input type="submit" value="회원가입" class="btn" />
 	</form>

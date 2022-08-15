@@ -21,7 +21,7 @@ public interface UserService {
 	public List<User> inquiryUser(String userId);
 	
 	// 회원 수정
-	public void modifyUser(User user);
+	public void modifyUser(User user, String imgName);
 	
 	// 회원 탈퇴
 	public void delete(String userId);
