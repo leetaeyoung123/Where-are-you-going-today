@@ -3,6 +3,7 @@ package com.varxyz.wgt.shop.service;
 import java.util.List;
 
 import com.varxyz.wgt.shop.domain.Menu;
+import com.varxyz.wgt.shop.domain.MenuCommand;
 import com.varxyz.wgt.shop.domain.Shop;
 
 public interface ShopService {
@@ -23,7 +24,7 @@ public interface ShopService {
 	public List<Menu> findShopMenuByBnsNum(String bnsNum);
 	
 	// 메뉴 개별 수정
-	public boolean updateShopMenu(Menu updatedMenu, Menu oldMenu);
+	public boolean updateShopMenu(MenuCommand updatedMenu, Menu oldMenu);
 	
 	// 메뉴 개별 삭제
 	public boolean deleteShopMenu(String menuName, String menuImg);

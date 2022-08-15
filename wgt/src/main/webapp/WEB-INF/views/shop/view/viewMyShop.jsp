@@ -42,14 +42,14 @@
         <h1 class="title" style="color: white;">가게 메뉴</h1>
       	<c:forEach var="menu" items="${menus }" varStatus="status">
             <tr style="background: white;">
-              <td style="width: 150px;">
+              <td style="width: 150px;"> 
                <label for=${menu.menuName }><img src="../resources/shop/menu_img/${menu.menuImg }.jpg" class="preview img" style="min-width: 150px; height: 150px;" /></label>
                 </td>
                 <td>
                 <label for=${menu.menuName }>
-                  <p style= "font-size: 24px;">${menu.menuName }</p>
+                  <p style= "font-size: 24px; font-weight: bold;">${menu.menuName }</p>
                   <p style= "font-size: 24px;">${menu.menuIntro }</p>
-                  <p style= "font-size: 24px;">${menu.menuPrice }</p>
+                  <p style= "font-size: 24px;">${menu.menuPrice }원</p>
                 </label>
                 </td>
                 <c:if test="${status.index  != 0 }">                
@@ -58,7 +58,7 @@
                 <c:if test="${status.index == 0 }">
                 <td style="width: 30px; height: 30px;"></td>
                 </c:if>
-      			<td><button type="button" onclick="window.location.href='updateMenu?name=${menu.menuName}&price=${menu.menuPrice  }&menuIntro=${menu.menuIntro }&imgUrl=${menu.menuImg}'" class="SubmitBtn"  style="height: 107.98px;">수정</button>
+      			<td><button type="button" onclick="window.location.href='updateMenu?menuName=${menu.menuName}&menuPrice=${menu.menuPrice  }&menuIntro=${menu.menuIntro }&menuImg=${menu.menuImg}'" class="SubmitBtn"  style="height: 107.98px;">수정</button>
               </tr>
       	</c:forEach>
       </table>

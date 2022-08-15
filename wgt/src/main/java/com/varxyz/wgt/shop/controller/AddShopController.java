@@ -70,7 +70,7 @@ public class AddShopController {
 		if (fileRealName == null || fileRealName.length() == 0) {
 
 			model.addAttribute("msg","메뉴 사진을 등록해주세요!");
-			model.addAttribute("url","add_shop4");
+			model.addAttribute("url","add_shop3");
 			return "alert/alert";
 			
 		}
@@ -83,7 +83,10 @@ public class AddShopController {
 		
 		// resources에 temp 폴더 절대 경로 입력 String uploadFolder = "";  
 		// 점주가 등록 취소 할 수 있기때문에 우선은 temp폴더에 임시 저장
-		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
+//		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
+		
+		// 집 경로
+		String uploadFolder = "C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
 		
 		/*
 		  파일 업로드시 파일명이 동일한 파일이 이미 존재할 수도 있고 사용자가 
@@ -165,7 +168,10 @@ public class AddShopController {
 		
 		// resources에 temp 폴더 절대 경로 입력 String uploadFolder = "";  
 		// 점주가 등록 취소 할 수 있기때문에 우선은 temp폴더에 임시 저장
-		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
+//		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
+		
+		// 집 경로
+		String uploadFolder = "C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
 		
 		/*
 		  파일 업로드시 파일명이 동일한 파일이 이미 존재할 수도 있고 사용자가 
@@ -195,6 +201,7 @@ public class AddShopController {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
+		// 올릴 수 있는 최대 메뉴 사이즈 현재 2개.
 		if (menuList.size() > 0) {
 			menuList.add(menu);
 			ShopService service = new ShopServiceImpl();
@@ -203,8 +210,13 @@ public class AddShopController {
 				service.addMenu(menuItem);
 			}
 			for (String img : (List<String>)session.getAttribute("tempImgList")) {
-				File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
-				File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + img + ".jpg");
+//				File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+//				File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + img + ".jpg");
+				
+				// 집 경로
+				
+				File tempImg = new File("C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+				File newImg = new File("C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + img + ".jpg");
 				
 				try {
 					FileUtils.moveFile(tempImg, newImg);
@@ -214,8 +226,14 @@ public class AddShopController {
 			}
 			session.removeAttribute("tempImgList");
 			String img = (String)session.getAttribute("tempShopImg");
-			File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
-			File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_img\\" + img + ".jpg");
+//			File tempImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+//			File newImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_img\\" + img + ".jpg");
+			
+			// 집 경로
+			
+			File tempImg = new File("C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+			File newImg = new File("C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_Img\\" + img + ".jpg");
+			
 			try {
 				FileUtils.moveFile(tempImg, newImg);
 			}catch (IOException e) {

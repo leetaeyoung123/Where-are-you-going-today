@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,41 +14,42 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.varxyz.wgt.shop.domain.Shop;
+import com.varxyz.wgt.shop.domain.Menu;
+import com.varxyz.wgt.shop.domain.MenuCommand;
 import com.varxyz.wgt.shop.service.ShopService;
 import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
 @Controller
-public class UpdateShopController {
-	
+public class UpdateMenuController {
 	ShopService service = new ShopServiceImpl();
 	
-	@GetMapping("shop/updateShop")
-	public String updateShopGo(Model model, Shop shop) {
-		model.addAttribute("shop", shop);
-		return "shop/view/updateMyShop";
+	@GetMapping("shop/updateMenu")
+	public String updateMenuGo(Menu menu, Model model, HttpSession session) {
+		menu.setBusinessNumber("123-456-789");
+		model.addAttribute("menu", menu);
+		session.setAttribute("oldMenu", menu);
+		return "shop/view/updateMenu";
 	}
 	
-	@PostMapping("shop/updateShop")
-	public String updateShopForm(@RequestParam("shop_img") MultipartFile file, 
-									HttpServletRequest request, Model model) {
-		Shop shop = new Shop();
-		shop.setBusinessNumber(request.getParameter("businessNumber"));
-		shop.setShopName(request.getParameter("shopName"));
-		shop.setShopTel(request.getParameter("shopTel"));
-		shop.setShopAddress(request.getParameter("shopAddress"));
-		shop.setShopHours(request.getParameter("shopHours"));
-		shop.setShopTables(request.getParameter("shopTables"));
-		shop.setShopMaxPeoples(request.getParameter("shopMaxPeoples"));
-		shop.setShopImg(request.getParameter("shop_img"));
+	@PostMapping("shop/updateMenu" )
+	public String updateMenuForm(@RequestParam("menuName") String name,
+								 @RequestParam("menuPrice") int price,
+								 @RequestParam("menuIntro") String intro,
+								 @RequestParam("menuImg") MultipartFile file,
+								 Model model, HttpSession session) {
+		MenuCommand menuCommand = new MenuCommand();
+		
+		menuCommand.setMenuName(name);
+		menuCommand.setMenuPrice(price);
+		menuCommand.setMenuIntro(intro);
 		
 		String fileRealName = file.getOriginalFilename(); // 실제 파일 명을 알수있는 메소드
 		long size = file.getSize(); // 파일 사이즈
 		
 		// 사용자가 이미지를 업로드 하지 않았을 경우 예외 처리
 		if (fileRealName == null || fileRealName.length() == 0) {
-			shop.setShopImg(request.getParameter("shopImg"));
-			service.updateShop(shop, request.getParameter("shopImg"));
+			menuCommand.setMenuImg(((Menu)session.getAttribute("oldMenu")).getMenuImg());
+			service.updateShopMenu(menuCommand, ((Menu)session.getAttribute("oldMenu")));
 			
 			model.addAttribute("msg", "수정이 완료되었습니다.");
 			model.addAttribute("url", "viewMyShop");
@@ -62,7 +64,7 @@ public class UpdateShopController {
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
 		
 		// resources에 shop_image 폴더 절대 경로 입력 String uploadFolder = "";  
-		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_Img";
+		String uploadFolder = "C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img";
 		
 		/*
 		  파일 업로드시 파일명이 동일한 파일이 이미 존재할 수도 있고 사용자가 
@@ -77,7 +79,7 @@ public class UpdateShopController {
 		
 		String uniqueName = uuids[0];
 		System.out.println("생성된 고유 문자열 : " + uniqueName );
-		shop.setShopImg(uniqueName);
+		menuCommand.setMenuImg(uniqueName);
 		System.out.println("확장자명 : " + fileExtension);
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
 		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
@@ -89,9 +91,7 @@ public class UpdateShopController {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		service.updateShop(shop, request.getParameter("shopImg"));
-		
+		service.updateShopMenu(menuCommand, ((Menu)session.getAttribute("oldMenu")));
 		model.addAttribute("msg", "수정이 완료되었습니다.");
 		model.addAttribute("url", "viewMyShop");
 		return "alert/alert";

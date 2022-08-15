@@ -39,7 +39,7 @@
                 <td>
                   <p style= "font-size: 24px;">${menu.menuName }</p>
                   <p style= "font-size: 24px;">${menu.menuIntro }</p>
-                  <p style= "font-size: 24px;">${menu.menuPrice }</p>
+                  <p style= "font-size: 24px;">${menu.menuPrice }원</p>
                 </td>
               </tr>
       	</c:forEach>
