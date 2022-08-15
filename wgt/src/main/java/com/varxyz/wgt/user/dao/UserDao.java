@@ -1,5 +1,6 @@
 package com.varxyz.wgt.user.dao;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.varxyz.wgt.user.domain.User;
 @Repository("userDao")
 public class UserDao {
 	private JdbcTemplate jdbcTemplate;
+	private Object imgName;
 	
 	public UserDao(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
@@ -44,10 +46,15 @@ public class UserDao {
 	}
 	
 	// 회원정보 수정
-	public void modifyUser(User user) {
-		String sql = "UPDATE User SET passwd = ?, name = ?, phone = ?, addr = ? WHERE userId = ?";
+	public void modifyUser(User user, String imgName) {
+		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr = ?, imgName = ? WHERE userId = ?";
+
+		if(!imgName.equals(user.getImgName())) {
+			File file = new File("C:\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img\\" + imgName + ".jpg");
+			file.delete();
+		}
 		
-		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getPhone(), user.getAddr(), user.getUserId());
+		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr(), user.getUserId(), imgName);
 		
 	}
 	

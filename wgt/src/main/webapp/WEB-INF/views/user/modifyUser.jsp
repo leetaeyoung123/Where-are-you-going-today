@@ -15,7 +15,7 @@
 
 <body>
 	<a class="back" href="<c:url value='/map/map'/>"><img src="resources/mapcss/img/backicon.png"></a>
-	<form action="modifyUser" method="post">
+	<form action="modifyUser" method="post" enctype="multipart/form-data">
 		<c:forEach var="user" items="${userList}">
 		<div style="font-size: 100px; text-align: center; padding-top: 40px;">회원수정</div>
 		<!-- required는 입력을 안할시 자동으로 입력하라고 알림창을 띄움 -->
@@ -38,7 +38,9 @@
 		<input type="text" name="addr" value="${user.addr}" required></div><br>
 		
 		<div style="text-align: center; font-size: 30px; padding-top: 10px;">프로필 사진<br>
-		<div style="margin-left: 20px; padding-top: 20px; font-size: 30px;">파일 업로드 <input type="file" accept=".jpg" name="file" value="${user.imgName}"></div><br>
+		<img id="profileImg" name="imgName" src="resources/user/img/${user.imgName}.jpg, png" style="width: 100px; height: 100px;" ><br></div>
+		<input type="file" multiple="multiple" accept=".jpg, png" name="file" onchange="preview()" style="margin-left: 130px;padding-top: 10px;"> 
+		
 		<button type="submit" class="mBtn">수정완료</button>
 		</c:forEach>
 	</form>
@@ -47,4 +49,33 @@
 		<button type="submit" class="dBtn">회원탈퇴</button>
 	</form>
 </body>
+
+	<!-- 스크립트 영역 -->
+	<script type="text/javascript">
+		// input 태그 (name이 file)를 가져옴 
+		let fileTag = document.querySelector("input[name=file]");
+		
+		// 파일태그에 변화가 있을 때 실행될 함수 작성 
+		fileTag.onchange = function () {
+			
+			let imgTag = document.querySelector("#profileImg");
+			
+			// 파일이 있는지 확인
+			if(fileTag.files.length > 0) {
+				// 파일을 선택한 경우 미리보기 생성 (이미지 태그 src에 데이터를 넣어주면 됨)
+				let reader = new FileReader();
+				
+				// reader 읽어들이는 작업(onload)를 끝냈을 때 함수 실행, 읽어온 데이터를 함수의 파라미터로 줄 수 있음
+				reader.onload = function (data) {
+					console.log(data);
+					imgTag.src = data.target.result;
+				}
+				
+				reader.readAsDataURL(fileTag.files[0]);
+			} else {
+				// 취소 버튼 누를 경우
+				imgTag.src = "";
+			}
+		}
+	</script> 
 </html>

@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	// 회원수정
-	public void modifyUser(User user) {
-		 userDao.modifyUser(user);
+	public void modifyUser(User user, String imgName) {
+		 userDao.modifyUser(user, imgName);
 	}
 	
 	// 회원탈퇴

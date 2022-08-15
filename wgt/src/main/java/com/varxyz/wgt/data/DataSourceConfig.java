@@ -19,7 +19,7 @@ import com.varxyz.wgt.waiting.dao.WaitingDao;
 
 
 @Configuration
-@ComponentScan(basePackageClasses = {UserDao.class, LoginDao.class, OwnerDao.class, BoardDao.class})
+@ComponentScan(basePackageClasses = {BoardDao.class})
 public class DataSourceConfig {
 
 	@Bean(destroyMethod = "close")
@@ -62,5 +62,19 @@ public class DataSourceConfig {
 		return new ShopDao(dataSource());
 	}
 	
+	@Bean
+	public UserDao userDao() {
+		return new UserDao(dataSource());
+	}	
+	
+	@Bean
+	public OwnerDao ownerDao() {
+		return new OwnerDao(dataSource());
+	}
+	
+	@Bean
+	public LoginDao loginDao() {
+		return new LoginDao(dataSource());
+	}
 	
 }

@@ -42,7 +42,7 @@
 	</header>
 	<div class="mypage">
 		<a href="mypage"><img id="user"
-			src="../resources/board/img/user.png" width="30px" height="30px"
+			src="../resources/board/img/board.png" width="30px" height="30px"
 			style="cursor: pointer;"></a>
 	</div>
 	<h3 style="text-align: center; margin-top: 35px;">게시글 작성</h3>
