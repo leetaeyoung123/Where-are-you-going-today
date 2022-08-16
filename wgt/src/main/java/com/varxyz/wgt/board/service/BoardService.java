@@ -23,7 +23,6 @@ public interface BoardService {
 		public void create(Board board, String imgName);
 		
 		// 게시글 읽기
-		public Board read(Integer number);
 		public List<Board> read(Board board);
 		
 		// 게시글 수정

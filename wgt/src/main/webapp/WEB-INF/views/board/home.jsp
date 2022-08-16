@@ -41,7 +41,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 				<div class="headerSearchBar" style="border-radius: 5px;">
 					<!--상단 중앙 내용물-->
 					<i class="fas fa-search"></i> <input name="title" type="text"
-						placeholder="검색" style="border: none; outline: none;"> <input
+						placeholder=" 게시글 검색" style="border: none; outline: none;"> <input
 						type="submit" value="검색" style="display: none;">
 				</div>
 			</div>

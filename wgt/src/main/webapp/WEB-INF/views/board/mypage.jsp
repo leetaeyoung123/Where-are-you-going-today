@@ -10,8 +10,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" type="text/css"
-	href="../resources/board/write.css">
-<link rel="stylesheet" type="text/css"
 	href="../resources/board/mypage.css">
 <link rel="stylesheet" type="text/css"
 	href="../resources/board/home.css">
@@ -27,40 +25,43 @@
 
 	<header class="headerContainer">
 		<!--상단 탭 만들기 뼈대구조-->
-		<div class="headerContents">
-			<!--상단 탭 내용물 감싼구조-->
-			<div class="WestagramTag">
-				<!--상단 좌측 내용물-->
-				<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
+		<form action="home" method="post">
+			<div class="headerContents">
+				<!--상단 탭 내용물 감싼구조-->
+				<div class="WestagramTag">
+					<!--상단 좌측 내용물-->
+					<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
+				</div>
+				<div class="headerSearchBar" style="border-radius: 5px;">
+					<!--상단 중앙 내용물-->
+					<i class="fas fa-search"></i> <input name="title" type="text"
+						placeholder=" 게시글 검색" style="border: none; outline: none;"> <input
+						type="submit" value="검색" style="display: none;">
+				</div>
 			</div>
-			<div class="headerSearchBar">
-				<!--상단 중앙 내용물-->
-				<i class="fas fa-search"></i> <input type="text" placeholder="&nbsp검색"
-					style="border: none;outline:none;">
-			</div>
-			<div class="update">
-				<form action="update" method="post">
-					<button type="submit" value="수정"
-						style="position: relative; left: 31%; margin-top: 55px;">수정</button>
-				</form>
-				<form action="delete" method="post">
-					<button type="submit" value="삭제"
-						style="position: relative; left: 31%; margin-top: 55px; margin-left: 20px;">삭제</button>
-				</form>
-			</div>
-		</div>
+		</form>
 	</header>
+
+	
+	
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;"></a>
 	</div>
-
 	<c:forEach var="user" items="${userList}">
- 	${user.userId}
- 	${user.name}
-  	${user.phone}
-  </c:forEach>
-
+ 		${user.userId}
+ 		${user.name}
+  		${user.phone}
+	</c:forEach>
+	<div class="selectlist">
+   <form:select path="board" class="selectbox">
+      <option value="unknown" style="text-align:center;">&emsp;&emsp;&emsp;&ensp;&nbsp;-- 선택 --</option>
+      <c:forEach var="item" items="${board}">
+         <option value="${item.number}${item.title}${item.imgname}">[No.${item.number}] ${item.title}</option>
+         
+      </c:forEach>
+   </form:select>
+	</div>
 </body>
 </html>

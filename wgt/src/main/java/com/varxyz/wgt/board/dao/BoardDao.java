@@ -52,7 +52,7 @@ public class BoardDao {
 	
 	//제목으로 찾기
 	public List<Board> search(String title) {
-		String sql = "SELECT * FROM Board WHERE title like '%" + title + "%' ";
+		String sql = "SELECT * FROM Board WHERE title like '%" + title + "%' ORDER BY regDate DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 	}
 	

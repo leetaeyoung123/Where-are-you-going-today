@@ -46,10 +46,5 @@ public class BoardServiceImpl implements BoardService {
 		return null;
 	}
 
-	@Override
-	public Board read(Integer number) {
-		return null;
-	}
-
 	
 }
