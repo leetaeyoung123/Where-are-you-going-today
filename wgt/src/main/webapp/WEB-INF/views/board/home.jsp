@@ -45,10 +45,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						type="submit" value="검색" style="display: none;">
 
 				</div>
-				<div class="write_btn">
-					<button type="submit" value="글쓰기"
-						style="position: relative; left: 31%; margin-top: 55px; cursor: pointer; z-index: 1000;">글쓰기</button>
-				</div>
+				
 			</div>
 		</form>
 
@@ -56,7 +53,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 		<div class="writearea">
 			<form action="write" method="post" style="text-align:center;">
 				<button class="writebtn" type="submit" value="글쓰기"
-					style="position: relative; left: 0%; margin-top:20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
+					style="position: relative; left: 1%; margin-top:20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
 			</form>
 		</div>
 	<div class="mypage">
