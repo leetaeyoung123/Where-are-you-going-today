@@ -1,5 +1,6 @@
 package com.varxyz.wgt.board.dao;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,28 +34,34 @@ public class BoardDao {
 	//게시글 수정
 	public void update(Board board) {
 		String sql = "UPDATE Board SET title = ?, content = ?, imgname =? WHERE userId = ?";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname(), board);
 	}
 
 	//게시글 삭제
-	public List<Board> delete(long number) {
+	public List<Board> delete(int number, String imgname) {
 		String sql = "DELETE FROM Board WHERE number = ?";
+		File file = new File("C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload" + imgname + ".jpg");
+		file.delete();
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class), number);
 	}
 	
 	//ID로 게시글 찾기
-	public List<Board> find(String userId) {
+	public List<Board> findByuserId(String userId) {
 		String sql = "SELECT * FROM Board WHERE userId = ?";
 		List<Board> list = new ArrayList<>();
 		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 		return list;
 	}
-
-	public void create() {
-		// TODO Auto-generated method stub
-		
+	
+	//제목으로 찾기
+	public List<Board> search(String title) {
+		String sql = "SELECT * FROM Board WHERE title like '%" + title + "%' ORDER BY regDate DESC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 	}
 	
-	//가게이름으로 찾기
-	
+	//내용으로 찾기
+//	public List<Board> search2(String content) {
+//		String sql = "SELECT * FROM Board WHERE content like '%" + content + "%' ";
+//		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
+//	}
 }

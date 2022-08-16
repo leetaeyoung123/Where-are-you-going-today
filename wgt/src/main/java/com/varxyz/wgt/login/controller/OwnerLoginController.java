@@ -32,9 +32,9 @@ public class OwnerLoginController {
 	@PostMapping("/ownerLogin")
 	public String ownerLogin(Owner owner, HttpSession session, HttpServletRequest request,
 							Model model) {
-		Owner ownerList = new Owner();
 		
 		try {
+			Owner ownerList = new Owner();
 			ownerList = ownerLoginService.ownerLogin(owner.getOwnerId());
 			
 			session.setAttribute("ownerList", ownerList);
@@ -50,7 +50,7 @@ public class OwnerLoginController {
 		} catch (EmptyResultDataAccessException e) {
 //			e.printStackTrace(); // 무슨 에러가 나는지 콘솔창에서 알려줌
 			System.out.println(owner.getOwnerId());
-			System.out.println(ownerList.getOwnerId());
+//			System.out.println(ownerList.getOwnerId());
 			model.addAttribute("msg", "아이디를 다시 확인하세요!!");
 			model.addAttribute("url", "ownerLogin");
 			
