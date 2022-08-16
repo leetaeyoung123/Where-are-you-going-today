@@ -1,6 +1,8 @@
 package com.varxyz.wgt.board.controller;
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +25,23 @@ public class BoardController {
 
 	@PostMapping("/board/home")
 	public String post(Board board, Model model) {
-		
-		return "redirect:/board/write";
+		model.addAttribute("board", service.read(board));
+		return "board/write";
+	}
+	
+	// 검색 화면
+	@GetMapping("/board/search")
+	public String searchlist(Model model, Board board) {
+		List<Board> list = service.search(board.getTitle());
+		model.addAttribute("search", list);
+		return "board/search";
+	}
+
+	@PostMapping("/board/search")
+	public String getsearchlist(Board board, Model model) {
+		List<Board> list = service.search(board.getTitle());
+		model.addAttribute("search", list);
+		return "board/search";
 	}
 
 }

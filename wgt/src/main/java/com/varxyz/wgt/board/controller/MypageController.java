@@ -25,6 +25,7 @@ public class MypageController {
 	@GetMapping("/board/mypage")
 	public String postForm(HttpSession session, Model model) {
 		List<User> userList = userService.inquiryUser((String)session.getAttribute("userId"));
+		System.out.println(session.getAttribute("userId"));
 		model.addAttribute("userList", userList);
 		return "/board/mypage";
 	}
