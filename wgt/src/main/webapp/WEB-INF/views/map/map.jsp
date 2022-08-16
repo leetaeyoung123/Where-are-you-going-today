@@ -23,6 +23,16 @@
 	<a class="userInformation"> 
 	<span></span>
 	</a>
+	<nav id = gnb>
+		<ul>
+			<li class="sub1">
+				<span>아이디</span>
+			</li>
+			<li class="sub2">
+				<span>웨이팅 내역</span>
+			</li>
+		</ul>
+	</nav>
 	<form class="header_form" action="map" method="post">
 		<br> <select class="selectbox">
 			<option>주소</option>
@@ -44,17 +54,15 @@
 			
 		<script>
 		const toggleBtn = document.querySelector(".userInformation")
+		const gnbBtn = document.querySelector("#gnb")
 		
 		function toggleHandler() {
    			toggleBtn.classList.toggle("open")
+   			gnbBtn.classList.toggle("on")
 		}
 		
-		function init() {
     		toggleBtn.addEventListener("click",toggleHandler)
-		}
-		
-		init()
-		
+
 
 		
 		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
