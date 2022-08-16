@@ -21,7 +21,6 @@ public class BoardServiceImpl implements BoardService {
 		dao.create(board, imgName);
 	}
 
-
 	@Override
 	public List<Board> read(Board board) {
 		return dao.read(board);
@@ -39,19 +38,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Board> search(String keyword) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Integer totalCount() throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Board read(Integer number) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
