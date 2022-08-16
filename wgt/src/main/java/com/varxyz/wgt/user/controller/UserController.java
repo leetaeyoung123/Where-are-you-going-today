@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -106,25 +107,17 @@ public class UserController {
 	}
 	
 	// 회원정보 수정
-	@PostMapping("/modifyUser")
+	@PostMapping("/modifyUser") 
 	public String modifyUserForm(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
-		
+
 		User user = new User();
-		
-		user.setUserId(request.getParameter("userId"));
-		user.setPasswd(request.getParameter("passwd"));
-		user.setName(request.getParameter("name"));
-		user.setSsn(request.getParameter("ssn"));
-		user.setPasswd(request.getParameter("phone"));
-		user.setAddr(request.getParameter("addr"));
-		user.setImgName(request.getParameter("imgName"));
 		
 		String fileRealName = file.getOriginalFilename(); // 파일명을 얻어낼 수 있는 메소드
 		long size = file.getSize(); // 파일 사이즈
 		
 		// 사용자가 이미지를 업로드 하지 않았을 경우 예외 처리
 		if (fileRealName == null || fileRealName.length() == 0) {
-			user.setImgName(request.getParameter("imgName"));
+			user.setImgName(fileRealName);
 			userService.modifyUser(user, fileRealName);
 			
 			return "user/modifyUser";
@@ -155,6 +148,15 @@ public class UserController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		user.setUserId(request.getParameter("userId"));
+		user.setPasswd(request.getParameter("passwd"));
+		user.setName(request.getParameter("name"));
+		user.setSsn(request.getParameter("ssn"));
+		user.setPasswd(request.getParameter("phone"));
+		user.setAddr(request.getParameter("addr"));
+		user.setImgName(request.getParameter("imgName"));
+		System.out.println("2" + request.getParameter("imgName"));
 		
 		userService.modifyUser(user, uniqueName);
 		

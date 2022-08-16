@@ -30,8 +30,8 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 <body>
 
 	<header class="headerContainer">
-		<!--상단 탭 만들기 뼈대구조-->
-		<form action="home" method="post">
+		<form action="search" method="post">
+			<!--상단 탭 만들기 뼈대구조-->
 			<div class="headerContents">
 				<!--상단 탭 내용물 감싼구조-->
 				<div class="WestagramTag">
@@ -41,19 +41,12 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 				<div class="headerSearchBar" style="border-radius: 5px;">
 					<!--상단 중앙 내용물-->
 					<i class="fas fa-search"></i> <input name="title" type="text"
-						placeholder=" 게시글 검색" style="border: none; outline: none;"> <input
+						placeholder="검색" style="border: none; outline: none;"> <input
 						type="submit" value="검색" style="display: none;">
 				</div>
 			</div>
 		</form>
 	</header>
-	
-		<div class="writearea">
-			<form action="write" method="post" style="text-align:center;">
-				<button class="writebtn" type="button" value="글쓰기" onclick = "location.href='write'"
-					style="position: relative; left: 1%; margin-top:20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
-			</form>
-		</div>
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
@@ -63,9 +56,10 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	<div class="body1">
 		<div class="feedReactionButton">
 			<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
-			<div class="boardarea">
-				<c:forEach var="item" items="${board}">
-					<div class="write" style="margin-bottom: 30px;">
+			<div class="boardarea" style="margin-top: 20px;">
+				<c:forEach var="item" items="${list}">
+						<div class="write" style="margin-bottom: 30px;">
+				 	<p style="position:relative; margin-bottom:7px;">[No.${item.number}] ${item.title}</p>
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
 							style="width: 370px; height: 330px"><br>
 						<div class="emptyheart">
@@ -75,8 +69,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 								<span class="liketext">좋아요 <span class="likesresult">0</span>개
 								</span>
 							</div>
-							<%-- <p><%= sf.format(nowTime) %></p> --%>
-							<%-- <p>${item.regDate}</p> --%>
+
 						</div>
 						<p>
 							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
@@ -90,7 +83,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 		</div>
 	</div>
 
-<script>
+	<script>
 	let like = document.querySelectorAll(".likebtn")
 	
 	for(let i = 0; i < like.length; i++){

@@ -50,12 +50,6 @@ public class UserDao {
 	public void modifyUser(User user, String imgName) {
 		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr = ?, imgName = ? WHERE userId = ?";
 		
-		// 기존 이미지와 
-		if(!imgName.equals(user.getImgName())) {
-			File file = new File("C:\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img\\" + imgName + ".jpg");
-			file.delete();
-		}
-		
 		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr(), user.getUserId(), imgName);
 		
 	}
