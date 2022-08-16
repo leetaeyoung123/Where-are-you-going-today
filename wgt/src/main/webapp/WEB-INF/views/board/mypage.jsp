@@ -59,7 +59,7 @@
 			<option value="unknown" style="text-align: center;">&emsp;&emsp;&emsp;&ensp;&nbsp;--
 				선택 --</option>
 			<c:forEach var="item" items="${board}">
-				<option value="${item.number}${item.title}${item.imgname}">[No.${item.number}]
+				<option style="text-align:center;" value="${item.number}${item.title}${item.imgname}">[No.${item.number}]
 					${item.title}</option>
 			</c:forEach>	
 		</form:select>
