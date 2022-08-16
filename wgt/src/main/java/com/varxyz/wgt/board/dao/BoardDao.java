@@ -37,24 +37,22 @@ public class BoardDao {
 	}
 
 	//게시글 삭제
-	public List<Board> delete(long number) {
+	public List<Board> delete(int number) {
 		String sql = "DELETE FROM Board WHERE number = ?";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class), number);
 	}
 	
 	//ID로 게시글 찾기
-	public List<Board> find(String userId) {
+	public List<Board> findByuserId(String userId) {
 		String sql = "SELECT * FROM Board WHERE userId = ?";
 		List<Board> list = new ArrayList<>();
 		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 		return list;
 	}
-
-	public void create() {
-		// TODO Auto-generated method stub
-		
+	
+	//제목으로 찾기
+	public Board findByTitle(String title) {
+		String sql = "SELECT * FROM Board WHERE title = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Board>(Board.class), title);
 	}
-	
-	//가게이름으로 찾기
-	
 }
