@@ -6,11 +6,14 @@ import java.util.List;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.varxyz.wgt.shop.domain.Menu;
 import com.varxyz.wgt.shop.domain.MenuCommand;
 import com.varxyz.wgt.shop.domain.Shop;
 
+
+@Repository
 public class ShopDao {
 private JdbcTemplate jdbcTemplate;
 	
@@ -23,13 +26,15 @@ private JdbcTemplate jdbcTemplate;
 		String sql = "SELECT * FROM shop WHERE SHOP_NAME = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), shopName);
 	}
-
+	
+	// 매장 추가
 	public boolean addShop(Shop shop) {
-		String sql = "INSERT INTO SHOP (BUSINESS_NUMBER, SHOP_NAME, SHOP_TEL, SHOP_ADDRESS, "
-				+ " SHOP_HOURS, SHOP_TABLES, SHOP_MAX_PEOPLES, SHOP_IMG) "
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-		jdbcTemplate.update(sql, shop.getBusinessNumber(), shop.getShopName(), shop.getShopTel(), 
-								shop.getShopAddress(), shop.getShopHours(), shop.getShopTables(), 
+		String sql = "INSERT INTO SHOP (BUSINESS_NUMBER, SHOP_NAME, SHOP_TEL, SHOP_POSTCODE, SHOP_ADDRESS, "
+				+ " SHOP_DETAILADDRESS, SHOP_EXTRAADDRESS, SHOP_HOURS, SHOP_TABLES, SHOP_MAX_PEOPLES, SHOP_IMG) "
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, shop.getBusinessNumber(), shop.getShopName(), shop.getShopTel(),
+								shop.getShopPostCode(), shop.getShopAddress(), shop.getShopDetailAddress(),
+								shop.getShopExtraAddress(), shop.getShopHours(), shop.getShopTables(), 
 								shop.getShopTables(), shop.getShopImg());
 		return true;
 	}
@@ -67,9 +72,9 @@ private JdbcTemplate jdbcTemplate;
 				+ " WHERE MENU_NAME = ?";
 		jdbcTemplate.update(sql, updatedMenu.getMenuName(), updatedMenu.getMenuIntro(), 
 								 updatedMenu.getMenuPrice(), updatedMenu.getMenuImg(), oldMenu.getMenuName());
-//		File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + oldMenu.getMenuImg() + ".jpg");
+		File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + oldMenu.getMenuImg() + ".jpg");
 		// 집 경로
-		File file = new File("C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img" + oldMenu.getMenuImg() + ".jpg");
+//		File file = new File("C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img" + oldMenu.getMenuImg() + ".jpg");
 		if(!updatedMenu.getMenuImg().equals(oldMenu.getMenuImg())) {
 			file.delete();
 		}

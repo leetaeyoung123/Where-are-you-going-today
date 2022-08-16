@@ -20,7 +20,10 @@
       <span class="text" style="color: #DA0037;">가게 번호</span>
       	<input name="shopTel" type="text" class="text readonlyinput" readonly value="${shop.shopTel }"/>
       <span class="text" style="color: #DA0037;">가게 주소</span>
-      	<input name="shopAddress" type="text" class="text readonlyinput" readonly value="${shop.shopAddress }"/>
+      	<input type="text" name="shop_address1" id="sample6_postcode" class="text input_box" value="${shop.shopPostCode }" readonly>
+		<input type="text" name="shop_address2" id="sample6_address" class="text input_box" value="${shop.shopAddress }" readonly>
+		<input type="text" name="shop_address3" id="sample6_detailAddress" class="text input_box" value="${shop.shopDetailAddress }" readonly>
+		<input type="text" name="shop_address4" id="sample6_extraAddress" class="text input_box" value="${shop.shopExtraAddress }" readonly>
       <span class="text" style="color: #DA0037;">영업 시간</span>
       	<input name="shopHours" type="text" class="text readonlyinput" readonly value="${shop.shopHours }"/>
       <span class="text" style="color: #DA0037;">가게 테이블 보유 수</span>
@@ -63,9 +66,9 @@
       	</c:forEach>
       </table>
       <c:if test="${menus[1] != null }">
-      <input style="margin-top: 20px; margin-bottom: 20px;" type="submit" value="삭제" class="SubmitBtn">      
+      <input style="margin-top: 20px; margin-bottom: 20px; background: gray; border-radius: 40px; width: 80%; " type="submit" value="삭제" class="next_btn">      
       </c:if>
-      <input style="margin-top: 20px; margin-bottom: 20px;" type="button" value="메뉴 추가" class="SubmitBtn next_btn" style="width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 5px black; margin-top: 10px; background: white;" onclick="location.href='addMenu'">
+      <input type="button" value="메뉴 추가" class="SubmitBtn next_btn" style=" margin-top: 20px; margin-bottom: 20px; color: black; width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 5px black; margin-top: 10px; background: white;" onclick="location.href='addMenu'">
       </form>
       <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../map/map'">홈으로 돌아가기</button>
     </div>
