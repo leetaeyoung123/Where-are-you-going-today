@@ -59,12 +59,15 @@
 			<option value="unknown" style="text-align: center;">&emsp;&emsp;&emsp;&ensp;&nbsp;--
 				선택 --</option>
 			<c:forEach var="item" items="${board}">
-				<option style="text-align:center;" value="${item.number}${item.title}${item.imgname}">[No.${item.number}]
+				<option style="text-align: center;"
+					value="${item.number}${item.title}${item.imgname}">[No.${item.number}]
 					${item.title}</option>
-			</c:forEach>	
+					<img src="../resources/board/img/upload/${item.imgname}.jpg"
+							style="width: 30px; height: 30px">
+			</c:forEach>
 		</form:select>
 	</div>
-		<div class="updateearea">
+	<div class="updateearea">
 		<form action="update" method="post" style="text-align: center;">
 			<button class="updatebtn" type="button" value="수정"
 				style="position: relative; left: 1%; margin-top: 20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">수정</button>
