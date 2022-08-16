@@ -24,25 +24,32 @@
 <body>
 	<header class="headerContainer">
 		<!--상단 탭 만들기 뼈대구조-->
-		<div class="headerContents">
-			<!--상단 탭 내용물 감싼구조-->
-			<div class="WestagramTag">
-				<!--상단 좌측 내용물-->
-				<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
+		<form action="home" method="post">
+			<div class="headerContents">
+				<!--상단 탭 내용물 감싼구조-->
+				<div class="WestagramTag">
+					<!--상단 좌측 내용물-->
+					<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
+				</div>
+				<div class="headerSearchBar" style="border-radius: 5px;">
+					<!--상단 중앙 내용물-->
+					<i class="fas fa-search"></i> <input name="title" type="text"
+						placeholder=" 게시글 검색" style="border: none; outline: none;"> <input
+						type="submit" value="검색" style="display: none;">
+				</div>
 			</div>
-			<div class="headerSearchBar">
-				<!--상단 중앙 내용물-->
-				<i class="fas fa-search"></i> <input type="text" placeholder="검색"
-					style="border: none; outline: none;">
-			</div>
-			<!-- 	<form action="home" method="post">
-		<button type="submit" value="글쓰기">글쓰기</button>
-	</form> -->
-		</div>
+		</form>
 	</header>
+	
+		<div class="writearea">
+			<form action="write" method="post" style="text-align:center;">
+				<button class="writebtn" type="button" value="글쓰기" onclick = "location.href='write'"
+					style="position: relative; left: 1%; margin-top:20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
+			</form>
+		</div>
 	<div class="mypage">
 		<a href="mypage"><img id="user"
-			src="../resources/board/img/board.png" width="30px" height="30px"
+			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;"></a>
 	</div>
 	<h3 style="text-align: center; margin-top: 35px;">게시글 작성</h3>

@@ -20,11 +20,6 @@ public class BoardServiceImpl implements BoardService {
 	public void create(Board board, String imgName) {
 		dao.create(board, imgName);
 	}
-	
-	@Override
-	public void create2() {
-		dao.create();
-	}
 
 	@Override
 	public List<Board> read(Board board) {
@@ -42,20 +37,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> search(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Board> search(String title) {
+		return dao.search(title);
 	}
 
 	@Override
 	public Integer totalCount() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Board read(Integer boardNo) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

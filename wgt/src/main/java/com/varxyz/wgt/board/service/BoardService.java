@@ -21,10 +21,8 @@ public interface BoardService {
 		
 		// 게시글 쓰기
 		public void create(Board board, String imgName);
-		public void create2();
 		
 		// 게시글 읽기
-		public Board read(Integer boardNo);
 		public List<Board> read(Board board);
 		
 		// 게시글 수정
@@ -34,9 +32,10 @@ public interface BoardService {
 		public List<Board> delete(int number);
 		
 		// 게시글 검색
-		public List<Board> search(String keyword);
+		public List<Board> search(String title);
 		
 		public Integer totalCount() throws Exception;
 
 		public List<Board> boardList = new ArrayList<>();
+
 }
