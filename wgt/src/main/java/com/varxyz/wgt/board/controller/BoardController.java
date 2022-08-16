@@ -30,10 +30,10 @@ public class BoardController {
 		return "board/search";
 	}
 	
-	@PostMapping("/board/write")
-	public String write(Model model) {
-		return "board/write";
-	}
+//	@PostMapping("/board/write")
+//	public String write(Model model) {
+//		return "board/write";
+//	}
 	
 	// 검색 화면
 	@GetMapping("/board/search")

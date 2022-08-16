@@ -51,7 +51,14 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 				</div>
 			</div>
 		</form>
+
 	</header>
+		<div class="writearea">
+			<form action="write" method="post" style="text-align:center;">
+				<button class="writebtn" type="submit" value="글쓰기"
+					style="position: relative; left: 0%; margin-top:20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
+			</form>
+		</div>
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
