@@ -33,9 +33,10 @@ public interface BoardService {
 		public List<Board> delete(int number);
 		
 		// 게시글 검색
-		public List<Board> search(String keyword);
+		public List<Board> search(String title);
 		
 		public Integer totalCount() throws Exception;
 
 		public List<Board> boardList = new ArrayList<>();
+
 }

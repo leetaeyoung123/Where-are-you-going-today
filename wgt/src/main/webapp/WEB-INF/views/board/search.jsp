@@ -29,9 +29,9 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 </head>
 <body>
 
-	<header class="headerContainer">
-		<!--상단 탭 만들기 뼈대구조-->
-		<form action="home" method="post">
+	<form action="search" method="get">
+		<header class="headerContainer">
+			<!--상단 탭 만들기 뼈대구조-->
 			<div class="headerContents">
 				<!--상단 탭 내용물 감싼구조-->
 				<div class="WestagramTag">
@@ -43,51 +43,47 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 					<i class="fas fa-search"></i> <input name="title" type="text"
 						placeholder="검색" style="border: none; outline: none;"> <input
 						type="submit" value="검색" style="display: none;">
-
-				</div>
-				<div class="write_btn">
-					<button type="submit" value="글쓰기"
-						style="position: relative; left: 31%; margin-top: 55px; cursor: pointer; z-index: 1000;">글쓰기</button>
 				</div>
 			</div>
-		</form>
-	</header>
-	<div class="mypage">
-		<a href="mypage"><img id="user"
-			src="../resources/board/img/user.png" width="30px" height="30px"
-			style="cursor: pointer;"></a>
-	</div>
 
-	<div class="body1">
-		<div class="feedReactionButton">
-			<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
-			<div class="boardarea">
-				<c:forEach var="item" items="${board}">
-					<div class="write" style="margin-bottom: 30px;">
-						<img src="../resources/board/img/upload/${item.imgname}.jpg"
-							style="width: 370px; height: 330px"><br>
-						<div class="emptyheart">
-							<a class="likebtn"
-								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
-							<div class="feedReaction">
-								<span class="liketext">좋아요 <span class="likesresult">0</span>개
-								</span>
+		</header>
+		<div class="mypage">
+			<a href="mypage"><img id="user"
+				src="../resources/board/img/user.png" width="30px" height="30px"
+				style="cursor: pointer;"></a>
+		</div>
+
+		<div class="body1">
+			<div class="feedReactionButton">
+				<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
+				<div class="boardarea">
+				1
+					<c:forEach var="item" items="${list}">
+					2
+						<div class="write" style="margin-bottom: 30px;">
+							<img src="../resources/board/img/upload/${item.imgname}.jpg"
+								style="width: 370px; height: 330px"><br>
+							<div class="emptyheart">
+								<a class="likebtn"
+									style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
+								<div class="feedReaction">
+									<span class="liketext">좋아요 <span class="likesresult">0</span>개
+									</span>
+								</div>
+
 							</div>
-							<%-- <p><%= sf.format(nowTime) %></p> --%>
-							<%-- <p>${item.regDate}</p> --%>
+							<p>
+								<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
+									value="${item.regDate}" />
+							</p>
+							<h4>${item.title}</h4>
+							<br> ${item.content}<br>
 						</div>
-						<p>
-							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
-								value="${item.regDate}" />
-						</p>
-						<h4>${item.title}</h4>
-						<br> ${item.content}<br>
-					</div>
-				</c:forEach>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
-	</div>
-
+	</form>
 	<script>
 	let like = document.querySelectorAll(".likebtn")
 	
