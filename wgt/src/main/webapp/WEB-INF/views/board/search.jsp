@@ -45,45 +45,45 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						type="submit" value="검색" style="display: none;">
 				</div>
 			</div>
+	</form>
+	</header>
+	<div class="mypage">
+		<a href="mypage"><img id="user"
+			src="../resources/board/img/user.png" width="30px" height="30px"
+			style="cursor: pointer;"></a>
+	</div>
 
-		</header>
-		<div class="mypage">
-			<a href="mypage"><img id="user"
-				src="../resources/board/img/user.png" width="30px" height="30px"
-				style="cursor: pointer;"></a>
-		</div>
-
-		<div class="body1">
-			<div class="feedReactionButton">
-				<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
-				<div class="boardarea">
+	<div class="body1">
+		<div class="feedReactionButton">
+			<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
+			<div class="boardarea">
 				1
-					<c:forEach var="item" items="${list}">
-					2
+				<c:forEach var="item" items="${list}">
+					${item.title}
 						<div class="write" style="margin-bottom: 30px;">
-							<img src="../resources/board/img/upload/${item.imgname}.jpg"
-								style="width: 370px; height: 330px"><br>
-							<div class="emptyheart">
-								<a class="likebtn"
-									style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
-								<div class="feedReaction">
-									<span class="liketext">좋아요 <span class="likesresult">0</span>개
-									</span>
-								</div>
-
+						<img src="../resources/board/img/upload/${item.imgname}.jpg"
+							style="width: 370px; height: 330px"><br>
+						<div class="emptyheart">
+							<a class="likebtn"
+								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
+							<div class="feedReaction">
+								<span class="liketext">좋아요 <span class="likesresult">0</span>개
+								</span>
 							</div>
-							<p>
-								<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
-									value="${item.regDate}" />
-							</p>
-							<h4>${item.title}</h4>
-							<br> ${item.content}<br>
+
 						</div>
-					</c:forEach>
-				</div>
+						<p>
+							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
+								value="${item.regDate}" />
+						</p>
+						<h4>${item.title}</h4>
+						<br> ${item.content}<br>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
-	</form>
+	</div>
+
 	<script>
 	let like = document.querySelectorAll(".likebtn")
 	

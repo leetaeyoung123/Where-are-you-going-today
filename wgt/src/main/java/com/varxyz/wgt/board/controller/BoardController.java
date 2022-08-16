@@ -25,22 +25,26 @@ public class BoardController {
 
 	@PostMapping("/board/home")
 	public String post(Board board, Model model) {
-		model.addAttribute("board", service.read(board));
+		List<Board> list = service.search(board.getTitle());
+		model.addAttribute("list", list);
+		return "board/search";
+	}
+	
+	@PostMapping("/board/write")
+	public String write(Model model) {
 		return "board/write";
 	}
 	
 	// 검색 화면
 	@GetMapping("/board/search")
-	public String searchlist(Model model, Board board) {
-		List<Board> list = service.search(board.getTitle());
-		model.addAttribute("search", list);
+	public String searchlist(Model model) {
 		return "board/search";
 	}
 
 	@PostMapping("/board/search")
 	public String getsearchlist(Board board, Model model) {
 		List<Board> list = service.search(board.getTitle());
-		model.addAttribute("search", list);
+		model.addAttribute("list", list);
 		return "board/search";
 	}
 
