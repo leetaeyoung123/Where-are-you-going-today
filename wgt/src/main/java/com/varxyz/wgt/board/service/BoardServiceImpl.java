@@ -20,11 +20,7 @@ public class BoardServiceImpl implements BoardService {
 	public void create(Board board, String imgName) {
 		dao.create(board, imgName);
 	}
-	
-	@Override
-	public void create2() {
-		dao.create();
-	}
+
 
 	@Override
 	public List<Board> read(Board board) {
@@ -54,7 +50,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board read(Integer boardNo) {
+	public Board read(Integer number) {
 		// TODO Auto-generated method stub
 		return null;
 	}

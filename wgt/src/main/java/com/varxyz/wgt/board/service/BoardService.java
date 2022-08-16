@@ -21,10 +21,9 @@ public interface BoardService {
 		
 		// 게시글 쓰기
 		public void create(Board board, String imgName);
-		public void create2();
 		
 		// 게시글 읽기
-		public Board read(Integer boardNo);
+		public Board read(Integer number);
 		public List<Board> read(Board board);
 		
 		// 게시글 수정
