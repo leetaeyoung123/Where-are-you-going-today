@@ -1,5 +1,6 @@
 package com.varxyz.wgt.board.dao;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +38,10 @@ public class BoardDao {
 	}
 
 	//게시글 삭제
-	public List<Board> delete(int number) {
+	public List<Board> delete(int number, String imgname) {
 		String sql = "DELETE FROM Board WHERE number = ?";
+		File file = new File("C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload" + imgname + ".jpg");
+		file.delete();
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class), number);
 	}
 	
