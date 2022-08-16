@@ -51,9 +51,14 @@ public class BoardDao {
 	}
 	
 	//제목으로 찾기
-	public List<Board> seasrch(String title) {
+	public List<Board> search(String title) {
 		String sql = "SELECT * FROM Board WHERE title like '%" + title + "%' ";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 	}
-
+	
+	//내용으로 찾기
+//	public List<Board> search2(String content) {
+//		String sql = "SELECT * FROM Board WHERE content like '%" + content + "%' ";
+//		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
+//	}
 }

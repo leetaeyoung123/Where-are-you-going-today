@@ -43,16 +43,14 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 					<i class="fas fa-search"></i> <input name="title" type="text"
 						placeholder="검색" style="border: none; outline: none;"> <input
 						type="submit" value="검색" style="display: none;">
-
 				</div>
-				
 			</div>
 		</form>
-
 	</header>
+	
 		<div class="writearea">
 			<form action="write" method="post" style="text-align:center;">
-				<button class="writebtn" type="submit" value="글쓰기"
+				<button class="writebtn" type="button" value="글쓰기" onclick = "location.href='write'"
 					style="position: relative; left: 1%; margin-top:20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
 			</form>
 		</div>
@@ -92,7 +90,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 		</div>
 	</div>
 
-	<script>
+<script>
 	let like = document.querySelectorAll(".likebtn")
 	
 	for(let i = 0; i < like.length; i++){
