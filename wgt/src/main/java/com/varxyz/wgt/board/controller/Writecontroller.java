@@ -33,7 +33,8 @@ public class Writecontroller {
 	public String post(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model, HttpSession session) {
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일사이즈
-
+		Board board = new Board();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
 		System.out.println("파일명 : "  + fileRealName);
 		System.out.println("용량크기(byte) : " + size);
 		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
@@ -48,6 +49,7 @@ public class Writecontroller {
 
 		String uniqueName = uuids[0];
 		System.out.println("생성된 고유 문자열 : " + uniqueName );
+		board.setImgname(uniqueName);
 		System.out.println("확장자명 : " + fileExtension);
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
 		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
@@ -61,9 +63,6 @@ public class Writecontroller {
 			e.printStackTrace();
 		}
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
-		
-		Board board = new Board();
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
 

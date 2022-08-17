@@ -32,8 +32,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int delete(int number) {
-		return dao.delete(number);
+	public int delete(int number, String imgname) {
+		return dao.delete(number, imgname);
 	}
 
 	@Override
