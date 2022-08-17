@@ -32,7 +32,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> delete(int number) {
+	public int delete(int number) {
 		return dao.delete(number);
 	}
 

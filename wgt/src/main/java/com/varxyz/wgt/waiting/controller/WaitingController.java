@@ -33,11 +33,15 @@ public class WaitingController {
 	public String waitingForm(Model model, HttpSession session) {
 		List<Waiting> nowWaiting = waitingService.findAllWaiting("시류");
 		long count = 0;
-		for (int i = 0; i < nowWaiting.size(); i++) {
-			count++;
+		if(nowWaiting.get(0).getUserId() == "없음") {
+			count = 0;
+		}else {
+			for (int i = 0; i < nowWaiting.size(); i++) {
+				count++;
+			}
 		}
 		model.addAttribute("barName", "시류"); // shop 세션 받아와서 매장명 입력해야함
-		model.addAttribute("nowWaiting", count);
+		model.addAttribute("nowWaitingCount", count);
 		return "waiting/add_waiting";
 	}
 

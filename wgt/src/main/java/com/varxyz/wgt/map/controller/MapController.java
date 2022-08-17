@@ -23,6 +23,7 @@ public class MapController {
 	public String mapForm(Map map,Model model, HttpSession session) {
 		model.addAttribute("name", service.search(map.getName()));
 		model.addAttribute("find", service.findAll());
+		model.addAttribute("userId", session.getAttribute("userId"));
 
 		/*
 		 *  여기로 올때 temp 에 올렸던 이미지들을 자동으로 삭제한다.
@@ -59,4 +60,10 @@ public class MapController {
 		model.addAttribute("find", service.findAll());
 		return "map/map";
 	}
+	
+	@PostMapping("/map/go_get_waiting")
+	public String goGetWaiting() {
+		return "redirect:/controller/get_waiting";
+	}
+	
 }

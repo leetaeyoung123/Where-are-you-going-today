@@ -22,7 +22,7 @@
             <input type="text" name="shop_table" class="input_box">
             <p>테이블당 최대 수용 인원 수</p>
             <input type="text" name="shop_max_people" class="input_box">
-            <p>가게 번호</p>
+            <p>가게 전화번호</p>
             <input type="text" name="shop_tel" class="input_box">
             <hr>
             <div class="btn_wrap">

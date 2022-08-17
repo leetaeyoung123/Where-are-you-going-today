@@ -29,7 +29,7 @@ public interface BoardService {
 		public void update(Board board);
 		
 		// 게시글 삭제
-		public List<Board> delete(int number);
+		public int delete(int number);
 		
 		// 게시글 검색
 		public List<Board> search(String title);
