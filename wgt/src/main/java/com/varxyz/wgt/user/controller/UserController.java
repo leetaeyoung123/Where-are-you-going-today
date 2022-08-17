@@ -42,7 +42,7 @@ public class UserController {
 		System.out.println("파일크기 : " + size);
 		
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\Users\\tjdgh\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img";
+		String uploadFolder = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img";
 		
 		
 		// 고유한 랜덤 문자생성 해서 db와 서버에 저장할 파일명을 새롭게 만들어 주는 코드
@@ -125,7 +125,7 @@ public class UserController {
 		System.out.println("파일크기 : " + size);
 		
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\Users\\tjdgh\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img"; 
+		String uploadFolder = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img"; 
 		
 		// 고유한 랜덤 문자생성 해서 db와 서버에 저장할 파일명을 새롭게 만들어 주는 코드
 		UUID uuid = UUID.randomUUID();
