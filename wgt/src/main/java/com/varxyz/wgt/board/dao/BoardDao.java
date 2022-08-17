@@ -38,8 +38,10 @@ public class BoardDao {
 	}
 
 	//게시글 삭제
-	public int delete(int number) {
+	public int delete(int number, String imgname) {
 		String sql = "DELETE FROM Board WHERE number = ?";
+		File file = new File("C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload" + imgname + ".jpg");
+		file.delete();
 		return jdbcTemplate.update(sql, number);
 	}
 	

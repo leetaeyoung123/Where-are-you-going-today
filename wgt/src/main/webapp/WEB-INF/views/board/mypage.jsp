@@ -67,7 +67,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			<div class="boardarea">
 				<c:forEach var="item" items="${board}" varStatus="status">
 					<h5
-						style="text-align: center; position: relative; margin-bottom: -25px; left: 1%;">
+						style="text-align: center; position: relative; margin-bottom: -25px; left: 1%; display:none;">
 						[No.${item.number}]
 					</h5>
 					<div class="write" style="margin-top: 30px; margin-bottom: 10px;">
