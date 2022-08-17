@@ -42,8 +42,9 @@ public class MypageController {
 	
 	@PostMapping("/board/delete")
 	public String delete(Board board, Model model) {
-		//board.getNumber 자리에 게시글 번호 받아온거 넣으면 되염
 		service.delete(board.getNumber()); 
+		List<Board> list = service.search(board.getTitle());
+		model.addAttribute("list", list);
 		model.addAttribute("msg", "게시글 삭제를 완료하였습니다.");
 		model.addAttribute("url","mypage");
 		return "alert/alert";

@@ -30,7 +30,7 @@ body{
 .selectbox {
 	position: relative;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 15px;
     width: 170px;
     height: 30px;
     border: 5px;
@@ -39,7 +39,24 @@ body{
     color: white;
     margin-top: 20px;
 }
+
 select option {
 	background: #f1f1f1;
 	color: #DA0037;
+	font-size: 13px;
+}
+
+/*수정, 삭제 버튼*/
+.updatebtn, .deletebtn{
+	position: relative;
+    cursor: pointer;
+    font-size: 15px;
+    width: 70px;
+    height: 30px;
+    border: 5px;
+    border-radius: 8px;
+    background-color: #DA0037;
+    color: white;
+    margin-top: 30px;
+    left: 35%;
 }

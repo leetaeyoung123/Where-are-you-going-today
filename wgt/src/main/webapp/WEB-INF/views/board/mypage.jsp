@@ -35,15 +35,15 @@
 				<div class="headerSearchBar" style="border-radius: 5px;">
 					<!--상단 중앙 내용물-->
 					<i class="fas fa-search"></i> <input name="title" type="text"
-						placeholder=" 게시글 검색" style="border: none; outline: none;"> <input
-						type="submit" value="검색" style="display: none;">
+						placeholder=" 게시글 검색" style="border: none; outline: none;">
+					<input type="submit" value="검색" style="display: none;">
 				</div>
 			</div>
 		</form>
 	</header>
 
-	
-	
+
+
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
@@ -55,13 +55,29 @@
   		${user.phone}
 	</c:forEach>
 	<div class="selectlist">
-   <form:select path="board" class="selectbox">
-      <option value="unknown" style="text-align:center;">&emsp;&emsp;&emsp;&ensp;&nbsp;-- 선택 --</option>
-      <c:forEach var="item" items="${board}">
-         <option value="${item.number}${item.title}${item.imgname}">[No.${item.number}] ${item.title}</option>
-         
-      </c:forEach>
-   </form:select>
+		<form:select path="board" class="selectbox">
+			<option value="unknown" style="text-align: center;">&emsp;&emsp;&emsp;&ensp;&nbsp;--
+				선택 --</option>
+			<c:forEach var="item" items="${board}">
+				<option style="text-align: center;"
+					value="${item.number}${item.title}${item.imgname}">[No.${item.number}]
+					${item.title}</option>
+					<img src="../resources/board/img/upload/${item.imgname}.jpg"
+							style="width: 30px; height: 30px">
+			</c:forEach>
+		</form:select>
+	</div>
+	<div class="updateearea">
+		<form action="update" method="post" style="text-align: center;">
+			<button class="updatebtn" type="button" value="수정"
+				style="position: relative; left: 1%; margin-top: 20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">수정</button>
+		</form>
+	</div>
+	<div class="deletearea">
+		<form action="delete" method="post" style="text-align: center;">
+			<button class="deletebtn" type="button" value="삭제"
+				style="position: relative; left: 1%; margin-top: 20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">삭제</button>
+		</form>
 	</div>
 </body>
 </html>
