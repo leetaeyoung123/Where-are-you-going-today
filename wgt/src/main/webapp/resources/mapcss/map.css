@@ -207,10 +207,14 @@ li {
 	color: black;
 }
 
+.wrap * {padding: 0;margin: 0;}
+
 .wrap .info:nth-child(1) {
 	border: 0;
 	box-shadow: 0px 1px 2px #888;
 }
+
+.wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
 
 .info .title {
 	padding: 10px 0 10px;
@@ -236,21 +240,6 @@ li {
 	border-right: 10px solid transparent;
 }
 
-.info .close {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	color: #888;
-	width: 17px;
-	height: 17px;
-	background:
-		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
-}
-
-.info .close:hover {
-	cursor: pointer;
-}
-
 .map_wrap, .map_wrap * {
 	margin: 0;
 	padding: 0;
@@ -266,7 +255,7 @@ li {
 	height: 700px;
 	transition: all 0.3s;
 	top: 73px;
-	left: 0;
+	left: -270px;
 	bottom: 0;
 	width: 250px;
 	margin: 10px 0 30px 10px;

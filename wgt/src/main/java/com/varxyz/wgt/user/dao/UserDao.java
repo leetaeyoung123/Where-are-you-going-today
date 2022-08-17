@@ -1,7 +1,5 @@
 package com.varxyz.wgt.user.dao;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -23,11 +21,11 @@ public class UserDao {
 	
 	// 회원가입
 	public void addUser(User user, String imgName) {
-		String sql = "INSERT INTO User (userId, passwd, name, ssn, phone, addr, imgName) "
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?) ";
+		String sql = "INSERT INTO User (userId, passwd, name, ssn, phone, addr1, addr2, addr3, addr4, imgName) "
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		
 		jdbcTemplate.update(sql, user.getUserId(), user.getPasswd(), user.getName(), 
-								user.getSsn(), user.getPhone(), user.getAddr(), imgName);
+								user.getSsn(), user.getPhone(), user.getAddr1(), user.getAddr2(), user.getAddr3(), user.getAddr4(), imgName);
 	}
 	
 	// 회원 조회
@@ -49,9 +47,10 @@ public class UserDao {
 	
 	// 회원정보 수정
 	public void modifyUser(User user, String imgName) {
-		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr = ?, imgName = ? WHERE  userId = ?";
+		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr1 = ?, addr2 = ?, addr3 = ?, addr4 = ?, imgName = ? WHERE  userId = ?";
 
-		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr(), imgName, user.getUserId());
+		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr1(),
+								user.getAddr2(), user.getAddr3(), user.getAddr4(), imgName, user.getUserId());
 		
 	}
 	

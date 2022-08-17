@@ -66,10 +66,10 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
 			<div class="boardarea">
 				<c:forEach var="item" items="${board}">
-					<h4
+					<h5
 						style="text-align: center; position: relative; margin-bottom: -25px; left: 1%;">
 						[No.${item.number}]
-					</h4>
+					</h5>
 					<div class="write" style="margin-top: 30px; margin-bottom: 10px;">
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
 							style="width: 370px; height: 330px"><br>
@@ -90,20 +90,19 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						<h4>${item.title}</h4>
 						<br> ${item.content}<br>
 					</div>
-					
 					<div class="update_delete_area"
 						style="display: flex; justify-content: space-evenly; height: 30px; border-bottom: 2px solid #f1f1f1;">
 						<div class="updateearea">
 							<form action="update" method="post"
 								style="text-align: center; width: 60px;">
-								<button class="updatebtn" value="수정"
+								<button class="updatebtn" type="button" value="수정"
 									style="position: relative; left: 1%; margin: 0 auto; cursor: pointer;">수정</button>
 							</form>
 						</div>
 						<div class="deletearea">
 							<form action="delete" method="post"
 								style="text-align: center; width: 60px;">
-								<button class="deletebtn" value="삭제" onclick="deleteCheck"
+								<button class="deletebtn" type="button" value="삭제"
 									style="position: relative; left: 1%; margin: 0 auto; cursor: pointer;">삭제</button>
 							</form>
 						</div>
@@ -121,16 +120,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			like[i].classList.toggle('open')
 		})
 	}
-	</script>
-	
-	<script>
-	$(".deletebtn").click(function(){
-		if(confirm("정말 삭제하시겠습니까?")==true){
-			alert("삭제되었습니다.");
-		}else{
-			return;
-		}
-	});
-	</script>
+
+</script>
 </body>
 </html>

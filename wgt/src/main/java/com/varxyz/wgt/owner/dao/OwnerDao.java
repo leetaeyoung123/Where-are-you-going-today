@@ -21,25 +21,25 @@ public class OwnerDao {
 
 	// 점주가입
 	public void addOwner(Owner owner) {
-		String sql = "INSERT INTO Owner (ownerId, passwd, name, bnumber, phone, addr) "
-				+ " VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Owner (ownerId, passwd, name, bnumber) "
+				+ " VALUES (?, ?, ?, ?)";
 		
 		jdbcTemplate.update(sql, owner.getOwnerId(), owner.getPasswd(), owner.getName(), 
-								owner.getBnumber(), owner.getPhone(), owner.getAddr());
+								owner.getBnumber());
 	}
 
 	// 점주 정보 가져오기
-	public List<Owner> findAllOwner(String ownerId) {
+	public Owner findAllOwner(String ownerId) {
 		String sql = "SELECT * FROM Owner WHERE ownerId = ?";
 		
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Owner>(Owner.class), ownerId);
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Owner>(Owner.class), ownerId);
 	}
 
 	// 점주정보 수정
 	public void modifyOwner(Owner owner) {
-		String sql = "UPDATE Owner SET passwd = ?, name = ?, phone = ?, addr = ? WHERE ownerId = ?";
+		String sql = "UPDATE Owner SET passwd = ?, name = ? WHERE ownerId = ?";
 		
-		jdbcTemplate.update(sql, owner.getPasswd(), owner.getName(), owner.getPhone(), owner.getAddr(), owner.getOwnerId());
+		jdbcTemplate.update(sql, owner.getPasswd(), owner.getName(), owner.getOwnerId());
 	}
 
 	public void delete(String ownerId) {

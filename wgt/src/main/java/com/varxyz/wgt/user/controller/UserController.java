@@ -70,7 +70,10 @@ public class UserController {
 		user.setName(request.getParameter("name"));
 		user.setSsn(request.getParameter("ssn"));
 		user.setPhone(request.getParameter("phone"));
-		user.setAddr(request.getParameter("addr"));
+		user.setAddr1(request.getParameter("addr1"));
+		user.setAddr2(request.getParameter("addr2"));
+		user.setAddr3(request.getParameter("addr3"));
+		user.setAddr4(request.getParameter("addr4"));
 		user.setImgName(request.getParameter("imgName"));
 		
 		List<User> userList = new ArrayList<User>();
@@ -88,8 +91,8 @@ public class UserController {
 			userService.addUser(user, uniqueName);
 			UserService.context.close();
 			
-			return "login/login";
-}
+			return "user/successAddUser";
+	}
 
 	// 회원정보 가져오기
 	@GetMapping("/modifyUser")
@@ -151,7 +154,10 @@ public class UserController {
 		user.setName(request.getParameter("name"));
 		user.setSsn(request.getParameter("ssn"));
 		user.setPhone(request.getParameter("phone"));
-		user.setAddr(request.getParameter("addr"));	
+		user.setAddr1(request.getParameter("addr1"));
+		user.setAddr2(request.getParameter("addr2"));
+		user.setAddr3(request.getParameter("addr3"));
+		user.setAddr4(request.getParameter("addr4"));
 		
 		userService.modifyUser(user, uniqueName);
 		
