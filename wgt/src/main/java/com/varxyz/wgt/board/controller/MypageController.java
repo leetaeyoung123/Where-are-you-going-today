@@ -28,13 +28,14 @@ public class MypageController {
 //		System.out.println(session.getAttribute("userId"));
 		model.addAttribute("userList", userList);
 		model.addAttribute("board", service.read(board));
+		session.setAttribute("number", board.getNumber());
 		return "/board/mypage";
 	}
 	
 	@PostMapping("/board/mypage")
 	public String post(Board board, Model model) {
 		model.addAttribute("Board", board);
-		service.create(board,"imgName");
+		service.create(board,"imgname");
 		model.addAttribute("msg", "게시글 수정을 완료하였습니다.");
 		model.addAttribute("url","home");
 		return "alert/alert";
@@ -42,10 +43,9 @@ public class MypageController {
 	
 	//게시글 삭제
 	@PostMapping("/board/delete")
-	public String delete(Board board, Model model) {
-		List<Board> list = service.search(board.getTitle());
-		service.delete(board.getNumber(),board.getImgname());
-		model.addAttribute("list", list);
+	public String delete(Board board, Model model, HttpSession session) {
+		session.getAttribute("number");
+		service.delete(board.getNumber());
 		model.addAttribute("msg", "게시글이 삭제되었습니다.");
 		model.addAttribute("url","mypage");
 		return "alert/alert";
