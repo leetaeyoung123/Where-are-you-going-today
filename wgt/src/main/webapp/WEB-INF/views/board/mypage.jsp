@@ -96,14 +96,14 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						<div class="updateearea">
 							<form action="update" method="post"
 								style="text-align: center; width: 60px;">
-								<button class="updatebtn" type="button" value="수정"
+								<button class="updatebtn" value="수정"
 									style="position: relative; left: 1%; margin: 0 auto; cursor: pointer;">수정</button>
 							</form>
 						</div>
 						<div class="deletearea">
 							<form action="delete" method="post"
 								style="text-align: center; width: 60px;">
-								<button class="deletebtn" type="button" value="삭제"
+								<button class="deletebtn" value="삭제" onclick="deleteCheck"
 									style="position: relative; left: 1%; margin: 0 auto; cursor: pointer;">삭제</button>
 							</form>
 						</div>
@@ -121,7 +121,16 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			like[i].classList.toggle('open')
 		})
 	}
-
-</script>
+	</script>
+	
+	<script>
+	$(".deletebtn").click(function(){
+		if(confirm("정말 삭제하시겠습니까?")==true){
+			alert("삭제되었습니다.");
+		}else{
+			return;
+		}
+	});
+	</script>
 </body>
 </html>
