@@ -78,7 +78,10 @@ public class OwnerLoginController {
 		}
 		System.out.println("로그인 실패");
 		
-		return null;
+		model.addAttribute("msg", "회원정보가 틀렸습니다");
+		model.addAttribute("url", "ownerLogin");
+		
+		return "error/error";
 					
 //		try {
 //			Owner ownerList = new Owner();
