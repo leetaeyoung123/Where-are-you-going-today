@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,12 @@ public class UpdateShopController {
 	ShopService service = new ShopServiceImpl();
 	
 	@GetMapping("shop/updateShop")
-	public String updateShopGo(Model model, Shop shop) {
+	public String updateShopGo(Model model, Shop shop, HttpSession session) {
+		// 로그인 없이 주소로 접속시도시 예외 처리
+		if(shop.getBusinessNumber().equals(null)) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "alert/back";
+		}
 		model.addAttribute("shop", shop);
 		return "shop/view/updateMyShop";
 	}
@@ -32,6 +38,7 @@ public class UpdateShopController {
 	public String updateShopForm(@RequestParam("shop_img") MultipartFile file, 
 									HttpServletRequest request, Model model) {
 		Shop shop = new Shop();
+		
 		shop.setBusinessNumber(request.getParameter("businessNumber"));
 		shop.setShopName(request.getParameter("shopName"));
 		shop.setShopTel(request.getParameter("shopTel"));
@@ -43,6 +50,21 @@ public class UpdateShopController {
 		shop.setShopTables(request.getParameter("shopTables"));
 		shop.setShopMaxPeoples(request.getParameter("shopMaxPeoples"));
 		shop.setShopImg(request.getParameter("shop_img"));
+		
+		// 사용자가 빈값 입력시 예외 처리
+		if(shop.getBusinessNumber().trim().isEmpty() ||
+		   shop.getShopName().trim().isEmpty() ||
+		   shop.getShopTel().trim().isEmpty() ||
+		   shop.getShopPostCode().trim().isEmpty() ||
+		   shop.getShopAddress().trim().isEmpty() ||
+		   shop.getShopDetailAddress().trim().isEmpty() ||
+		   shop.getShopExtraAddress().trim().isEmpty() ||
+		   shop.getShopHours().trim().isEmpty() ||
+		   shop.getShopTables().trim().isEmpty() ||
+		   shop.getShopMaxPeoples().isEmpty()) {
+			model.addAttribute("msg", "빈값은 입력하실 수 없습니다.");
+			return "alert/back";
+		}
 		
 		String fileRealName = file.getOriginalFilename(); // 실제 파일 명을 알수있는 메소드
 		long size = file.getSize(); // 파일 사이즈
