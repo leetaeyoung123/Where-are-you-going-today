@@ -66,10 +66,10 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
 			<div class="boardarea">
 				<c:forEach var="item" items="${board}">
-					<h4
+					<h5
 						style="text-align: center; position: relative; margin-bottom: -25px; left: 1%;">
 						[No.${item.number}]
-					</h4>
+					</h5>
 					<div class="write" style="margin-top: 30px; margin-bottom: 10px;">
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
 							style="width: 370px; height: 330px"><br>
@@ -90,7 +90,6 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						<h4>${item.title}</h4>
 						<br> ${item.content}<br>
 					</div>
-					
 					<div class="update_delete_area"
 						style="display: flex; justify-content: space-evenly; height: 30px; border-bottom: 2px solid #f1f1f1;">
 						<div class="updateearea">

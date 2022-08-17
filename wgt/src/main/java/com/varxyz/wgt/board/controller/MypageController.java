@@ -40,15 +40,15 @@ public class MypageController {
 		return "alert/alert";
 	}
 	
+	//게시글 삭제
 	@PostMapping("/board/delete")
 	public String delete(Board board, Model model) {
-		service.delete(board.getNumber()); 
 		List<Board> list = service.search(board.getTitle());
+		service.delete(board.getNumber(),board.getImgname());
 		model.addAttribute("list", list);
-		model.addAttribute("msg", "게시글 삭제를 완료하였습니다.");
+		model.addAttribute("msg", "게시글이 삭제되었습니다.");
 		model.addAttribute("url","mypage");
 		return "alert/alert";
 	}
 	
-
 }
