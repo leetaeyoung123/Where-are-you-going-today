@@ -1,7 +1,5 @@
 package com.varxyz.wgt.owner.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,11 +28,11 @@ public class OwnerController {
 	@PostMapping("/addOwner")
 	public String addOwner(Owner owner, Model model) {
 		
-		List<Owner> ownerList = new ArrayList<Owner>();
+		Owner ownerList = new Owner();
 		ownerList = ownerService.findAllOwner(owner.getOwnerId());
 		System.out.println(ownerService.findAllOwner(owner.getOwnerId()));
 		
-		if(ownerList.size() > 0) {
+		if(ownerList.getOwnerId().isEmpty()) {
 			model.addAttribute("msg", "중복된 아이디 입니다!!");
 			model.addAttribute("url", "addOwner");
 			
@@ -52,7 +50,7 @@ public class OwnerController {
 	@GetMapping("/modifyOwner") 
 	public String findAllOwnerForm(HttpServletRequest request, HttpSession session, Model model) {
 		
-		List<Owner> ownerList = new ArrayList<Owner>();
+		Owner ownerList = new Owner();
 		ownerList = ownerService.findAllOwner((String)session.getAttribute("ownerId"));
 		model.addAttribute("ownerList", ownerList);
 		

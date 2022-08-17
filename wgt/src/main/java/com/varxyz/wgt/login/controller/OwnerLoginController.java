@@ -1,8 +1,5 @@
 package com.varxyz.wgt.login.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -35,18 +32,52 @@ public class OwnerLoginController {
 	public String ownerLogin(Owner owner, HttpSession session, HttpServletRequest request,
 							Model model) {
 		
-		List<Owner> ownerList = new ArrayList<Owner>();
-		ownerList = ownerService.findAllOwner(owner.getOwnerId());
+		// 수정 전 코드
+//		List<Owner> ownerList = new ArrayList<Owner>();
+//		ownerList = ownerService.findAllOwner(owner.getOwnerId());
 		
-		session.setAttribute("ownerList", ownerList);
+		/*
+		 *  findAllOwner 기능 = 점주 ID로 점주 '1'명의 정보를 모두 불러 오는것
+		 *  그렇기 때문에 List<Owner>로 dao에서 query로 받기보다는 queryObject로 그냥 하나의 Owner 객체로 받아오는것이 더 낫다
+		 *  수정한점 : OwnerDao.class에서 findAllOwner기능 중 query -> queryObject, return 타입 List<Owner> -> Owner   
+		 */
 		
-		if(owner.getOwnerId().equals(ownerList.get(0).getOwnerId())) {
-			if(owner.getPasswd().equals(ownerList.get(1).getPasswd())) {
-				if(owner.getBnumber().equals(ownerList.get(2).getBnumber())) {
-					return "login/successOwnerLogin";
-				}
-			}
+		
+		// 수정 된 코드
+		
+		Owner dbOwner = new Owner();
+		dbOwner = ownerService.findAllOwner(owner.getOwnerId());
+		
+		session.setAttribute("dbOwner", dbOwner);
+		
+		// 수정 전 코드
+//		if(owner.getOwnerId().equals(ownerList.get(0).getOwnerId())) {
+//			if(owner.getPasswd().equals(ownerList.get(1).getPasswd())) {
+//				if(owner.getBnumber().equals(ownerList.get(2).getBnumber())) {
+//					return "login/successOwnerLogin";
+//				}
+//			}
+//		}
+		
+		/*
+		 *  로그인시 위 로직에서 Index out of bounds 에러가 발생하는데 그 이유는 원래 기능에서 List로 불러온것은 맞지만
+		 *  [Owner(객체)] 이렇게 배열안에 하나의 객체만 불러온것이기 때문에  owner.getPasswd().equals(ownerList.get(1).getPasswd()) 이 문단처럼
+		 *  실제는 0번째 밖에없는 배열이지만 1번째 배열을 불러오라고 했기때문에 오류가 뜨는것이다. 만약 List 그대로 사용할려고 한다면 index를 0으로 바꿔줘야한다.
+		 */
+		
+		// 수정 후 코드
+		
+		// &&로 엮어서 조건을 구사 할 수도 있다.
+		if(owner.getOwnerId().equals(dbOwner.getOwnerId()) && 
+		   owner.getPasswd().equals(dbOwner.getPasswd()) && 
+		   owner.getBnumber().equals(dbOwner.getBnumber())) {
+			
+			System.out.println("로그인 성공");
+			session.setAttribute("bNum", request.getParameter("bnumber"));
+			return "login/successOwnerLogin";
 		}
+		System.out.println("로그인 실패");
+		
 		return null;
 			
 		

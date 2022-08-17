@@ -29,10 +29,10 @@ public class OwnerDao {
 	}
 
 	// 점주 정보 가져오기
-	public List<Owner> findAllOwner(String ownerId) {
+	public Owner findAllOwner(String ownerId) {
 		String sql = "SELECT * FROM Owner WHERE ownerId = ?";
 		
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Owner>(Owner.class), ownerId);
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Owner>(Owner.class), ownerId);
 	}
 
 	// 점주정보 수정
