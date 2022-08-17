@@ -93,7 +93,19 @@ public class UserController {
 			
 			return "user/successAddUser";
 	}
+	
+	// 회원정보 보기
+	@GetMapping("/userInfo")
+	public String userInfo(MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
+		
+		List<User> userList = new ArrayList<User>();
+		userList = userService.inquiryUser((String)session.getAttribute("userId"));	// 세션을 가져옴
+		model.addAttribute("userList", userList);
+		System.out.println(userList.get(0).getImgName());
 
+		return "user/userInfo";
+	} 
+	
 	// 회원정보 가져오기
 	@GetMapping("/modifyUser")
 	public String findAllUserForm(MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {

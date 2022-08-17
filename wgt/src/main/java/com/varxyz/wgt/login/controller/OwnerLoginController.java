@@ -79,9 +79,7 @@ public class OwnerLoginController {
 		System.out.println("로그인 실패");
 		
 		return null;
-			
-		
-		
+					
 //		try {
 //			Owner ownerList = new Owner();
 //			ownerList = ownerLoginService.ownerLogin(owner.getOwnerId());

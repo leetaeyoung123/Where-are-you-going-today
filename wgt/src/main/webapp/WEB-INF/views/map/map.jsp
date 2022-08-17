@@ -37,6 +37,9 @@
 					<a onclick="submit_form()">나의 웨이팅</a>
 				</form>
 			</li>
+			<li class="sub3">
+					<a onclick="location.href='/wgt/userInfo';">회원정보 보기</a>
+			</li>
 		</ul>
 	</nav>
 	<form class="header_form" action="map" method="post">
