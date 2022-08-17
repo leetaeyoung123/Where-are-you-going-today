@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.service.BoardService;
@@ -42,13 +43,22 @@ public class MypageController {
 	}
 	
 	//게시글 삭제
-	@PostMapping("/board/delete")
-	public String delete(Board board, Model model, HttpSession session) {
-		session.getAttribute("number");
-		service.delete(board.getNumber());
-		model.addAttribute("msg", "게시글이 삭제되었습니다.");
-		model.addAttribute("url","mypage");
-		return "alert/alert";
+	@GetMapping("/board/delete")
+	public String deleteGet(@RequestParam("bid") int bid, Model model) {
+//		System.out.println(bid);
+		service.delete(bid);
+		return "redirect:/board/mypage";
 	}
+	
+//	@PostMapping("/board/delete")
+//	public String delete(Board board, Model model, HttpSession session) {
+//		session.getAttribute("number");
+//		System.out.println(board.getNumber());
+//		service.delete(board.getNumber());
+//		model.addAttribute("msg", "게시글이 삭제되었습니다.");
+//		model.addAttribute("url","mypage");
+//		return "alert/alert";
+//	}
+	
 	
 }
