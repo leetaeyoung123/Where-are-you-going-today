@@ -40,8 +40,8 @@
 							onClick="javascript:this.form.num_people.value++;">
 					</div>
 			</div>
-			<div class="btn_wrap">
-				<input type="submit" onclick="back()" value="뒤로가기" class="prev_btn"> <input
+			<div class="btn_wrap" style="width: 100%;">
+				<input onclick="back()" value="뒤로가기" class="prev_btn" style="text-align: center;"> <input
 					type="submit" value="웨이팅 하기" class="next_btn">
 			</div>
 			</form>
