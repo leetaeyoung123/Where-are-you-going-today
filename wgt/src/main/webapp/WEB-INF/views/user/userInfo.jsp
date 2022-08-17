@@ -36,7 +36,7 @@
 		<div style="margin-left: 47px; padding-top: 20px; font-size: 30px;">전화번호 
 		<input type="text" name="phone" value="${user.phone}" required></div><br>
 		
-		<div><input type="button" onclick="sample6_execDaumPostcode()" class="ubtn" value="우편번호 찾기"></div><br>
+		<div style="text-align: center; padding-bottom: 10px; font-size: 30px;">주소</div>
         <div><input type="text" name="addr1" value="${user.addr1}" id="sample6_postcode" placeholder="우편번호" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;"></div><br>
         <div><input type="text" name="addr2" value="${user.addr2}" id="sample6_address" placeholder="주소" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;"></div><br>
         <div><input type="text" name="addr3" value="${user.addr3}" id="sample6_detailAddress" placeholder="상세주소" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;"></div><br>
