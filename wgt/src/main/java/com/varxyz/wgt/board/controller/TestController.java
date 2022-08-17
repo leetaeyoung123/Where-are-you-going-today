@@ -8,6 +8,7 @@
 //import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestParam;
 //
 //import com.varxyz.wgt.board.domain.Board;
 //import com.varxyz.wgt.board.service.BoardService;
@@ -40,15 +41,24 @@
 //		return "alert/alert";
 //	}
 //	
-//	@PostMapping("/board/delete")
-//	public String delete(Board board, Model model) {
-//		service.delete(board.getNumber(),board.getImgname()); 
-//		List<Board> list = service.search(board.getTitle());
-//		model.addAttribute("list", list);
+//	//게시글 삭제
+//	@GetMapping("/board/delete")
+//	public String deleteGet(@RequestParam("bid") int bid, Model model) {
+//		System.out.println(bid);
+//		service.delete(bid);
 //		model.addAttribute("msg", "게시글 삭제를 완료하였습니다.");
 //		model.addAttribute("url","test");
 //		return "alert/alert";
 //	}
 //	
+////	@PostMapping("/board/delete")
+////	public String delete(Board board, Model model) {
+////		service.delete(board.getNumber()); 
+////		List<Board> list = service.search(board.getTitle());
+////		model.addAttribute("list", list);
+////		model.addAttribute("msg", "게시글 삭제를 완료하였습니다.");
+////		model.addAttribute("url","test");
+////		return "alert/alert";
+////	}
 //
 //}
