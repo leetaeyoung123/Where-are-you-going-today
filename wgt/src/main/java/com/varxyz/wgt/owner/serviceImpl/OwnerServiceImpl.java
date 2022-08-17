@@ -1,6 +1,5 @@
 package com.varxyz.wgt.owner.serviceImpl;
 
-import java.util.List;
 
 import com.varxyz.wgt.owner.doamin.Owner;
 import com.varxyz.wgt.owner.service.OwnerService;

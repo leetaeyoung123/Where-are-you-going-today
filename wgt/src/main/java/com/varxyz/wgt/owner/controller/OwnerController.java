@@ -1,6 +1,5 @@
 package com.varxyz.wgt.owner.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -28,24 +27,25 @@ public class OwnerController {
 	@PostMapping("/addOwner")
 	public String addOwner(Owner owner, Model model) {
 		
-		Owner ownerList = new Owner();
-		ownerList = ownerService.findAllOwner(owner.getOwnerId());
-		System.out.println(ownerService.findAllOwner(owner.getOwnerId()));
+		Owner dbOwner = new Owner();
+		dbOwner = ownerService.findAllOwner(owner.getOwnerId());
 		
-		if(ownerList.getOwnerId().isEmpty()) {
-			model.addAttribute("msg", "중복된 아이디 입니다!!");
-			model.addAttribute("url", "addOwner");
+		// 객체는 null로 비교하면 됨
+		if(dbOwner.getOwnerId() == null) {
+			ownerService.addOwner(owner);
+			OwnerService.context.close();
 			
-			return "error/error";
+			return "owner/successAddOwner";
+			
 		}
 		
-		ownerService.addOwner(owner);
-		OwnerService.context.close();
+		model.addAttribute("msg", "중복된 아이디 입니다!!");
+		model.addAttribute("url", "addOwner");
 		
-		return "owner/successAddOwner";
+		return "error/error";
+		
 	}
 	
-
 	// 점주 정보 가져오기
 	@GetMapping("/modifyOwner") 
 	public String findAllOwnerForm(HttpServletRequest request, HttpSession session, Model model) {

@@ -1,15 +1,13 @@
 package com.varxyz.wgt.owner.dao;
 
-import java.util.List;
-
 import javax.sql.DataSource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.varxyz.wgt.owner.doamin.Owner;
-import com.varxyz.wgt.owner.service.OwnerService;
 
 @Repository("ownerDao")
 public class OwnerDao {
@@ -32,7 +30,13 @@ public class OwnerDao {
 	public Owner findAllOwner(String ownerId) {
 		String sql = "SELECT * FROM Owner WHERE ownerId = ?";
 		
-		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Owner>(Owner.class), ownerId);
+		try {
+			return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Owner>(Owner.class), ownerId);
+		} catch (EmptyResultDataAccessException e) {	
+			Owner owner = new Owner();
+			
+			return owner;	
+		}
 	}
 
 	// 점주정보 수정
