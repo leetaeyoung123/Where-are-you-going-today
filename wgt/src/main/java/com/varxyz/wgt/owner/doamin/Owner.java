@@ -12,6 +12,4 @@ public class Owner {
 	private String passwd;
 	private String name;
 	private String bnumber;
-	private String phone;
-	private String addr;
 }
