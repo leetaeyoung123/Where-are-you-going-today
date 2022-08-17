@@ -1,9 +1,7 @@
 package com.varxyz.wgt.user.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -11,10 +9,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +42,7 @@ public class UserController {
 		System.out.println("파일크기 : " + size);
 		
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\Users\\tjdgh\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img";
+		String uploadFolder = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img";
 		
 		
 		// 고유한 랜덤 문자생성 해서 db와 서버에 저장할 파일명을 새롭게 만들어 주는 코드
@@ -80,7 +76,8 @@ public class UserController {
 		List<User> userList = new ArrayList<User>();
 		userList = userService.inquiryUser(user.getUserId());
 		
-		if(user.getUserId().equals(userList.get(0).getUserId())) {
+		// 리스트일 때는 size로 비교한다
+		if(userList.size() > 0) {
 			model.addAttribute("msg", "중복된 아이디 입니다!!");
 			model.addAttribute("url", "addUser");
 			
@@ -128,7 +125,7 @@ public class UserController {
 		System.out.println("파일크기 : " + size);
 		
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\Users\\tjdgh\\LSH\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img"; 
+		String uploadFolder = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img"; 
 		
 		// 고유한 랜덤 문자생성 해서 db와 서버에 저장할 파일명을 새롭게 만들어 주는 코드
 		UUID uuid = UUID.randomUUID();
@@ -153,10 +150,8 @@ public class UserController {
 		user.setPasswd(request.getParameter("passwd"));
 		user.setName(request.getParameter("name"));
 		user.setSsn(request.getParameter("ssn"));
-		user.setPasswd(request.getParameter("phone"));
-		user.setAddr(request.getParameter("addr"));
-		user.setImgName(request.getParameter("imgName"));
-		System.out.println("2" + request.getParameter("imgName"));
+		user.setPhone(request.getParameter("phone"));
+		user.setAddr(request.getParameter("addr"));	
 		
 		userService.modifyUser(user, uniqueName);
 		

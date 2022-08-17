@@ -23,25 +23,25 @@ private JdbcTemplate jdbcTemplate;
 	
 	// 매장명으로 매장 정보 가져오기
 	public Shop findAllByShopName(String shopName){
-		String sql = "SELECT * FROM shop WHERE SHOP_NAME = ?";
+		String sql = "SELECT * FROM shop WHERE shopName = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), shopName);
 	}
 	
 	// 매장 추가
 	public boolean addShop(Shop shop) {
-		String sql = "INSERT INTO SHOP (BUSINESS_NUMBER, SHOP_NAME, SHOP_TEL, SHOP_POSTCODE, SHOP_ADDRESS, "
-				+ " SHOP_DETAILADDRESS, SHOP_EXTRAADDRESS, SHOP_HOURS, SHOP_TABLES, SHOP_MAX_PEOPLES, SHOP_IMG) "
+		String sql = "INSERT INTO SHOP (businessNumber, shopName, shopTel, shopPostCode, shopAddress, "
+				+ " shopDetailAddress, shopExtraAddress, shopHours, shopTables, shopMaxPeoples, shopImg) "
 				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, shop.getBusinessNumber(), shop.getShopName(), shop.getShopTel(),
 								shop.getShopPostCode(), shop.getShopAddress(), shop.getShopDetailAddress(),
 								shop.getShopExtraAddress(), shop.getShopHours(), shop.getShopTables(), 
-								shop.getShopTables(), shop.getShopImg());
+								shop.getShopMaxPeoples(), shop.getShopImg());
 		return true;
 	}
 	
 	// 메뉴 추가
 	public boolean addMenu(Menu menu) {
-		String sql = "INSERT INTO MENU (BUSINESS_NUMBER, MENU_NAME, MENU_INTRO, MENU_PRICE, MENU_IMG) "
+		String sql = "INSERT INTO MENU (businessNumber, menuName, menuIntro, menuPrice, menuImg) "
 				+ " VALUES(?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, menu.getBusinessNumber(), menu.getMenuName(), menu.getMenuIntro(), 
 								menu.getMenuPrice(), menu.getMenuImg());
@@ -50,25 +50,25 @@ private JdbcTemplate jdbcTemplate;
 	
 	// 사업자 번호로 매장 검색
 	public Shop findShopByBnsNum(String bnsNum) {
-		String sql = "SELECT * FROM shop WHERE BUSINESS_NUMBER = ?";
+		String sql = "SELECT * FROM shop WHERE businessNumber = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), bnsNum);
 	}
 	
 	// 사업자 번호로 매장 메뉴 전체 검색
 	public List<Menu> findShopMenuByBnsNum(String bnsNum) {
-		String sql = "SELECT * FROM menu WHERE BUSINESS_NUMBER = ?";
+		String sql = "SELECT * FROM menu WHERE businessNumber = ?";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(Menu.class), bnsNum);
 	}
 	
 	// 매장 메뉴에 대한 모든 정보 메뉴 이름으로 검색
 	public Menu findMenuByMenuName(String menuName) {
-		String sql = "SELECT * FROM menu WHERE MENU_NAME = ?";
+		String sql = "SELECT * FROM menu WHERE menuName = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Menu>(Menu.class),menuName);
 	}
 	
 	// 매장 메뉴 수정
 	public boolean updateShopMenu(MenuCommand updatedMenu, Menu oldMenu) {
-		String sql = "UPDATE menu SET MENU_NAME=?, MENU_INTRO=?, MENU_PRICE=?, MENU_IMG=? "
+		String sql = "UPDATE menu SET menuName=?, menuIntro=?, menuPrice=?, menuImg=? "
 				+ " WHERE MENU_NAME = ?";
 		jdbcTemplate.update(sql, updatedMenu.getMenuName(), updatedMenu.getMenuIntro(), 
 								 updatedMenu.getMenuPrice(), updatedMenu.getMenuImg(), oldMenu.getMenuName());
@@ -83,7 +83,7 @@ private JdbcTemplate jdbcTemplate;
 	
 	// 매장 메뉴 삭제
 	public boolean deleteShopMenu(String menuName, String menuImg) {
-		String sql ="DELETE FROM menu WHERE MENU_NAME = ?";
+		String sql ="DELETE FROM menu WHERE menuName = ?";
 		jdbcTemplate.update(sql, menuName);
 		File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + menuImg + ".jpg");
 		file.delete();
@@ -97,10 +97,10 @@ private JdbcTemplate jdbcTemplate;
 			file.delete();
 		}
 
-		String sql = "UPDATE shop SET SHOP_TEL=?, SHOP_ADDRESS=?, SHOP_HOURS=?, "
-				+ " SHOP_TABLES=?, SHOP_MAX_PEOPLES=?, SHOP_IMG = ? WHERE BUSINESS_NUMBER = ?";
-		jdbcTemplate.update(sql, shop.getShopTel(), shop.getShopAddress(), shop.getShopHours(),
-								 shop.getShopTables(), shop.getShopMaxPeoples(), shop.getShopImg(), shop.getBusinessNumber());
+		String sql = "UPDATE shop SET shopTel=?, shopPostCode = ?, shopAddress=?, shopDetailAddress=?, shopExtraAddress=? shopHours=?, "
+				+ " shopTables=?, shopMaxPeoples=?, shopImg = ? WHERE businessNumber = ?";
+		jdbcTemplate.update(sql, shop.getShopTel(), shop.getShopPostCode(), shop.getShopAddress(), shop.getShopDetailAddress(), shop.getShopExtraAddress(),
+								 shop.getShopHours(), shop.getShopTables(), shop.getShopMaxPeoples(), shop.getShopImg(), shop.getBusinessNumber());
 		return true;
 	}
 }
