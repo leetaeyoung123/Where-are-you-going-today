@@ -17,7 +17,7 @@ public class SelectShopController {
 	public String viewTempMyShop(Model model, HttpSession session) {
 		session.removeAttribute("tempImgList");
 		
-		model.addAttribute("shop", service.findAllByShopName("돈두댓"));
+		model.addAttribute("shop", service.findShopByBnsNum("123-456-789"));
 		model.addAttribute("menus", service.findShopMenuByBnsNum("123-456-789"));
 		return "shop/view/viewTempMyShop";
 	}
@@ -27,5 +27,12 @@ public class SelectShopController {
 		model.addAttribute("shop", service.findShopByBnsNum("123-456-789"));
 		model.addAttribute("menus", service.findShopMenuByBnsNum("123-456-789"));
 		return "shop/view/viewMyShop";
+	}
+	
+	@GetMapping("shop/viewUserShop")
+	public String viewUserShop(Model model) {
+		model.addAttribute("shop", service.findShopByBnsNum("123-456-789"));
+		model.addAttribute("menus", service.findShopMenuByBnsNum("123-456-789"));
+		return "shop/view/viewUserShop";
 	}
 }
