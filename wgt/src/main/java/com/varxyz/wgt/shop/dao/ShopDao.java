@@ -35,7 +35,7 @@ private JdbcTemplate jdbcTemplate;
 		jdbcTemplate.update(sql, shop.getBusinessNumber(), shop.getShopName(), shop.getShopTel(),
 								shop.getShopPostCode(), shop.getShopAddress(), shop.getShopDetailAddress(),
 								shop.getShopExtraAddress(), shop.getShopHours(), shop.getShopTables(), 
-								shop.getShopTables(), shop.getShopImg());
+								shop.getShopMaxPeoples(), shop.getShopImg());
 		return true;
 	}
 	
