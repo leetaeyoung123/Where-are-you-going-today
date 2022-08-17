@@ -44,7 +44,7 @@
 			<option>주소</option>
 			<option>메뉴</option>
 		</select> <input onkeyup="filter()" id="inputSearch" class="inputtext"
-			type="text" name="name" required>
+			type="text" name="name" value="" required>
 		<%
 		int count = 0;
 		%>
@@ -74,7 +74,6 @@
 				<div id="pagination"></div>
 			</div>
 		</div>
-
 		<input id="count" value="<%=count%>"
 			style="width: 0; height: 0; opacity: 0; cursor: default;" />
 		<button class="searchbtn" value="검색">검색</button>
@@ -94,7 +93,7 @@
 			toggleBtn.addEventListener("click", toggleHandler);
 
 			function filter() {
-
+				
 				var value, name, item, i, background;
 
 				value = document.getElementById("inputSearch").value
@@ -102,22 +101,23 @@
 				item = document.getElementsByClassName("item");
 				background = document.getElementById("menu_wrap")
 
+				
+				
 				for (i = 0; i < item.length; i++) {
 					name = item[i].getElementsByClassName("name")
-					console.log(value.length)
 					if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
 						item[i].style.display = "flex";
 						background.style.opacity = "100";
-						background.style.left = "0"
+						background.style.left = "0";
 					}
 					if (value.length == 0) {
 						item[i].style.display = "none";
 						background.style.opacity = "0";
-						background.style.left = "0"
+						background.style.left = "-270px";
 					}
 				}
-			}
-
+			} 
+			
 			var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 			MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
 			OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
@@ -153,7 +153,7 @@
 			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			var positions = []//좌표값을 받을 배열
 			var content = [] //가게 이름을 받을 배열
-
+			var inputText = []
 			// 지도 위에 마커를 표시합니다
 			for (var i = 0, len = document.getElementById("count").value; i < len; i++) {
 				var gapX = (MARKER_WIDTH), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
@@ -170,12 +170,15 @@
 				content.push('<div class="wrap"><div class="info"><div class="title">'
 								+ document.getElementById("findname" + i).value
 								+ '</div></div></div>');//가게이름을 받아와 배열에 추가
+								
+				inputText.push(document.getElementById("findname" + i).value)
+			
 				// 마커를 생성하고 지도위에 표시합니다
-				addMarker(positions[i], content[i], normalOrigin, overOrigin, clickOrigin);
+				addMarker(positions[i], inputText[i], content[i], normalOrigin, overOrigin, clickOrigin);
 			}
 
 			// 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
-			function addMarker(position, content, normalOrigin, overOrigin, clickOrigin) {
+			function addMarker(position, inputText, content, normalOrigin, overOrigin, clickOrigin) {
 				
 				var markerImage = new kakao.maps.MarkerImage(
 						imageSrc, markerSize), 
@@ -191,19 +194,25 @@
 			           image: markerImage 
 			       });
 			       
-			       var   overlay = new kakao.maps.CustomOverlay({
+			       var overlay = new kakao.maps.CustomOverlay({
 			          content: content,
 			          map: map,
 			          position: position
 			       });
+			       
 
+			       
 			       marker.markerImage = markerImage;
 				// 마커에 click 이벤트를 등록합니다
 				overlay.setMap(null);
 				kakao.maps.event.addListener(marker, 'click', function() {
 					// 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
 					// 마커의 이미지를 클릭 이미지로 변경합니다
-					var count = 0
+						for(var i = 0, len = document.getElementById("count").value; i < len; i++){
+			       			document.getElementById("inputSearch").value = inputText
+							
+						}
+
 					if (!selectedMarker || selectedMarker !== marker) {
 						// 클릭된 마커 객체가 null이 아니면
 						// 클릭된 마커의 이미지를 기본 이미지로 변경하고
@@ -211,13 +220,18 @@
 								&& selectedMarker
 										.setImage(selectedMarker.markerImage);
 						!!selectedContent && selectedContent.setMap(null);
-
+					
+					
 					}
+					//filter()
+					
 					// 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
 					if (marker.markerImage != clickMarker) {
 						marker.setImage(clickMarker)
 						overlay.setMap(map)
+						
 					}
+					
 					// 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
 					selectedMarker = marker;
 					selectedContent = overlay;
@@ -231,8 +245,6 @@
 				})
 
 			}
-
-
 			var geocoder = new kakao.maps.services.Geocoder();
 			geocoder.addressSearch(document.getElementById("inputaddr").value,
 					function(result, status) {
