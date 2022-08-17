@@ -37,9 +37,9 @@ public class OwnerDao {
 
 	// 점주정보 수정
 	public void modifyOwner(Owner owner) {
-		String sql = "UPDATE Owner SET passwd = ?, name = ?, phone = ?, addr = ? WHERE ownerId = ?";
+		String sql = "UPDATE Owner SET passwd = ?, name = ? WHERE ownerId = ?";
 		
-		jdbcTemplate.update(sql, owner.getPasswd(), owner.getName(), owner.getBnumber());
+		jdbcTemplate.update(sql, owner.getPasswd(), owner.getName(), owner.getOwnerId());
 	}
 
 	public void delete(String ownerId) {

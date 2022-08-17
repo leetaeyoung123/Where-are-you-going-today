@@ -30,10 +30,21 @@ public class OwnerController {
 	@PostMapping("/addOwner")
 	public String addOwner(Owner owner, Model model) {
 		
+		List<Owner> ownerList = new ArrayList<Owner>();
+		ownerList = ownerService.findAllOwner(owner.getOwnerId());
+		System.out.println(ownerService.findAllOwner(owner.getOwnerId()));
+		
+		if(ownerList.size() > 0) {
+			model.addAttribute("msg", "중복된 아이디 입니다!!");
+			model.addAttribute("url", "addOwner");
+			
+			return "error/error";
+		}
+		
 		ownerService.addOwner(owner);
 		OwnerService.context.close();
 		
-		return "login/ownerLogin";
+		return "owner/successAddOwner";
 	}
 	
 
