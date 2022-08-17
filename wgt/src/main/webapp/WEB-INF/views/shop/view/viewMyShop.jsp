@@ -20,10 +20,8 @@
       <span class="text" style="color: #DA0037;">가게 번호</span>
       	<input name="shopTel" type="text" class="text readonlyinput" readonly value="${shop.shopTel }"/>
       <span class="text" style="color: #DA0037;">가게 주소</span>
-      	<input type="text" name="shop_address1" id="sample6_postcode" class="text input_box" value="${shop.shopPostCode }" readonly>
-		<input type="text" name="shop_address2" id="sample6_address" class="text input_box" value="${shop.shopAddress }" readonly>
-		<input type="text" name="shop_address3" id="sample6_detailAddress" class="text input_box" value="${shop.shopDetailAddress }" readonly>
-		<input type="text" name="shop_address4" id="sample6_extraAddress" class="text input_box" value="${shop.shopExtraAddress }" readonly>
+      	<p id="sample6_address" class="text" >${shop.shopAddress } ${shop.shopDetailAddress} ${shop.shopExtraAddress}</p>
+      	<p id="sample6_postcode" class="text" >${shop.shopPostCode }</p>
       <span class="text" style="color: #DA0037;">영업 시간</span>
       	<input name="shopHours" type="text" class="text readonlyinput" readonly value="${shop.shopHours }"/>
       <span class="text" style="color: #DA0037;">가게 테이블 보유 수</span>

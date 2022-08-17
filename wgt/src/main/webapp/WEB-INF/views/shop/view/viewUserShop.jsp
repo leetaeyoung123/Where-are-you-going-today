@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../resources/shopStyle.css">
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
-<title>가게 등록 성공</title>
+<title>가게 정보</title>
 </head>
   <body style="background: #DA0037;">
     <div id="wrap">
@@ -45,7 +45,11 @@
               </tr>
       	</c:forEach>
       </table>
-      <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../map/map'">홈으로 돌아가기</button>
+      <div class="btn_wrap">
+        <input type="button" value="뒤로가기" onclick="location.href='../map/map'" class="prev_btn">
+        <input type="button" style="background: salmon;" value="웨이팅하기" class="next_btn">
+      </div>
+      <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='#'">지금 우리는 🤭</button>
     </div>
   </body>
 </html>
