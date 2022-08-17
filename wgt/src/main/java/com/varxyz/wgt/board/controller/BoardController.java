@@ -3,6 +3,8 @@ package com.varxyz.wgt.board.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,15 +26,10 @@ public class BoardController {
 	}
 
 	@PostMapping("/board/home")
-	public String post(Board board, Model model) {
+	public String search(Board board, Model model) {
 		List<Board> list = service.search(board.getTitle());
 		model.addAttribute("list", list);
 		return "board/search";
-	}
-	
-	@PostMapping("/board/write")
-	public String write(Model model) {
-		return "board/write";
 	}
 	
 	// 검색 화면
@@ -42,9 +39,10 @@ public class BoardController {
 	}
 
 	@PostMapping("/board/search")
-	public String getsearchlist(Board board, Model model) {
+	public String getsearchlist(Board board, Model model, HttpSession session) {
 		List<Board> list = service.search(board.getTitle());
 		model.addAttribute("list", list);
+		session.invalidate();
 		return "board/search";
 	}
 

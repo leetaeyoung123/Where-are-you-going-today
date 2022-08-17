@@ -35,7 +35,10 @@ public class UpdateShopController {
 		shop.setBusinessNumber(request.getParameter("businessNumber"));
 		shop.setShopName(request.getParameter("shopName"));
 		shop.setShopTel(request.getParameter("shopTel"));
-		shop.setShopAddress(request.getParameter("shopAddress"));
+		shop.setShopPostCode(request.getParameter("shop_address1"));
+		shop.setShopAddress(request.getParameter("shop_address2"));
+		shop.setShopDetailAddress(request.getParameter("shop_address3"));
+		shop.setShopExtraAddress(request.getParameter("shop_address4"));
 		shop.setShopHours(request.getParameter("shopHours"));
 		shop.setShopTables(request.getParameter("shopTables"));
 		shop.setShopMaxPeoples(request.getParameter("shopMaxPeoples"));
@@ -62,6 +65,7 @@ public class UpdateShopController {
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
 		
 		// resources에 shop_image 폴더 절대 경로 입력 String uploadFolder = "";  
+		
 		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_Img";
 		
 		/*

@@ -1,9 +1,7 @@
 package com.varxyz.wgt.user.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -11,10 +9,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,7 +76,8 @@ public class UserController {
 		List<User> userList = new ArrayList<User>();
 		userList = userService.inquiryUser(user.getUserId());
 		
-		if(user.getUserId().equals(userList.get(0).getUserId())) {
+		// 리스트일 때는 size로 비교한다
+		if(userList.size() > 0) {
 			model.addAttribute("msg", "중복된 아이디 입니다!!");
 			model.addAttribute("url", "addUser");
 			
@@ -153,10 +150,8 @@ public class UserController {
 		user.setPasswd(request.getParameter("passwd"));
 		user.setName(request.getParameter("name"));
 		user.setSsn(request.getParameter("ssn"));
-		user.setPasswd(request.getParameter("phone"));
-		user.setAddr(request.getParameter("addr"));
-		user.setImgName(request.getParameter("imgName"));
-		System.out.println("2" + request.getParameter("imgName"));
+		user.setPhone(request.getParameter("phone"));
+		user.setAddr(request.getParameter("addr"));	
 		
 		userService.modifyUser(user, uniqueName);
 		

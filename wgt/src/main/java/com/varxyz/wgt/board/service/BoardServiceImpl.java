@@ -38,16 +38,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<Board> search(String title) {
-		return dao.seasrch(title);
+		return dao.search(title);
 	}
 
 	@Override
 	public Integer totalCount() throws Exception {
-		return null;
-	}
-
-	@Override
-	public Board read(Integer number) {
 		return null;
 	}
 

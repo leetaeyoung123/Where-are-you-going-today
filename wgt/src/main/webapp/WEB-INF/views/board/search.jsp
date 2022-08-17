@@ -29,8 +29,8 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 </head>
 <body>
 
-	<form action="search" method="get">
-		<header class="headerContainer">
+	<header class="headerContainer">
+		<form action="search" method="post">
 			<!--상단 탭 만들기 뼈대구조-->
 			<div class="headerContents">
 				<!--상단 탭 내용물 감싼구조-->
@@ -45,7 +45,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						type="submit" value="검색" style="display: none;">
 				</div>
 			</div>
-	</form>
+		</form>
 	</header>
 	<div class="mypage">
 		<a href="mypage"><img id="user"
@@ -56,11 +56,10 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	<div class="body1">
 		<div class="feedReactionButton">
 			<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
-			<div class="boardarea">
-				1
+			<div class="boardarea" style="margin-top: 20px;">
 				<c:forEach var="item" items="${list}">
-					${item.title}
 						<div class="write" style="margin-bottom: 30px;">
+				 	<p style="position:relative; margin-bottom:7px;">[No.${item.number}] ${item.title}</p>
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
 							style="width: 370px; height: 330px"><br>
 						<div class="emptyheart">

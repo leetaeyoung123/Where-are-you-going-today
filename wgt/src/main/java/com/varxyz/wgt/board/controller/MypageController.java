@@ -23,10 +23,11 @@ public class MypageController {
 	
 	// 회원정보 가져오기
 	@GetMapping("/board/mypage")
-	public String postForm(HttpSession session, Model model) {
+	public String postForm(HttpSession session, Model model, Board board) {
 		List<User> userList = userService.inquiryUser((String)session.getAttribute("userId"));
-		System.out.println(session.getAttribute("userId"));
+//		System.out.println(session.getAttribute("userId"));
 		model.addAttribute("userList", userList);
+		model.addAttribute("board", service.read(board));
 		return "/board/mypage";
 	}
 	
@@ -41,11 +42,11 @@ public class MypageController {
 	
 	@PostMapping("/board/delete")
 	public String delete(Board board, Model model) {
-		//board.getNumber 자리에 게시글 번호 받아온거 넣으면 되염
-//		service.delete(board.getNumber()); 
-		model.addAttribute("Board", board);
+		service.delete(board.getNumber()); 
+		List<Board> list = service.search(board.getTitle());
+		model.addAttribute("list", list);
 		model.addAttribute("msg", "게시글 삭제를 완료하였습니다.");
-		model.addAttribute("url","home");
+		model.addAttribute("url","mypage");
 		return "alert/alert";
 	}
 	

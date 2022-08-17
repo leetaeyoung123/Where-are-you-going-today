@@ -33,24 +33,25 @@ public class UserDao {
 	// 회원 조회
 	public List<User> inquiryUser(String userId) {
 		String sql = "SELECT * FROM User WHERE userId = ?";
-		// isEmpty : 문자열의 길이가 0인 경우 (맞으면 true, 틀리면 false 반환);
-		if( jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), userId).isEmpty() ) {
-			List<User> userList = new ArrayList<User>();
-			User user = new User();
-			user.setUserId(""); // 유저에다가 "" 빈값을 넣어줌
-			userList.add(user);	// 그리고 리스트에다가 추가
-			userList.add(imgName);
-			return userList;
-		}
+		
+//		// isEmpty : 문자열의 길이가 0인 경우 (맞으면 true, 틀리면 false 반환);
+//		if( jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), userId).isEmpty() ) {
+//			List<User> userList = new ArrayList<User>();
+//			User user = new User();
+//			user.setUserId(""); // 유저에다가 "" 빈값을 넣어줌
+//			userList.add(user);	// 그리고 리스트에다가 추가
+//			userList.add(imgName);
+//			return userList;
+//		}
 		
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), userId);
 	}
 	
 	// 회원정보 수정
 	public void modifyUser(User user, String imgName) {
-		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr = ?, imgName = ? WHERE userId = ?";
-		
-		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr(), user.getUserId(), imgName);
+		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr = ?, imgName = ? WHERE  userId = ?";
+
+		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr(), imgName, user.getUserId());
 		
 	}
 	
