@@ -1,6 +1,5 @@
 package com.varxyz.wgt.owner.serviceImpl;
 
-import java.util.List;
 
 import com.varxyz.wgt.owner.doamin.Owner;
 import com.varxyz.wgt.owner.service.OwnerService;
@@ -15,7 +14,7 @@ public class OwnerServiceImpl implements OwnerService {
 
 	// 점주조회
 	@Override
-	public List<Owner> findAllOwner(String ownerId) {
+	public Owner findAllOwner(String ownerId) {
 		return ownerDao.findAllOwner(ownerId);
 	}
 

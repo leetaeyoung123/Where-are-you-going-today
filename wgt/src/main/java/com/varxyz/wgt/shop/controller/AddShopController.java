@@ -33,6 +33,14 @@ public class AddShopController {
 		return "shop/addShop";
 	}
 	
+	@GetMapping("/add_shop2")
+	public String addShop2(Model model) {
+		
+		model.addAttribute("msg", "잘못된 접근입니다.");
+		
+		return "alert/back";
+	}
+	
 	// 첫번째 폼 작성 후 두번째 폼 이동
 	@PostMapping("/add_shop2")
 	public String addShop2Form(@RequestParam("bns_num") String bnsNum,
@@ -50,6 +58,14 @@ public class AddShopController {
 		shop.setShopExtraAddress(shopExtraAddress);
 		
 		return "shop/addShop2";
+	}
+	
+	@GetMapping("/add_shop3")
+	public String addShop3(Model model) {
+		
+		model.addAttribute("msg", "잘못된 접근입니다.");
+		
+		return "alert/back";
 	}
 	
 	// 두번째 폼 작성 후 세번째 폼 이동
@@ -76,9 +92,8 @@ public class AddShopController {
 		// 사용자가 이미지를 업로드 하지 않았을 경우 예외 처리
 		if (fileRealName == null || fileRealName.length() == 0) {
 
-			model.addAttribute("msg","메뉴 사진을 등록해주세요!");
-			model.addAttribute("url","add_shop3");
-			return "alert/alert";
+			model.addAttribute("msg","가게 사진을 등록해주세요!");
+			return "alert/back";
 			
 		}
 		
@@ -128,8 +143,11 @@ public class AddShopController {
 	}
 	
 	@GetMapping("/add_shop4")
-	public String addShop4Go() {
-		return "shop/addShop4";
+	public String addShop4(Model model) {
+		
+		model.addAttribute("msg", "잘못된 접근입니다.");
+		
+		return "alert/back";
 	}
 	
 	@GetMapping("add_shop5")
@@ -137,8 +155,7 @@ public class AddShopController {
 		if (menuList.size() == 0) {
 			
 			model.addAttribute("msg", "최소 1개 이상의 메뉴가 등록되어야 합니다!");
-			model.addAttribute("url", "add_shop4");
-			return "alert/alert";
+			return "alert/back";
 		}
 		
 		ShopService service = new ShopServiceImpl();
@@ -199,8 +216,7 @@ public class AddShopController {
 		if (fileRealName == null || fileRealName.length() == 0) {
 			menuList.add(menu);
 			model.addAttribute("msg","메뉴 사진을 등록해주세요!");
-			model.addAttribute("url","add_shop4");
-			return "alert/alert";
+			return "alert/back";
 		}
 		
 		System.out.println("파일명 : " + fileRealName);
@@ -231,7 +247,7 @@ public class AddShopController {
 		System.out.println("생성된 고유 문자열 : " + uniqueName );
 		// 등록 도중 등록 취소시 map/map으로 이동 후에 temp에 올렸던 것들 전부 삭제를 위한 세션 생성
 		tempImgList.add(uniqueName);
-		session.setAttribute("tempImgList", tempImgList) ;
+		session.setAttribute("tempImgList", tempImgList);
 		menu.setMenuImg(uniqueName);
 		System.out.println("확장자명 : " + fileExtension);
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
