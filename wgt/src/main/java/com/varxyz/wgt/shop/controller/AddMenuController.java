@@ -21,10 +21,12 @@ import com.varxyz.wgt.shop.service.ShopServiceImpl;
 public class AddMenuController {
 	
 	ShopService service = new ShopServiceImpl();
+
 	
 	@GetMapping("shop/addMenu")
-	public String addMenuGo(Model model) {
-		if(service.findShopMenuByBnsNum("123-456-789").size() > 9) {
+	public String addMenuGo(Model model, HttpSession session) {
+		String bNum = (String)session.getAttribute("bNum");
+		if(service.findShopMenuByBnsNum(bNum).size() > 9) {
 			model.addAttribute("msg", "메뉴 등록은 최대 10개 까지만 가능합니다.");
 			model.addAttribute("url", "viewMyShop");
 			return "alert/alert";
@@ -39,7 +41,8 @@ public class AddMenuController {
 							  @RequestParam("menu_price") int price, 
 							  @RequestParam("menu_intro") String menuIntro,
 							  Model model, HttpSession session){
-		if(service.findShopMenuByBnsNum("123-456-789").size() > 9) {
+		String bNum = (String)session.getAttribute("bNum");
+		if(service.findShopMenuByBnsNum(bNum).size() > 9) {
 			model.addAttribute("msg", "메뉴 등록은 최대 10개 까지만 가능합니다.");
 			model.addAttribute("url", "viewMyShop");
 			return "alert/alert";
@@ -47,7 +50,7 @@ public class AddMenuController {
 		
 		Menu menu = new Menu();
 		
-		menu.setBusinessNumber("123-456-789");
+		menu.setBusinessNumber(bNum);
 		menu.setMenuName(menuName);
 		menu.setMenuPrice(price);
 		menu.setMenuIntro(menuIntro);

@@ -25,7 +25,8 @@ public class UpdateMenuController {
 	
 	@GetMapping("shop/updateMenu")
 	public String updateMenuGo(Menu menu, Model model, HttpSession session) {
-		menu.setBusinessNumber("123-456-789");
+		String bNumber = (String)session.getAttribute("bNumber");
+		menu.setBusinessNumber(bNumber);
 		model.addAttribute("menu", menu);
 		session.setAttribute("oldMenu", menu);
 		return "shop/view/updateMenu";
@@ -33,14 +34,24 @@ public class UpdateMenuController {
 	
 	@PostMapping("shop/updateMenu" )
 	public String updateMenuForm(@RequestParam("menuName") String name,
-								 @RequestParam("menuPrice") int price,
+								 @RequestParam("menuPrice") String price,
 								 @RequestParam("menuIntro") String intro,
 								 @RequestParam("menuImg") MultipartFile file,
 								 Model model, HttpSession session) {
 		MenuCommand menuCommand = new MenuCommand();
 		
+		// 빈값 입력시 예외 처리
+		if(name.trim().isEmpty() ||
+		   price.trim().isEmpty() ||
+		   intro.trim().isEmpty()) {
+			
+			model.addAttribute("msg", "빈값은 입력하실 수 없습니다!");
+			
+			return "alert/back";
+		}
+		
 		menuCommand.setMenuName(name);
-		menuCommand.setMenuPrice(price);
+		menuCommand.setMenuPrice(Integer.parseInt(price));
 		menuCommand.setMenuIntro(intro);
 		
 		String fileRealName = file.getOriginalFilename(); // 실제 파일 명을 알수있는 메소드
