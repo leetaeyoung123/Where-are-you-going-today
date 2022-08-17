@@ -14,6 +14,6 @@
 
 <body>
 	<div style="padding-top: 200px; font-size: 70px; text-align: center; padding-bottom: 150px;">회원가입이<br> 완료 되었습니다.</div>
-	<button type="button" class="btn" onclick="location.href='login';">로그인 페이지로</button>
+	<button type="button" class="btn" onclick="location.href='ownerLogin';">로그인 페이지로</button>
 </body>
 </html>
