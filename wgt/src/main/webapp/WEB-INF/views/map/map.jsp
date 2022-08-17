@@ -98,28 +98,33 @@
 			function filter() {
 				
 				var value, name, item, i, background;
-
+				
+				var filterCount = 0
+				
 				value = document.getElementById("inputSearch").value
 						.toUpperCase();
 				item = document.getElementsByClassName("item");
 				background = document.getElementById("menu_wrap")
 
 				
-				
 				for (i = 0; i < item.length; i++) {
 					name = item[i].getElementsByClassName("name")
+					
 					if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
 						item[i].style.display = "flex";
 						background.style.opacity = "100";
 						background.style.left = "0";
+					}else{
+						item[i].style.display = "none";
 					}
+					
 					if (value.length == 0) {
 						item[i].style.display = "none";
 						background.style.opacity = "0";
 						background.style.left = "-270px";
 					}
 				}
-			} 
+			}
 			
 			var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 			MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
@@ -215,7 +220,8 @@
 			       			document.getElementById("inputSearch").value = inputText
 							
 						}
-
+						
+						
 					if (!selectedMarker || selectedMarker !== marker) {
 						// 클릭된 마커 객체가 null이 아니면
 						// 클릭된 마커의 이미지를 기본 이미지로 변경하고
@@ -226,7 +232,8 @@
 					
 					
 					}
-					//filter()
+					filter()
+
 					
 					// 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
 					if (marker.markerImage != clickMarker) {
@@ -238,6 +245,7 @@
 					// 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
 					selectedMarker = marker;
 					selectedContent = overlay;
+					
 				});
 
 				kakao.maps.event.addListener(map, 'click', function() {
@@ -246,7 +254,6 @@
 						marker.setImage(markerImage)
 					}
 				})
-
 			}
 			var geocoder = new kakao.maps.services.Geocoder();
 			geocoder.addressSearch(document.getElementById("inputaddr").value,
