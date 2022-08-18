@@ -67,7 +67,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 				<c:forEach var="item" items="${board}">
 					<div class="write" style="margin-bottom: 30px;">
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
-							style="width: 370px; height: 330px"><br>
+							style="width: 370px; height: 330px; border-radius:5px;"><br>
 						<div class="emptyheart">
 							<a class="likebtn"
 								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
