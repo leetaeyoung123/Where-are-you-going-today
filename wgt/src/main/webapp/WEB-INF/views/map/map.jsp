@@ -23,12 +23,7 @@
 
 		}
 	</script>
-
-	<a class="back" href="<c:url value='/login'/>"><img
-		src="../resources/mapcss/img/backicon.png"></a>
-	<input id="inputaddr" value="${addr}" />
-	<a class="userInformation"> <span></span>
-	</a>
+	<input id="inputaddr" value="${addr}" style="display:none;"/>
 	<nav id=gnb>
 		<ul>
 			<li class="sub1"><span>${userId}님, 반가워요 !</span></li>
@@ -43,15 +38,21 @@
 		</ul>
 	</nav>
 	<form class="header_form" action="map" method="post">
-		<br> <select class="selectbox">
+	<ul class=headerMenu>
+	<li><a class="back" href="<c:url value='/login'/>"><img
+		src="../resources/mapcss/img/backicon.png"></a></li>	
+		<li><select class="selectbox">
 			<option>주소</option>
 			<option>메뉴</option>
-		</select> <input onkeyup="filter()" id="inputSearch" class="inputtext"
-			type="text" name="name" value="" required>
+		</select> </li>
+		<li><input onkeyup="filter()" id="inputSearch" class="inputtext"
+			type="text" name="name" value="" required></li>
+		<li><a class="userInformation"> <span></span></a></li>
+	</ul>
 		<%
 		int count = 0;
 		%>
-		<div id="map" style="width: 370px; height: 700px; margin-left: 10px;"></div>
+		<div id="map" onclick="filter()" style="width: 370px; height: 790px; margin-left: 10px;"></div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
 		<div class="map_wrap">
@@ -62,45 +63,50 @@
 						<div class="item" style="display: none;">
 							<input id="findname${status.index}" value="${shop.name}"
 								onclick="inputText"
-								style="width: 0; height: 0; opacity: 0; cursor: default;" /> <span
-								class="name">${shop.name}</span> <input
-								id="longitude${status.index}" value="${shop.longitude}"
-								style="width: 0; height: 0; opacity: 0; cursor: default;" /> <input
-								id="latitude${status.index}" value="${shop.latitude}"
-								style="width: 0; height: 0; opacity: 0; cursor: default;" />
+								style="display:none;" />
+								 <span class="name">${shop.name}</span> 
+								 <input id="longitude${status.index}" value="${shop.longitude}"
+								style="display:none;" /> 
+								<input id="latitude${status.index}" value="${shop.latitude}"
+								style="display:none;" />
 						</div>
 						<%
 						count++;
 						%>
 					</c:forEach>
 				</ul>
-				<div id="pagination"></div>
 			</div>
 		</div>
 		<input id="count" value="<%=count%>"
-			style="width: 0; height: 0; opacity: 0; cursor: default;" />
-		<button class="searchbtn" value="검색">검색</button>
+			style="display:none;"/>
+
 		<script>
+			const count = document.getElementById("count").value
 			const toggleBtn = document.querySelector(".userInformation")
 			const gnbBtn = document.querySelector("#gnb")
 			const bodytoggle = document.querySelector(".header_form")
-			const listBtn = document.querySelector("#menu_wrap")
 			const searchbtn = document.querySelector(".searchbtn")
+			
+			const filterClose = document.querySelector("#menu_wrap")
+			var mapClick = document.getElementById('map')
 
+			
 			function toggleHandler() {
 				toggleBtn.classList.toggle("open")
 				gnbBtn.classList.toggle("on")
 				bodytoggle.classList.toggle("on")
 			}
-
+			
+			function filterEvent() {
+				filterClose.style.opacity = 0;
+			}
+			
+			mapClick.addEventListener("click", filterEvent)
 			toggleBtn.addEventListener("click", toggleHandler);
-
+				
 			function filter() {
-				
+						
 				var value, name, item, i, background;
-				
-				var filterCount = 0
-				
 				value = document.getElementById("inputSearch").value
 						.toUpperCase();
 				item = document.getElementsByClassName("item");
@@ -118,6 +124,7 @@
 						item[i].style.display = "none";
 					}
 					
+					
 					if (value.length == 0) {
 						item[i].style.display = "none";
 						background.style.opacity = "0";
@@ -125,7 +132,7 @@
 					}
 				}
 			}
-			
+
 			var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 			MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
 			OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
@@ -184,7 +191,6 @@
 				// 마커를 생성하고 지도위에 표시합니다
 				addMarker(positions[i], inputText[i], content[i], normalOrigin, overOrigin, clickOrigin);
 			}
-
 			// 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
 			function addMarker(position, inputText, content, normalOrigin, overOrigin, clickOrigin) {
 				
@@ -207,9 +213,7 @@
 			          map: map,
 			          position: position
 			       });
-			       
-
-			       
+			       	       
 			       marker.markerImage = markerImage;
 				// 마커에 click 이벤트를 등록합니다
 				overlay.setMap(null);
@@ -228,13 +232,10 @@
 						!!selectedMarker
 								&& selectedMarker
 										.setImage(selectedMarker.markerImage);
-						!!selectedContent && selectedContent.setMap(null);
-					
-					
+						!!selectedContent && selectedContent.setMap(null);	
 					}
 					filter()
 
-					
 					// 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
 					if (marker.markerImage != clickMarker) {
 						marker.setImage(clickMarker)
@@ -270,9 +271,6 @@
 						}
 					});
 		</script>
-		<div class="bottomShop"></div>
-
-
 	</form>
 </body>
 </html>

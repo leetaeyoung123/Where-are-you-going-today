@@ -31,11 +31,17 @@ li {
 	list-style: none;
 }
 
-#inputaddr, #autoName {
-	width: 0;
-	height: 0;
-	opacity: 0;
-	cursor: default;
+.headerMenu{
+	overflow: hidden;
+    position: relative;
+    float: left;
+}
+
+.headerMenu li {
+	 position: relative;
+	 float: left;
+	 margin-top: 35px;
+	 margin-bottom: 3px;
 }
 
 .header_form {
@@ -47,7 +53,7 @@ li {
 }
 
 .back img {
-	margin-top: 5px;
+	margin-top: 2px;
 	margin-left: 5px;
 	width: 30px;
 	height: 30px;
@@ -55,15 +61,15 @@ li {
 }
 
 .userInformation {
-	margin-left: 306px;
-	position: fixed;
-	top: 8px;
-	width: 24px;
-	height: 24px;
-	overflow: hidden;
-	text-indent: 999px;
-	cursor: pointer;
-	z-index: 999;
+    position: fixed;
+    top: 10px;
+    left: 345px;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    text-indent: 999px;
+    cursor: pointer;
+    z-index: 999;
 }
 
 .userInformation .openbody {
@@ -136,9 +142,11 @@ li {
 }
 
 #gnb {
+	margin-left: 177px;
+    margin-top: 80px;
 	position: fixed;
 	margin-left: 100%;
-	z-index: 1000;
+	z-index: 998;
 	background: #ffffff;
 	width: 223px;
 	border: 3px solid #DA0037;
@@ -152,7 +160,8 @@ li {
 }
 
 #gnb.on {
-	margin-left: 156px;
+	margin-left: 177px;
+    margin-top: 80px;
 }
 
 .selectbox {
@@ -163,20 +172,20 @@ li {
 	border: 2px solid #DA0037;
 	width: 60px;
 	height: 35px;
-	margin: 10px 0 10px 10px;
+	margin-right: 5px;
 	text-align: center;
 	z-index: 99;
 }
 
 .inputtext {
 	font-family: 'KOTRAHOPE';
-	font-size: 20px;
-	padding: 0 8px 0 8px;
-	border-radius: 10px;
-	border: 2px solid #DA0037;
-	display: inline-block;
-	width: 287px;
-	height: 30px;
+    font-size: 20px;
+    padding: 0 8px 0 8px;
+    border-radius: 10px;
+    border: 2px solid #DA0037;
+    display: inline-block;
+    width: 210px;
+    height: 30px;
 }
 
 .searchbtn {
