@@ -103,4 +103,10 @@ private JdbcTemplate jdbcTemplate;
 								 shop.getShopHours(), shop.getShopTables(), shop.getShopMaxPeoples(), shop.getShopImg(), shop.getBusinessNumber());
 		return true;
 	}
+	
+	// 모든 매장 정보 불러오기
+	public List<Shop> findAllShop() {
+		String sql ="SELECT * FROM shop";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Shop>(Shop.class));
+	}
 }

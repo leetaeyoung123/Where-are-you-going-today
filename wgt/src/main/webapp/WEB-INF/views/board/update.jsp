@@ -6,20 +6,13 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
-<title>게시판 - 글쓰기</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
-<link rel="stylesheet" type="text/css"
-	href="../resources/board/write.css">
-<link rel="stylesheet" type="text/css"
-	href="../resources/board/home.css">
-<link
-	href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
+<title>게시판 - 글 수정</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
+<link rel="stylesheet" type="text/css" href="../resources/board/write.css">
+<link rel="stylesheet" type="text/css" href="../resources/board/home.css">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 <body>
 	<header class="headerContainer">
@@ -46,21 +39,23 @@
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;"></a>
 	</div>
-	<h3 style="text-align: center; margin-top: 30px;">게시글 작성</h3>
+	<h3 style="text-align: center; margin-top: 35px;">게시글 수정</h3>
 	<div class="write_area">
-		<form action="write" method="post" enctype="multipart/form-data"
+		<form action="update" method="get" enctype="multipart/form-data"
 			style="text-align: center; display: grid; justify-content: center; margin-top: 40px;">
-			<span style="font-size: 20px;">제목</span>
-			<textarea class="title_area" name="title" required="required"
-				maxlength="30" placeholder=" 제목을 입력하세요(최대 30자)"></textarea>
-			<span style="font-size: 20px;">내용</span>
-			<textarea class="content_area" name="content" required
-				maxlength="120" placeholder=" 내용을 입력하세요(최대 120자)"></textarea>
+			<span>제목</span>
+			<c:forEach var="item" items="${board}"> 
+			<input type="text" class="title_area" name="title" required="required" value="${item.title}"
+				maxlength="50"></input>
+			</c:forEach>
+			<span>내용</span>
+			<textarea class="content_area" name="content" required="required"
+				maxlength="150"></textarea>
 			사진 선택 : <span><input type="file" accept=".jpg" name="file"
 				required="required"><br></span> <input type="submit"
-				class="add" value="등록" required><br>
+				class="update" value="수정" required="required"><br>
 		</form>
-		<button class="go_home" onclick="location.href='home'">목록으로</button>
+		<button class="go_home" onclick="location.href='mypage'">목록으로</button>
 	</div>
 
 </body>

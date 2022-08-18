@@ -27,8 +27,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void update(Board board) {
-		dao.update(board);
+	public void update(Board board, String imgname) {
+		dao.update(board, imgname);
 	}
 
 	@Override
@@ -44,6 +44,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Integer totalCount() throws Exception {
 		return null;
+	}
+
+	@Override
+	public Board searchByBid(int bid) {
+		return dao.searchByBid(bid);
 	}
 
 	
