@@ -76,7 +76,7 @@ public class AddMenuController {
 		
 		// resources에 temp 폴더 절대 경로 입력 String uploadFolder = "";  
 		// 점주가 등록 취소 할 수 있기때문에 우선은 temp폴더에 임시 저장
-		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img";
+		String uploadFolder = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img";
 		
 		// 집 경로
 //		String uploadFolder = "C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp";
