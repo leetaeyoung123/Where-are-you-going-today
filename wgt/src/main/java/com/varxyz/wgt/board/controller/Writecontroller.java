@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
 
+import javax.naming.SizeLimitExceededException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +35,8 @@ public class Writecontroller {
 	public String post(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model, HttpSession session) {
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일사이즈
-		
 		Board board = new Board();
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
 		
 		System.out.println("파일명 : "  + fileRealName);
@@ -53,14 +55,14 @@ public class Writecontroller {
 		System.out.println("확장자명 : " + fileExtension);
 		// File saveFile = new File(uploadFolder+"\\"+fileRealName); uuid 적용 전
 		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); // 적용 후
-
+		
 		try {
 			file.transferTo(saveFile); // 실제 파일 저장메소드(filewriter 작업을 손쉽게 한방에 처리해준다.
-
 		}catch (IllegalStateException e) {
 			e.printStackTrace();
 		}catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("용량 초과로 인한 오류");
 		}
 		
 		board.setTitle(request.getParameter("title"));

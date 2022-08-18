@@ -108,7 +108,7 @@ public class MypageController {
         // 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
         if(file.exists()) {
             // 파일을 삭제합니다.
-//        	session.removeAttribute(imgname);
+        	session.removeAttribute(imgname);
             file.delete(); 
             System.out.println("파일을 삭제하였습니다.");
         } else {
