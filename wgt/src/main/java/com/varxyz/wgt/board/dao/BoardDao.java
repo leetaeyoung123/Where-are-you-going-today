@@ -32,9 +32,9 @@ public class BoardDao {
 	}
 	
 	//게시글 수정
-	public void update(Board board) {
-		String sql = "UPDATE Board SET title = ?, content = ?, imgname =? WHERE userId = ?";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname(), board);
+	public void update(Board board, String imgname) { //3가지 방법, request.getparameter / Board board / Requestparam
+		String sql = "UPDATE Board SET title = ?, content = ?, imgname =? WHERE number = ?";
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
 	}
 
 	//게시글 삭제
@@ -46,12 +46,12 @@ public class BoardDao {
 	}
 	
 	//ID로 게시글 찾기
-	public List<Board> findByuserId(String userId) {
-		String sql = "SELECT * FROM Board WHERE userId = ?";
-		List<Board> list = new ArrayList<>();
-		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
-		return list;
-	}
+//	public List<Board> findByuserId(String userId) {
+//		String sql = "SELECT * FROM Board WHERE userId = ?";
+//		List<Board> list = new ArrayList<>();
+//		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
+//		return list;
+//	}
 	
 	//제목으로 게시글 찾기
 	public List<Board> search(String title) {
@@ -59,9 +59,9 @@ public class BoardDao {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 	}
 	
-	//내용으로 찾기
-//	public List<Board> search2(String content) {
-//		String sql = "SELECT * FROM Board WHERE content like '%" + content + "%' ";
-//		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
-//	}
+	//고유번호로 게시물 정보 갖고오기
+	public Board searchByBid(int bid) {
+		String sql = "SELECT * FROM Board WHERE number = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Board>(Board.class), bid);
+	}//query = list<object>로 반환  queryforobject = 객체로만 반환
 }
