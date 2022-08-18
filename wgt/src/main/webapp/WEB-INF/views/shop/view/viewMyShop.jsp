@@ -14,22 +14,22 @@
       <div style="width: 90%; height: 100%; background: white; margin-top: 30px; padding: 20px; box-shadow: 0 15px black; border-radius: 30px;">
       <form method="get" action="updateShop" class="flexForm" >
       <span class="text" style="color: #DA0037;">가게 사업자 번호</span>
-        <input name="businessNumber"  type="text" class="text readonlyinput" readonly value="${shop.businessNumber }"/>
+        <input name="businessNumber"  type="text" class="text readonlyinput input_box2" readonly value="${shop.businessNumber }"/>
       <span class="text" style="color: #DA0037;">가게 이름</span>
-	    <input name="shopName" type="text" class="text readonlyinput" readonly value="${shop.shopName }"/>
+	    <input name="shopName" type="text" class="text readonlyinput input_box2" readonly value="${shop.shopName }"/>
       <span class="text" style="color: #DA0037;">가게 번호</span>
-      	<input name="shopTel" type="text" class="text readonlyinput" readonly value="${shop.shopTel }"/>
+      	<input name="shopTel" type="text" class="text readonlyinput input_box2" readonly value="${shop.shopTel }"/>
       <span class="text" style="color: #DA0037;">가게 주소</span>
-      	<input type="text" name="shopPostCode" id="sample6_postcode" class="text input_box" value="${shop.shopPostCode }" readonly>
-		<input type="text" name="shopAddress" id="sample6_address" class="text input_box" value="${shop.shopAddress }" readonly>
-		<input type="text" name="shopDetailAddress" id="sample6_detailAddress" class="text input_box" value="${shop.shopDetailAddress }" readonly>
-		<input type="text" name="shopExtraAddress" id="sample6_extraAddress" class="text input_box" value="${shop.shopExtraAddress }" readonly>
+      	<input type="text" name="shopPostCode" id="sample6_postcode" class="text input_box2" value="${shop.shopPostCode }" readonly style="width:100%;">
+		<input type="text" name="shopAddress" id="sample6_address" class="text input_box2" value="${shop.shopAddress }" readonly style="width:100%;">
+		<input type="text" name="shopDetailAddress" id="sample6_detailAddress" class="text input_box2" value="${shop.shopDetailAddress }" readonly style="width:100%;">
+		<input type="text" name="shopExtraAddress" id="sample6_extraAddress" class="text input_box2" value="${shop.shopExtraAddress }" readonly style="width:100%;">
       <span class="text" style="color: #DA0037;">영업 시간</span>
-      	<input name="shopHours" type="text" class="text readonlyinput" readonly value="${shop.shopHours }"/>
+      	<input name="shopHours" type="text" class="text readonlyinput input_box2" readonly value="${shop.shopHours }"/>
       <span class="text" style="color: #DA0037;">가게 테이블 보유 수</span>
-      <input name="shopTables" type="text" class="text readonlyinput" readonly value="${shop.shopTables }"/>
+      <input name="shopTables" type="text" class="text readonlyinput input_box2" readonly value="${shop.shopTables }"/>
       <span class="text" style="color: #DA0037;">가게 테이블당 최대 수용 인원 수</span>
-      <input name="shopMaxPeoples" type="text" class="text readonlyinput" readonly value="${shop.shopMaxPeoples }"/>
+      <input name="shopMaxPeoples" type="text" class="text readonlyinput input_box2" readonly value="${shop.shopMaxPeoples }"/>
       <span class="text" style="color: #DA0037;">가게 사진</span>
       	<img src="../resources/shop/shop_Img/${shop.shopImg }.jpg" style="border-radius: 30px;" />
       	<input name="shopImg" type="text" value="${shop.shopImg }" style="display:none;">
@@ -61,7 +61,7 @@
                 <c:if test="${status.index == 0 }">
                 <td style="width: 30px; height: 30px;"></td>
                 </c:if>
-      			<td><button type="button" onclick="window.location.href='updateMenu?menuName=${menu.menuName}&menuPrice=${menu.menuPrice  }&menuIntro=${menu.menuIntro }&menuImg=${menu.menuImg}'" class="SubmitBtn"  style="height: 107.98px;">수정</button>
+      			<td><button type="button" onclick="window.location.href='updateMenu?menuName=${menu.menuName}&menuPrice=${menu.menuPrice  }&menuIntro=${menu.menuIntro }&menuImg=${menu.menuImg}'" class="SubmitBtn"  style="height: 107.98px; font-size:25px; font-family: 'KOTRAHOPE';">수정</button>
               </tr>
       	</c:forEach>
       </table>

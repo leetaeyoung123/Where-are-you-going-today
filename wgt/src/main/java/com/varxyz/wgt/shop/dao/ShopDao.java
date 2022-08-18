@@ -97,7 +97,7 @@ private JdbcTemplate jdbcTemplate;
 			file.delete();
 		}
 
-		String sql = "UPDATE shop SET shopTel=?, shopPostCode = ?, shopAddress=?, shopDetailAddress=?, shopExtraAddress=? shopHours=?, "
+		String sql = "UPDATE shop SET shopTel=?, shopPostCode = ?, shopAddress=?, shopDetailAddress=?, shopExtraAddress=?, shopHours=?, "
 				+ " shopTables=?, shopMaxPeoples=?, shopImg = ? WHERE businessNumber = ?";
 		jdbcTemplate.update(sql, shop.getShopTel(), shop.getShopPostCode(), shop.getShopAddress(), shop.getShopDetailAddress(), shop.getShopExtraAddress(),
 								 shop.getShopHours(), shop.getShopTables(), shop.getShopMaxPeoples(), shop.getShopImg(), shop.getBusinessNumber());

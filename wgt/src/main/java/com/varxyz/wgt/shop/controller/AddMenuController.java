@@ -26,6 +26,7 @@ public class AddMenuController {
 	@GetMapping("shop/addMenu")
 	public String addMenuGo(Model model, HttpSession session) {
 		String bNum = (String)session.getAttribute("bNum");
+	
 		if(service.findShopMenuByBnsNum(bNum).size() > 9) {
 			model.addAttribute("msg", "메뉴 등록은 최대 10개 까지만 가능합니다.");
 			model.addAttribute("url", "viewMyShop");
