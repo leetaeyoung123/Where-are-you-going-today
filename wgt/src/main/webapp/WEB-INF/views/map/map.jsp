@@ -23,6 +23,7 @@
 
 		}
 	</script>
+	<!--검색어 입력에 맞는 주소로 이동.-->
 	<input id="inputaddr" value="${addr}" style="display:none;"/>
 	<nav id=gnb>
 		<ul>
@@ -45,11 +46,13 @@
 			<option>주소</option>
 			<option>메뉴</option>
 		</select> </li>
+		<!--검색어 입력창-->
 		<li><input onkeyup="filter()" id="inputSearch" class="inputtext"
 			type="text" name="name" value="" required></li>
 		<li><a class="userInformation"> <span></span></a></li>
 	</ul>
 		<%
+		// 스크립트 반복문 사용을 위한 count 선언
 		int count = 0;
 		%>
 		<div id="map" onclick="filter()" style="width: 370px; height: 790px; margin-left: 10px;"></div>
@@ -59,24 +62,32 @@
 			<div id="menu_wrap" class="bg_white">
 				<hr>
 				<ul id="placesList">
+				<!--모든 가게이름을 다 불러와 맵에 마크와 컨테츠 표현-->
 					<c:forEach var="shop" items="${find}" varStatus="status">
 						<div class="item" style="display: none;">
 							<input id="findname${status.index}" value="${shop.name}"
 								onclick="inputText"
 								style="display:none;" />
 								 <span class="name">${shop.name}</span> 
+						</div>
+						<%
+						// 스크립트 반복문 사용을 위한 카운트 증가
+						count++;
+						%>
+					</c:forEach>
+					<!--위도와 경도를 불러와 등록되어 있는 가게 위치 표시-->
+					<c:forEach var="shop" items="${find}" varStatus="status">
 								 <input id="longitude${status.index}" value="${shop.longitude}"
 								style="display:none;" /> 
 								<input id="latitude${status.index}" value="${shop.latitude}"
 								style="display:none;" />
-						</div>
-						<%
-						count++;
-						%>
 					</c:forEach>
 				</ul>
 			</div>
 		</div>
+		<!--검색창 엔터키 서브밋을 위한 버튼-->
+		<button value="검색" style="display:none"></button>
+		<!--id값을 이용하여 스크립트에 반복문 사용을 위한 카운트 등록-->
 		<input id="count" value="<%=count%>"
 			style="display:none;"/>
 
@@ -97,11 +108,12 @@
 				bodytoggle.classList.toggle("on")
 			}
 			
-			function filterEvent() {
-				filterClose.style.opacity = 0;
+ 			function filterEvent() {
+				filterClose.style.opacity = "0";
 			}
 			
-			mapClick.addEventListener("click", filterEvent)
+			mapClick.addEventListener("click", filterEvent); 
+			
 			toggleBtn.addEventListener("click", toggleHandler);
 				
 			function filter() {
@@ -170,7 +182,7 @@
 			var content = [] //가게 이름을 받을 배열
 			var inputText = []
 			// 지도 위에 마커를 표시합니다
-			for (var i = 0, len = document.getElementById("count").value; i < len; i++) {
+			for (var i = 0, len = count; i < len; i++) {
 				var gapX = (MARKER_WIDTH), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
 				originY = (MARKER_HEIGHT) * i, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
 				overOriginY = (OVER_MARKER_HEIGHT) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
@@ -234,7 +246,9 @@
 										.setImage(selectedMarker.markerImage);
 						!!selectedContent && selectedContent.setMap(null);	
 					}
+					console.log(1)
 					filter()
+					console.log(2)
 
 					// 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
 					if (marker.markerImage != clickMarker) {
