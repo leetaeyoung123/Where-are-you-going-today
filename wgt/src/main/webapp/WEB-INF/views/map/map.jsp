@@ -23,7 +23,7 @@
 
 		}
 	</script>
-	<!--검색어 입력에 맞는 주소로 이동-->
+	<!--검색어 입력에 맞는 주소로 이동.-->
 	<input id="inputaddr" value="${addr}" style="display:none;"/>
 	<nav id=gnb>
 		<ul>
