@@ -19,19 +19,19 @@
 	    <input name="shopName" type="text" class="text readonlyinput" readonly value="${shop.shopName }"/>
       <span class="text" style="color: #DA0037;">가게 번호</span>
       	<div id=tel onclick="changeTel(); this.onclick='';">
-      	<input class="text input_box tel" value="${shop.shopTel }" readonly/>
+      	<input class="text input_box2Full tel" value="${shop.shopTel }" readonly/>
       	</div>
       	<input type="button" onclick="sample6_execDaumPostcode()" class="next_btn" value="우편번호 찾기"><br>
-		<input type="text" name="shop_address1" id="sample6_postcode" class="text input_box" value="${shop.shopPostCode }">
-		<input type="text" name="shop_address2" id="sample6_address" class="text input_box" value="${shop.shopAddress }"><br>
-		<input type="text" name="shop_address3" id="sample6_detailAddress" class="text input_box" value="${shop.shopDetailAddress }">
-		<input type="text" name="shop_address4" id="sample6_extraAddress" class="text input_box" value="${shop.shopExtraAddress }">
+		<input type="text" name="shop_address1" id="sample6_postcode" class="text input_box2Full" value="${shop.shopPostCode }" placeholder="우편번호">
+		<input type="text" name="shop_address2" id="sample6_address" class="text input_box2Full" value="${shop.shopAddress }" placeholder="주소">
+		<input type="text" name="shop_address3" id="sample6_detailAddress" class="text input_box2Full" value="${shop.shopDetailAddress }" placeholder="상세주소">
+		<input type="text" name="shop_address4" id="sample6_extraAddress" class="text input_box2Full" value="${shop.shopExtraAddress }" placeholder="참고항목">
       <span class="text" style="color: #DA0037;">영업 시간</span>
-      	<input name="shopHours" class="text input_box" value="${shop.shopHours }"/>
+      	<input name="shopHours" class="text input_box2Full" value="${shop.shopHours }"/>
       <span class="text" style="color: #DA0037;">가게 테이블 보유 수</span>
-      <input name="shopTables" class="text input_box" value="${shop.shopTables }"/>
+      <input name="shopTables" class="text input_box2Full" value="${shop.shopTables }"/>
       <span class="text" style="color: #DA0037;">가게 테이블당 최대 수용 인원 수</span>
-      <input name="shopMaxPeoples" class="text input_box" value="${shop.shopMaxPeoples }"/>
+      <input name="shopMaxPeoples" class="text input_box2Full" value="${shop.shopMaxPeoples }"/>
       <span class="text" style="color: #DA0037;">수정 전 가게 사진</span>
       	<img src="../resources/shop/shop_Img/${shop.shopImg }.jpg" style="border-radius: 30px;" />
       	<input name="shopImg" value="${shop.shopImg }" style="display:none;">
@@ -49,6 +49,7 @@
       </div>
       <button type="button" name="button" class="prev_btn" style=" width: 80%; margin: 30px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='viewMyShop'">뒤로 돌아가기</button>
     </div>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
       <script type="text/javascript">
       function changeTel() {
 		document.querySelector("#tel").innerHTML = 
@@ -72,9 +73,9 @@
         '<option value="064">064 </option>' +
         '</select>' +
         '<span style="font-size:32px;">-</span>' +
-        '<input type="text" name="shop_tel2" class="input_box2" maxlength="4" style="width:100px;">' +
+        '<input type="text" name="shop_tel2" class="input_box2" maxlength="4" style="width:100px;" oninput="autoNum(this); autoString(this)">' +
         '<span style="font-size:32px;">-</span>' +
-        '<input type="text" name="shop_tel3" class="input_box2" maxlength="4" style="width:100px;">' +
+        '<input type="text" name="shop_tel3" class="input_box2" maxlength="4" style="width:100px;" oninput="autoNum(this); autoString(this)">' +
         '</div>';
 	}
       
@@ -144,6 +145,15 @@
                 document.getElementById("sample6_detailAddress").focus();
             }
         }).open();
+        
+        const autoString = (target) => {
+      	  target.value = target.value
+      	   .replace( /[\{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/g, '');
+      	  }
+      const autoNum = (target) => {
+      	  target.value = target.value
+      	   .replace(/[^0-9]/g, '');
+      	  }
     }
   </script>
   </body>

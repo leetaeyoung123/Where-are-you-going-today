@@ -1,7 +1,6 @@
 package com.varxyz.wgt.map.controller;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;

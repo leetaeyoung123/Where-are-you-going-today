@@ -47,7 +47,7 @@ public class UpdateShopController {
 	@PostMapping("shop/updateShop")
 	public String updateShopForm(@RequestParam("shop_img") MultipartFile file, 
 									HttpServletRequest request, Model model) {
-		if (request.getParameter("shop_tel2").trim().isEmpty() || request.getParameter("shop_tel3").trim().isEmpty() ) {
+		if (request.getParameter("shop_tel2").trim().isBlank() || request.getParameter("shop_tel3").trim().isBlank() ) {
 			model.addAttribute("msg", "빈값은 입력하실 수 없습니다.");
 			return "alert/back";
 		}
