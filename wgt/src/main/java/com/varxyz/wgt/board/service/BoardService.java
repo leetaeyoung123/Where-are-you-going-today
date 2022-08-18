@@ -20,19 +20,22 @@ public interface BoardService {
 		public List<Board> list();
 		
 		// 게시글 쓰기
-		public void create(Board board, String imgName);
+		public void create(Board board, String imgname);
 		
 		// 게시글 읽기
 		public List<Board> read(Board board);
 		
 		// 게시글 수정
-		public void update(Board board);
+		public void update(Board board, String imgname);
 		
 		// 게시글 삭제
 		public int delete(int number, String imgname);
-		
+
 		// 게시글 검색
 		public List<Board> search(String title);
+		
+		// 게심루 정보
+		public Board searchByBid(int bid);
 		
 		public Integer totalCount() throws Exception;
 
