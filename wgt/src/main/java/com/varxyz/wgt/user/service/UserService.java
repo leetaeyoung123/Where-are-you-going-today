@@ -24,7 +24,7 @@ public interface UserService {
 	public void modifyUser(User user, String imgName);
 	
 	// 회원 탈퇴
-	public void delete(String userId);
+	public void delete(String userId, String imgName);
 
 
 }

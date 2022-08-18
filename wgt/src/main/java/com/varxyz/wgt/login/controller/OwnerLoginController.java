@@ -83,6 +83,9 @@ public class OwnerLoginController {
 		
 		return "error/error";
 					
+		
+		
+		
 //		try {
 //			Owner ownerList = new Owner();
 //			ownerList = ownerLoginService.ownerLogin(owner.getOwnerId());

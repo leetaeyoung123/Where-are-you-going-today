@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.varxyz.wgt.map.domain.Map;
 import com.varxyz.wgt.shop.domain.Menu;
 import com.varxyz.wgt.shop.domain.MenuCommand;
 import com.varxyz.wgt.shop.domain.Shop;
@@ -25,6 +26,11 @@ private JdbcTemplate jdbcTemplate;
 	public Shop findAllByShopName(String shopName){
 		String sql = "SELECT * FROM shop WHERE shopName = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), shopName);
+		/*
+		 * try { return jdbcTemplate.queryForObject(sql, new
+		 * BeanPropertyRowMapper<Shop>(Shop.class), shopName); } catch (Exception e) {
+		 * return null; }
+		 */
 	}
 	
 	// 매장 추가

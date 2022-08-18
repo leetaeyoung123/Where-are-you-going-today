@@ -48,7 +48,7 @@
 		</select> </li>
 		<!--검색어 입력창-->
 		<li><input onkeyup="filter()" id="inputSearch" class="inputtext"
-			type="text" name="name" value="" required></li>
+			type="text" name="shopName" value="" required></li>
 		<li><a class="userInformation"> <span></span></a></li>
 	</ul>
 		<%
@@ -63,12 +63,12 @@
 				<hr>
 				<ul id="placesList">
 				<!--모든 가게이름을 다 불러와 맵에 마크와 컨테츠 표현-->
-					<c:forEach var="shop" items="${find}" varStatus="status">
+					<c:forEach var="shop" items="${shopFind}" varStatus="status">
 						<div class="item" style="display: none;">
-							<input id="findname${status.index}" value="${shop.name}"
+							<input id="findname${status.index}" value="${shop.shopName}"
 								onclick="inputText"
 								style="display:none;" />
-								 <span class="name">${shop.name}</span> 
+								 <span class="name">${shop.shopName}</span> 
 						</div>
 						<%
 						// 스크립트 반복문 사용을 위한 카운트 증가
@@ -85,8 +85,6 @@
 				</ul>
 			</div>
 		</div>
-		<!--검색창 엔터키 서브밋을 위한 버튼-->
-		<button value="검색" style="display:none"></button>
 		<!--id값을 이용하여 스크립트에 반복문 사용을 위한 카운트 등록-->
 		<input id="count" value="<%=count%>"
 			style="display:none;"/>
