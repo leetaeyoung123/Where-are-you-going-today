@@ -49,6 +49,9 @@
 	<!-- 스크립트 영역 -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
+	
+		// 파일 추가
+		
 		// input 태그 (name이 file)를 가져옴 
 		let fileTag = document.querySelector("input[name=file]");
 		
@@ -74,6 +77,9 @@
 				imgTag.src = "";
 			}
 		}
+		
+		
+		// 우편번호 검색
 		
 	    function sample6_execDaumPostcode() {
 	        new daum.Postcode({	
@@ -122,5 +128,7 @@
 	            }
 	        }).open();
 	    }
+	    
+	    
 	</script> 
 </html>
