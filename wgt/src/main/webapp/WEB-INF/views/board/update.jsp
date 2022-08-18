@@ -44,16 +44,16 @@
 		<form action="update" method="get" enctype="multipart/form-data"
 			style="text-align: center; display: grid; justify-content: center; margin-top: 40px;">
 			<span>제목</span>
-			<c:forEach var="item" items="${board}"> 
-			<input type="text" class="title_area" name="title" required="required" value="${item.title}"
+			<c:forEach var="item" items="${board}" varStatus="status">
+			<input type="text" class="title_area" name="title" required value="${item.title}"
 				maxlength="50"></input>
-			</c:forEach>
 			<span>내용</span>
-			<textarea class="content_area" name="content" required="required"
-				maxlength="150"></textarea>
-			사진 선택 : <span><input type="file" accept=".jpg" name="file"
+			<input type="text" class="content_area" name="content" required value="${item.content}"
+				maxlength="150"></input>
+			사진 선택 : <span><input type="file" accept=".jpg" name="file" value="${item.imgname}"
 				required="required"><br></span> <input type="submit"
-				class="update" value="수정" required="required"><br>
+				class="update" value="수정하기" required="required"><br>
+			</c:forEach>
 		</form>
 		<button class="go_home" onclick="location.href='mypage'">목록으로</button>
 	</div>

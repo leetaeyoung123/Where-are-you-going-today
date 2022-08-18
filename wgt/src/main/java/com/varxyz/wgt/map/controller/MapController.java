@@ -47,14 +47,14 @@ public class MapController {
 		// 가게 메뉴 삭제
 		if(session.getAttribute("tempShopImg") != null) {
 			for (String img : (List<String>)session.getAttribute("tempImgList")) {
-				File menuImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+				File menuImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
 				menuImg.delete();
 			}
 			session.removeAttribute("tempImgList");
 
 			// 가게 이미지 삭제
 			String img = (String)session.getAttribute("tempShopImg");
-			File shopImg = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg" );
+			File shopImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg" );
 			shopImg.delete();
 			session.removeAttribute("tempShopImg");
 			// 문제 될시 주석 처리만 해주세용

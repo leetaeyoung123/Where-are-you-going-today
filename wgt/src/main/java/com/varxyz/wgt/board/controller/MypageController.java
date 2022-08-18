@@ -50,6 +50,11 @@ public class MypageController {
 	//게시글 수정
 	@GetMapping("/board/update")
 	public String updateget(MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
+		Board board = new Board();
+		String bidboard = (String)session.getAttribute("imgname");
+		board.setImgname(bidboard);
+		model.addAttribute("board", service.read(board));
+		session.setAttribute("board", board);
 		return "board/update";
 	}
 	
@@ -86,7 +91,9 @@ public class MypageController {
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
 		board.setImgname(request.getParameter("imgname"));
+		
 		service.update(board, uniqueName);
+		
 		model.addAttribute("msg", "게시글 수정을 완료하였습니다.");
 		model.addAttribute("url","mypage");
 		

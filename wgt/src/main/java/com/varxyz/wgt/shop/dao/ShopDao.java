@@ -78,7 +78,7 @@ private JdbcTemplate jdbcTemplate;
 				+ " WHERE MENU_NAME = ?";
 		jdbcTemplate.update(sql, updatedMenu.getMenuName(), updatedMenu.getMenuIntro(), 
 								 updatedMenu.getMenuPrice(), updatedMenu.getMenuImg(), oldMenu.getMenuName());
-		File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + oldMenu.getMenuImg() + ".jpg");
+		File file = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + oldMenu.getMenuImg() + ".jpg");
 		// 집 경로
 //		File file = new File("C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img" + oldMenu.getMenuImg() + ".jpg");
 		if(!updatedMenu.getMenuImg().equals(oldMenu.getMenuImg())) {
@@ -91,7 +91,7 @@ private JdbcTemplate jdbcTemplate;
 	public boolean deleteShopMenu(String menuName, String menuImg) {
 		String sql ="DELETE FROM menu WHERE menuName = ?";
 		jdbcTemplate.update(sql, menuName);
-		File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + menuImg + ".jpg");
+		File file = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + menuImg + ".jpg");
 		file.delete();
 		return true;
 	}
@@ -99,7 +99,7 @@ private JdbcTemplate jdbcTemplate;
 	// 매장 정보 수정
 	public boolean updateShop(Shop shop ,String oldImg) {
 		if(!oldImg.equals(shop.getShopImg())) {
-			File file = new File("C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_img\\" + oldImg + ".jpg");
+			File file = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_Img\\" + oldImg + ".jpg");
 			file.delete();
 		}
 

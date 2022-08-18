@@ -79,7 +79,7 @@ public class UpdateMenuController {
 		// 집 경로
 //		String uploadFolder = "C:\\Users\\hanta\\Desktop\\mycoding\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img";
 		
-		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img";
+		String uploadFolder = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img";
 		
 		/*
 		  파일 업로드시 파일명이 동일한 파일이 이미 존재할 수도 있고 사용자가 

@@ -67,8 +67,6 @@ public class UserController {
 		
 		User user = new User();
 		
-		String str = user.getUserId();
-		
 		user.setUserId(request.getParameter("userId"));
 		user.setPasswd(request.getParameter("passwd"));
 		user.setName(request.getParameter("name"));
@@ -82,15 +80,6 @@ public class UserController {
 		
 		List<User> userList = new ArrayList<User>();
 		userList = userService.inquiryUser(user.getUserId());
-//		System.out.println(user.getUserId());
-		
-//		if(Pattern.matches("[!@#$%^&*(),.?\":{}|<>]", str)) {
-//			System.out.println(str);
-//			model.addAttribute("msg", "특수문자는 사용할 수 없습니다!!");
-//			model.addAttribute("url", "addUser");
-//			
-//			return "error/error";
-//		}
 		
 		// 리스트일 때는 size로 비교한다
 		if(userList.size() > 0) {
@@ -113,10 +102,18 @@ public class UserController {
 		
 		List<User> userList = new ArrayList<User>();
 		userList = userService.inquiryUser((String)session.getAttribute("userId"));	// 세션을 가져옴
-		model.addAttribute("userList", userList);
-		System.out.println(userList.get(0).getImgName());
-
-		return "user/userInfo";
+		
+		try {
+			model.addAttribute("userList", userList);
+			System.out.println(userList.get(0).getImgName());
+			
+			return "user/userInfo";
+		} catch (IndexOutOfBoundsException e) {
+			model.addAttribute("msg", "로그인후 이용하실 수 있습니다.");
+			
+			return "alert/back";
+		}
+		
 	} 
 	
 	// 회원정보 가져오기
@@ -196,9 +193,23 @@ public class UserController {
 	}
 	
 	@PostMapping("/deleteUser")
-	public String delete(HttpServletRequest request, HttpSession session, Model model) {
+	public String delete(String imgName, HttpServletRequest request, HttpSession session, Model model) {
 		
-		userService.delete((String)session.getAttribute("userId"));	// 세션 userId 가져와서 삭제
+		String filePath = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img";
+		
+		File deleteFile = new File(filePath);
+		System.out.println(deleteFile);
+		// 파일 존재 여부 확인
+		if(deleteFile.exists()) {
+			// 있으면 삭제
+			session.removeAttribute(imgName);
+			deleteFile.delete();
+			System.out.println("파일 삭제 완료");
+		} else {
+			System.out.println("파일이 존재하지 않습니다.");
+		}
+		
+		userService.delete((String)session.getAttribute("userId"), imgName);	// 세션 userId 가져와서 삭제
 		
 		return "user/deleteUser";
 	}

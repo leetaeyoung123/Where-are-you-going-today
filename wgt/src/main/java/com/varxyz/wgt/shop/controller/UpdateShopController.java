@@ -103,7 +103,7 @@ public class UpdateShopController {
 		
 		// resources에 shop_image 폴더 절대 경로 입력 String uploadFolder = "";  
 		
-		String uploadFolder = "C:\\Hbackend\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_Img";
+		String uploadFolder = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\shop_Img";
 		
 		/*
 		  파일 업로드시 파일명이 동일한 파일이 이미 존재할 수도 있고 사용자가 
