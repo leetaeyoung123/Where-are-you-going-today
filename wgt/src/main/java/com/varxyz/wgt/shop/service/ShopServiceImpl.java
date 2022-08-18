@@ -60,4 +60,9 @@ public class ShopServiceImpl implements ShopService {
 		return dao.updateShop(shop, oldImg);
 	}
 
+	@Override
+	public List<Shop> findAllShop() {
+		return dao.findAllShop();
+	}
+
 }

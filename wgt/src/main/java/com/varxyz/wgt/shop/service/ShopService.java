@@ -7,7 +7,9 @@ import com.varxyz.wgt.shop.domain.MenuCommand;
 import com.varxyz.wgt.shop.domain.Shop;
 
 public interface ShopService {
-
+	// 매장정보 모두 불러오기
+	public List<Shop> findAllShop();
+	
 	// 매장명으로 매장 정보 가져오기
 	public Shop findAllByShopName(String shopName);
 	
