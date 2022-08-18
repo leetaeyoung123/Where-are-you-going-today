@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -138,8 +136,10 @@ public class UserController {
 		
 		// 사용자가 이미지를 업로드 하지 않았을 경우 예외 처리
 		if (fileRealName == null || fileRealName.length() == 0) {
-			user.setImgName(fileRealName);
-			userService.modifyUser(user, fileRealName);
+			user.setImgName(request.getParameter("imgName"));
+			userService.modifyUser(user, request.getParameter("imgName"));
+			
+			model.addAttribute("msg", "수정이 완료되었습니다!!");
 			
 			return "user/modifyUser";
 			
@@ -161,7 +161,7 @@ public class UserController {
 		System.out.println("확장자 : " + fileExtension);
 		
 		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
-
+		
 		try {
 			file.transferTo(saveFile);	// 실제 파일 저장메소드
 		} catch (IllegalStateException e) {
@@ -195,21 +195,28 @@ public class UserController {
 	@PostMapping("/deleteUser")
 	public String delete(String imgName, HttpServletRequest request, HttpSession session, Model model) {
 		
-		String filePath = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img";
+		List<User> user = new ArrayList<User>();
+		
+		user = userService.inquiryUser((String)session.getAttribute("userId"));
+		
+		String dbImgName = user.get(0).getImgName();
+		System.out.println(dbImgName);
+		
+		String filePath = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img\\" + dbImgName + ".jpg";
 		
 		File deleteFile = new File(filePath);
 		System.out.println(deleteFile);
 		// 파일 존재 여부 확인
 		if(deleteFile.exists()) {
 			// 있으면 삭제
-			session.removeAttribute(imgName);
+			session.removeAttribute(dbImgName);
 			deleteFile.delete();
 			System.out.println("파일 삭제 완료");
 		} else {
 			System.out.println("파일이 존재하지 않습니다.");
 		}
 		
-		userService.delete((String)session.getAttribute("userId"), imgName);	// 세션 userId 가져와서 삭제
+		userService.delete((String)session.getAttribute("userId"), dbImgName);	// 세션 userId 가져와서 삭제
 		
 		return "user/deleteUser";
 	}
