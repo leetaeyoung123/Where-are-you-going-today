@@ -18,8 +18,9 @@
       <span class="text" style="color: #DA0037;">가게 이름</span>
 	    <input name="shopName" type="text" class="text readonlyinput" readonly value="${shop.shopName }"/>
       <span class="text" style="color: #DA0037;">가게 번호</span>
-      	<input name="shopTel" class="text input_box" value="${shop.shopTel }"/>
-      <span class="text" style="color: #DA0037;">가게 주소</span>
+      	<div id=tel onclick="changeTel(); this.onclick='';">
+      	<input class="text input_box tel" value="${shop.shopTel }" readonly/>
+      	</div>
       	<input type="button" onclick="sample6_execDaumPostcode()" class="next_btn" value="우편번호 찾기"><br>
 		<input type="text" name="shop_address1" id="sample6_postcode" class="text input_box" value="${shop.shopPostCode }">
 		<input type="text" name="shop_address2" id="sample6_address" class="text input_box" value="${shop.shopAddress }"><br>
@@ -49,6 +50,35 @@
       <button type="button" name="button" class="prev_btn" style=" width: 80%; margin: 30px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='viewMyShop'">뒤로 돌아가기</button>
     </div>
       <script type="text/javascript">
+      function changeTel() {
+		document.querySelector("#tel").innerHTML = 
+        '<div class="tel_box">' +
+        '<select style="width: 55px;" class="select_box" name="shop_tel1">' +
+        '<option value="02">02 </option>' +
+        '<option value="031">031 </option>' +
+        '<option value="032">032 </option>' +
+        '<option value="033">033 </option>' +
+        '<option value="041">041 </option>' +
+        '<option value="042">042 </option>' +
+        '<option value="043">043 </option>' +
+        '<option value="051">051 </option>' +
+        '<option value="052">052 </option>' +
+        '<option value="053">053 </option>' +
+        '<option value="054">054 </option>' +
+        '<option value="055">055 </option>' +
+        '<option value="061">061 </option>' +
+        '<option value="062">062 </option>' +
+        '<option value="063">063 </option>' +
+        '<option value="064">064 </option>' +
+        '</select>' +
+        '<span style="font-size:32px;">-</span>' +
+        '<input type="text" name="shop_tel2" class="input_box2" maxlength="4" style="width:100px;">' +
+        '<span style="font-size:32px;">-</span>' +
+        '<input type="text" name="shop_tel3" class="input_box2" maxlength="4" style="width:100px;">' +
+        '</div>';
+	}
+      
+      
 	function readURL(input) {
 		const type = input.files[0].name.split('.');
 		if(type[1] != "jpg" && type[1] != "png" &&  type[1] != "jpeg"){

@@ -63,7 +63,7 @@ hr {
 
 #wrap #content .inner #addForm p {
   text-align: center;
-  font-size: 22px;
+  font-size: 30px;
   margin: 15px 0 15px 0;
 }
 
@@ -77,6 +77,17 @@ hr {
   line-height: 32px;
   font-family: 'KOTRAHOPE';
   text-align: center;
+}
+
+.input_box2 {
+    width: 100px;
+    height: 38px;
+    border: none;
+    font-size: 32px;
+    background: #f1f1f1;
+    text-align: center;
+    font-family: 'KOTRAHOPE';
+    margin: 10px 0;
 }
 
 .btn_wrap {
@@ -222,7 +233,7 @@ td,th {
 .readonlyinput {
 	width: 100%;
 	padding: 0 10px;
-	font-size: 26px;
+	font-size: 32px;
 	font-family: 'KOTRAHOPE';
 }
 
@@ -237,6 +248,16 @@ td,th {
     align-items: center;
     flex-direction: column;
 }
+
+.select_box {
+	width: 120px;
+    font-size: 32px;
+    font-family: 'KOTRAHOPE';
+    text-align: center;
+    margin: 0 5px 30px 5px;
+    background: #f1f1f1; 
+ }
+
 #footer {
   position: relative;
   width: 100%;

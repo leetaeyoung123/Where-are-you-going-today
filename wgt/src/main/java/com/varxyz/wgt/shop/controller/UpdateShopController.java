@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +27,18 @@ public class UpdateShopController {
 	@GetMapping("shop/updateShop")
 	public String updateShopGo(Model model, Shop shop, HttpSession session) {
 		// 로그인 없이 주소로 접속시도시 예외 처리
-		if(shop.getBusinessNumber().equals(null)) {
-			model.addAttribute("msg", "잘못된 접근입니다!");
-			return "alert/back";
+		String bNumber = (String)session.getAttribute("bNum");
+		if(bNumber == null) {
+			model.addAttribute("msg", "잘못된 접근입니다.");
+			model.addAttribute("url", "../login");
+			return "alert/alert";
+		}
+		try {
+			service.findShopByBnsNum(bNumber);
+		} catch (EmptyResultDataAccessException e) {
+			model.addAttribute("msg", "가게 등록이 되어 있지않습니다.");
+			model.addAttribute("url", "../add_shop");
+			return "alert/alert";
 		}
 		model.addAttribute("shop", shop);
 		return "shop/view/updateMyShop";
@@ -37,11 +47,17 @@ public class UpdateShopController {
 	@PostMapping("shop/updateShop")
 	public String updateShopForm(@RequestParam("shop_img") MultipartFile file, 
 									HttpServletRequest request, Model model) {
+		if (request.getParameter("shop_tel2").trim().isEmpty() || request.getParameter("shop_tel3").trim().isEmpty() ) {
+			model.addAttribute("msg", "빈값은 입력하실 수 없습니다.");
+			return "alert/back";
+		}
 		Shop shop = new Shop();
 		
 		shop.setBusinessNumber(request.getParameter("businessNumber"));
 		shop.setShopName(request.getParameter("shopName"));
-		shop.setShopTel(request.getParameter("shopTel"));
+		String shopTel = request.getParameter("shop_tel1") + "-" + request.getParameter("shop_tel2") + "-" + request.getParameter("shop_tel3");
+		shop.setShopTel(shopTel);
+		System.out.println(shop.getShopTel());
 		shop.setShopPostCode(request.getParameter("shop_address1"));
 		shop.setShopAddress(request.getParameter("shop_address2"));
 		shop.setShopDetailAddress(request.getParameter("shop_address3"));
@@ -54,7 +70,6 @@ public class UpdateShopController {
 		// 사용자가 빈값 입력시 예외 처리
 		if(shop.getBusinessNumber().trim().isEmpty() ||
 		   shop.getShopName().trim().isEmpty() ||
-		   shop.getShopTel().trim().isEmpty() ||
 		   shop.getShopPostCode().trim().isEmpty() ||
 		   shop.getShopAddress().trim().isEmpty() ||
 		   shop.getShopDetailAddress().trim().isEmpty() ||

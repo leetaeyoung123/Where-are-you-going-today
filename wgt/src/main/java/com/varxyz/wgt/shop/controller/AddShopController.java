@@ -31,6 +31,18 @@ public class AddShopController {
 	@GetMapping("/add_shop")
 	public String addShopGo(HttpSession session, Model model) {
 		String bNum = (String)session.getAttribute("bNum");
+		if (bNum == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요");
+			model.addAttribute("url", "login");
+			return "alert/alert";
+		}
+		ShopService service = new ShopServiceImpl();
+		try {
+			service.findShopByBnsNum(bNum);
+			return "redirect:/shop/viewMyShop";
+		}catch (EmptyResultDataAccessException e) {
+			
+		}
 		model.addAttribute("bNum", bNum);
 		return "shop/addShop";
 	}
@@ -94,24 +106,25 @@ public class AddShopController {
 	
 	// 두번째 폼 작성 후 세번째 폼 이동
 	@PostMapping("/add_shop3")
-	public String addShop3Form(@RequestParam("shop_hour") String shopHour,
+	public String addShop3Form(@RequestParam("shop_hour1") String shopHour1,
+							   @RequestParam("shop_hour2") String shopHour2,
 							   @RequestParam("shop_table") String shopTables,
 							   @RequestParam("shop_max_people") String shopMaxPeople,
-							   @RequestParam("shop_tel") String shopTel, HttpSession session, Model model) {
+							   @RequestParam("shop_tel1") String shopTel1,
+							   @RequestParam("shop_tel2") String shopTel2,
+							   @RequestParam("shop_tel3") String shopTel3,
+							   HttpSession session, Model model) {
 		// 빈값 입력시 예외 처리
-		if(shopHour.trim().isEmpty() ||
-		   shopTables.trim().isEmpty() ||
-		   shopMaxPeople.trim().isEmpty() ||
-		   shopTel.trim().isEmpty())
-		   {
-		
+		if(shopTel2.trim().isEmpty() || shopTel3.trim().isEmpty()){
 			model.addAttribute("msg", "빈값은 입력하실 수 없습니다!");
 			return "alert/back";
 		}
 		
+		String shopHour = shopHour1 + " ~ " + shopHour2;
 		shop.setShopHours(shopHour);
 		shop.setShopTables(shopTables);
 		shop.setShopMaxPeoples(shopMaxPeople);
+		String shopTel = shopTel1 + "-" + shopTel2 + "-" + shopTel3;
 		shop.setShopTel(shopTel);
 		return "shop/addShop3";
 	}
