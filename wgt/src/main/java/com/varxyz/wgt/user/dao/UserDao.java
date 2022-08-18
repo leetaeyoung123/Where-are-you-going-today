@@ -1,5 +1,6 @@
 package com.varxyz.wgt.user.dao;
 
+import java.io.File;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -32,16 +33,6 @@ public class UserDao {
 	public List<User> inquiryUser(String userId) {
 		String sql = "SELECT * FROM User WHERE userId = ?";
 		
-//		// isEmpty : 문자열의 길이가 0인 경우 (맞으면 true, 틀리면 false 반환);
-//		if( jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), userId).isEmpty() ) {
-//			List<User> userList = new ArrayList<User>();
-//			User user = new User();
-//			user.setUserId(""); // 유저에다가 "" 빈값을 넣어줌
-//			userList.add(user);	// 그리고 리스트에다가 추가
-//			userList.add(imgName);
-//			return userList;
-//		}
-		
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class), userId);
 	}
 	
@@ -55,8 +46,10 @@ public class UserDao {
 	}
 	
 	// 회원탈퇴
-	public void delete(String userId) {
+	public void delete(String userId, String imgName) {
 		String sql = "DELETE FROM User WHERE userId = ?";
+		File file = new File("C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img");
+		file.delete();
 		
 		jdbcTemplate.update(sql, userId);
 	}
