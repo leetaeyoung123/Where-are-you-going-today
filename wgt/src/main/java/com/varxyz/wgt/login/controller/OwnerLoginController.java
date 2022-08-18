@@ -74,7 +74,7 @@ public class OwnerLoginController {
 			
 			System.out.println("로그인 성공");
 			session.setAttribute("bNum", request.getParameter("bnumber"));
-			return "login/successOwnerLogin";
+			return "redirect:/add_shop";
 		}
 		System.out.println("로그인 실패");
 		

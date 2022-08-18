@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -65,6 +67,8 @@ public class UserController {
 		
 		User user = new User();
 		
+		String str = user.getUserId();
+		
 		user.setUserId(request.getParameter("userId"));
 		user.setPasswd(request.getParameter("passwd"));
 		user.setName(request.getParameter("name"));
@@ -78,6 +82,15 @@ public class UserController {
 		
 		List<User> userList = new ArrayList<User>();
 		userList = userService.inquiryUser(user.getUserId());
+//		System.out.println(user.getUserId());
+		
+//		if(Pattern.matches("[!@#$%^&*(),.?\":{}|<>]", str)) {
+//			System.out.println(str);
+//			model.addAttribute("msg", "특수문자는 사용할 수 없습니다!!");
+//			model.addAttribute("url", "addUser");
+//			
+//			return "error/error";
+//		}
 		
 		// 리스트일 때는 size로 비교한다
 		if(userList.size() > 0) {
@@ -85,7 +98,7 @@ public class UserController {
 			model.addAttribute("url", "addUser");
 			
 			return "error/error";
-		} 
+		}
 		
 			// 생성되기 전에 위에서 중복검사를 하고 유저를 여기서 추가해야함
 			userService.addUser(user, uniqueName);
@@ -113,7 +126,6 @@ public class UserController {
 		List<User> userList = new ArrayList<User>();
 		userList = userService.inquiryUser((String)session.getAttribute("userId"));	// 세션을 가져옴
 		model.addAttribute("userList", userList);
-		System.out.println(userList.get(0).getImgName());
 
 		return "user/modifyUser";
 	}
