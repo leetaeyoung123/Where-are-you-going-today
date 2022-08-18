@@ -55,7 +55,7 @@ body{
     background-color: #DA0037;
     color: white;
     margin-top: 30px;
-    left: 35%;
+    left: 37%;
 }
 .go_home {
 	position: relative;
@@ -69,7 +69,6 @@ body{
     border-radius: 8px;
     background-color: #DA0037;
     color: white;
-    right: 4px;
 }
 .wirte_area form{
 	display: grid;
@@ -88,6 +87,7 @@ body{
 	height: 180px;
 }
 .update {
+	font-family: 'KOTRAHOPE';
 	position: relative;
 	cursor: pointer;
     font-size: 18px;
@@ -98,5 +98,5 @@ body{
     background-color: #DA0037;
     color: white;
     margin-top: 30px;
-    left: 35%;
+    left: 37%;
 }
