@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -195,21 +193,28 @@ public class UserController {
 	@PostMapping("/deleteUser")
 	public String delete(String imgName, HttpServletRequest request, HttpSession session, Model model) {
 		
-		String filePath = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img";
+		List<User> user = new ArrayList<User>();
+		
+		user = userService.inquiryUser((String)session.getAttribute("userId"));
+		
+		String dbImgName = user.get(0).getImgName();
+		System.out.println(dbImgName);
+		
+		String filePath = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img\\" + dbImgName + ".jpg";
 		
 		File deleteFile = new File(filePath);
 		System.out.println(deleteFile);
 		// 파일 존재 여부 확인
 		if(deleteFile.exists()) {
 			// 있으면 삭제
-			session.removeAttribute(imgName);
+			session.removeAttribute(dbImgName);
 			deleteFile.delete();
 			System.out.println("파일 삭제 완료");
 		} else {
 			System.out.println("파일이 존재하지 않습니다.");
 		}
 		
-		userService.delete((String)session.getAttribute("userId"), imgName);	// 세션 userId 가져와서 삭제
+		userService.delete((String)session.getAttribute("userId"), dbImgName);	// 세션 userId 가져와서 삭제
 		
 		return "user/deleteUser";
 	}

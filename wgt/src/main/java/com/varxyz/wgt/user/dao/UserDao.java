@@ -48,7 +48,7 @@ public class UserDao {
 	// 회원탈퇴
 	public void delete(String userId, String imgName) {
 		String sql = "DELETE FROM User WHERE userId = ?";
-		File file = new File("C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img");
+		File file = new File("C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img" + imgName + ".jpg");
 		file.delete();
 		
 		jdbcTemplate.update(sql, userId);
