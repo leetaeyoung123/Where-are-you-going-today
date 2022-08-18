@@ -136,8 +136,10 @@ public class UserController {
 		
 		// 사용자가 이미지를 업로드 하지 않았을 경우 예외 처리
 		if (fileRealName == null || fileRealName.length() == 0) {
-			user.setImgName(fileRealName);
-			userService.modifyUser(user, fileRealName);
+			user.setImgName(request.getParameter("imgName"));
+			userService.modifyUser(user, request.getParameter("imgName"));
+			
+			model.addAttribute("msg", "수정이 완료되었습니다!!");
 			
 			return "user/modifyUser";
 			
@@ -159,7 +161,7 @@ public class UserController {
 		System.out.println("확장자 : " + fileExtension);
 		
 		File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
-
+		
 		try {
 			file.transferTo(saveFile);	// 실제 파일 저장메소드
 		} catch (IllegalStateException e) {

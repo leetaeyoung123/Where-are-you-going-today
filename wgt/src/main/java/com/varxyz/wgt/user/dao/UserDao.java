@@ -3,6 +3,7 @@ package com.varxyz.wgt.user.dao;
 import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -39,7 +40,7 @@ public class UserDao {
 	// 회원정보 수정
 	public void modifyUser(User user, String imgName) {
 		String sql = "UPDATE User SET passwd = ?, name = ?, ssn = ?, phone = ?, addr1 = ?, addr2 = ?, addr3 = ?, addr4 = ?, imgName = ? WHERE  userId = ?";
-
+		
 		jdbcTemplate.update(sql, user.getPasswd(), user.getName(), user.getSsn(), user.getPhone(), user.getAddr1(),
 								user.getAddr2(), user.getAddr3(), user.getAddr4(), imgName, user.getUserId());
 		
