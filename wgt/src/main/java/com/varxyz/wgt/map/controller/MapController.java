@@ -46,8 +46,6 @@ public class MapController {
 			session.removeAttribute("tempShopImg");
 			// 문제 될시 주석 처리만 해주세용
 		}
-
-		System.out.println(service.findAll());
 		return "map/map";
 	}
 
