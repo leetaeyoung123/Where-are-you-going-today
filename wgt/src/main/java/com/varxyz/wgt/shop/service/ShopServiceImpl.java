@@ -64,5 +64,4 @@ public class ShopServiceImpl implements ShopService {
 	public List<Shop> findAllShop() {
 		return dao.findAllShop();
 	}
-
 }
