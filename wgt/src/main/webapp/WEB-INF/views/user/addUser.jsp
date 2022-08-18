@@ -18,7 +18,7 @@
 		<div style="font-size: 60px; text-align: center;">회원가입</div>
 		<!-- required는 입력을 안할시 자동으로 입력하라고 알림창을 띄움 -->
 		<div style="text-align: center; font-size: 30px; padding-top: 30px;">아이디 
-		<input type="text" name="userId" required style="margin-left: 20px; height: 20px;"> </div><br> 
+		<input type="text" name="userId" maxlength='10' oninput="dp(this); np(this)" required style="margin-left: 20px; height: 20px;"> </div><br> 
 		
 		<div style="margin-left: 45px; font-size: 30px;">비밀번호 
 		<input type="password" name="passwd" required style="margin-left: 20px; height: 20px;"></div><br>
@@ -128,7 +128,17 @@
 	            }
 	        }).open();
 	    }
+
+        
+	    const dp = (target) => {
+	         target.value = target.value
+	          .replace(/[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/g, '');
+	    }
 	    
-	    
+	    const np = (target) => {
+	         target.value = target.value
+	          .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '');
+	    }
+		
 	</script> 
 </html>
