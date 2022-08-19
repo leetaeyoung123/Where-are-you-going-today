@@ -49,7 +49,7 @@
         <input type="button" value="뒤로가기" onclick="location.href='../map/map'" class="prev_btn">
         <input type="button" style="background: salmon;" onclick="location.href='../controller/waiting'" value="웨이팅하기" class="next_btn">
       </div>
-      <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='#'">지금 우리는 🤭</button>
+      <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../board/home'">지금 우리는 🤭</button>
     </div>
   </body>
 </html>

@@ -68,18 +68,27 @@
 					<c:forEach var="shop" items="${shopFind}" varStatus="status">
 						<div class="item" style="display: none;" onclick="location.href='../shop/viewUserShop?shopName=${shop.shopName}'">
 							<input name="shopName" class="shop" id="findname${status.index}"
-								value="${shop.shopName}"
-								style="width: 100%; height: 40px; border: 0; background: none; font-size: 38px; font-weight: bold; padding-bottom: 30px; font-family: 'KOTRAHOPE';" />
+								value="${shop.shopName}"  disabled
+								style="text-align:center;width: 100%; height: 40px; border: 0; background: none; font-size: 38px; font-weight: bold; font-family: 'KOTRAHOPE';"/>
 							<input id="shopAddress${status.index}"
 								value="${shop.shopAddress}" style="display: none;">
 							<p class="name" style="display: none">${shop.shopName}</p>
-							<p class="address" style="text-align: center; line-height: 27px; font-size: 15px; border-bottom: solid 1px;">${shop.shopAddress}</p>
+							<p class="address" style="line-height: 30px; text-align: center; font-size: 15px;">${shop.shopAddress}</p>
+							<p style="text-align: center; font-size: 24px; border-bottom: solid 1px;">${shop.shopTel}</p>
 						</div>
+
 						<%
 						// 스크립트 반복문 사용을 위한 카운트 증가
 						count++;
 						%>
 					</c:forEach>
+					
+					<c:forEach var="menu" items="${menuList}" varStatus="status">
+						<div class="menulist">
+							<p class="menu">${menuList.menuName}</p>
+						</div>
+					</c:forEach>
+					
 					<!--위도와 경도를 불러와 등록되어 있는 가게 위치 표시-->
 					<c:forEach var="shop" items="${find}" varStatus="status">
 						<input id="longitude${status.index}" value="${shop.longitude}"

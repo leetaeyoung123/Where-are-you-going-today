@@ -162,6 +162,7 @@ li {
 #gnb.on {
 	margin-left: 177px;
     margin-top: 80px;
+    line-height: 50px;
 }
 
 .selectbox {
@@ -316,7 +317,7 @@ li {
 	border-bottom: 1px solid #888;
 	overflow: hidden;
 	cursor: pointer;
-	height: 174px;
+	height: 98px;
 }
 
 #placesList .item span {

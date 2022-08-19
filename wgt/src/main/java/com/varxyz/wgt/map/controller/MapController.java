@@ -26,11 +26,12 @@ public class MapController {
 	public String mapForm(Shop shop,Map map,Model model, HttpSession session) {
 		
 		// 모든 가게조회
-		model.addAttribute("shopFind", shopService.findAllShop());
-		
+		List<Shop> list = shopService.findAllShop();
+		model.addAttribute("shopFind", list);
 		// 경도 위도 불러오기
 		model.addAttribute("find", mapService.findAll());
-		
+		//System.out.println("1: " + shopService.findShopMenuByBnsNum(list.get(0).getBusinessNumber()).get(0).getMenuName());
+		//model.addAttribute("menuList", shopService.findShopMenuByBnsNum(list.get(0).getBusinessNumber()));
 		// 아이디 세션
 		/*
 		 * if(session.getAttribute("userId") == null) {
@@ -68,8 +69,8 @@ public class MapController {
 		Shop shopName = new Shop();
 		shopName = shopService.findAllbyShopNameObject(shop.getShopName());
 		model.addAttribute("shop", shopName);
-		System.out.println(shopName);
 		model.addAttribute("menus", shopService.findShopMenuByBnsNum(shopName.getBusinessNumber()));
+		
 		return "shop/view/viewUserShop";
 	}
 	
