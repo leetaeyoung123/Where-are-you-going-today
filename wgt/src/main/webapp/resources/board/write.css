@@ -45,9 +45,10 @@ body{
 }
 /*헤더영역끝*/
 .add {
+	font-family: 'KOTRAHOPE';
 	position: relative;
 	cursor: pointer;
-    font-size: 18px;
+    font-size: 22px;
     width: 80px;
     height: 35px;
     border: 5px;
@@ -58,11 +59,12 @@ body{
     left: 37%;
 }
 .go_home {
+	font-family: 'KOTRAHOPE';
 	position: relative;
     display: block;
     margin: 0 auto;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 22px;
     width: 97px;
     height: 35px;
     border: 5px;
@@ -90,7 +92,7 @@ body{
 	font-family: 'KOTRAHOPE';
 	position: relative;
 	cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     width: 80px;
     height: 35px;
     border: 5px;

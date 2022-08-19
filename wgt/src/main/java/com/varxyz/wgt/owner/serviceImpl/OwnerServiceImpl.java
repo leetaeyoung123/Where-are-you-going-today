@@ -30,4 +30,9 @@ public class OwnerServiceImpl implements OwnerService {
 		ownerDao.delete(ownerId);
 	}
 	
+	// 사업자번호 중복검사
+	@Override
+	public boolean duplicationBn(String bNumber) {
+		return ownerDao.duplicationBn(bNumber);
+	}
 }
