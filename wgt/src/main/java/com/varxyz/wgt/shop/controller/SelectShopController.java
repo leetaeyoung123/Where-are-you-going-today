@@ -1,5 +1,6 @@
 package com.varxyz.wgt.shop.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -32,9 +33,10 @@ public class SelectShopController {
 	}
 	
 	@GetMapping("shop/viewUserShop")
-	public String viewUserShop(Model model, HttpSession session) {
-		model.addAttribute("shop", service.findShopByBnsNum("123-456-789"));
-		model.addAttribute("menus", service.findShopMenuByBnsNum("123-456-789"));
+	public String viewUserShop(Model model, HttpSession session, HttpServletRequest request) {
+		String bnsNum = service.findAllByShopName(request.getParameter("shopName")).getBusinessNumber();
+		model.addAttribute("shop", service.findShopByBnsNum(bnsNum));
+		model.addAttribute("menus", service.findShopMenuByBnsNum(bnsNum));
 		return "shop/view/viewUserShop";
 	}
 }
