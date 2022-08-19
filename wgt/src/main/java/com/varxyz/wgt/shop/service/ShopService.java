@@ -11,7 +11,9 @@ public interface ShopService {
 	public List<Shop> findAllShop();
 	
 	// 매장명으로 매장 정보 가져오기
-	public Shop findAllByShopName(String shopName);
+	public List<Shop> findAllByShopName(String shopName);
+	
+	public Shop findAllbyShopNameObject(String shopName);
 	
 	// 매장 추가
 	public boolean addShop(Shop shop);

@@ -34,7 +34,7 @@ public class SelectShopController {
 	
 	@GetMapping("shop/viewUserShop")
 	public String viewUserShop(Model model, HttpSession session, HttpServletRequest request) {
-		String bnsNum = service.findAllByShopName(request.getParameter("shopName")).getBusinessNumber();
+		String bnsNum = service.findAllbyShopNameObject(request.getParameter("shopName")).getBusinessNumber();
 		model.addAttribute("shop", service.findShopByBnsNum(bnsNum));
 		model.addAttribute("menus", service.findShopMenuByBnsNum(bnsNum));
 		return "shop/view/viewUserShop";

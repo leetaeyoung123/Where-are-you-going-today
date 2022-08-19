@@ -23,7 +23,13 @@ private JdbcTemplate jdbcTemplate;
 	}
 	
 	// 매장명으로 매장 정보 가져오기
-	public Shop findAllByShopName(String shopName){
+	public List<Shop> findAllByShopName(String shopName){
+		String sql = "SELECT * FROM shop WHERE shopName = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Shop>(Shop.class), shopName);
+	}
+	
+	// 매장명으로 매장 정보 가져오기
+	public Shop findAllByShopNameObject(String shopName){
 		String sql = "SELECT * FROM shop WHERE shopName = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), shopName);
 	}
