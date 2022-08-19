@@ -66,15 +66,19 @@
 				<ul id="placesList">
 					<!--모든 가게이름을 다 불러와 맵에 마크와 컨테츠 표현-->
 					<c:forEach var="shop" items="${shopFind}" varStatus="status">
-						<div class="item" style="display: none;" onclick="location.href='../shop/viewUserShop?shopName=${shop.shopName}'">
+						<div class="item" style="display: none;"
+							onclick="location.href='../shop/viewUserShop?shopName=${shop.shopName}'">
 							<input name="shopName" class="shop" id="findname${status.index}"
-								value="${shop.shopName}"  disabled
-								style="text-align:center;width: 100%; height: 40px; border: 0; background: none; font-size: 38px; font-weight: bold; font-family: 'KOTRAHOPE';"/>
+								value="${shop.shopName}" disabled
+								style="text-align: center; width: 100%; height: 40px; border: 0; background: none; font-size: 38px; font-weight: bold; font-family: 'KOTRAHOPE';" />
 							<input id="shopAddress${status.index}"
 								value="${shop.shopAddress}" style="display: none;">
 							<p class="name" style="display: none">${shop.shopName}</p>
-							<p class="address" style="line-height: 30px; text-align: center; font-size: 15px;">${shop.shopAddress}</p>
-							<p style="text-align: center; font-size: 24px; border-bottom: solid 1px;">${shop.shopTel}</p>
+							<p class="address"
+								style="line-height: 30px; text-align: center; font-size: 15px;">${shop.shopAddress}</p>
+							<p
+								style="text-align: center; font-size: 24px; border-bottom: solid 1px;">${shop.shopTel}</p>
+
 						</div>
 
 						<%
@@ -84,8 +88,8 @@
 					</c:forEach>
 					
 					<c:forEach var="menu" items="${menuList}" varStatus="status">
-						<div class="menulist">
-							<p class="menu">${menuList.menuName}</p>
+						<div class="menulist" id="findmenu${status.index}">
+							<p class="menu">${menu}</p>
 						</div>
 					</c:forEach>
 					
@@ -109,59 +113,69 @@
 			const bodytoggle = document.querySelector(".header_form")
 			const searchbtn = document.querySelector(".searchbtn")
 			const shopName = document.querySelector(".shop")
-			
+
 			const filteritemClose = document.querySelector(".item")
 			const filterClose = document.querySelector("#menu_wrap")
 			var mapClick = document.getElementById('map')
-			
+
 			function onClicksubMit() {
 				bodytoggle.submit(event.target.value);
 			}
-			
+
 			function toggleHandler() {
 				toggleBtn.classList.toggle("open")
 				gnbBtn.classList.toggle("on")
 				bodytoggle.classList.toggle("on")
 			}
-			
+
 			function removeOn() {
 				bodytoggle.classList.remove("on")
 				toggleBtn.classList.remove("open")
 				gnbBtn.classList.remove("on")
 			}
-			
- 			function filterEvent() {
+
+			function filterEvent() {
 				filterClose.style.opacity = "0";
-				filteritemClose.style.display = "none"; 
+				filteritemClose.style.display = "none";
 			}
-			
-			mapClick.addEventListener("click", filterEvent); 
-			
+
+			mapClick.addEventListener("click", filterEvent);
+
 			toggleBtn.addEventListener("click", toggleHandler);
+
+			mapClick.addEventListener("click", removeOn);
 			
-			mapClick.addEventListener("click", removeOn);	
+
+
 			function filter() {
-						
-				var value, name, item, i, background;
+
+				var value, name, item, i, background, menuList, menu;
 				value = document.getElementById("inputSearch").value
 						.toUpperCase();
-				item = document.getElementsByClassName("item");
-				background = document.getElementById("menu_wrap")
-
 				
+				item = document.getElementsByClassName("item");
+				menuList = document.getElementsByClassName("menulist")
+				
+				background = document.getElementById("menu_wrap")
+				
+
 				for (i = 0; i < item.length; i++) {
-					name = item[i].getElementsByClassName("name")
 					
+					name = item[i].getElementsByClassName("name")
+					menu = menuList[i].getElementsByClassName("menu")
 					if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+						
+						menuList[i].style.display = "block";
 						item[i].style.display = "block";
 						background.style.opacity = "100";
 						background.style.left = "0";
-					}else{
+					} else {
 						item[i].style.display = "none";
+						menuList[i].style.display = "none";
 					}
-					
-					
+
 					if (value.length == 0) {
+						menuList[i].style.display = "none";
 						item[i].style.display = "none";
 						background.style.opacity = "0";
 						background.style.left = "-270px";
@@ -221,71 +235,73 @@
 				content.push('<div class="wrap"><div class="info"><div class="title">'
 								+ document.getElementById("findname" + i).value
 								+ '</div></div></div>');//가게이름을 받아와 배열에 추가
-								
+
 				inputText.push(document.getElementById("findname" + i).value)
-			
+
 				// 마커를 생성하고 지도위에 표시합니다
-				addMarker(positions[i], inputText[i], content[i], normalOrigin, overOrigin, clickOrigin);
+				addMarker(positions[i], inputText[i], content[i],
+						normalOrigin, overOrigin, clickOrigin);
 			}
 			// 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
-			function addMarker(position, inputText, content, normalOrigin, overOrigin, clickOrigin) {
-				
-				var markerImage = new kakao.maps.MarkerImage(
-						imageSrc, markerSize), 
-					overMarker = new kakao.maps.MarkerImage(
-						imageSrc, overMarkerSize), 
-					clickMarker = new kakao.maps.MarkerImage(
+			function addMarker(position, inputText, content,
+					normalOrigin, overOrigin, clickOrigin) {
+
+				var markerImage = new kakao.maps.MarkerImage(imageSrc,
+						markerSize), overMarker = new kakao.maps.MarkerImage(
+						imageSrc, overMarkerSize), clickMarker = new kakao.maps.MarkerImage(
 						imageSrc, clickMarkerSize);
-				
-			       // 마커를 생성하고 이미지는 기본 마커 이미지를 사용합니다
-			       var marker = new kakao.maps.Marker({
-			           map: map,
-			           position: position,
-			           image: markerImage 
-			       });
-			       
-			       var overlay = new kakao.maps.CustomOverlay({
-			          content: content,
-			          map: map,
-			          position: position
-			       });
-			       	       
-			       marker.markerImage = markerImage;
+
+				// 마커를 생성하고 이미지는 기본 마커 이미지를 사용합니다
+				var marker = new kakao.maps.Marker({
+					map : map,
+					position : position,
+					image : markerImage
+				});
+
+				var overlay = new kakao.maps.CustomOverlay({
+					content : content,
+					map : map,
+					position : position
+				});
+
+				marker.markerImage = markerImage;
 				// 마커에 click 이벤트를 등록합니다
 				overlay.setMap(null);
-				kakao.maps.event.addListener(marker, 'click', function() {
-					// 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
-					// 마커의 이미지를 클릭 이미지로 변경합니다
-						for(var i = 0, len = document.getElementById("count").value; i < len; i++){
-			       			document.getElementById("inputSearch").value = inputText
-							
-						}
-						
-						
-					if (!selectedMarker || selectedMarker !== marker) {
-						// 클릭된 마커 객체가 null이 아니면
-						// 클릭된 마커의 이미지를 기본 이미지로 변경하고
-						!!selectedMarker
-								&& selectedMarker
-										.setImage(selectedMarker.markerImage);
-						!!selectedContent && selectedContent.setMap(null);	
-					}
-					console.log(1)
-					filter()
-					console.log(2)
+				kakao.maps.event
+						.addListener(
+								marker,
+								'click',
+								function() {
+									// 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
+									// 마커의 이미지를 클릭 이미지로 변경합니다
+									for (var i = 0, len = count; i < len; i++) {
+										document.getElementById("inputSearch").value = inputText
+									}
 
-					// 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
-					if (marker.markerImage != clickMarker) {
-						marker.setImage(clickMarker)
-						overlay.setMap(map)
-						
-					}
-					
-					// 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
-					selectedMarker = marker;
-					selectedContent = overlay;
-					
-				});
+									if (!selectedMarker
+											|| selectedMarker !== marker) {
+										// 클릭된 마커 객체가 null이 아니면
+										// 클릭된 마커의 이미지를 기본 이미지로 변경하고
+										!!selectedMarker
+												&& selectedMarker
+														.setImage(selectedMarker.markerImage);
+										!!selectedContent
+												&& selectedContent.setMap(null);
+									}
+									filter()
+
+									// 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
+									if (marker.markerImage != clickMarker) {
+										marker.setImage(clickMarker)
+										overlay.setMap(map)
+
+									}
+
+									// 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+									selectedMarker = marker;
+									selectedContent = overlay;
+
+								});
 
 				kakao.maps.event.addListener(map, 'click', function() {
 					if (!overlay.setMap(null)) {
@@ -309,7 +325,7 @@
 						}
 					});
 		</script>
-	</form>
+		</form>
 </body>
 </html>
 

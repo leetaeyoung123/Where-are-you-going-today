@@ -70,4 +70,14 @@ public class ShopServiceImpl implements ShopService {
 	public Shop findAllbyShopNameObject(String shopName) {
 		return dao.findAllByShopNameObject(shopName);
 	}
+
+	@Override
+	public List<Menu> findAllMenu() {
+		return dao.findAllMenu();
+	}
+
+	@Override
+	public List<String> findAllBns() {
+		return dao.findAllBns();
+	}
 }

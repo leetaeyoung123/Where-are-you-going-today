@@ -116,4 +116,15 @@ private JdbcTemplate jdbcTemplate;
 		String sql ="SELECT * FROM shop";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Shop>(Shop.class));
 	}
+
+	public List<Menu> findAllMenu() {
+		String sql ="SELECT * FROM menu";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(Menu.class));
+	}
+
+	public List<String> findAllBns() {
+		String sql ="SELECT businessNumber FROM menu";
+		List<String> data = jdbcTemplate.queryForList(sql ,String.class);
+		return data;
+	}
 }

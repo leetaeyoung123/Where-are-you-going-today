@@ -38,4 +38,10 @@ public interface ShopService {
 	
 	// 매장 정보 수정
 	public boolean updateShop(Shop shop, String oldImg);
+	
+	// 메뉴 정보 모두 조회
+	public List<Menu> findAllMenu();
+	
+	// 모든 사업자 번호 조회
+	public List<String> findAllBns();
 }
