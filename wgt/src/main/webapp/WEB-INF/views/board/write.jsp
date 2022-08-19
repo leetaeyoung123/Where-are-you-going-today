@@ -57,11 +57,42 @@
 			<textarea class="content_area" name="content" required
 				maxlength="120" placeholder=" 내용을 입력하세요(최대 120자)"></textarea>
 			사진 선택 : <span><input type="file" accept=".jpg" name="file"
-				required="required"><br></span> <input type="submit"
-				class="add" value="등록" required><br>
+				required="required"><br></span>
+				<img id="profileImg" src="../resources/board/img/upload/${board.imgname}.jpg" style="width:50px; height:50px; margin:0 auto;">이미지 
+				<input type="submit" class="add" value="등록" required><br>
 		</form>
 		<button class="go_home" onclick="location.href='home'">목록으로</button>
 	</div>
 
 </body>
+<script type="text/javascript">
+	
+		// 파일 추가
+		
+		// input 태그 (name이 file)를 가져옴 
+		let fileTag = document.querySelector("input[name=file]");
+		
+		// 파일태그에 변화가 있을 때 실행될 함수 작성 
+		fileTag.onchange = function () {
+			
+			let imgTag = document.querySelector("#profileImg");
+			
+			// 파일이 있는지 확인
+			if(fileTag.files.length > 0) {
+				// 파일을 선택한 경우 미리보기 생성 (이미지 태그 src에 데이터를 넣어주면 됨)
+				let reader = new FileReader();
+				
+				// reader 읽어들이는 작업(onload)를 끝냈을 때 함수 실행, 읽어온 데이터를 함수의 파라미터로 줄 수 있음
+				reader.onload = function (data) {
+					console.log(data);
+					imgTag.src = data.target.result;
+				}
+				
+				reader.readAsDataURL(fileTag.files[0]);
+			} else {
+				// 취소 버튼 누를 경우
+				imgTag.src = "";
+			}
+		}
+</script>
 </html>

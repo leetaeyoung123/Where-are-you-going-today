@@ -34,7 +34,7 @@ public interface BoardService {
 		// 게시글 검색
 		public List<Board> search(String title);
 		
-		// 게심루 정보
+		// 게시물 정보
 		public Board searchByBid(int bid);
 		
 		public Integer totalCount() throws Exception;
