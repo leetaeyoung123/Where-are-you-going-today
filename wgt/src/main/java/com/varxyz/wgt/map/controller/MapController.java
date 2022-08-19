@@ -63,10 +63,11 @@ public class MapController {
 	}
 
 	@PostMapping("/map/map")
-	public String map(Shop shop,Map map, Model model) {
+	public String map(Shop shop,Map map, Model model, HttpSession session) {
 		//매장명으로 매장 정보 가져오기
 		Shop shopName = new Shop();
 		shopName = shopService.findAllByShopName(shop.getShopName());
+		
 		model.addAttribute("shop", shopName);
 		System.out.println(shopName);
 		model.addAttribute("menus", shopService.findShopMenuByBnsNum(shopName.getBusinessNumber()));

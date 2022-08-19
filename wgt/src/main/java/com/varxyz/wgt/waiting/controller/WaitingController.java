@@ -31,7 +31,7 @@ public class WaitingController {
 
 	@GetMapping("/controller/waiting")
 	public String waitingForm(Model model, HttpSession session) {
-		List<Waiting> nowWaiting = waitingService.findAllWaiting("시류");
+		List<Waiting> nowWaiting = waitingService.findAllWaiting((String)session.getAttribute("shopName"));
 		long count = 0;
 		if(nowWaiting.get(0).getUserId() == "없음") {
 			count = 0;
@@ -40,7 +40,7 @@ public class WaitingController {
 				count++;
 			}
 		}
-		model.addAttribute("barName", "시류"); // shop 세션 받아와서 매장명 입력해야함
+		model.addAttribute("barName", session.getAttribute("shopName")); 
 		model.addAttribute("nowWaitingCount", count);
 		return "waiting/add_waiting";
 	}
@@ -51,7 +51,7 @@ public class WaitingController {
 			model.addAttribute("msg", "웨이팅은 한 매장만 가능합니다.");
 			return "error/waitingError";
 		}
-		waitingService.addWaiting("시류", (String) session.getAttribute("userId"), waiting.getNum_people());
+		waitingService.addWaiting((String)session.getAttribute("shopName"), (String) session.getAttribute("userId"), waiting.getNum_people());
 		return "redirect:/controller/get_waiting";
 	}
 
@@ -140,7 +140,7 @@ public class WaitingController {
 
 	@GetMapping("/controller/waiting_management")
 	public String waitingManagement(HttpSession session, Model model) {
-		List<Waiting> waitingList = waitingService.findAllWaiting("시류");
+		List<Waiting> waitingList = waitingService.findAllWaiting((String)session.getAttribute("shopName"));
 
 		model.addAttribute("MyShopWaitingList", waitingList);
 		return "waiting/waiting_management";
@@ -153,8 +153,8 @@ public class WaitingController {
 	}
 
 	@PostMapping("/controller/allWaitingClear")
-	public String allWaitingClear() {
-		waitingService.deteleAllWaiting("시류");
+	public String allWaitingClear(HttpSession session) {
+		waitingService.deteleAllWaiting((String)session.getAttribute("shopName"));
 		return "redirect:/controller/waiting_management";
 	}
 
