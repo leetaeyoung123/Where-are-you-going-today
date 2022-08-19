@@ -98,10 +98,10 @@ public class WaitingController {
 						waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName()).get(0).getShopTel());
 		// 내 앞 대기팀이 0팀 일때
 		if (frontCount == 0) {
-			// waitingStartTime이 0 일때
+			// 언제까지오라는 시간 부여받지 않았을때 or waitingStartTime이 0 일때
 			if (waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getWaitingStartTime()
 					.equals("0")) {
-				DateFormat outputFormat = new SimpleDateFormat("HH:mm:ss");
+				SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm:ss");
 				Date nowDate = new Date();
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(nowDate);
@@ -113,15 +113,23 @@ public class WaitingController {
 						.getWaitingStartTime();
 				model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
 				return "waiting/get_waiting";
-			} else {
-				SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+			} else { 
+				// 언제까지 오라는 시간을 부여 받은 상황
+				SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 				Date nowDate = new Date();
+				
 				String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
 						.getWaitingStartTime();
-
+				
+				System.out.println(waitingTime);
+				System.out.println(formatter.parse(waitingTime));
+//				String now = formatter.format(nowDate);
+//				System.out.println(formatter.parse(waitingTime).after(now));
+				
 				model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
-
-				if (nowDate.after(format.parse(waitingTime))) {
+				
+				System.out.println(nowDate.after(formatter.parse(waitingTime)));
+				if ( nowDate.after(formatter.parse(waitingTime)) ) { // formatter.parse(waitingTime).after(nowDate)
 					waitingService.deleteWaiting((String) session.getAttribute("userId"));
 					return "waiting/get_waiting";
 				}
