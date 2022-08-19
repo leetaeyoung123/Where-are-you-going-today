@@ -77,16 +77,7 @@ public class AddShopController {
 			return "alert/back";
 		}
 		
-		// 사업자 번호 중복시 예외 처리
-		ShopService service = new ShopServiceImpl();
-		try {
-			service.findShopByBnsNum(bnsNum);
-			model.addAttribute("msg", "이미 등록된 가게입니다. 사업자번호를 확인해주세요");
-			return "alert/back";
-		}catch (EmptyResultDataAccessException e) {
-			shop.setBusinessNumber(bnsNum);
-		}
-		
+		shop.setBusinessNumber(bnsNum);	
 		shop.setShopName(shopName);
 		shop.setShopPostCode(shopPostCode);
 		shop.setShopAddress(shopAddress);
