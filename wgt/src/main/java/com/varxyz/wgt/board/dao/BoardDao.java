@@ -34,7 +34,7 @@ public class BoardDao {
 	//게시글 수정
 	public void update(Board board, String imgname) { //3가지 방법, request.getparameter / Board board / Requestparam
 		String sql = "UPDATE Board SET title = ?, content = ?, imgname = ? WHERE number = ?";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgname, board.getNumber());
 	}
 
 	//게시글 삭제
@@ -52,9 +52,9 @@ public class BoardDao {
 	}
 	
 	//고유번호로 게시물 정보 갖고오기
-	public Board searchByBid(int bid) {
+	public Board searchByNumber(int number) {
 		String sql = "SELECT * FROM Board WHERE number = ?";
-		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Board>(Board.class), bid);
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Board>(Board.class), number);
 	}//query = list<object>로 반환  queryforobject = 객체로만 반환
 	
 	//ID로 게시글 찾기

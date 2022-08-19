@@ -35,10 +35,11 @@ public interface BoardService {
 		public List<Board> search(String title);
 		
 		// 게시물 정보
-		public Board searchByBid(int bid);
+		public Board searchByNumber(int number);
 		
 		public Integer totalCount() throws Exception;
 
 		public List<Board> boardList = new ArrayList<>();
+
 
 }

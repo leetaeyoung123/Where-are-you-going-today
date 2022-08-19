@@ -42,13 +42,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public Board searchByNumber(int number) {
+		return dao.searchByNumber(number);
+	}
+	
+	@Override
 	public Integer totalCount() throws Exception {
 		return null;
-	}
-
-	@Override
-	public Board searchByBid(int bid) {
-		return dao.searchByBid(bid);
 	}
 
 	
