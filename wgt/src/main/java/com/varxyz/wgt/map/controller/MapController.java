@@ -66,7 +66,7 @@ public class MapController {
 	public String map(Shop shop,Map map, Model model, HttpSession session) {
 		//매장명으로 매장 정보 가져오기
 		Shop shopName = new Shop();
-		shopName = shopService.findAllByShopName(shop.getShopName());
+		shopName = shopService.findAllbyShopNameObject(shop.getShopName());
 		
 		model.addAttribute("shop", shopName);
 		System.out.println(shopName);
