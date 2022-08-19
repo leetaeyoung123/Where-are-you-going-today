@@ -95,9 +95,7 @@ public class WaitingController {
 		model.addAttribute("waiting", waitingService.findWaitingById((String) session.getAttribute("userId")));
 		model.addAttribute("shopTel",
 				shopService.findAllByShopName(
-						waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName())
-						.getShopTel());
-
+						waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName()));
 		// 내 앞 대기팀이 0팀 일때
 		if (frontCount == 0) {
 			// waitingStartTime이 0 일때
