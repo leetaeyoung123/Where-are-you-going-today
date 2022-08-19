@@ -49,20 +49,25 @@ public class MypageController {
 
 	//게시글 수정
 	@GetMapping("/board/update")
-	public String updateget(MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
+	public String updateget(@RequestParam("bid") int bid, MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
 		Board board = new Board();
 		String bidboard = (String)session.getAttribute("imgname");
 		board.setImgname(bidboard);
-		model.addAttribute("board", service.read(board));
+		model.addAttribute("board", service.searchByBid(bid));
 		session.setAttribute("board", board);
 		return "board/update";
 	}
 	
 	@PostMapping("/board/update")
-	public String update(@RequestParam("file") MultipartFile file,@RequestParam("bid") int bid, HttpServletRequest request, Board board, Model model) {
-		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+	public String update(@RequestParam("file") MultipartFile file, @RequestParam("bid") int bid, HttpServletRequest request, Board board, Model model) {
+		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드
 		long size = file.getSize();
-				
+
+		Board bidboard = new Board();
+		bidboard = service.searchByBid(bid);
+		String imgname = bidboard.getImgname();
+		model.addAttribute("board", service.searchByBid(bid));
+		
 		System.out.println("파일명 : "  + fileRealName);
 		System.out.println("용량크기(byte) : " + size);
 		
@@ -85,14 +90,14 @@ public class MypageController {
 			e.printStackTrace();
 		}catch (IOException e) {
 			e.printStackTrace();
-		}
+		}		
 		
-		board.setImgname(uniqueName);
+		board.setImgname(imgname);
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
 		board.setImgname(request.getParameter("imgname"));
 		
-		service.update(board, uniqueName);
+		service.update(board, imgname);
 		
 		model.addAttribute("msg", "게시글 수정을 완료하였습니다.");
 		model.addAttribute("url","mypage");
@@ -109,6 +114,7 @@ public class MypageController {
 		
 		String filePath = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload\\" + imgname + ".jpg";
         File file = new File(filePath);
+        
         System.out.println(bid);
         System.out.println(file);
         System.out.println(service.searchByBid(bid));
