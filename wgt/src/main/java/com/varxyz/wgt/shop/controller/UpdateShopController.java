@@ -50,6 +50,7 @@ public class UpdateShopController {
 		
 		// 사용자가 번호를 아무것도 바꾸지 않았다면 원래 번호를 그대로 사용해준다
 		String shopTel = request.getParameter("shopTel");
+		String shopHours = request.getParameter("shopHours");
 		if (request.getParameter("shopTel") == null) {
 			if (request.getParameter("shop_tel2").trim().isBlank() || request.getParameter("shop_tel3").trim().isBlank()) {
 				model.addAttribute("msg", "빈값은 입력하실 수 없습니다.");
@@ -58,17 +59,19 @@ public class UpdateShopController {
 		  // 만약 사용자가 번호를 수정한다면 수정한 번호를 재설정 해준다.
 		  shopTel = request.getParameter("shop_tel1") + "-" + request.getParameter("shop_tel2") + "-" + request.getParameter("shop_tel3");
 		}
+		
+		if(request.getParameter("shopHours") == null) {
+			shopHours = request.getParameter("shop_hour1") + " ~ " + request.getParameter("shop_hour2");
+		}
 		Shop shop = new Shop();
 		
 		shop.setBusinessNumber(request.getParameter("businessNumber"));
 		shop.setShopName(request.getParameter("shopName"));
 		shop.setShopTel(shopTel);
-		System.out.println(shop.getShopTel());
 		shop.setShopPostCode(request.getParameter("shop_address1"));
 		shop.setShopAddress(request.getParameter("shop_address2"));
 		shop.setShopDetailAddress(request.getParameter("shop_address3"));
 		shop.setShopExtraAddress(request.getParameter("shop_address4"));
-		String shopHours = request.getParameter("shop_hours1") + " ~ " + request.getParameter("shop_hours2");
 		shop.setShopHours(shopHours);
 		shop.setShopTables(request.getParameter("shop_tables"));
 		shop.setShopMaxPeoples(request.getParameter("shop_max_people"));
