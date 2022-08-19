@@ -30,7 +30,7 @@ public class OwnerServiceImpl implements OwnerService {
 		ownerDao.delete(ownerId);
 	}
 	
-	// 사업자번호 중복검사
+	// 사업자번호 중복검사 (boolean 타입 형식)
 	@Override
 	public boolean duplicationBn(String bNumber) {
 		return ownerDao.duplicationBn(bNumber);

@@ -52,7 +52,7 @@ public class OwnerDao {
 		jdbcTemplate.update(sql, ownerId);
 	}
 	
-	// 사업자번호 중복검사 
+	// 사업자번호 중복검사 (boolean 타입 형식)
 	public boolean duplicationBn(String bnumber) {
 		String sql = "SELECT * FROM Owner WHERE bnumber = ?";
 		boolean result = false;
