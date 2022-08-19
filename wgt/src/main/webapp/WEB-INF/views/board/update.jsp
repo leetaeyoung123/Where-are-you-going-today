@@ -43,13 +43,14 @@
 	<div class="write_area">
 		<form action="update" method="post" enctype="multipart/form-data"
 			style="text-align: center; display: grid; justify-content: center; margin-top: 40px;">
+			<input class="update" name="number" value="${board.number}">
 			<span>제목</span>
 			<textarea class="title_area" name="title"
 				maxlength="50" required>${board.title}</textarea><!-- input은 <>안에, textarea는 <>밖에 -->
 			<span>내용</span>
 			<textarea class="content_area" name="content"
 				maxlength="150" required>${board.content}</textarea>
-			사진 선택 : <span><input type="file" accept=".jpg" name="file" required><br></span>
+			사진 선택 : <span><input type="file" accept=".jpg" name="file"><br></span>
 					<br><img id="profileImg" src="../resources/board/img/upload/${board.imgname}.jpg" style="width:50px; height:50px; margin:0 auto;">이미지
 				<input type="submit" class="update" value="수정하기" required="required"><br>
 		</form>

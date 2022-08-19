@@ -46,7 +46,7 @@
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;"></a>
 	</div>
-	<h3 style="text-align: center; margin-top: 30px;">게시글 작성</h3>
+	<h3 style="text-align: center; margin-top: 30px; margin-bottom: -15px;">게시글 작성</h3>
 	<div class="write_area">
 		<form action="write" method="post" enctype="multipart/form-data"
 			style="text-align: center; display: grid; justify-content: center; margin-top: 40px;">
@@ -58,7 +58,7 @@
 				maxlength="120" placeholder=" 내용을 입력하세요(최대 120자)"></textarea>
 			사진 선택 : <span><input type="file" accept=".jpg" name="file"
 				required="required"><br></span>
-				<img id="profileImg" src="../resources/board/img/upload/${board.imgname}.jpg" style="width:50px; height:50px; margin:0 auto;">이미지 
+				<img id="profileImg" src="../resources/board/img/upload/${board.imgname}.jpg" style="width:50px; height:50px; margin:0 auto; margin-top:5px;">이미지 
 				<input type="submit" class="add" value="등록" required><br>
 		</form>
 		<button class="go_home" onclick="location.href='home'">목록으로</button>
@@ -66,8 +66,7 @@
 
 </body>
 <script type="text/javascript">
-	
-		// 파일 추가
+		// 이미지 파일 보이기
 		
 		// input 태그 (name이 file)를 가져옴 
 		let fileTag = document.querySelector("input[name=file]");

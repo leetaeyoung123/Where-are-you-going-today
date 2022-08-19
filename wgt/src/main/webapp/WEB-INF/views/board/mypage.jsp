@@ -55,11 +55,11 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;"></a>
 	</div>
-	<c:forEach var="user" items="${userList}">
- 		${user.userId}
- 		${user.name}
-  		${user.phone}
-	</c:forEach>
+	<div class="userinfo" style="text-align: center; margin-top: 20px; font-size: 20px;">
+		<c:forEach var="user" items="${userList}">
+ 			${user.userId}님의 마이페이지
+		</c:forEach>
+	</div>
 
 	<div class="body1">
 		<div class="feedReactionButton">
@@ -79,8 +79,6 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 								<span class="liketext">좋아요 <span class="likesresult">0</span>개
 								</span>
 							</div>
-							<%-- <p><%= sf.format(nowTime) %></p> --%>
-							<%-- <p>${item.regDate}</p> --%>
 						</div>
 						<p>
 							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm" value="${item.regDate}" />
@@ -116,12 +114,12 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	}
 	
 	function upCheck(num) {
-		const link = "update?bid=" + num;
+		const link = "update?number=" + num;
 		location.href=link;
 	};
 	
 	function delCheck(num) {
-		const link = "delete?bid=" + num;
+		const link = "delete?number=" + num;
 		if(confirm("정말 삭제하시겠습니까?")){
 			/*console.log(num);*/
  			alert("삭제를 완료하였습니다.");
