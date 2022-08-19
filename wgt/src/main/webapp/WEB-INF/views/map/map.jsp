@@ -36,6 +36,9 @@
 			<li class="sub3">
 					<a onclick="location.href='/wgt/userInfo';">회원정보 보기</a>
 			</li>
+				<li class="sub4">
+				<a onclick="location.href='/wgt/logOut';">로그아웃</a>
+			</li>
 		</ul>
 	</nav>
 	<form class="header_form" action="map" method="post">

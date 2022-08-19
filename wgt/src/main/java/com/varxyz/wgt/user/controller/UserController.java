@@ -34,16 +34,23 @@ public class UserController {
 	}
 
 	@PostMapping("/addUser")
-	public String addUser(@RequestParam("file") MultipartFile file ,HttpServletRequest request, HttpSession session,  Model model) {
+	public String addUser(@RequestParam("file") MultipartFile file ,HttpServletRequest request, HttpSession session,  Model model, String imgName ) {
 		String fileRealName = file.getOriginalFilename(); // 파일명을 얻어낼 수 있는 메소드
 		long size = file.getSize(); // 파일 사이즈
+		
+		if(fileRealName == null || fileRealName.length() == 0) {
+			
+			model.addAttribute("msg", "프로필 사진을 등록해 주세요!!");
+			model.addAttribute("url", "addUser");
+			
+			return "alert/alert";
+		}
 		
 		System.out.println("파일명 : " + fileRealName);
 		System.out.println("파일크기 : " + size);
 		
-		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img";
-		
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());	// 실제 파일명을 알수있는 메소드
+		String uploadFolder = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img";
 		
 		// 고유한 랜덤 문자생성 해서 db와 서버에 저장할 파일명을 새롭게 만들어 주는 코드
 		UUID uuid = UUID.randomUUID();
@@ -78,7 +85,7 @@ public class UserController {
 		
 		List<User> userList = new ArrayList<User>();
 		userList = userService.inquiryUser(user.getUserId());
-		
+
 		// 리스트일 때는 size로 비교한다
 		if(userList.size() > 0) {
 			model.addAttribute("msg", "중복된 아이디 입니다!!");
@@ -149,7 +156,7 @@ public class UserController {
 		System.out.println("파일크기 : " + size);
 		
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
-		String uploadFolder = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img"; 
+		String uploadFolder = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img"; 
 		
 		// 고유한 랜덤 문자생성 해서 db와 서버에 저장할 파일명을 새롭게 만들어 주는 코드
 		UUID uuid = UUID.randomUUID();
@@ -202,7 +209,7 @@ public class UserController {
 		String dbImgName = user.get(0).getImgName();
 		System.out.println(dbImgName);
 		
-		String filePath = "C:\\LSH\\Where-are-you-going-today-\\wgt\\src\\main\\webapp\\resources\\user\\img\\" + dbImgName + ".jpg";
+		String filePath = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\user\\img\\" + dbImgName + ".jpg";
 		
 		File deleteFile = new File(filePath);
 		System.out.println(deleteFile);
