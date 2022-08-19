@@ -53,6 +53,13 @@ public class WaitingDao {
 			waiting.add(error);
 			return waiting;
 		}
+		if ( jdbcTemplate.query(sql, new BeanPropertyRowMapper<Waiting>(Waiting.class), userId).get(0).getWaitingStartTime() == null) {
+			List<Waiting> waiting = new ArrayList<Waiting>();
+			Waiting error = new Waiting();
+			error.setWaitingStartTime(null);
+			waiting.add(error);
+			return waiting;
+		}
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Waiting>(Waiting.class), userId);
 	}
 
