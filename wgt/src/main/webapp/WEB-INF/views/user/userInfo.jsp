@@ -19,7 +19,7 @@
 	<a class="back" href="<c:url value='/map/map'/>"><img src="resources/mapcss/img/backicon.png"></a>
 	<form action="userInfo" method="post" enctype="multipart/form-data">
 		<c:forEach var="user" items="${userList}">
-		<div style="font-size: 100px; text-align: center; padding-top: 40px;">회원정보</div>
+		<div style="font-size: 100px; text-align: center;">회원정보</div>
 		<!-- required는 입력을 안할시 자동으로 입력하라고 알림창을 띄움 -->
 		<div style="text-align: center; padding-top: 20px; font-size: 30px;">아이디 
 		<input type="text" name="userId" value="${user.userId}" readonly></div><br> 
