@@ -31,27 +31,18 @@ public class MypageController {
 	@GetMapping("/board/mypage")
 	public String post(HttpSession session, Model model, Board board) {
 		List<User> userList = userService.inquiryUser((String) session.getAttribute("userId"));
-//		System.out.println(session.getAttribute("userId"));
+		System.out.println(session.getAttribute("userId"));
 		model.addAttribute("userList", userList);
 		model.addAttribute("board", service.read(board));
 		session.setAttribute("number", board.getNumber());
 		return "/board/mypage";
 	}
 
-//	@PostMapping("/board/mypage")
-//	public String post(Board board, Model model) {
-//		model.addAttribute("Board", board);
-//		service.create(board, "imgname");
-//		model.addAttribute("msg", "게시글 수정을 완료하였습니다.");
-//		model.addAttribute("url", "home");
-//		return "alert/alert";
-//	}
-
 	//게시글 수정
 	@GetMapping("/board/update")
 	public String updateget(@RequestParam("bid") int bid, MultipartFile file, HttpServletRequest request, HttpSession session, Model model) {
 		Board board = new Board();
-		String bidboard = (String)session.getAttribute("imgname");
+		String bidboard = (String)session.getAttribute("bid");
 		board.setImgname(bidboard);
 		model.addAttribute("board", service.searchByBid(bid));
 		session.setAttribute("board", board);
@@ -59,14 +50,13 @@ public class MypageController {
 	}
 	
 	@PostMapping("/board/update")
-	public String update(@RequestParam("file") MultipartFile file, @RequestParam("bid") int bid, HttpServletRequest request, Board board, Model model) {
+	public String update(@RequestParam("file") MultipartFile file, HttpServletRequest request, Board board, Model model) {
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드
 		long size = file.getSize();
-
 		Board bidboard = new Board();
-		bidboard = service.searchByBid(bid);
+		System.out.println(board.getTitle());
 		String imgname = bidboard.getImgname();
-		model.addAttribute("board", service.searchByBid(bid));
+		model.addAttribute("board", bidboard);
 		
 		System.out.println("파일명 : "  + fileRealName);
 		System.out.println("용량크기(byte) : " + size);
