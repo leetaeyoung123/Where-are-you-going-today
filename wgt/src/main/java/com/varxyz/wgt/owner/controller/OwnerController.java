@@ -30,8 +30,7 @@ public class OwnerController {
 		Owner dbOwner = new Owner();
 		dbOwner = ownerService.findAllOwner(owner.getOwnerId());
 		
-		// 사업자 중복검사 
-		System.out.println(owner.getBnumber());
+		// 사업자 중복검사 (boolean 타입 형식)
 		if(!ownerService.duplicationBn(owner.getBnumber())) {
 			model.addAttribute("msg", "사업자 번호가 있습니다!!");
 			

@@ -14,9 +14,9 @@
 
 <body>
 	<div style="font-size: 80px; text-align: center; padding-top: 150px; padding-bottom: 120px;">로그아웃<br> 하시겠습니까</div>
-	<form action="logOut" method="post">
+	<form action="ownerLogOut" method="post">
 		<input type="submit" class="addBtn" value="예" />
 	</form>
-		<button type="button" class="addBtn" onclick="location.href='map/map';">아니요</button>
+		<button type="button" class="addBtn" onclick="location.href='shop/viewMyShop'">아니요</button>
 </body>
 </html>

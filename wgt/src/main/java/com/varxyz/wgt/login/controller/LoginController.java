@@ -63,7 +63,7 @@ public class LoginController {
 	
 	// 로그 아웃
 	@GetMapping("/logOut")
-	public String logOutForm(HttpSession session) {
+	public String logOutForm() {
 
 		return "logOut/logOut";
 	}
