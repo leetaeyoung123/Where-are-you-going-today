@@ -26,13 +26,7 @@ private JdbcTemplate jdbcTemplate;
 	public Shop findAllByShopName(String shopName){
 		String sql = "SELECT * FROM shop WHERE shopName = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), shopName);
-		/*
-		 * try { return jdbcTemplate.queryForObject(sql, new
-		 * BeanPropertyRowMapper<Shop>(Shop.class), shopName); } catch (Exception e) {
-		 * return null; }
-		 */
 	}
-	
 	// 매장 추가
 	public boolean addShop(Shop shop) {
 		String sql = "INSERT INTO SHOP (businessNumber, shopName, shopTel, shopPostCode, shopAddress, "

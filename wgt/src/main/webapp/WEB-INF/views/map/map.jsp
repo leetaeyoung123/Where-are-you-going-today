@@ -48,7 +48,7 @@
 		</select> </li>
 		<!--검색어 입력창-->
 		<li><input onkeyup="filter()" id="inputSearch" class="inputtext"
-			type="text" name="shopName" value="" required></li>
+			type="text" value="" required></li>
 		<li><a class="userInformation"> <span></span></a></li>
 	</ul>
 		<%
@@ -65,10 +65,10 @@
 				<!--모든 가게이름을 다 불러와 맵에 마크와 컨테츠 표현-->
 					<c:forEach var="shop" items="${shopFind}" varStatus="status">
 						<div class="item" style="display: none;">
-							<input id="findname${status.index}" value="${shop.shopName}"
-								onclick="inputText"
-								style="display:none;" />
-								 <span class="name">${shop.shopName}</span> 
+							<input name="shopName" id="findname${status.index}" value="${shop.shopName}" type="submit"/>
+								<input id="shopAddress${status.index}" value="${shop.shopAddress}" style="display:none;" >
+								 <p class="name">${shop.shopName}</p>
+								 <p class="address">${shop.shopAddress}</p>
 						</div>
 						<%
 						// 스크립트 반복문 사용을 위한 카운트 증가
@@ -96,6 +96,7 @@
 			const bodytoggle = document.querySelector(".header_form")
 			const searchbtn = document.querySelector(".searchbtn")
 			
+			const filteritemClose = document.querySelector(".item")
 			const filterClose = document.querySelector("#menu_wrap")
 			var mapClick = document.getElementById('map')
 
@@ -106,14 +107,22 @@
 				bodytoggle.classList.toggle("on")
 			}
 			
+			function removeOn() {
+				bodytoggle.classList.remove("on")
+				toggleBtn.classList.remove("open")
+				gnbBtn.classList.remove("on")
+			}
+			
  			function filterEvent() {
 				filterClose.style.opacity = "0";
+				filteritemClose.style.display = "none"; 
 			}
 			
 			mapClick.addEventListener("click", filterEvent); 
 			
 			toggleBtn.addEventListener("click", toggleHandler);
-				
+			
+			mapClick.addEventListener("click", removeOn);	
 			function filter() {
 						
 				var value, name, item, i, background;

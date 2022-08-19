@@ -64,13 +64,14 @@ public class MapController {
 
 	@PostMapping("/map/map")
 	public String map(Shop shop,Map map, Model model) {
-		//검색 검색 내용
-		model.addAttribute("shopName", shopService.findAllByShopName(shop.getShopName()));
+		//매장명으로 매장 정보 가져오기
+		model.addAttribute("shop", shopService.findAllByShopName(shop.getShopName()));
+		System.out.println((shop.getShopName()));
 		// 경도 위도 불러오기
 		model.addAttribute("find", mapService.findAll());
 		//전체 조회
 		model.addAttribute("shopFind", shopService.findAllShop());
-		return "map/map";
+		return "shop/view/viewUserShop";
 	}
 	
 	@PostMapping("/map/go_get_waiting")
