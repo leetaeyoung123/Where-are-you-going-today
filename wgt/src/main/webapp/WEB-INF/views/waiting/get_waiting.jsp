@@ -31,15 +31,23 @@
 							매장 전화번호 : <br>${shopTel}<br>
 							인원 : ${x.num_people}명<br>
 							총 대기팀 : ${allCount}팀 <br>
-							내 앞 대기팀 : ${frontCount}팀
+							내 앞 대기팀 : ${frontCount}팀<br>
+							<span style="color:red;">${msg}</span>
 				</c:forEach>
 
 			</div>
 			<form action="get_waiting" method="post" class="form_style" >
+				<c:if test="${shopTel != '-'}">
 				<div class="btn_wrap">
 					<input type="button" onclick="back()" value="뒤로가기" class="prev_btn"> <input
 						type="submit" value="웨이팅 취소" class="next_btn">
 				</div>
+				</c:if>
+				<c:if test="${shopTel == '-'}">
+				<div class="btn_wrap">
+					<input type="button" onclick="back()" value="뒤로가기" class="prev_btn"> 
+				</div>
+				</c:if>
 			</form>
 		</div>
 		<hr>

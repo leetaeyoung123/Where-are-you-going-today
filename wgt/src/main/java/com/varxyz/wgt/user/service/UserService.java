@@ -15,15 +15,16 @@ public interface UserService {
 	UserDao userDao = context.getBean("userDao", UserDao.class);
 	
 	// 회원 추가
-	public void addUser(User user);
+	public void addUser(User user, String imgName);
 	
 	// 회원 조회
 	public List<User> inquiryUser(String userId);
 	
 	// 회원 수정
-	public void modifyUser(User user);
+	public void modifyUser(User user, String imgName);
 	
 	// 회원 탈퇴
-	public void delete(String userId);
+	public void delete(String userId, String imgName);
+
 
 }

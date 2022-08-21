@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.io.*, java.text.*, java.util.*" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.util.Date"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.io.*, java.text.*, java.util.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-	Date nowTime = new Date();
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
+Date nowTime = new Date();
+SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 %>
 
 <!DOCTYPE html>
@@ -31,25 +31,29 @@
 
 	<header class="headerContainer">
 		<!--상단 탭 만들기 뼈대구조-->
-		<div class="headerContents">
-			<!--상단 탭 내용물 감싼구조-->
-			<div class="WestagramTag">
-				<!--상단 좌측 내용물-->
-				<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
+		<form action="home" method="post">
+			<div class="headerContents">
+				<!--상단 탭 내용물 감싼구조-->
+				<div class="WestagramTag">
+					<!--상단 좌측 내용물-->
+					<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
+				</div>
+				<div class="headerSearchBar" style="border-radius: 5px;">
+					<!--상단 중앙 내용물-->
+					<i class="fas fa-search"></i> <input name="title" type="text"
+						placeholder=" 게시글 검색" style="border: none; outline: none;"> <input
+						type="submit" value="검색" style="display: none;">
+				</div>
 			</div>
-			<div class="headerSearchBar" style="border-radius:5px;">
-				<!--상단 중앙 내용물-->
-				<i class="fas fa-search"></i> <input type="text" placeholder="검색"
-					style="border: none;outline:none;">
-			</div>
-			<div class="write_btn">
-				<form action="home" method="post">
-					<button type="submit" value="글쓰기"
-						style="position: relative; left: 31%; margin-top: 55px; cursor: pointer; z-index: 1000;">글쓰기</button>
-				</form>
-			</div>
-		</div>
+		</form>
 	</header>
+	
+		<div class="writearea">
+			<form action="write" method="post" style="text-align:center;">
+				<button class="writebtn" type="button" value="글쓰기" onclick = "location.href='write'"
+					style="position: relative; left: 1%; margin-top:20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
+			</form>
+		</div>
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
@@ -58,26 +62,30 @@
 
 	<div class="body1">
 		<div class="feedReactionButton">
-				<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
+			<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
 			<div class="boardarea">
-			<c:forEach var="item" items="${board}">
-				<div class="write" style="margin-bottom: 30px;">
-					<img src="../resources/board/img/upload/${item.imgname}.jpg" style="width:370px;height:330px"><br>
-				<div class="emptyheart">
-					<a class="likebtn" style="display:flex;padding-left:1px;margin-top:1px;">
-
-					</a>
-				 	  <div class = "feedReaction">
-   						<span class="liketext">좋아요 <span class="likesresult">0</span>개</span>
- 					  </div>
-					<%-- <p><%= sf.format(nowTime) %></p> --%>
-					<%-- <p>${item.regDate}</p> --%>
-				</div>
-					<p><fmt:formatDate pattern="yy년MM월dd일 a hh:mm" value="${item.regDate}"/></p>
-					<h4>${item.title}</h4><br>
-						${item.content}<br>
-				</div>
-			</c:forEach>
+				<c:forEach var="item" items="${board}">
+					<div class="write" style="margin-bottom: 30px;">
+						<img src="../resources/board/img/upload/${item.imgname}.jpg"
+							style="width: 370px; height: 330px; border-radius:5px;"><br>
+						<div class="emptyheart">
+							<a class="likebtn"
+								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
+							<div class="feedReaction">
+								<span class="liketext">좋아요 <span class="likesresult">0</span>개
+								</span>
+							</div>
+							<%-- <p><%= sf.format(nowTime) %></p> --%>
+							<%-- <p>${item.regDate}</p> --%>
+						</div>
+						<p>
+							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
+								value="${item.regDate}" />
+						</p>
+						<h4>${item.title}</h4>
+						<br> ${item.content}<br>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

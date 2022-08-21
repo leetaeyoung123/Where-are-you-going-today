@@ -59,5 +59,19 @@ public class LoginController {
 
 		return  "error/error";
 	}
+	
+	
+	// 로그 아웃
+	@GetMapping("/logOut")
+	public String logOutForm() {
 
+		return "logOut/logOut";
+	}
+	
+	@PostMapping("/logOut")
+	public String logOut(HttpSession session) {
+		session.invalidate();	// 세션 단절
+		
+		return "login/login";
+	}
 }

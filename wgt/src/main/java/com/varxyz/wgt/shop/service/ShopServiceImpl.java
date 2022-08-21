@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.varxyz.wgt.data.DataSourceConfig;
 import com.varxyz.wgt.shop.dao.ShopDao;
 import com.varxyz.wgt.shop.domain.Menu;
+import com.varxyz.wgt.shop.domain.MenuCommand;
 import com.varxyz.wgt.shop.domain.Shop;
 
 public class ShopServiceImpl implements ShopService {
@@ -39,4 +40,44 @@ public class ShopServiceImpl implements ShopService {
 		return dao.findShopMenuByBnsNum(bnsNum);
 	}
 
+	@Override
+	public boolean updateShopMenu(MenuCommand updatedMenu, Menu oldMenu) {
+		return dao.updateShopMenu(updatedMenu, oldMenu);
+	}
+
+	@Override
+	public boolean deleteShopMenu(String menuName, String menuImg) {
+		return dao.deleteShopMenu(menuName, menuImg);
+	}
+
+	@Override
+	public Menu findMenuByMenuName(String menuName) {
+		return dao.findMenuByMenuName(menuName);
+	}
+
+	@Override
+	public boolean updateShop(Shop shop, String oldImg) {
+		return dao.updateShop(shop, oldImg);
+	}
+
+	@Override
+	public List<Shop> findAllShop() {
+		return dao.findAllShop();
+	}
+
+	// 매장 정보 매장 객체로 받아오기
+	@Override
+	public Shop findAllbyShopNameObject(String shopName) {
+		return dao.findAllByShopNameObject(shopName);
+	}
+
+	@Override
+	public List<Menu> findAllMenu() {
+		return dao.findAllMenu();
+	}
+
+	@Override
+	public List<String> findAllBns() {
+		return dao.findAllBns();
+	}
 }

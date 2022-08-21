@@ -1,5 +1,6 @@
 package com.varxyz.wgt.board.dao;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,30 +32,37 @@ public class BoardDao {
 	}
 	
 	//게시글 수정
-	public void update(Board board) {
-		String sql = "UPDATE Board SET title = ?, content = ?, imgname =? WHERE userId = ?";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), board.getImgname());
+	public void update(Board board, String imgname) { //3가지 방법, request.getparameter / Board board / Requestparam
+		String sql = "UPDATE Board SET title = ?, content = ?, imgname = ? WHERE number = ?";
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgname, board.getNumber());
 	}
 
 	//게시글 삭제
-	public List<Board> delete(long number) {
+	public int delete(int number, String imgname) {
 		String sql = "DELETE FROM Board WHERE number = ?";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class), number);
+		File file = new File("C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload" + imgname + ".jpg");
+		file.delete();
+		return jdbcTemplate.update(sql, number);
 	}
+	
+	//제목으로 게시글 찾기
+	public List<Board> search(String title) {
+		String sql = "SELECT * FROM Board WHERE title like '%" + title + "%' ORDER BY regDate DESC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
+	}
+	
+	//고유번호로 게시물 정보 갖고오기
+	public Board searchByNumber(int number) {
+		String sql = "SELECT * FROM Board WHERE number = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Board>(Board.class), number);
+	}//query = list<object>로 반환  queryforobject = 객체로만 반환
 	
 	//ID로 게시글 찾기
-	public List<Board> find(String userId) {
-		String sql = "SELECT * FROM Board WHERE userId = ?";
-		List<Board> list = new ArrayList<>();
-		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
-		return list;
-	}
+//	public List<Board> findByuserId(String userId) {
+//		String sql = "SELECT * FROM Board WHERE userId = ?";
+//		List<Board> list = new ArrayList<>();
+//		list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
+//		return list;
+//	}
 
-	public void create() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	//가게이름으로 찾기
-	
 }

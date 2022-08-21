@@ -1,8 +1,5 @@
 package com.varxyz.wgt.owner.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -30,18 +27,37 @@ public class OwnerController {
 	@PostMapping("/addOwner")
 	public String addOwner(Owner owner, Model model) {
 		
-		ownerService.addOwner(owner);
-		OwnerService.context.close();
+		Owner dbOwner = new Owner();
+		dbOwner = ownerService.findAllOwner(owner.getOwnerId());
 		
-		return "login/ownerLogin";
+		// 사업자 중복검사 (boolean 타입 형식)
+		if(!ownerService.duplicationBn(owner.getBnumber())) {
+			model.addAttribute("msg", "사업자 번호가 있습니다!!");
+			
+			return "alert/back";
+		}
+		
+		// 객체는 null로 비교하면 됨
+		if(dbOwner.getOwnerId() == null) {
+			ownerService.addOwner(owner);
+			OwnerService.context.close();
+			
+			return "owner/successAddOwner";
+			
+		}
+		
+		model.addAttribute("msg", "중복된 아이디 입니다!!");
+		model.addAttribute("url", "addOwner");
+		
+		return "error/error";
+		
 	}
 	
-
 	// 점주 정보 가져오기
 	@GetMapping("/modifyOwner") 
 	public String findAllOwnerForm(HttpServletRequest request, HttpSession session, Model model) {
 		
-		List<Owner> ownerList = new ArrayList<Owner>();
+		Owner ownerList = new Owner();
 		ownerList = ownerService.findAllOwner((String)session.getAttribute("ownerId"));
 		model.addAttribute("ownerList", ownerList);
 		

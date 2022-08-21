@@ -10,6 +10,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import com.varxyz.wgt.board.dao.BoardDao;
 import com.varxyz.wgt.login.dao.LoginDao;
+import com.varxyz.wgt.login.dao.OwnerLoginDao;
 import com.varxyz.wgt.map.dao.MapDao;
 import com.varxyz.wgt.owner.dao.OwnerDao;
 import com.varxyz.wgt.shop.dao.ShopDao;
@@ -19,7 +20,7 @@ import com.varxyz.wgt.waiting.dao.WaitingDao;
 
 
 @Configuration
-@ComponentScan(basePackageClasses = {UserDao.class, LoginDao.class, OwnerDao.class, BoardDao.class})
+@ComponentScan(basePackageClasses = {BoardDao.class, OwnerLoginDao.class, ShopDao.class})
 public class DataSourceConfig {
 
 	@Bean(destroyMethod = "close")
@@ -58,9 +59,18 @@ public class DataSourceConfig {
 	}
 	
 	@Bean
-	public ShopDao shopDao() {
-		return new ShopDao(dataSource());
+	public UserDao userDao() {
+		return new UserDao(dataSource());
+	}	
+	
+	@Bean
+	public OwnerDao ownerDao() {
+		return new OwnerDao(dataSource());
 	}
 	
+	@Bean
+	public LoginDao loginDao() {
+		return new LoginDao(dataSource());
+	}
 	
 }
