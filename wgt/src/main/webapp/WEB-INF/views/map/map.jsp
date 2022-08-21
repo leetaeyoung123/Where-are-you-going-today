@@ -86,10 +86,10 @@
 						count++;
 						%>
 					</c:forEach>
-					
 					<c:forEach var="menu" items="${menuList}" varStatus="status">
 						<div class="menulist" id="findmenu${status.index}">
 							<p class="menu">${menu}</p>
+							<input id="test${status.index}" type=text value="${menu}">
 						</div>
 					</c:forEach>
 					
@@ -105,227 +105,219 @@
 		</div>
 		<!--id값을 이용하여 스크립트에 반복문 사용을 위한 카운트 등록-->
 		<input id="count" value="<%=count%>" style="display: none;" />
+	</form>
+	<script>
+		const count = document.getElementById("count").value
+		const toggleBtn = document.querySelector(".userInformation")
+		const gnbBtn = document.querySelector("#gnb")
+		const bodytoggle = document.querySelector(".header_form")
+		const searchbtn = document.querySelector(".searchbtn")
+		const shopName = document.querySelector(".shop")
 
-		<script>
-			const count = document.getElementById("count").value
-			const toggleBtn = document.querySelector(".userInformation")
-			const gnbBtn = document.querySelector("#gnb")
-			const bodytoggle = document.querySelector(".header_form")
-			const searchbtn = document.querySelector(".searchbtn")
-			const shopName = document.querySelector(".shop")
+		const filteritemClose = document.querySelector(".item")
+		const filterClose = document.querySelector("#menu_wrap")
+		var mapClick = document.getElementById('map')
 
-			const filteritemClose = document.querySelector(".item")
-			const filterClose = document.querySelector("#menu_wrap")
-			var mapClick = document.getElementById('map')
+		function onClicksubMit() {
+			bodytoggle.submit(event.target.value);
+		}
 
-			function onClicksubMit() {
-				bodytoggle.submit(event.target.value);
-			}
+		function toggleHandler() {
+			toggleBtn.classList.toggle("open")
+			gnbBtn.classList.toggle("on")
+			bodytoggle.classList.toggle("on")
+		}
 
-			function toggleHandler() {
-				toggleBtn.classList.toggle("open")
-				gnbBtn.classList.toggle("on")
-				bodytoggle.classList.toggle("on")
-			}
+		function removeOn() {
+			bodytoggle.classList.remove("on")
+			toggleBtn.classList.remove("open")
+			gnbBtn.classList.remove("on")
+		}
 
-			function removeOn() {
-				bodytoggle.classList.remove("on")
-				toggleBtn.classList.remove("open")
-				gnbBtn.classList.remove("on")
-			}
+		function filterEvent() {
+			filterClose.style.opacity = "0";
+			filteritemClose.style.display = "none";
+		}
 
-			function filterEvent() {
-				filterClose.style.opacity = "0";
-				filteritemClose.style.display = "none";
-			}
+		mapClick.addEventListener("click", filterEvent);
 
-			mapClick.addEventListener("click", filterEvent);
+		toggleBtn.addEventListener("click", toggleHandler);
 
-			toggleBtn.addEventListener("click", toggleHandler);
+		mapClick.addEventListener("click", removeOn);
 
-			mapClick.addEventListener("click", removeOn);
-			
+		function filter() {
 
+			var value, name, item, i, background, menuList, menu;
+			value = document.getElementById("inputSearch").value.toUpperCase();
 
-			function filter() {
+			item = document.getElementsByClassName("item");
+			menuList = document.getElementsByClassName("menulist")
+			background = document.getElementById("menu_wrap")
 
-				var value, name, item, i, background, menuList, menu;
-				value = document.getElementById("inputSearch").value
-						.toUpperCase();
-				
-				item = document.getElementsByClassName("item");
-				menuList = document.getElementsByClassName("menulist")
-				
-				background = document.getElementById("menu_wrap")
-				
+			for (i = 0; i < item.length; i++) {
 
-				for (i = 0; i < item.length; i++) {
-					
-					name = item[i].getElementsByClassName("name")
-					menu = menuList[i].getElementsByClassName("menu")
-					if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-						
-						menuList[i].style.display = "block";
-						item[i].style.display = "block";
-						background.style.opacity = "100";
-						background.style.left = "0";
-					} else {
-						item[i].style.display = "none";
-						menuList[i].style.display = "none";
-					}
+				name = item[i].getElementsByClassName("name")
+				menu = menuList[i].getElementsByClassName("menu")
 
-					if (value.length == 0) {
-						menuList[i].style.display = "none";
-						item[i].style.display = "none";
-						background.style.opacity = "0";
-						background.style.left = "-270px";
-					}
+				if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+					item[i].style.display = "block";
+					menuList[i].style.display = "block";
+					background.style.opacity = "100";
+					background.style.left = "0";
+				} else {
+					item[i].style.display = "none";
+					menuList[i].style.display = "none";
+				}
+
+				if (value.length == 0) {
+					menuList[i].style.display = "none";
+					item[i].style.display = "none";
+					background.style.opacity = "0";
+					background.style.left = "-270px";
 				}
 			}
+		}
 
-			var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
-			MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
-			OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
-			OFFSET_Y = MARKER_HEIGHT, // 기본, 클릭 마커의 기준 Y좌표
-			OVER_MARKER_WIDTH = 31, // 오버 마커의 너비
-			OVER_MARKER_HEIGHT = 41, // 오버 마커의 높이
-			OVER_OFFSET_X = 13, // 오버 마커의 기준 X좌표
-			OVER_OFFSET_Y = OVER_MARKER_HEIGHT, // 오버 마커의 기준 Y좌표
-			CLICK_MARKER_WIDTH = 17, CLICK_MARKER_HEIGHT = 29;
+		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
+		MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
+		OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
+		OFFSET_Y = MARKER_HEIGHT, // 기본, 클릭 마커의 기준 Y좌표
+		OVER_MARKER_WIDTH = 31, // 오버 마커의 너비
+		OVER_MARKER_HEIGHT = 41, // 오버 마커의 높이
+		OVER_OFFSET_X = 13, // 오버 마커의 기준 X좌표
+		OVER_OFFSET_Y = OVER_MARKER_HEIGHT, // 오버 마커의 기준 Y좌표
+		CLICK_MARKER_WIDTH = 17, CLICK_MARKER_HEIGHT = 29;
 
-			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-			// 마커 이미지를 생성합니다    
-			var markerSize = new kakao.maps.Size(MARKER_WIDTH, MARKER_HEIGHT), // 기본, 클릭 마커의 크기
-			markerOffset = new kakao.maps.Point(OFFSET_X, OFFSET_Y), // 기본, 클릭 마커의 기준좌표
-			overMarkerSize = new kakao.maps.Size(OVER_MARKER_WIDTH,
-					OVER_MARKER_HEIGHT), // 오버 마커의 크기
-			overMarkerOffset = new kakao.maps.Point(OVER_OFFSET_X,
-					OVER_OFFSET_Y), // 오버 마커의 기준 좌표
-			clickMarkerSize = new kakao.maps.Size(CLICK_MARKER_WIDTH,
-					CLICK_MARKER_HEIGHT);
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+		// 마커 이미지를 생성합니다    
+		var markerSize = new kakao.maps.Size(MARKER_WIDTH, MARKER_HEIGHT), // 기본, 클릭 마커의 크기
+		markerOffset = new kakao.maps.Point(OFFSET_X, OFFSET_Y), // 기본, 클릭 마커의 기준좌표
+		overMarkerSize = new kakao.maps.Size(OVER_MARKER_WIDTH,
+				OVER_MARKER_HEIGHT), // 오버 마커의 크기
+		overMarkerOffset = new kakao.maps.Point(OVER_OFFSET_X, OVER_OFFSET_Y), // 오버 마커의 기준 좌표
+		clickMarkerSize = new kakao.maps.Size(CLICK_MARKER_WIDTH,
+				CLICK_MARKER_HEIGHT);
 
-			selectedMarker = null; // 클릭한 마커를 담을 변수
-			selectedContent = null;
+		selectedMarker = null; // 클릭한 마커를 담을 변수
+		selectedContent = null;
 
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-			mapOption = {
-				center : new kakao.maps.LatLng(35.865491251524496,
-						128.5934081998044), // 지도의 중심좌표
-				level : 3
-			// 지도의 확대 레벨
-			};
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+		mapOption = {
+			center : new kakao.maps.LatLng(35.865491251524496,
+					128.5934081998044), // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
 
-			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-			var positions = []//좌표값을 받을 배열
-			var content = [] //가게 이름을 받을 배열
-			var inputText = []
-			// 지도 위에 마커를 표시합니다
-			for (var i = 0, len = count; i < len; i++) {
-				var gapX = (MARKER_WIDTH), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
-				originY = (MARKER_HEIGHT) * i, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
-				overOriginY = (OVER_MARKER_HEIGHT) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
-				normalOrigin = new kakao.maps.Point(0, originY), // 스프라이트 이미지에서 기본 마커로 사용할 영역의 좌상단 좌표
-				clickOrigin = new kakao.maps.Point(gapX, originY), // 스프라이트 이미지에서 마우스오버 마커로 사용할 영역의 좌상단 좌표
-				overOrigin = new kakao.maps.Point(gapX * 2, overOriginY); // 스프라이트 이미지에서 클릭 마커로 사용할 영역의 좌상단 좌표
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		var positions = []//좌표값을 받을 배열
+		var content = [] //가게 이름을 받을 배열
+		var inputText = []
+		var menuSelect = []
+		// 지도 위에 마커를 표시합니다
+		for (var i = 0, len = count; i < len; i++) {
+			var gapX = (MARKER_WIDTH), // 스프라이트 이미지에서 마커로 사용할 이미지 X좌표 간격 값
+			originY = (MARKER_HEIGHT) * i, // 스프라이트 이미지에서 기본, 클릭 마커로 사용할 Y좌표 값
+			overOriginY = (OVER_MARKER_HEIGHT) * i, // 스프라이트 이미지에서 오버 마커로 사용할 Y좌표 값
+			normalOrigin = new kakao.maps.Point(0, originY), // 스프라이트 이미지에서 기본 마커로 사용할 영역의 좌상단 좌표
+			clickOrigin = new kakao.maps.Point(gapX, originY), // 스프라이트 이미지에서 마우스오버 마커로 사용할 영역의 좌상단 좌표
+			overOrigin = new kakao.maps.Point(gapX * 2, overOriginY); // 스프라이트 이미지에서 클릭 마커로 사용할 영역의 좌상단 좌표
 
-				positions.push(new kakao.maps.LatLng(document
-						.getElementById("longitude" + i).value, document
-						.getElementById("latitude" + i).value)); //좌표값을 받아와 배열에 추가하여 마커를 표시
+			positions.push(new kakao.maps.LatLng(document
+					.getElementById("longitude" + i).value, document
+					.getElementById("latitude" + i).value)); //좌표값을 받아와 배열에 추가하여 마커를 표시
 
-				content.push('<div class="wrap"><div class="info"><div class="title">'
-								+ document.getElementById("findname" + i).value
-								+ '</div></div></div>');//가게이름을 받아와 배열에 추가
+			content
+					.push('<div class="wrap"><div class="info"><div class="title">'
+							+ document.getElementById("findname" + i).value
+							+ '</div></div></div>');//가게이름을 받아와 배열에 추가
 
-				inputText.push(document.getElementById("findname" + i).value)
+			inputText.push(document.getElementById("findname" + i).value)
 
-				// 마커를 생성하고 지도위에 표시합니다
-				addMarker(positions[i], inputText[i], content[i],
-						normalOrigin, overOrigin, clickOrigin);
-			}
-			// 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
-			function addMarker(position, inputText, content,
-					normalOrigin, overOrigin, clickOrigin) {
+			menuSelect.push(document.getElementById("findmenu" + i).value)
 
-				var markerImage = new kakao.maps.MarkerImage(imageSrc,
-						markerSize), overMarker = new kakao.maps.MarkerImage(
-						imageSrc, overMarkerSize), clickMarker = new kakao.maps.MarkerImage(
-						imageSrc, clickMarkerSize);
+			// 마커를 생성하고 지도위에 표시합니다
+			addMarker(positions[i], inputText[i], content[i], normalOrigin,
+					overOrigin, clickOrigin);
+		}
+		console.log(menuSelect)
+		// 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
+		function addMarker(position, inputText, content, normalOrigin,
+				overOrigin, clickOrigin) {
 
-				// 마커를 생성하고 이미지는 기본 마커 이미지를 사용합니다
-				var marker = new kakao.maps.Marker({
-					map : map,
-					position : position,
-					image : markerImage
-				});
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, markerSize), overMarker = new kakao.maps.MarkerImage(
+					imageSrc, overMarkerSize), clickMarker = new kakao.maps.MarkerImage(
+					imageSrc, clickMarkerSize);
 
-				var overlay = new kakao.maps.CustomOverlay({
-					content : content,
-					map : map,
-					position : position
-				});
+			// 마커를 생성하고 이미지는 기본 마커 이미지를 사용합니다
+			var marker = new kakao.maps.Marker({
+				map : map,
+				position : position,
+				image : markerImage
+			});
 
-				marker.markerImage = markerImage;
-				// 마커에 click 이벤트를 등록합니다
-				overlay.setMap(null);
-				kakao.maps.event
-						.addListener(
-								marker,
-								'click',
-								function() {
-									// 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
-									// 마커의 이미지를 클릭 이미지로 변경합니다
-									for (var i = 0, len = count; i < len; i++) {
-										document.getElementById("inputSearch").value = inputText
-									}
+			var overlay = new kakao.maps.CustomOverlay({
+				content : content,
+				map : map,
+				position : position
+			});
 
-									if (!selectedMarker
-											|| selectedMarker !== marker) {
-										// 클릭된 마커 객체가 null이 아니면
-										// 클릭된 마커의 이미지를 기본 이미지로 변경하고
-										!!selectedMarker
-												&& selectedMarker
-														.setImage(selectedMarker.markerImage);
-										!!selectedContent
-												&& selectedContent.setMap(null);
-									}
-									filter()
+			marker.markerImage = markerImage;
+			// 마커에 click 이벤트를 등록합니다
+			overlay.setMap(null);
+			kakao.maps.event.addListener(marker, 'click', function() {
+				// 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
+				// 마커의 이미지를 클릭 이미지로 변경합니다
+				for (var i = 0, len = count; i < len; i++) {
+					document.getElementById("inputSearch").value = inputText
+				}
 
-									// 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
-									if (marker.markerImage != clickMarker) {
-										marker.setImage(clickMarker)
-										overlay.setMap(map)
+				if (!selectedMarker || selectedMarker !== marker) {
+					// 클릭된 마커 객체가 null이 아니면
+					// 클릭된 마커의 이미지를 기본 이미지로 변경하고
+					!!selectedMarker
+							&& selectedMarker
+									.setImage(selectedMarker.markerImage);
+					!!selectedContent && selectedContent.setMap(null);
+				}
+				filter()
 
-									}
+				// 현재 클릭된 마커의 이미지는 클릭 이미지로 변경, 컨테츠를 띄워줌
+				if (marker.markerImage != clickMarker) {
+					marker.setImage(clickMarker)
+					overlay.setMap(map)
 
-									// 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
-									selectedMarker = marker;
-									selectedContent = overlay;
+				}
 
-								});
+				// 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+				selectedMarker = marker;
+				selectedContent = overlay;
 
-				kakao.maps.event.addListener(map, 'click', function() {
-					if (!overlay.setMap(null)) {
-						overlay.setMap(null);
-						marker.setImage(markerImage)
+			});
+
+			kakao.maps.event.addListener(map, 'click', function() {
+				if (!overlay.setMap(null)) {
+					overlay.setMap(null);
+					marker.setImage(markerImage)
+				}
+			})
+		}
+		var geocoder = new kakao.maps.services.Geocoder();
+		geocoder.addressSearch(document.getElementById("inputaddr").value,
+				function(result, status) {
+
+					// 정상적으로 검색이 완료됐으면 
+					if (status === kakao.maps.services.Status.OK) {
+
+						var coords = new kakao.maps.LatLng(result[0].y,
+								result[0].x);
+
+						// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+						map.setCenter(coords);
 					}
-				})
-			}
-			var geocoder = new kakao.maps.services.Geocoder();
-			geocoder.addressSearch(document.getElementById("inputaddr").value,
-					function(result, status) {
+				});
+	</script>
 
-						// 정상적으로 검색이 완료됐으면 
-						if (status === kakao.maps.services.Status.OK) {
-
-							var coords = new kakao.maps.LatLng(result[0].y,
-									result[0].x);
-
-							// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-							map.setCenter(coords);
-						}
-					});
-		</script>
-		</form>
 </body>
 </html>
 
