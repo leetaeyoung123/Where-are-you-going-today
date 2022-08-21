@@ -38,12 +38,12 @@ public class MapController {
 		List<String> bnsList = shopService.findAllBns();
 		Set<String> set = new HashSet<String> (bnsList);
 		List<String> newBnsList = new ArrayList<>(set);
-		List<Menu> test = new ArrayList<>();
+		List<List<Menu>> test = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(i);
 			System.out.println(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
 			System.out.println("end");
-			test.addAll(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
+			test.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
 			//System.out.println(i + ": " + shopService.findShopMenuByBnsNum(newBnsList.get(i)));
 			//System.out.println("1: " + bnsList.get(i) + "\n" + "2: " +newBnsList.get(i));
 			//menuList = shopService.findShopMenuByBnsNum(newBnsList.get(i));
