@@ -61,8 +61,7 @@
 
 <script type="text/javascript">
 	
-		// 파일 추가
-		
+		// 이미지 파일 수정
 		// input 태그 (name이 file)를 가져옴 
 		let fileTag = document.querySelector("input[name=file]");
 		
