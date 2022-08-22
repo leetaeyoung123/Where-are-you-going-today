@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.List, java.net.URLEncoder"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html>
@@ -88,14 +88,15 @@
 						%>
 					</c:forEach>
 					<c:forEach var="menu" items="${menuList}" varStatus="status">
-						${menu }
 						<c:forEach var="x" items="${menu}" varStatus="t">
-							<div class="menulist" id="findmenu${status.index}${t.index}" style="display:none;">
+							<div class="menulist${status.index}"
+								id="findmenu${status.index}${t.index}" style="display: none;">
 								<p class="menu">${menuList[status.index][t.index].menuName}</p>
+								<p class="menu">${menuList[status.index][t.index].menuPrice}</p>
 							</div>
 						</c:forEach>
 					</c:forEach>
-					
+
 					<!--위도와 경도를 불러와 등록되어 있는 가게 위치 표시-->
 					<c:forEach var="shop" items="${find}" varStatus="status">
 						<input id="longitude${status.index}" value="${shop.longitude}"
@@ -151,36 +152,37 @@
 		function filter() {
 
 			var value, name, item, i, background, menuList, menu;
-			value = document.getElementById("inputSearch").value.toUpperCase();
 
+			value = document.getElementById("inputSearch").value.toUpperCase();
 			item = document.getElementsByClassName("item");
-			menuList = document.getElementsByClassName("menulist")
 			background = document.getElementById("menu_wrap")
+			menuList = []
 
 			for (i = 0; i < item.length; i++) {
-
+				menuList.push(document.getElementsByClassName("menulist" + i));
 				name = item[i].getElementsByClassName("name")
-				menu = menuList[i].getElementsByClassName("menu")
+				for (j = 0; j < menuList[i].length; j++) {
+					menu = menuList[i][j].getElementsByClassName("menu")
+					if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+						item[i].style.display = "block";
+						menuList[i][j].style.display = "block";
+						background.style.opacity = "100";
+						background.style.left = "0";
+					} else {
+						item[i].style.display = "none";
+						menuList[i][j].style.display = "none";
+					}
 
-				if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
-					item[i].style.display = "block";
-					menuList[i].style.display = "block";
-					background.style.opacity = "100";
-					background.style.left = "0";
-				} else {
-					item[i].style.display = "none";
-					menuList[i].style.display = "none";
-				}
-
-				if (value.length == 0) {
-					menuList[i].style.display = "none";
-					item[i].style.display = "none";
-					background.style.opacity = "0";
-					background.style.left = "-270px";
+					if (value.length == 0) {
+						menuList[i][j].style.display = "none";
+						item[i].style.display = "none";
+						background.style.opacity = "0";
+						background.style.left = "-270px";
+					}
 				}
 			}
 		}
-		
+
 		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 		MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
 		OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
@@ -236,7 +238,6 @@
 							+ '</div></div></div>');//가게이름을 받아와 배열에 추가
 
 			inputText.push(document.getElementById("findname" + i).value)
-
 
 			// 마커를 생성하고 지도위에 표시합니다
 			addMarker(positions[i], inputText[i], content[i], normalOrigin,
@@ -321,4 +322,3 @@
 
 </body>
 </html>
-
