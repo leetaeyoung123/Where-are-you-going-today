@@ -44,10 +44,6 @@
 		<ul class=headerMenu>
 			<li><a class="back" href="<c:url value='/login'/>"><img
 					src="../resources/mapcss/img/backicon.png"></a></li>
-			<li><select class="selectbox">
-					<option>주소</option>
-					<option>메뉴</option>
-			</select></li>
 			<!--검색어 입력창-->
 			<li><input onkeyup="filter()" id="inputSearch" class="inputtext"
 				type="text" value="" required></li>
@@ -91,12 +87,12 @@
 						<c:forEach var="x" items="${menu}" varStatus="t">
 							<div class="menulist${status.index}"
 								id="findmenu${status.index}${t.index}" style="display: none;">
-								<p class="menu">${menuList[status.index][t.index].menuName}</p>
-								<p class="menu">${menuList[status.index][t.index].menuPrice}</p>
+								<span class="menu">${menuList[status.index][t.index].menuName}: </span>
+								<span class="menu">${menuList[status.index][t.index].menuPrice}</span>
 							</div>
 						</c:forEach>
 					</c:forEach>
-
+					<hr>
 					<!--위도와 경도를 불러와 등록되어 있는 가게 위치 표시-->
 					<c:forEach var="shop" items="${find}" varStatus="status">
 						<input id="longitude${status.index}" value="${shop.longitude}"

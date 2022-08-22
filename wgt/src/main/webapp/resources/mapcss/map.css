@@ -143,7 +143,7 @@ li {
 
 #gnb {
 	margin-left: 177px;
-    margin-top: 80px;
+    margin-top: 277px;
 	position: fixed;
 	margin-left: 100%;
 	z-index: 998;
@@ -151,18 +151,29 @@ li {
 	width: 223px;
 	border: 3px solid #DA0037;
 	border-radius: 15px;
-	height: 750px;
+	height: 280px;
 	overflow: auto;
 	box-sizing: border-box;
-	padding: 50px 15px 60px 30px;
+	padding: 10px;
 	color: #3b3b3d;
 	transition: all 0.5s;
+	line-height: 66px;
 }
 
 #gnb.on {
 	margin-left: 177px;
-    margin-top: 80px;
-    line-height: 50px;
+    margin-top: 277px;
+    line-height: 66px;
+}
+
+#gnb ul li {
+	cursor: pointer;
+	font-size: 26px;
+}
+
+#gnb ul li:first-child {
+	cursor: default;
+	font-size: 26px;
 }
 
 .selectbox {
@@ -185,7 +196,7 @@ li {
     border-radius: 10px;
     border: 2px solid #DA0037;
     display: inline-block;
-    width: 210px;
+    width: 280px;
     height: 30px;
 }
 
@@ -287,7 +298,7 @@ li {
 	display: block;
 	height: 1px;
 	border: 0;
-	border-top: 2px solid #5F5F5F;
+	border-top: 2px solid #DA0037;
 	margin: 3px 0;
 }
 
@@ -314,7 +325,6 @@ li {
 
 #placesList .item {
 	position: relative;
-	border-bottom: 1px solid #888;
 	overflow: hidden;
 	cursor: pointer;
 	height: 98px;
@@ -323,4 +333,8 @@ li {
 #placesList .item span {
 	display: block;
 	margin-top: 4px;
+}
+
+#placesList .menu {
+	font-size: 28px;
 }
