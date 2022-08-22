@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -25,7 +25,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
-<title>Board Home</title>
+<title>likes</title>
 </head>
 <body>
 
@@ -69,14 +69,14 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
 							style="width: 370px; height: 330px; border-radius:5px;"><br>
 						<div class="likearea">
-							<a class="likebtn" id="pluslike" onclick='count("plus")'
+							<a class="likebtn" id="likeplus"
 								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
 							<div class="feedReaction">
-								<span class="liketext">좋아요 <span class="likesresult"><span id="result">0</span></span>개
+								<span class="liketext">좋아요 <span class="likesresult"></span>개
 								</span>
 							</div>
-							<%-- <p><%= sf.format(nowTime) %></p> --%>
-							<%-- <p>${item.regDate}</p> --%>
+							<p><%= sf.format(nowTime) %></p>
+							<p>${item.regDate}</p>
 						</div>
 						<p>
 							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
@@ -91,32 +91,22 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	</div>
 
 <script>
-	var like = document.querySelectorAll(".likebtn")
+	let like = document.querySelectorAll(".likebtn")
 	
 	for(let i = 0; i < like.length; i++){
 		like[i].addEventListener('click', ()=> {
 			like[i].classList.toggle('open')
 		})
 	}
-	
-	function count(type)  {
-		  // 결과를 표시할 element
-		  const resultElement = document.getElementById('result');
-		
-		  // 현재 화면에 표시된 값
-		  let number = resultElement.innerText;
-		  if(likebtn == )
-		  // 더하기/빼기
-		  if(type === 'plus') {
-		    number = parseInt(number) + 1;
-		  }else if(type === 'minus')  {
-		    number = parseInt(number) - 1;
-		  }
-		  
-		  // 결과 출력
-		  resultElement.innerText = number;
-		}
+
+	const likecount = document.getElementById("likecount");
+	likecount.onclick = () => {
+		const current.parseInt(likecount.innerText, 10);
+		likecount.innerText = current + 1;
+	};
 </script>
 
+
+
 </body>
-</html>
+</html> --%>

@@ -1,6 +1,5 @@
 package com.varxyz.wgt.board.controller;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
