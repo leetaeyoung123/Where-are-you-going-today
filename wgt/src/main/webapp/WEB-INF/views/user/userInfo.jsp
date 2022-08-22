@@ -25,22 +25,22 @@
 		<input type="text" name="userId" value="${user.userId}" readonly></div><br> 
 		
 		<div style="margin-left: 55px; padding-top: 20px; font-size: 30px;">비밀번호 
-		<input type="password" name="passwd" value="${user.passwd}" required></div><br>
+		<input type="password" name="passwd" value="${user.passwd}" required readonly></div><br>
 		
 		<div style="margin-left: 95px; padding-top: 20px; font-size: 30px;">이름 
-		<input type="text" name="name" value="${user.name}" required></div><br>
+		<input type="text" name="name" value="${user.name}" required readonly></div><br>
 		
 		<div style="margin-left: 55px; padding-top: 20px; font-size: 30px;">주민번호 
-		<input type="text" name="ssn" value="${user.ssn}" readonly></div><br>
+		<input type="text" name="ssn" value="${user.ssn}" readonly readonly></div><br>
 		
 		<div style="margin-left: 47px; padding-top: 20px; font-size: 30px;">전화번호 
-		<input type="text" name="phone" value="${user.phone}" required></div><br>
+		<input type="text" name="phone" value="${user.phone}" required readonly></div><br>
 		
 		<div style="text-align: center; padding-bottom: 10px; font-size: 30px;">주소</div>
-        <div><input type="text" name="addr1" value="${user.addr1}" id="sample6_postcode" placeholder="우편번호" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;"></div><br>
-        <div><input type="text" name="addr2" value="${user.addr2}" id="sample6_address" placeholder="주소" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;"></div><br>
-        <div><input type="text" name="addr3" value="${user.addr3}" id="sample6_detailAddress" placeholder="상세주소" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;"></div><br>
-        <input type="text" name="addr4" value="${user.addr4}" id="sample6_extraAddress" placeholder="참고항목" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;">
+        <div><input type="text" name="addr1" value="${user.addr1}" id="sample6_postcode" placeholder="우편번호" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;" readonly></div><br>
+        <div><input type="text" name="addr2" value="${user.addr2}" id="sample6_address" placeholder="주소" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;" readonly></div><br>
+        <div><input type="text" name="addr3" value="${user.addr3}" id="sample6_detailAddress" placeholder="상세주소" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;" readonly></div><br>
+        <input type="text" name="addr4" value="${user.addr4}" id="sample6_extraAddress" placeholder="참고항목" style="margin-left: 55px;width: 280px;height: 20px;text-align: center;" readonly>
 		
 		<div style="text-align: center; font-size: 30px; padding-top: 10px;">프로필 사진<br>
 		<img src="resources/user/img/${user.imgName}.jpg" id="profileImg" name="imgName" style="width: 100px; height: 100px;" /><br></div>  
