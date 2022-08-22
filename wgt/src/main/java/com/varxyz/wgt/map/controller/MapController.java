@@ -39,13 +39,8 @@ public class MapController {
 		List<String> newBnsList = new ArrayList<>(set);
 		List<List<Menu>> test = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println(i);
-			System.out.println(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
-			System.out.println("end");
 			test.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
 		}
-		System.out.println(shopService.findShopMenuByBnsNum(newBnsList.get(0)));
-		System.out.println("test: " + test + "\n");
 		model.addAttribute("menuList", test);
 
 		// 아이디 세션

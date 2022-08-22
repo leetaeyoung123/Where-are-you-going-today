@@ -10,6 +10,7 @@
 //import org.springframework.web.bind.annotation.PostMapping;
 //
 //import com.varxyz.wgt.board.domain.Board;
+//import com.varxyz.wgt.board.domain.Likes;
 //import com.varxyz.wgt.board.service.BoardService;
 //import com.varxyz.wgt.board.service.BoardServiceImpl;
 //
@@ -17,7 +18,6 @@
 //public class LikesController {
 //	BoardService service = new BoardServiceImpl();
 //	
-//	// 게시판 화면
 //	@GetMapping("/board/likes")
 //	public String list(Model model, Board board) {
 //		model.addAttribute("board", service.read(board));

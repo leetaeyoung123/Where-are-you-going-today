@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.varxyz.wgt.board.domain.Board;
+import com.varxyz.wgt.board.domain.Likes;
 
 @Component("boardDao")
 public class BoardDao {
@@ -55,6 +56,17 @@ public class BoardDao {
 		String sql = "SELECT * FROM Board WHERE number = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Board>(Board.class), number);
 	}//query = list<object>로 반환  queryforobject = 객체로만 반환
+	
+	// 좋아요 업데이트
+	public void likecountUpdate(int likecount, long number) {
+		String sql = "UPDATE Board SET likecount = ? WHERE number = ?";
+		jdbcTemplate.update(sql, likecount, number);
+	}
+	
+	public void likeuser(Likes likes) {
+		String sql = "INSERT INTO Likes (userId, likeCheck) VALUES (?, ?)";
+		jdbcTemplate.update(sql, likes.getUserId(), likes.getLikeCheck());
+	}
 	
 	//ID로 게시글 찾기
 //	public List<Board> findByuserId(String userId) {
