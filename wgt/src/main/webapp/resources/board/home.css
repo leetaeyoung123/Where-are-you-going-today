@@ -243,6 +243,7 @@ article{
     cursor: pointer;
     margin-right: 5px;
     background-image: url(img/dislikeheart.png);
+    background-color: hsl(0, 0%, 100%);
 }
 
 .likebtn.open {
