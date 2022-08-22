@@ -27,26 +27,34 @@ public class MapController {
 	ShopService shopService = new ShopServiceImpl();
 
 	@GetMapping("/map/map")
-	public String mapForm(Map map,Model model, HttpSession session) {
-		
+	public String mapForm(Model model, HttpSession session) {
 		// 모든 가게조회
 		List<Shop> list = shopService.findAllShop();
 		model.addAttribute("shopFind", list);
+		
 		// 경도 위도 불러오기
 		model.addAttribute("find", mapService.findAll());
-		List<Menu> menuList = new ArrayList<>();
-		List<String> bnsList = shopService.findAllBns(); 
+		List<String> bnsList = shopService.findAllBns();
 		Set<String> set = new HashSet<String> (bnsList);
 		List<String> newBnsList = new ArrayList<>(set);
+		List<List<Menu>> test = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println(bnsList.get(i) + "\n" + newBnsList.get(i));
-			menuList = shopService.findShopMenuByBnsNum(newBnsList.get(i));
+			System.out.println(i);
+			System.out.println(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
+			System.out.println("end");
+			test.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
+			//System.out.println(i + ": " + shopService.findShopMenuByBnsNum(newBnsList.get(i)));
+			//System.out.println("1: " + bnsList.get(i) + "\n" + "2: " +newBnsList.get(i));
+			//menuList = shopService.findShopMenuByBnsNum(newBnsList.get(i));
+			//menuList[i].addAll(shopService.findShopMenuByBnsNum(list.get(i).getBusinessNumber()));
 		}
-		
-		for (Menu menu : menuList) {
-			System.out.println(menu.getMenuName());
-		}
-		model.addAttribute("menuList", menuList);
+		System.out.println(shopService.findShopMenuByBnsNum(newBnsList.get(0)));
+		System.out.println("test: " + test  + "\n");
+		model.addAttribute("menuList", test);
+		/*
+		 * for (Menu menu : menuList) { //System.out.println("3: " +menu.getMenuName());
+		 * }
+		 */
 		// 아이디 세션
 		/*
 		 * if(session.getAttribute("userId") == null) {
