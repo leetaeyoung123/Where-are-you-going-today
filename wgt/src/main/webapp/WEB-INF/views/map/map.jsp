@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.List, java.net.URLEncoder"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
@@ -87,10 +88,12 @@
 						%>
 					</c:forEach>
 					<c:forEach var="menu" items="${menuList}" varStatus="status">
-						<div class="menulist" id="findmenu${status.index}">
-							<p class="menu">${menu}</p>
-							<input id="test${status.index}" type=text value="${menu}">
-						</div>
+						${menu }
+						<c:forEach var="x" items="${menu}" varStatus="t">
+							<div class="menulist" id="findmenu${status.index}${t.index}" style="display:none;">
+								<p class="menu">${menuList[status.index][t.index].menuName}</p>
+							</div>
+						</c:forEach>
 					</c:forEach>
 					
 					<!--위도와 경도를 불러와 등록되어 있는 가게 위치 표시-->
@@ -177,7 +180,7 @@
 				}
 			}
 		}
-
+		
 		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 		MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
 		OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
@@ -234,13 +237,11 @@
 
 			inputText.push(document.getElementById("findname" + i).value)
 
-			menuSelect.push(document.getElementById("findmenu" + i).value)
 
 			// 마커를 생성하고 지도위에 표시합니다
 			addMarker(positions[i], inputText[i], content[i], normalOrigin,
 					overOrigin, clickOrigin);
 		}
-		console.log(menuSelect)
 		// 마커를 생성하고 지도 위에 표시하고, 마커에 mouseover, mouseout, click 이벤트를 등록하는 함수입니다
 		function addMarker(position, inputText, content, normalOrigin,
 				overOrigin, clickOrigin) {

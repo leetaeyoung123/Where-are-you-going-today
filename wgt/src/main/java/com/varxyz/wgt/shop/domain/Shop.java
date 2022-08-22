@@ -6,7 +6,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class Shop {
 	private String businessNumber;
 	private String shopName;

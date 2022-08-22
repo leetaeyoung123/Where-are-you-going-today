@@ -34,7 +34,6 @@ public class MapController {
 		
 		// 경도 위도 불러오기
 		model.addAttribute("find", mapService.findAll());
-		List<Menu> menuList = new ArrayList<>();
 		List<String> bnsList = shopService.findAllBns();
 		Set<String> set = new HashSet<String> (bnsList);
 		List<String> newBnsList = new ArrayList<>(set);
