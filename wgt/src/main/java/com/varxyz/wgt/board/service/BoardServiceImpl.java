@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.varxyz.wgt.board.domain.Board;
+import com.varxyz.wgt.board.domain.Likes;
 
 @Component("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -45,11 +46,17 @@ public class BoardServiceImpl implements BoardService {
 	public Board searchByNumber(int number) {
 		return dao.searchByNumber(number);
 	}
-	
+
 	@Override
-	public Integer totalCount() throws Exception {
-		return null;
+	public void likecountUpdate(int likecount, long number) {
+		dao.likecountUpdate(likecount, number);
 	}
 
+	@Override
+	public void likeuser(Likes likes) {
+		dao.likeuser(likes);
+	}
+
+	
 	
 }

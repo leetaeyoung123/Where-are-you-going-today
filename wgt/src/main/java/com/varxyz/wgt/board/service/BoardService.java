@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.varxyz.wgt.board.dao.BoardDao;
 import com.varxyz.wgt.board.domain.Board;
+import com.varxyz.wgt.board.domain.Likes;
 import com.varxyz.wgt.data.DataSourceConfig;
 
 public interface BoardService {
@@ -37,9 +38,9 @@ public interface BoardService {
 		// 게시물 정보
 		public Board searchByNumber(int number);
 		
-		public Integer totalCount() throws Exception;
-
 		public List<Board> boardList = new ArrayList<>();
 
-
+		public void likecountUpdate(int likescount, long number);
+		
+		public void likeuser(Likes likes);
 }
