@@ -69,7 +69,7 @@ public class MypageController {
 			return "board/mypage";	
 		}
 		
-		String imgname = board.getImgname();
+//		String imgname = board.getImgname();
 		model.addAttribute("board", board);
 		
 		System.out.println("파일명 : "  + fileRealName);
