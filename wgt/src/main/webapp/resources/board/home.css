@@ -226,10 +226,10 @@ article{
     right: 2%;
 }
 /*날짜 표시*/
-.emptyheart {
+.likearea{
 	display: flex;
 }
-.emptyheart p {
+.likearea p {
 	margin: 0;
 	position: relative;
     left: 55%;
@@ -242,7 +242,7 @@ article{
     height: 18px;
     cursor: pointer;
     margin-right: 5px;
-    background-image: url(img/emptyheart.png);
+    background-image: url(img/dislikeheart.png);
 }
 
 .likebtn.open {
@@ -252,7 +252,7 @@ article{
     height: 18px;
     cursor: pointer;
     margin-right: 5px;
-	background-image: url('img/redheart.png');
+	background-image: url('img/likeheart.png');
 }
 
 .writebtn {
