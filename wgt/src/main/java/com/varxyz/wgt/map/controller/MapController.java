@@ -31,11 +31,11 @@ public class MapController {
 		// 모든 가게조회
 		List<Shop> list = shopService.findAllShop();
 		model.addAttribute("shopFind", list);
-		
+
 		// 경도 위도 불러오기
 		model.addAttribute("find", mapService.findAll());
 		List<String> bnsList = shopService.findAllBns();
-		Set<String> set = new HashSet<String> (bnsList);
+		Set<String> set = new HashSet<String>(bnsList);
 		List<String> newBnsList = new ArrayList<>(set);
 		List<List<Menu>> test = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
@@ -43,42 +43,38 @@ public class MapController {
 			System.out.println(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
 			System.out.println("end");
 			test.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
-			//System.out.println(i + ": " + shopService.findShopMenuByBnsNum(newBnsList.get(i)));
-			//System.out.println("1: " + bnsList.get(i) + "\n" + "2: " +newBnsList.get(i));
-			//menuList = shopService.findShopMenuByBnsNum(newBnsList.get(i));
-			//menuList[i].addAll(shopService.findShopMenuByBnsNum(list.get(i).getBusinessNumber()));
 		}
 		System.out.println(shopService.findShopMenuByBnsNum(newBnsList.get(0)));
-		System.out.println("test: " + test  + "\n");
+		System.out.println("test: " + test + "\n");
 		model.addAttribute("menuList", test);
-		/*
-		 * for (Menu menu : menuList) { //System.out.println("3: " +menu.getMenuName());
-		 * }
-		 */
+
 		// 아이디 세션
-		/*
-		 * if(session.getAttribute("userId") == null) {
-		 * model.addAttribute("msg","로그인이 필요한 서비스 입니다."); model.addAttribute("url",
-		 * "../login"); return "alert/alert"; }
-		 */
-		model.addAttribute("userId", session.getAttribute("userId"));			
+
+		if (session.getAttribute("userId") == null) {
+			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
+			model.addAttribute("url", "../login");
+			return "alert/alert";
+		}
+
+		model.addAttribute("userId", session.getAttribute("userId"));
 
 		/*
-		 *  여기로 올때 temp 에 올렸던 이미지들을 자동으로 삭제한다.
-		 *  2022-08-11 한태우(Shop 담당)
+		 * 여기로 올때 temp 에 올렸던 이미지들을 자동으로 삭제한다. 2022-08-11 한태우(Shop 담당)
 		 */
 
 		// 가게 메뉴 삭제
-		if(session.getAttribute("tempShopImg") != null) {
-			for (String img : (List<String>)session.getAttribute("tempImgList")) {
-				File menuImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
+		if (session.getAttribute("tempShopImg") != null) {
+			for (String img : (List<String>) session.getAttribute("tempImgList")) {
+				File menuImg = new File(
+						"C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
 				menuImg.delete();
 			}
 			session.removeAttribute("tempImgList");
 
 			// 가게 이미지 삭제
-			String img = (String)session.getAttribute("tempShopImg");
-			File shopImg = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg" );
+			String img = (String) session.getAttribute("tempShopImg");
+			File shopImg = new File(
+					"C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\temp\\" + img + ".jpg");
 			shopImg.delete();
 			session.removeAttribute("tempShopImg");
 			// 문제 될시 주석 처리만 해주세용
@@ -87,20 +83,20 @@ public class MapController {
 	}
 
 	@PostMapping("/map/map")
-	public String map(Shop shop,Map map, Model model, HttpSession session) {
-		//매장명으로 매장 정보 가져오기
+	public String map(Shop shop, Map map, Model model, HttpSession session) {
+		// 매장명으로 매장 정보 가져오기
 		Shop shopName = new Shop();
 		shopName = shopService.findAllbyShopNameObject(shop.getShopName());
-		
+
 		model.addAttribute("shop", shopName);
 		model.addAttribute("menus", shopService.findShopMenuByBnsNum(shopName.getBusinessNumber()));
-		
+
 		return "shop/view/viewUserShop";
 	}
-	
+
 	@PostMapping("/map/go_get_waiting")
 	public String goGetWaiting() {
 		return "redirect:/controller/get_waiting";
 	}
-	
+
 }
