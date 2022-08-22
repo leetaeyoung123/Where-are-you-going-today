@@ -43,7 +43,7 @@
 	<div class="write_area">
 		<form action="update" method="post" enctype="multipart/form-data"
 			style="text-align: center; display: grid; justify-content: center; margin-top: 40px;">
-			<input class="update" name="number" value="${board.number}">
+			<input class="update" name="number" value="${board.number}" style="display:none;">
 			<span>제목</span>
 			<textarea class="title_area" name="title"
 				maxlength="50" required>${board.title}</textarea><!-- input은 <>안에, textarea는 <>밖에 -->
