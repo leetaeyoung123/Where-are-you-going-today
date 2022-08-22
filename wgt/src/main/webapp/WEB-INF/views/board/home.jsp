@@ -41,19 +41,20 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 				<div class="headerSearchBar" style="border-radius: 5px;">
 					<!--상단 중앙 내용물-->
 					<i class="fas fa-search"></i> <input name="title" type="text"
-						placeholder=" 게시글 검색" style="border: none; outline: none;"> <input
-						type="submit" value="검색" style="display: none;">
+						placeholder=" 게시글 검색" style="border: none; outline: none;">
+					<input type="submit" value="검색" style="display: none;">
 				</div>
 			</div>
 		</form>
 	</header>
-	
-		<div class="writearea">
-			<form action="write" method="post" style="text-align:center;">
-				<button class="writebtn" type="button" value="글쓰기" onclick = "location.href='write'"
-					style="position: relative; left: 1%; margin-top:20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
-			</form>
-		</div>
+
+	<div class="writearea">
+		<form action="write" method="post" style="text-align: center;">
+			<button class="writebtn" type="button" value="글쓰기"
+				onclick="location.href='write'"
+				style="position: relative; left: 1%; margin-top: 20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
+		</form>
+	</div>
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
@@ -67,12 +68,14 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 				<c:forEach var="item" items="${board}">
 					<div class="write" style="margin-bottom: 30px;">
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
-							style="width: 370px; height: 330px; border-radius:5px;"><br>
+							style="width: 370px; height: 330px; border-radius: 5px;"><br>
+						<form action=""></form>
 						<div class="likearea">
-							<a class="likebtn"
-								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
+							<input id="like" type="button" value="" class="likebtn" id="pluslike" onclick='count()'
+								style="display: flex; padding-left: 1px; margin-top: 1px; border: none;"/>
 							<div class="feedReaction">
-								<span class="liketext">좋아요 <span class="likesresult">0</span>개
+								<span class="liketext">좋아요 <span class="likesresult"><input type="button"
+										id="result" value="0" style="border: none; width:7px; background: none;"></span>개
 								</span>
 							</div>
 							<%-- <p><%= sf.format(nowTime) %></p> --%>
@@ -90,15 +93,40 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 		</div>
 	</div>
 
-<script>
-	let like = document.querySelectorAll(".likebtn")
-	
-	for(let i = 0; i < like.length; i++){
-		like[i].addEventListener('click', ()=> {
-			like[i].classList.toggle('open')
-		})
-	}
-
+	<script>
+   var like = document.querySelectorAll(".likebtn")
+   var likebtn = document.getElementById("like")
+   var likecount = document.getElementById('result')
+   
+   for(let i = 0; i < like.length; i++){
+      like[i].addEventListener('click', ()=> {
+         like[i].classList.toggle('open')
+      })
+   }
+   
+   function count()  {
+        // 결과를 표시할 element
+   		if(likebtn.value == ""){
+   			likecount.value = parseInt(likecount.value) + 1;
+   			likebtn.value = " " 			
+   			
+   		}
+   		
+   		else if(likebtn.value == " "){
+   			likecount.value = parseInt(likecount.value) - 1;
+   			likebtn.value = ""
+   		}
+      }
+   
+/*    function count2() {
+	   var likecount = document.getElementById('result')
+	   
+	   if(likebtn.value == ""){
+		   likecount.value = parseInt(likecount.value) + 1;
+	   }else if(likebtn.value == " "){
+		   likecount.value = parseInt(likecount.value) - 1;
+	   }
+   } */
 </script>
 
 </body>
