@@ -25,7 +25,12 @@ public class Writecontroller {
 
 	// 등록하기 화면
 	@GetMapping("/board/write")
-	public String post(Model model) {
+	public String post(HttpSession session, Model model) {
+		if (session.getAttribute("userId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요");
+			model.addAttribute("url", "../login");
+			return "alert/alert";
+		}
 		return "/board/write";
 	}
 
