@@ -63,7 +63,12 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
-			style="cursor: pointer;"></a>
+			style="cursor: pointer;">
+		</a>
+		<a href="javascript:history.back();"><img id="back"
+			src="../resources/board/img/back.png" width="30px" height="30px"
+			style="cursor: pointer;">
+		</a>
 	</div>
 
 	<div class="body1">

@@ -195,7 +195,7 @@ article{
 }
 
 .write h4 {
-	margin-top: 3px;
+	margin-top: 15px;
 	margin-bottom: -15px;
 }
 .write p {
@@ -203,7 +203,7 @@ article{
     display: flex;
     position: absolute;
     right: 0%;
-    bottom: 12%;
+    bottom: 11%;
     font-size: 15px;
 }
 .WestagramTag span {
@@ -219,11 +219,17 @@ article{
     background-color: #DA0037;
     color: white;
 }
-.mypage img {
+.mypage #user {
 	position: absolute;
     cursor: pointer;
     top: 15%;
     right: 2%;
+}
+.mypage #back {
+	position: absolute;
+    cursor: pointer;
+    top: 15%;
+    left: 2%;
 }
 /*날짜 표시*/
 .likearea{

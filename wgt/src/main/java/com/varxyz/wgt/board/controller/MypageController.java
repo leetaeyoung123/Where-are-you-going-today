@@ -32,6 +32,9 @@ public class MypageController {
 	public String post(HttpSession session, Model model, Board board) {
 		List<User> userList = userService.inquiryUser((String) session.getAttribute("userId"));
 		System.out.println(session.getAttribute("userId")+"님 마이페이지 입장!");
+//		session.getAttribute(service.read(board).get(0).getTitle());
+//		session.getAttribute(service.read(board).get(0).getContent());
+//		session.getAttribute(service.read(board).get(0).getImgname());
 		
 		if (session.getAttribute("userId") == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요");
