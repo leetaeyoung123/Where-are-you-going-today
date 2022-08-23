@@ -29,15 +29,15 @@ public class BoardController {
 			return "alert/alert";
 		}
 		
-//		for (int i = 0; i < service.read(board).size(); i++) {
-//			long boardNum = service.read(board).get(i).getNumber();
-//			
-//			if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false") ) {
-//				service.updateLikeImg(userId, boardNum, "dislikeheart");
-//			}else {
-//				service.updateLikeImg(userId, boardNum, "likeheart");
-//			}
-//		}
+		for (int i = 0; i < service.read(board).size(); i++) {
+			long boardNum = service.read(board).get(i).getNumber();
+			
+			if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false") ) {
+				service.updateLikeImg(boardNum, "dislikeheart");
+			}else {
+				service.updateLikeImg(boardNum, "likeheart");
+			}
+		}
 		
 		model.addAttribute("board", service.read(board));
 		
@@ -66,16 +66,16 @@ public class BoardController {
 			service.likeuser(likes);
 			service.checkUpdate(userId, board.getNumber(), "true");
 			service.likecountPlus(board.getLikecount(), board.getNumber());
-			service.updateLikeImg(userId, board.getNumber(), "likeheart");
+			service.updateLikeImg(board.getNumber(), "likeheart");
 		}else { // DB에 아이디랑 게시글번호가 동일한 정보가 있다면 true, false를 비교한다
 			if(service.findLikes(userId, board.getNumber()).get(0).getLikeCheck().equals("false")) { // 좋아요를 누르지 않은 상태태
 				service.checkUpdate(userId, board.getNumber(), "true");
 				service.likecountPlus(board.getLikecount(), board.getNumber());
-				service.updateLikeImg(userId, board.getNumber(), "likeheart");
+				service.updateLikeImg(board.getNumber(), "likeheart");
 			}else {
 				service.checkUpdate(userId, board.getNumber(), "false");
 				service.likecountDown(board.getLikecount(), board.getNumber());
-				service.updateLikeImg(userId, board.getNumber(), "dislikeheart");
+				service.updateLikeImg(board.getNumber(), "dislikeheart");
 			}
 		}
 		

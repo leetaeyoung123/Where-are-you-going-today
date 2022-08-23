@@ -97,9 +97,9 @@ public class BoardDao {
 	}
 	
 	// board 테이블 좋아요 사진 업데이트
-	public void updateLikeImg(String userId, long number, String likeImg) {
-		String sql = "UPDATE Board SET likeImg = ? WHERE userId =? AND number = ?";
-		jdbcTemplate.update(sql, likeImg, userId, number);
+	public void updateLikeImg(long number, String likeImg) {
+		String sql = "UPDATE Board SET likeImg = ? WHERE number = ?";
+		jdbcTemplate.update(sql, likeImg, number);
 	}
 	
 	//ID로 게시글 찾기

@@ -55,5 +55,5 @@ public interface BoardService {
 		// likes테이블에 check 업데이트
 		public void checkUpdate(String userId, long number, String check);
 		
-		public void updateLikeImg(String userId, long number, String likeImg);
+		public void updateLikeImg(long number, String likeImg);
 }

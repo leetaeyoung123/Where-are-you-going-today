@@ -73,8 +73,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void updateLikeImg(String userId, long number, String likeImg) {
-			dao.updateLikeImg(userId, number, likeImg);
+	public void updateLikeImg(long number, String likeImg) {
+			dao.updateLikeImg(number, likeImg);
 	}
 
 	
