@@ -14,15 +14,22 @@ import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
+import com.varxyz.wgt.shop.domain.Shop;
+import com.varxyz.wgt.shop.service.ShopService;
+import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
 @Controller
 public class BoardController {
 	BoardService service = new BoardServiceImpl();
-	
+	ShopService service2 = new ShopServiceImpl();
 	// 게시판 화면
 	@GetMapping("/board/home")
 	public String list(HttpSession session, Model model, Board board) {
+		Shop shop = new Shop();
 		String userId = (String) session.getAttribute("userId");
+		String bnsNum = (String) session.getAttribute("bnsNum");
+//		public Shop findShopByBnsNum(String bnsNum);
+		model.addAttribute(service2.findShopByBnsNum(bnsNum));
 		if (session.getAttribute("userId") == null) {
 			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
 			model.addAttribute("url", "../login");
