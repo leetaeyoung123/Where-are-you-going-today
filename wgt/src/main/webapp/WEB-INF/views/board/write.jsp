@@ -44,7 +44,12 @@
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
-			style="cursor: pointer;"></a>
+			style="cursor: pointer;">
+		</a>
+		<a href="javascript:history.back();"><img id="back"
+			src="../resources/board/img/back.png" width="30px" height="30px"
+			style="cursor: pointer;">
+		</a>
 	</div>
 	<h3 style="text-align: center; margin-top: 30px; margin-bottom: -15px;">게시글 작성</h3>
 	<div class="write_area">
