@@ -28,6 +28,11 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 <title>Board Home</title>
 </head>
 <body>
+<script>
+	function reload(){
+		location.reload();
+	}
+</script>
 
 	<header class="headerContainer">
 		<!--상단 탭 만들기 뼈대구조-->
