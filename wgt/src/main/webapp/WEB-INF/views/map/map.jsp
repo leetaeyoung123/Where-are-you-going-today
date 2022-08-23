@@ -76,18 +76,14 @@
 								style="line-height: 30px; text-align: center; font-size: 15px;">${shop.shopAddress}</p>
 							<p
 								style="text-align: center; font-size: 24px;">${shop.shopTel}</p>
+								<span class="menuTitle" style="z-index:999;">메뉴</span>
 						</div>
 
 						<%
 						// 스크립트 반복문 사용을 위한 카운트 증가
 						count++;
 						%>
-						
-					</c:forEach>
-					<div>
-					<span class="menuTitle">메뉴</span>					
-					</div>
-					<c:forEach var="menu" items="${menuList}" varStatus="status">
+					<c:set var="menu" value="${menuList[status.index]}"/>		
 						<c:forEach var="x" items="${menu}" varStatus="t">
 							<div class="menulist${status.index}"
 								id="findmenu${status.index}${t.index}" style="display: none;">
@@ -96,7 +92,8 @@
 							</div>
 						</c:forEach>
 					</c:forEach>
-					<hr>
+
+
 					<!--위도와 경도를 불러와 등록되어 있는 가게 위치 표시-->
 					<c:forEach var="shop" items="${find}" varStatus="status">
 						<input id="longitude${status.index}" value="${shop.longitude}"
@@ -117,7 +114,7 @@
 		const bodytoggle = document.querySelector(".header_form")
 		const searchbtn = document.querySelector(".searchbtn")
 		const shopName = document.querySelector(".shop")
-
+		//const menuTitle = document.querySelector(".menuTitle")
 		const filteritemClose = document.querySelector(".item")
 		const filterClose = document.querySelector("#menu_wrap")
 		var mapClick = document.getElementById('map')
@@ -141,6 +138,7 @@
 		function filterEvent() {
 			filterClose.style.opacity = "0";
 			filterClose.style.left = "-270px";
+			//menuTitle.style.display ="none";
 			filteritemClose.style.display = "none";
 		}
 
@@ -169,6 +167,7 @@
 					
 					if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
 						item[i].style.display = "block";
+						//menuTitle.style.display ="block";
 						menuList[i][j].style.display = "block";
 						background.style.opacity = "100";
 						background.style.left = "0";
@@ -179,6 +178,7 @@
 
 					if (value.length == 0) {
 						menuList[i][j].style.display = "none";
+						//menuTitle.style.display ="none";
 						item[i].style.display = "none";
 						background.style.opacity = "0";
 						background.style.left = "-270px";
