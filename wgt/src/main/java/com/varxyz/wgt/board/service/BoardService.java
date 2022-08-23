@@ -21,7 +21,7 @@ public interface BoardService {
 		public List<Board> list();
 		
 		// 게시글 쓰기
-		public void create(Board board, String imgname);
+		public void create(Board board, String imgname, String userId);
 		
 		// 게시글 읽기
 		public List<Board> read(Board board);
@@ -36,11 +36,24 @@ public interface BoardService {
 		public List<Board> search(String title);
 		
 		// 게시물 정보
-		public Board searchByNumber(int number);
+		public Board searchByNumber(long number);
 		
 		public List<Board> boardList = new ArrayList<>();
-		
-		public void likeuser(Likes likes);
 
-		public void likecountUpdate(int likecount, int number);
+		// 게시글 총 좋아요 개수 1 증가
+		public void likecountPlus(int likecount, long number);
+		
+		// 게시글 총 좋아요 개수 1 다운
+		public void likecountDown(int likecount, long number);
+		
+		// likes테이블에 정보 추가
+		public void likeuser(Likes likes);
+		
+		// 아이디, 게시글고유번호로 정보 가져오기
+		public List<Likes> findLikes(String userId, long number);
+		
+		// likes테이블에 check 업데이트
+		public void checkUpdate(String userId, long number, String check);
+		
+		public void updateLikeImg(long number, String likeImg);
 }

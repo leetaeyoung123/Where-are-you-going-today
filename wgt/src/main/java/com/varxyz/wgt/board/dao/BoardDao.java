@@ -1,6 +1,7 @@
 package com.varxyz.wgt.board.dao;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
@@ -20,9 +21,9 @@ public class BoardDao {
 	}
 
 	//게시글 생성
-	public void create(Board board, String imgName) {
-		String sql = "INSERT INTO Board (title, content, imgname) VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName);
+	public void create(Board board, String imgName, String userId) {
+		String sql = "INSERT INTO Board (title, content, imgname, userId) VALUES (?, ?, ?, ?)";
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName, userId);
 	}
 	
 	//게시글 읽기
@@ -52,20 +53,53 @@ public class BoardDao {
 	}
 	
 	//고유번호로 게시물 정보 갖고오기
-	public Board searchByNumber(int number) {
+	public Board searchByNumber(long number) {
 		String sql = "SELECT * FROM Board WHERE number = ?";
 		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Board>(Board.class), number);
 	}//query = list<object>로 반환  queryforobject = 객체로만 반환
 	
-	// 좋아요 업데이트
-	public void likecountUpdate(int likecount, int number) {
+	// 게시글 총 좋아요 개수 1 증가
+	public void likecountPlus(int likecount, long number) {
 		String sql = "UPDATE Board SET likecount = ? WHERE number = ?";
-		jdbcTemplate.update(sql,likecount, number);
+		jdbcTemplate.update(sql, likecount+1, number);
 	}
 	
+	// 게시글 총 좋아요 개수 1 다운
+	public void likecountDown(int likecount, long number) {
+		String sql = "UPDATE Board SET likecount = ? WHERE number = ?";
+		jdbcTemplate.update(sql, likecount-1, number);
+	}
+	
+	// likes테이블에 정보 추가
 	public void likeuser(Likes likes) {
 		String sql = "INSERT INTO Likes (userId, likeCheck, number) VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, likes.getNumber(), likes.getUserId(), likes.getLikeCheck());
+		jdbcTemplate.update(sql, likes.getUserId(), likes.getLikeCheck(), likes.getNumber());
+	}
+	
+	// 아이디, 게시글고유번호로 좋아요 정보 가져오기
+	public List<Likes> findLikes(String userId, long number){
+		String sql = "SELECT * FROM Likes WHERE userId = ? AND number = ?";
+		if ( jdbcTemplate.query(sql, new BeanPropertyRowMapper<Likes>(Likes.class), userId, number).isEmpty() ) {
+			List<Likes> errorList = new ArrayList<Likes>();
+			Likes errorLikes = new Likes();
+			errorLikes.setUserId("없음");
+			errorLikes.setNumber(-1);
+			errorList.add(errorLikes);
+			return errorList;
+		}
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Likes>(Likes.class), userId, number);
+	}
+	
+	// likes테이블에 check 업데이트
+	public void checkUpdate(String userId, long number, String check) {
+		String sql = "UPDATE Likes SET likeCheck = ? WHERE userId =? AND number = ?";
+		jdbcTemplate.update(sql, check, userId, number);
+	}
+	
+	// board 테이블 좋아요 사진 업데이트
+	public void updateLikeImg(long number, String likeImg) {
+		String sql = "UPDATE Board SET likeImg = ? WHERE number = ?";
+		jdbcTemplate.update(sql, likeImg, number);
 	}
 	
 	//ID로 게시글 찾기

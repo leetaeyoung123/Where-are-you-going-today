@@ -28,6 +28,11 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 <title>Board Home</title>
 </head>
 <body>
+<script>
+	function reload(){
+		location.reload();
+	}
+</script>
 
 	<header class="headerContainer">
 		<!--상단 탭 만들기 뼈대구조-->
@@ -70,15 +75,18 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
 							style="width: 370px; height: 330px; border-radius: 5px;"><br>
 						<form action="likes" method="get">
+							<input style="display: none;" name="number"
+								value="${item.number}" type="text">
 							<div class="likearea">
 								<button>
-									<input id="like" type="button" value="" class="likebtn"
-										id="pluslike" onclick='count()'
-										style="display: flex; padding-left: 1px; margin-top: 1px; border: none;" />
+									<img id="likeCSS"
+										src="../resources/board/img/${item.likeImg}.png" width="30px"
+										height="30px" style="cursor: pointer;">
 								</button>
 								<div class="feedReaction">
 									<span class="liketext">좋아요 <span class="likesresult"><input
 											type="text" id="result" value="${item.likecount}"
+											name="likecount"
 											style="border: none; width: 7px; background: none;"></span>개
 									</span>
 								</div>
@@ -98,39 +106,6 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			</div>
 		</div>
 	</div>
-
-	<script>
-   var like = document.querySelectorAll(".likebtn")
-   var likebtn = document.getElementById("like")
-   
-   for(let i = 0; i < like.length; i++){
-      like[i].addEventListener('click', ()=> {
-         like[i].classList.toggle('open')
-      })
-   }
-   
-   function count()  {
-        // 결과를 표시할 element
-         if(likebtn.value == ""){
-            likebtn.value = " "          
-            
-         }
-         
-         else if(likebtn.value == " "){
-            likebtn.value = ""
-         }
-      }
-   
-/*    function count2() {
-      var likecount = document.getElementById('result')
-      
-      if(likebtn.value == ""){
-         likecount.value = parseInt(likecount.value) + 1;
-      }else if(likebtn.value == " "){
-         likecount.value = parseInt(likecount.value) - 1;
-      }
-   } */
-</script>
 
 </body>
 </html>

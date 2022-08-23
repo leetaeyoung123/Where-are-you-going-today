@@ -36,6 +36,7 @@ public class Writecontroller {
 
 	@PostMapping("/board/write")
 	public String post(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model, HttpSession session) {
+		String userId = (String) session.getAttribute("userId");
 		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
 		long size = file.getSize(); //파일사이즈
 		Board board = new Board();
@@ -71,7 +72,7 @@ public class Writecontroller {
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
 
-		service.create(board, uniqueName);
+		service.create(board, uniqueName, userId);
 		model.addAttribute(formatter);
 		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
 		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
