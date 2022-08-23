@@ -9,4 +9,5 @@ public class Likes {
 	private String userId;
 	private long number;
 	private String likeCheck;
+	private String likeImg;
 }

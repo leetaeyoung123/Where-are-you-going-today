@@ -87,8 +87,8 @@
 						<c:forEach var="x" items="${menu}" varStatus="t">
 							<div class="menulist${status.index}"
 								id="findmenu${status.index}${t.index}" style="display: none;">
-								<span class="menu">${menuList[status.index][t.index].menuName}: </span>
-								<span class="menu">${menuList[status.index][t.index].menuPrice}</span>
+								<span class="menu">${menuList[status.index][t.index].menuName}:
+								</span> <span class="menu">${menuList[status.index][t.index].menuPrice}</span>
 							</div>
 						</c:forEach>
 					</c:forEach>
@@ -181,6 +181,8 @@
 
 		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 		MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
+		GPS_MARKER_WIDTH = 20,
+		GPS_MARKER_HEIGHT = 20,
 		OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
 		OFFSET_Y = MARKER_HEIGHT, // 기본, 클릭 마커의 기준 Y좌표
 		OVER_MARKER_WIDTH = 31, // 오버 마커의 너비
@@ -197,7 +199,8 @@
 				OVER_MARKER_HEIGHT), // 오버 마커의 크기
 		overMarkerOffset = new kakao.maps.Point(OVER_OFFSET_X, OVER_OFFSET_Y), // 오버 마커의 기준 좌표
 		clickMarkerSize = new kakao.maps.Size(CLICK_MARKER_WIDTH,
-				CLICK_MARKER_HEIGHT);
+				CLICK_MARKER_HEIGHT),
+		gpsMarkerSize = new kakao.maps.Size(GPS_MARKER_WIDTH, GPS_MARKER_HEIGHT);
 
 		selectedMarker = null; // 클릭한 마커를 담을 변수
 		selectedContent = null;
@@ -211,6 +214,44 @@
 		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		if (navigator.geolocation) {
+
+			// GeoLocation을 이용해서 접속 위치를 얻어옵니다
+			navigator.geolocation.getCurrentPosition(function(position) {
+
+				var lat = position.coords.latitude, // 위도
+				lon = position.coords.longitude; // 경도
+
+				var locPosition = new kakao.maps.LatLng(lat, lon) // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+
+				// 마커와 인포윈도우를 표시합니다
+				displayMarker(locPosition);
+
+			});
+
+		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+			var locPosition = new kakao.maps.LatLng(33.450701, 126.570667), message = 'geolocation을 사용할수 없어요..'
+
+			displayMarker(locPosition);
+		}
+		var gpsImgSrc = "../resources/mapcss/img/gps.png"
+		var gpsImg = new kakao.maps.MarkerImage(gpsImgSrc, gpsMarkerSize)
+		// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+		function displayMarker(locPosition) {
+
+			// 마커를 생성합니다
+			var gpsMarker = new kakao.maps.Marker({
+				map : map,
+				position : locPosition,
+				image : gpsImg
+			});
+
+			// 지도 중심좌표를 접속위치로 변경합니다
+			map.setCenter(locPosition);
+		}
+
 		var positions = []//좌표값을 받을 배열
 		var content = [] //가게 이름을 받을 배열
 		var inputText = []

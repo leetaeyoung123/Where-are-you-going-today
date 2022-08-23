@@ -113,23 +113,29 @@ public class WaitingController {
 						.getWaitingStartTime();
 				model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
 				return "waiting/get_waiting";
-			} else { 
+			} else {
 				// 언제까지 오라는 시간을 부여 받은 상황
 				SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 				Date nowDate = new Date();
+				Calendar cal = Calendar.getInstance();
+		        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				
 				String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
 						.getWaitingStartTime();
 				
-				System.out.println(waitingTime);
-				System.out.println(formatter.parse(waitingTime));
-//				String now = formatter.format(nowDate);
-//				System.out.println(formatter.parse(waitingTime).after(now));
+				cal.setTime(formatter.parse(waitingTime));
+				int yearDate = Integer.parseInt(df.format(nowDate.getTime()).split("-", 0)[0]);
+				int monthDate = Integer.parseInt(df.format(nowDate.getTime()).split("-", 0)[1]);
+				int dateDate = Integer.parseInt(df.format(nowDate.getTime()).split("-", 0)[2]);
+				
+//				System.out.println("현재시간 : " + nowDate);
+//				System.out.println("비교시간 : " + formatter.parse(waitingTime));
+				cal.set(yearDate, monthDate-1, dateDate);
+//				System.out.println("만든시간 : " + cal.getTime());
 				
 				model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
-				
-				System.out.println(nowDate.after(formatter.parse(waitingTime)));
-				if ( nowDate.after(formatter.parse(waitingTime)) ) { // formatter.parse(waitingTime).after(nowDate)
+//				System.out.println("비교결과 : " + nowDate.after(cal.getTime()));
+				if ( nowDate.after(cal.getTime()) ) { 
 					waitingService.deleteWaiting((String) session.getAttribute("userId"));
 					return "waiting/get_waiting";
 				}
