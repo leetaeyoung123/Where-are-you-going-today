@@ -28,7 +28,8 @@
 	<input id="inputaddr" value="${addr}" style="display: none;" />
 	<nav id=gnb>
 		<ul>
-			<li class="sub1"><span>${userId}님, 반가워요 !</span></li>
+			<li class="sub1"><span>${userId}님<br> 반가워요 !</span></li>
+			<hr style="border: none; background-color: #DA0037; margin-bottom: 20px; height: 2px; width: 200px;">
 			<li class="sub2">
 				<form id="submitID" action="go_get_waiting" method="post">
 					<a onclick="submit_form()">나의 웨이팅</a>
@@ -67,7 +68,7 @@
 							onclick="location.href='../shop/viewUserShop?shopName=${shop.shopName}'">
 							<input name="shopName" class="shop" id="findname${status.index}"
 								value="${shop.shopName}" disabled
-								style="text-align: center; width: 100%; height: 40px; border: 0; background: none; font-size: 38px; font-weight: bold; font-family: 'KOTRAHOPE';" />
+								style="text-align: center; width: 100%; height: 40px; border: 0; background: none; font-size: 38px; font-weight: bold; color:#DA0037; font-family: 'KOTRAHOPE';" />
 							<input id="shopAddress${status.index}"
 								value="${shop.shopAddress}" style="display: none;">
 							<p class="name" style="display: none">${shop.shopName}</p>
@@ -81,13 +82,17 @@
 						// 스크립트 반복문 사용을 위한 카운트 증가
 						count++;
 						%>
+						
 					</c:forEach>
+					<div>
+					<span class="menuTitle">메뉴</span>					
+					</div>
 					<c:forEach var="menu" items="${menuList}" varStatus="status">
 						<c:forEach var="x" items="${menu}" varStatus="t">
 							<div class="menulist${status.index}"
 								id="findmenu${status.index}${t.index}" style="display: none;">
-								<span class="menu">${menuList[status.index][t.index].menuName}:
-								</span> <span class="menu">${menuList[status.index][t.index].menuPrice}</span>
+								<span class="menu" style="line-height: 24px;">${menuList[status.index][t.index].menuName}&nbsp; - &nbsp;
+								</span><span class="menu">${menuList[status.index][t.index].menuPrice}원</span>
 							</div>
 						</c:forEach>
 					</c:forEach>
