@@ -58,14 +58,14 @@ public class BoardDao {
 	}//query = list<object>로 반환  queryforobject = 객체로만 반환
 	
 	// 좋아요 업데이트
-	public void likecountUpdate(int likecount, long number) {
+	public void likecountUpdate(int likecount, int number) {
 		String sql = "UPDATE Board SET likecount = ? WHERE number = ?";
-		jdbcTemplate.update(sql, likecount, number);
+		jdbcTemplate.update(sql,likecount, number);
 	}
 	
 	public void likeuser(Likes likes) {
-		String sql = "INSERT INTO Likes (userId, likeCheck) VALUES (?, ?)";
-		jdbcTemplate.update(sql, likes.getUserId(), likes.getLikeCheck());
+		String sql = "INSERT INTO Likes (userId, likeCheck, number) VALUES (?, ?, ?)";
+		jdbcTemplate.update(sql, likes.getNumber(), likes.getUserId(), likes.getLikeCheck());
 	}
 	
 	//ID로 게시글 찾기

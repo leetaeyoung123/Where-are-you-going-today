@@ -33,7 +33,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/likes")
-	public String getLikes(HttpSession session, Model model, Board board, int likecount) {
+	public String getLikes(HttpSession session, Model model, Board board) {
 		Likes likes = new Likes();
 		String result = "false";
 		String userId = (String) session.getAttribute("userId");
@@ -45,11 +45,12 @@ public class BoardController {
 		likes.setUserId(userId);
 		likes.setLikeCheck(result);
 		likes.setNumber(board.getNumber());
+		System.out.println(board.getNumber());
 		service.likeuser(likes);
 		
 		if(likes.getLikeCheck() == "false") {
 			result = "true";
-			service.likecountUpdate(likecount, board.getNumber());
+			service.likecountUpdate(board.getLikecount(), board.getNumber());
 		}
 		return "board/home";
 	}

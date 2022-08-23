@@ -39,8 +39,8 @@ public interface BoardService {
 		public Board searchByNumber(int number);
 		
 		public List<Board> boardList = new ArrayList<>();
-
-		public void likecountUpdate(int likescount, long number);
 		
 		public void likeuser(Likes likes);
+
+		public void likecountUpdate(int likecount, int number);
 }

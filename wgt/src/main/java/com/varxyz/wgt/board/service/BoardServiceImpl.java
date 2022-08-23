@@ -48,13 +48,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void likecountUpdate(int likecount, long number) {
-		dao.likecountUpdate(likecount, number);
+	public void likeuser(Likes likes) {
+		dao.likeuser(likes);
 	}
 
 	@Override
-	public void likeuser(Likes likes) {
-		dao.likeuser(likes);
+	public void likecountUpdate(int likecount, int number) {
+		dao.likecountUpdate(likecount, number);
+		
 	}
 
 	
