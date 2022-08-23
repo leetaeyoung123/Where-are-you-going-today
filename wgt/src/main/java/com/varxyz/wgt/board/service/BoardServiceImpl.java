@@ -18,8 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void create(Board board, String imgName) {
-		dao.create(board, imgName);
+	public void create(Board board, String imgName, String userId) {
+		dao.create(board, imgName, userId);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Board searchByNumber(int number) {
+	public Board searchByNumber(long number) {
 		return dao.searchByNumber(number);
 	}
 
@@ -53,9 +53,28 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void likecountUpdate(int likecount, int number) {
-		dao.likecountUpdate(likecount, number);
-		
+	public List<Likes> findLikes(String userId, long number) {
+		return dao.findLikes(userId, number);
+	}
+
+	@Override
+	public void checkUpdate(String userId, long number, String check) {
+		dao.checkUpdate(userId, number, check);
+	}
+
+	@Override
+	public void likecountPlus(int likecount, long number) {
+		dao.likecountPlus(likecount, number);
+	}
+
+	@Override
+	public void likecountDown(int likecount, long number) {
+		dao.likecountDown(likecount, number);
+	}
+
+	@Override
+	public void updateLikeImg(String userId, long number, String likeImg) {
+			dao.updateLikeImg(userId, number, likeImg);
 	}
 
 	
