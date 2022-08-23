@@ -22,36 +22,64 @@ public class BoardController {
 	// 게시판 화면
 	@GetMapping("/board/home")
 	public String list(HttpSession session, Model model, Board board) {
-		if (session.getAttribute("userId") == null) {
-			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
-			model.addAttribute("url", "../login");
-			return "alert/alert";
-		}
-		model.addAttribute("board", service.read(board));
-		
-		return "board/home";
-	}
-	
-	@GetMapping("/board/likes")
-	public String getLikes(HttpSession session, Model model, Board board, int likecount) {
-		Likes likes = new Likes();
-		String result = "false";
 		String userId = (String) session.getAttribute("userId");
 		if (session.getAttribute("userId") == null) {
 			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
 			model.addAttribute("url", "../login");
 			return "alert/alert";
 		}
-		likes.setUserId(userId);
-		likes.setLikeCheck(result);
-		likes.setNumber(board.getNumber());
-		service.likeuser(likes);
 		
-		if(likes.getLikeCheck() == "false") {
-			result = "true";
-			service.likecountUpdate(likecount, board.getNumber());
-		}
+//		for (int i = 0; i < service.read(board).size(); i++) {
+//			long boardNum = service.read(board).get(i).getNumber();
+//			
+//			if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false") ) {
+//				service.updateLikeImg(userId, boardNum, "dislikeheart");
+//			}else {
+//				service.updateLikeImg(userId, boardNum, "likeheart");
+//			}
+//		}
+		
+		model.addAttribute("board", service.read(board));
+		
 		return "board/home";
+	}
+	
+	@GetMapping("/board/likes")
+	public String getLikes(HttpSession session, Model model, Board board) {
+		String userId = (String) session.getAttribute("userId");
+		
+		if (session.getAttribute("userId") == null) {
+			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
+			model.addAttribute("url", "../login");
+			return "alert/alert";
+		}
+		
+		
+		// 만약 Likes 테이블에 id, number가 동일한 정보가 없으면 만들어주기 아니면 밑에꺼 실행 
+		if ( service.findLikes(userId, board.getNumber()).get(0).getUserId().equals("없음")
+				&& service.findLikes(userId, board.getNumber()).get(0).getNumber() == -1 ) {
+			Likes likes = new Likes();
+			String result = "false";
+			likes.setUserId(userId);
+			likes.setLikeCheck(result);
+			likes.setNumber(board.getNumber());
+			service.likeuser(likes);
+			service.checkUpdate(userId, board.getNumber(), "true");
+			service.likecountPlus(board.getLikecount(), board.getNumber());
+			service.updateLikeImg(userId, board.getNumber(), "likeheart");
+		}else { // DB에 아이디랑 게시글번호가 동일한 정보가 있다면 true, false를 비교한다
+			if(service.findLikes(userId, board.getNumber()).get(0).getLikeCheck().equals("false")) { // 좋아요를 누르지 않은 상태태
+				service.checkUpdate(userId, board.getNumber(), "true");
+				service.likecountPlus(board.getLikecount(), board.getNumber());
+				service.updateLikeImg(userId, board.getNumber(), "likeheart");
+			}else {
+				service.checkUpdate(userId, board.getNumber(), "false");
+				service.likecountDown(board.getLikecount(), board.getNumber());
+				service.updateLikeImg(userId, board.getNumber(), "dislikeheart");
+			}
+		}
+		
+		return "redirect:/board/home";
 	}
 
 	@PostMapping("/board/home")
