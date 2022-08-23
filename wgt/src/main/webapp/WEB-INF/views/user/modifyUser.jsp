@@ -56,7 +56,7 @@
 	</form>
 	
 	<form action="deleteUser" method="post">
-		<button type="submit" class="dBtn">회원탈퇴</button>
+		<button type="submit" class="dBtn" style="background: gray;">회원탈퇴</button>
 	</form>
 </body>
 
