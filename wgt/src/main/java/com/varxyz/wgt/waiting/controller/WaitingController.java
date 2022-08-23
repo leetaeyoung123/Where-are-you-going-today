@@ -113,7 +113,7 @@ public class WaitingController {
 						.getWaitingStartTime();
 				model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
 				return "waiting/get_waiting";
-			} else { 
+			} else {
 				// 언제까지 오라는 시간을 부여 받은 상황
 				SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 				Date nowDate = new Date();
