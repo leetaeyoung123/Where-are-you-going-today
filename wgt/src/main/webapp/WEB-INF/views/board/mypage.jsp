@@ -53,7 +53,12 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
-			style="cursor: pointer;"></a>
+			style="cursor: pointer;">
+		</a>
+		<a href="javascript:history.back();"><img id="back"
+			src="../resources/board/img/back.png" width="30px" height="30px"
+			style="cursor: pointer;">
+		</a>
 	</div>
 	<div class="userinfo" style="text-align: center; margin-top: 20px; font-size: 20px;">
 		<c:forEach var="user" items="${userList}">
@@ -76,7 +81,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 							<a class="likebtn"
 								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
 							<div class="feedReaction">
-								<span class="liketext">좋아요 <span class="likesresult">0</span>개
+								<span class="liketext" style="display:none;">좋아요 <span class="likesresult"></span>개
 								</span>
 							</div>
 						</div>
