@@ -53,7 +53,7 @@
 		// 스크립트 반복문 사용을 위한 count 선언
 		int count = 0;
 		%>
-		<div id="map" onclick="filter()"
+		<div id="map" onclick=" filterEvent()"
 			style="width: 370px; height: 790px; margin-left: 10px;"></div>
 		<script type="text/javascript"
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
@@ -63,7 +63,7 @@
 				<ul id="placesList">
 					<!--모든 가게이름을 다 불러와 맵에 마크와 컨테츠 표현-->
 					<c:forEach var="shop" items="${shopFind}" varStatus="status">
-						<div class="item" style="display: none;"
+						<div class="item" style="display: none; border-bottom: solid 1px #DA0037;"
 							onclick="location.href='../shop/viewUserShop?shopName=${shop.shopName}'">
 							<input name="shopName" class="shop" id="findname${status.index}"
 								value="${shop.shopName}" disabled
@@ -74,8 +74,7 @@
 							<p class="address"
 								style="line-height: 30px; text-align: center; font-size: 15px;">${shop.shopAddress}</p>
 							<p
-								style="text-align: center; font-size: 24px; border-bottom: solid 1px;">${shop.shopTel}</p>
-
+								style="text-align: center; font-size: 24px;">${shop.shopTel}</p>
 						</div>
 
 						<%
@@ -136,6 +135,7 @@
 
 		function filterEvent() {
 			filterClose.style.opacity = "0";
+			filterClose.style.left = "-270px";
 			filteritemClose.style.display = "none";
 		}
 
@@ -154,11 +154,14 @@
 			background = document.getElementById("menu_wrap")
 			menuList = []
 
+
 			for (i = 0; i < item.length; i++) {
 				menuList.push(document.getElementsByClassName("menulist" + i));
 				name = item[i].getElementsByClassName("name")
+				
 				for (j = 0; j < menuList[i].length; j++) {
 					menu = menuList[i][j].getElementsByClassName("menu")
+					
 					if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
 						item[i].style.display = "block";
 						menuList[i][j].style.display = "block";
@@ -247,7 +250,6 @@
 				position : locPosition,
 				image : gpsImg
 			});
-
 			// 지도 중심좌표를 접속위치로 변경합니다
 			map.setCenter(locPosition);
 		}

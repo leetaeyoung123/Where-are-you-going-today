@@ -65,7 +65,7 @@ public class Writecontroller {
 			e.printStackTrace();
 		}catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("용량 초과로 인한 오류");
+//			System.out.println("용량 초과로 인한 오류");
 		}
 		
 		board.setTitle(request.getParameter("title"));
