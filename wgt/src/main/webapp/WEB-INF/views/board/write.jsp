@@ -46,7 +46,7 @@
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
-		<a href="javascript:history.back();"><img id="back"
+		<a href="map"><img id="back"
 			src="../resources/board/img/back.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
