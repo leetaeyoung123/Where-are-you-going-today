@@ -2,6 +2,7 @@ package com.varxyz.wgt.board.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -9,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.mysql.cj.Session;
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
 import com.varxyz.wgt.board.service.BoardService;
@@ -31,11 +31,12 @@ public class BoardController {
 		
 		for (int i = 0; i < service.read(board).size(); i++) {
 			long boardNum = service.read(board).get(i).getNumber();
-			
-			if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false") ) {
-				service.updateLikeImg(boardNum, "dislikeheart");
-			}else {
-				service.updateLikeImg(boardNum, "likeheart");
+			if( !service.findLikes(userId, boardNum).get(0).getUserId().equals("없음")) {
+				if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false") ) {
+					service.updateLikeImg(boardNum, "dislikeheart");
+				}else {
+					service.updateLikeImg(boardNum, "likeheart");
+				}
 			}
 		}
 		
@@ -45,7 +46,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/likes")
-	public String getLikes(HttpSession session, Model model, Board board) {
+	public String getLikes(HttpSession session, Model model, Board board, HttpServletRequest request) {
 		String userId = (String) session.getAttribute("userId");
 		
 		if (session.getAttribute("userId") == null) {
