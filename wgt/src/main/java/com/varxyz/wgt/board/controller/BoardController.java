@@ -37,6 +37,8 @@ public class BoardController {
 				}else {
 					service.updateLikeImg(boardNum, "likeheart");
 				}
+			}else {
+				service.updateLikeImg(boardNum,"dislikeheart");
 			}
 		}
 		
