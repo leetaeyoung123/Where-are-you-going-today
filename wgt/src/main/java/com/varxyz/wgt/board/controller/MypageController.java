@@ -42,6 +42,8 @@ public class MypageController {
 			return "alert/alert";
 		}
 		
+		
+		
 		model.addAttribute("userList", userList);
 		model.addAttribute("board", service.read(board));
 		session.setAttribute("number", board.getNumber());
