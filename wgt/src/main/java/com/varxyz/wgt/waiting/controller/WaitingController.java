@@ -105,7 +105,7 @@ public class WaitingController {
 				Date nowDate = new Date();
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(nowDate);
-				cal.add(Calendar.MINUTE, 1);
+				cal.add(Calendar.MINUTE, 3);
 				String outputText = outputFormat.format(cal.getTime());
 
 				waitingService.addWaitingTime((String) session.getAttribute("userId"), outputText);
@@ -152,9 +152,10 @@ public class WaitingController {
 
 	@GetMapping("/controller/waiting_management")
 	public String waitingManagement(HttpSession session, Model model) {
-		List<Waiting> waitingList = waitingService.findAllWaiting((String)session.getAttribute("shopName"));
+		List<Waiting> MyShopWaitingList = waitingService.findAllWaiting((String)session.getAttribute("shopNameForManager"));
 
-		model.addAttribute("MyShopWaitingList", waitingList);
+		model.addAttribute("MyShopWaitingList", MyShopWaitingList);
+		model.addAttribute("isUser",MyShopWaitingList.get(0).getUserId());
 		return "waiting/waiting_management";
 	}
 
@@ -166,7 +167,7 @@ public class WaitingController {
 
 	@PostMapping("/controller/allWaitingClear")
 	public String allWaitingClear(HttpSession session) {
-		waitingService.deteleAllWaiting((String)session.getAttribute("shopName"));
+		waitingService.deteleAllWaiting((String)session.getAttribute("shopNameForManager"));
 		return "redirect:/controller/waiting_management";
 	}
 
