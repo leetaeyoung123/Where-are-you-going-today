@@ -15,13 +15,23 @@ public class MapDao {
 		jdbcTemplate = new JdbcTemplate(dataSourceConfig);
 	}
 	
-	public List<Map> findAll(String businessNumber){
-		String sql = "SELECT * FROM map WHERE businessNumber = ?";
+	public List<Map> findBnsMap(String businessNumber){
+		String sql = "SELECT longitude, latitude FROM map ORDER BY mid ASC ";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class), businessNumber);
 	}
 	
 	public List<Map> search(String name){
 		String sql = "SELECT * FROM map WHERE name like '%" + name +"%' ";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
+	}
+	
+	public List<Map> findAll(){
+		String sql = "SELECT * FROM map ORDER BY mid ASC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
+	}
+	
+	public void insertPosition(Map map) {
+		String sql = "INSERT INTO map  VALUES( ?,?,?)";
+		jdbcTemplate.update(sql,map.getBusinessNumber(), map.getLatitude(), map.getLongitude());
 	}
 }
