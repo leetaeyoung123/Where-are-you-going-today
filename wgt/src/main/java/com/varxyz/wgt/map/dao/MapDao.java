@@ -20,12 +20,12 @@ public class MapDao {
 //	}
 	
 	public List<Map> findAll(){
-		String sql = "SELECT * FROM test";
+		String sql = "SELECT * FROM map";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
 	}
 	
 	public List<Map> search(String name){
-		String sql = "SELECT * FROM test WHERE name like '%" + name +"%' ";
+		String sql = "SELECT * FROM map WHERE name like '%" + name +"%' ";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
 	}
 }

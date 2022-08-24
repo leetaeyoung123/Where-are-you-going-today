@@ -346,3 +346,7 @@ li {
 	font-size: 18px;
 	margin-left: 66px;
 }
+
+.line {
+	border-bottom: 2px solid #DA0037;
+}

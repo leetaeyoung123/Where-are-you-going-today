@@ -37,11 +37,11 @@ public class MapController {
 		List<String> bnsList = shopService.findAllBns();
 		Set<String> set = new HashSet<String>(bnsList);
 		List<String> newBnsList = new ArrayList<>(set);
-		List<List<Menu>> test = new ArrayList<>();
+		List<List<Menu>> menuList = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
-			test.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
+			menuList.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
 		}
-		model.addAttribute("menuList", test);
+		model.addAttribute("menuList", menuList);
 
 		// 아이디 세션
 
