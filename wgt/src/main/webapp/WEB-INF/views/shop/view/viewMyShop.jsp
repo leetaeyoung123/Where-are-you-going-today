@@ -69,6 +69,7 @@
       </c:if>
       <input type="button" value="메뉴 추가" class="SubmitBtn next_btn" style=" margin-top: 20px; margin-bottom: 20px; color: black; width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 5px black; margin-top: 10px; background: white;" onclick="location.href='addMenu'">
       </form>
+      <input type="button" value="현재 웨이팅 내역" class="SubmitBtn next_btn" style=" margin-top: 20px; margin-bottom: 20px; color: black; width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 5px black; margin-top: 10px; background: white;" onclick="location.href='../controller/waiting_management'">
       <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../ownerLogOut'">로그아웃</button>
     </div>
   </body>

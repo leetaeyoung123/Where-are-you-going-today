@@ -7,7 +7,6 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.varxyz.wgt.owner.doamin.Owner;
 import com.varxyz.wgt.waiting.domain.Waiting;
 
 public class WaitingDao {
