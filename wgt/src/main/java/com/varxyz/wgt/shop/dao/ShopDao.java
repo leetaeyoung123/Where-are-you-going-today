@@ -75,7 +75,7 @@ private JdbcTemplate jdbcTemplate;
 	// 매장 메뉴 수정
 	public boolean updateShopMenu(MenuCommand updatedMenu, Menu oldMenu) {
 		String sql = "UPDATE menu SET menuName=?, menuIntro=?, menuPrice=?, menuImg=? "
-				+ " WHERE MENU_NAME = ?";
+				+ " WHERE menuName = ?";
 		jdbcTemplate.update(sql, updatedMenu.getMenuName(), updatedMenu.getMenuIntro(), 
 								 updatedMenu.getMenuPrice(), updatedMenu.getMenuImg(), oldMenu.getMenuName());
 		File file = new File("C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\shop\\menu_img\\" + oldMenu.getMenuImg() + ".jpg");

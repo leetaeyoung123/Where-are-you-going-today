@@ -22,8 +22,12 @@ CREATE TABLE menu (
 	FOREIGN KEY(businessNumber) REFERENCES shop(businessNumber)
 );
 
-DELETE FROM shop WHERE businessNumber = '000-000-000';
-DELETE FROM MENU WHERE businessNumber = '222-222-222';
+-- 테스트 코드
+INSERT INTO shop VALUES('123-456-789', 'testShopName', '053-111-123', '1234', '1234', '1234', '1234', '1234', '1', '1', '1234');
+INSERT INTO menu VALUES('123-456-789', 'testMenu', 'testIntro', 1000, '1234');
+
+DELETE FROM shop ;
+DELETE FROM MENU ;
 
 SELECT * FROM shop;
 SELECT * FROM MENU;
