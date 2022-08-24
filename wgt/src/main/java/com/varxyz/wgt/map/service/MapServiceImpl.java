@@ -12,7 +12,7 @@ public class MapServiceImpl implements MapService{
 	}
 
 	@Override
-	public List<Map> findAll() {
-		return dao.findAll();
+	public List<Map> findAll(String businessNumber) {
+		return dao.findAll(businessNumber);
 	}
 }

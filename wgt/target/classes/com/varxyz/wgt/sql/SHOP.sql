@@ -22,7 +22,7 @@ CREATE TABLE menu (
 	FOREIGN KEY(businessNumber) REFERENCES shop(businessNumber)
 );
 
-DELETE FROM shop WHERE shopName = '크로바';
+DELETE FROM shop WHERE businessNumber = '000-000-000';
 DELETE FROM MENU WHERE businessNumber = '222-222-222';
 
 SELECT * FROM shop;
