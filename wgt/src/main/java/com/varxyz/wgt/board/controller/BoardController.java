@@ -14,7 +14,6 @@ import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
-import com.varxyz.wgt.shop.domain.Shop;
 import com.varxyz.wgt.shop.service.ShopService;
 import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
@@ -25,7 +24,6 @@ public class BoardController {
 	// 게시판 화면
 	@GetMapping("/board/home")
 	public String list(HttpSession session, Model model, Board board) {
-		Shop shop = new Shop();
 		String userId = (String) session.getAttribute("userId");
 //		String bnsNum = (String) session.getAttribute("bnsNum");
 //		public Shop findShopByBnsNum(String bnsNum);
