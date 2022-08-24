@@ -25,18 +25,18 @@ public class BoardController {
 	@GetMapping("/board/home")
 	public String list(HttpSession session, Model model, Board board) {
 		String userId = (String) session.getAttribute("userId");
-//		String bnsNum = (String) session.getAttribute("bnsNum");
+		String bnsNum = (String) session.getAttribute("bnsNum");
 //		service2.findShopByBnsNum(bnsNum);
 //		System.out.println(service2.findShopByBnsNum(bnsNum));
-		
+//		System.out.println(service2.findShopByBnsNum(bnsNum).getShopName());
 		if (session.getAttribute("userId") == null) {
-			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
+			model.addAttribute("msg", "로그인이 필요한 서비스입니다.");
 			model.addAttribute("url", "../login");
 			return "alert/alert";
 		}
 		
-		for (int i = 0; i < service.read(board).size(); i++) {
-			long boardNum = service.read(board).get(i).getNumber();
+		for (int i = 0; i < service.read(board, bnsNum).size(); i++) {
+			long boardNum = service.read(board, bnsNum).get(i).getNumber();
 			if( !service.findLikes(userId, boardNum).get(0).getUserId().equals("없음")) {
 				if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false") ) {
 					service.updateLikeImg(boardNum, "dislikeheart");
@@ -47,8 +47,8 @@ public class BoardController {
 				service.updateLikeImg(boardNum,"dislikeheart");
 			}
 		}
-		
-		model.addAttribute("board", service.read(board));
+		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName());
+		model.addAttribute("board", service.read(board, bnsNum));
 		
 		return "board/home";
 	}

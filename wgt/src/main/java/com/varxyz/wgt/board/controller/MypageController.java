@@ -43,9 +43,9 @@ public class MypageController {
 		}
 		
 		
-		
+		String bnsNum = (String) session.getAttribute("bnsNum");
 		model.addAttribute("userList", userList);
-		model.addAttribute("board", service.read(board));
+		model.addAttribute("board", service.read(board, bnsNum));
 		session.setAttribute("number", board.getNumber());
 		return "/board/mypage";
 	}
