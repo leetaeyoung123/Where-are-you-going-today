@@ -14,7 +14,6 @@ import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
-import com.varxyz.wgt.shop.domain.Shop;
 import com.varxyz.wgt.shop.service.ShopService;
 import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
@@ -28,14 +27,13 @@ public class BoardController {
 		String userId = (String) session.getAttribute("userId");
 		String bnsNum = (String) session.getAttribute("bnsNum");
 		service2.findShopByBnsNum(bnsNum);
-		model.addAttribute(service2.findShopByBnsNum(bnsNum));
+		
 		if (session.getAttribute("userId") == null) {
 			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
 			model.addAttribute("url", "../login");
 			return "alert/alert";
 		}
 		
-		// 게시판에 들어갔을때 본인이 좋아요를 누른 게시글이 있는지 없는지 판단하는 로직
 		for (int i = 0; i < service.read(board).size(); i++) {
 			long boardNum = service.read(board).get(i).getNumber();
 			if( !service.findLikes(userId, boardNum).get(0).getUserId().equals("없음")) {
@@ -48,6 +46,7 @@ public class BoardController {
 				service.updateLikeImg(boardNum,"dislikeheart");
 			}
 		}
+		
 		model.addAttribute("board", service.read(board));
 		
 		return "board/home";

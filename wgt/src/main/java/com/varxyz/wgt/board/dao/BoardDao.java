@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
+import com.varxyz.wgt.shop.domain.Shop;
 
 @Component("boardDao")
 public class BoardDao {
@@ -21,14 +22,14 @@ public class BoardDao {
 	}
 
 	//게시글 생성
-	public void create(Board board, String imgName, String userId) {
+	public void create(Board board, String imgName, String userId, String shop) {
 		String sql = "INSERT INTO Board (title, content, imgname, userId) VALUES (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName, userId);
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName, userId, shop);
 	}
 	
 	//게시글 읽기
 	public List<Board> read(Board board) {
-		String sql = "SELECT * FROM Board ORDER BY regDate DESC";
+		String sql = "SELECT * FROM Board ORDER BY regDate DESC WHERE businessNumber = ?";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 	}
 	
