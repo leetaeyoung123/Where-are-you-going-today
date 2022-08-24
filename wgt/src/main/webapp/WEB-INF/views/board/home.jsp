@@ -73,7 +73,6 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 
 	<div class="body1">
 		<div class="feedReactionButton">
-			<!-- <button class="heartbtn" onclick="addLike()"><i class="far fa-heart"></i></button> -->
 			<div class="boardarea">
 				<c:forEach var="item" items="${board}">
 					<div class="write" style="margin-bottom: 30px;">
@@ -96,8 +95,6 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 									</span>
 								</div>
 
-								<%-- <p><%= sf.format(nowTime) %></p> --%>
-								<%-- <p>${item.regDate}</p> --%>
 							</div>
 						</form>
 						<p>

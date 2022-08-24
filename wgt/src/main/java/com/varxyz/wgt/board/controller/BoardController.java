@@ -14,15 +14,21 @@ import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
+import com.varxyz.wgt.shop.service.ShopService;
+import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
 @Controller
 public class BoardController {
 	BoardService service = new BoardServiceImpl();
-	
+	ShopService service2 = new ShopServiceImpl();
 	// 게시판 화면
 	@GetMapping("/board/home")
 	public String list(HttpSession session, Model model, Board board) {
 		String userId = (String) session.getAttribute("userId");
+//		String bnsNum = (String) session.getAttribute("bnsNum");
+//		service2.findShopByBnsNum(bnsNum);
+//		System.out.println(service2.findShopByBnsNum(bnsNum));
+		
 		if (session.getAttribute("userId") == null) {
 			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
 			model.addAttribute("url", "../login");
@@ -56,7 +62,6 @@ public class BoardController {
 			model.addAttribute("url", "../login");
 			return "alert/alert";
 		}
-		
 		
 		// 만약 Likes 테이블에 id, number가 동일한 정보가 없으면 만들어주기 아니면 밑에꺼 실행 
 		if ( service.findLikes(userId, board.getNumber()).get(0).getUserId().equals("없음")

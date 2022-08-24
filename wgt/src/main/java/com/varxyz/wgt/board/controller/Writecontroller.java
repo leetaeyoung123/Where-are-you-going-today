@@ -18,11 +18,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
+import com.varxyz.wgt.shop.domain.Shop;
+import com.varxyz.wgt.shop.service.ShopService;
+import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
 @Controller
 public class Writecontroller {
 	BoardService service = new BoardServiceImpl();
-
+	ShopService service2 = new ShopServiceImpl();
 	// 등록하기 화면
 	@GetMapping("/board/write")
 	public String post(HttpSession session, Model model) {
@@ -37,7 +40,8 @@ public class Writecontroller {
 	@PostMapping("/board/write")
 	public String post(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model, HttpSession session) {
 		String userId = (String) session.getAttribute("userId");
-		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+		
+		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드
 		long size = file.getSize(); //파일사이즈
 		Board board = new Board();
 		
@@ -45,7 +49,7 @@ public class Writecontroller {
 		
 		System.out.println("파일명 : "  + fileRealName);
 		System.out.println("용량크기(byte) : " + size);
-		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
+		//서버에 저장할 파일이름 file extension으로 .jsp 이런식의  확장자 명을 구함
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
 		String uploadFolder = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
 
@@ -71,11 +75,11 @@ public class Writecontroller {
 		
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
-
-		service.create(board, uniqueName, userId);
+		Shop shop = new Shop();
+		service.create(board, uniqueName, userId, service2.findShopByBnsNum(shop.getBusinessNumber()));
 		model.addAttribute(formatter);
 		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");
-		model.addAttribute("url","home"); //alert model.addAttribute 할땐 msg랑 url 둘 다
+		model.addAttribute("url","home");
 
 		return "alert/alert";
 		}

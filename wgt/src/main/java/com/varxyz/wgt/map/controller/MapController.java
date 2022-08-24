@@ -73,7 +73,9 @@ public class MapController {
 			shopImg.delete();
 			session.removeAttribute("tempShopImg");
 			// 문제 될시 주석 처리만 해주세용
-		}
+		}		
+		// bnsNum session delete
+		session.removeAttribute("bnsNum");
 		return "map/map";
 	}
 

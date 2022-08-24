@@ -12,10 +12,9 @@
   <body style="background: #DA0037;">
     <div id="wrap">
       <div style="width: 90%; height: 100%; background: white; margin-top: 30px; padding: 20px; box-shadow: 0 15px black; border-radius: 30px;">
+        <p class="text" style="font-size: 44px;">${shop.shopName } </p>
       <span class="text" style="color: #DA0037;">가게 사업자 번호</span>
         <p class="text">${shop.businessNumber }</p>
-      <span class="text" style="color: #DA0037;">가게 이름</span>
-        <p class="text">${shop.shopName }</p>
       <span class="text" style="color: #DA0037;">가게 번호</span>
       	<p class="text">${shop.shopTel }</p>
       <span class="text" style="color: #DA0037;">가게 주소</span>

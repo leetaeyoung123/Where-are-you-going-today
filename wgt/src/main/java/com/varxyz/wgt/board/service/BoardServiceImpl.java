@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
+import com.varxyz.wgt.shop.domain.Shop;
 
 @Component("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -18,8 +19,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void create(Board board, String imgName, String userId) {
-		dao.create(board, imgName, userId);
+	public void create(Board board, String imgName, String userId, Shop shop) {
+		dao.create(board, imgName, userId, shop);
 	}
 
 	@Override
