@@ -27,9 +27,9 @@ public class BoardController {
 	public String list(HttpSession session, Model model, Board board) {
 		Shop shop = new Shop();
 		String userId = (String) session.getAttribute("userId");
-		String bnsNum = (String) session.getAttribute("bnsNum");
+//		String bnsNum = (String) session.getAttribute("bnsNum");
 //		public Shop findShopByBnsNum(String bnsNum);
-		model.addAttribute(service2.findShopByBnsNum(bnsNum));
+//		model.addAttribute(service2.findShopByBnsNum(bnsNum));
 		if (session.getAttribute("userId") == null) {
 			model.addAttribute("msg", "로그인이 필요한 서비스 입니다.");
 			model.addAttribute("url", "../login");
