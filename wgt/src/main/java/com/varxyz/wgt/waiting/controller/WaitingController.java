@@ -168,7 +168,7 @@ public class WaitingController {
 	@PostMapping("/controller/allWaitingClear")
 	public String allWaitingClear(HttpSession session) {
 		waitingService.deteleAllWaiting((String)session.getAttribute("shopNameForManager"));
-		return "redirect:/controller/waiting_management";
+		return "redirect:/shop/viewMyShop";
 	}
 
 }
