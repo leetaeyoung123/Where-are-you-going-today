@@ -18,7 +18,7 @@
 <body>
 	<form action="modifyUser" method="post" enctype="multipart/form-data">
 		<c:forEach var="user" items="${userList}">
-		<div style="font-size: 100px;text-align: center;background: #DA0037;color: white;">회원수정</div>
+		<div style="font-size: 100px; text-align: center; background: #DA0037; color: white;">회원수정</div>
 		<!-- required는 입력을 안할시 자동으로 입력하라고 알림창을 띄움 -->
 		<div style="text-align: center; padding-top: 20px; font-size: 30px;">아이디 
 		<input type="text" name="userId" value="${user.userId}" readonly
@@ -48,7 +48,7 @@
 		
 		<div style="text-align: center; font-size: 30px; padding-top: 10px;">프로필 사진<br>
 		<img src="resources/user/img/${user.imgName}.jpg" id="profileImg" name="imgName" style="width: 100px; height: 100px;" /><br></div> 
-		<input type="file" multiple="multiple" accept="image/jpg, image/png" name="file" onchange="preview()" style="margin-left: 130px;padding-top: 10px;"> 
+		<input type="file" multiple="multiple" accept=".jpg, png" name="file" onchange="preview()" style="margin-left: 130px;padding-top: 10px;"> 
 		
 		<button type="submit" class="mBtn">수정완료</button>
 		<button type="button" class="mBtn" onClick="location.href='/wgt/map/map'">수정취소</button>

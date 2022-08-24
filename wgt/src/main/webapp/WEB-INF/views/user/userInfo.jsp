@@ -45,7 +45,7 @@
 		</c:forEach>
 	</form>
 		<button type="submit" class="sBtn" onclick="location.href='modifyUser';" style="margin-top: 10px; margin-bottom: 10px; background: gray;">수정하기</button>
-		<button type="submit" class="sBtn" onclick="location.href='map/map';" style="background: gray;">뒤로가기</button>
+		<button type="submit" class="sBtn" onclick="location.href='map/map';">뒤로가기</button>
 </body>
 
 	<!-- 스크립트 영역 -->
