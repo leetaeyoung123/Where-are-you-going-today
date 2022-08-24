@@ -60,7 +60,6 @@
 			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
 		<div class="map_wrap">
 			<div id="menu_wrap" class="bg_white">
-				<hr>
 				<ul id="placesList">
 					<!--모든 가게이름을 다 불러와 맵에 마크와 컨테츠 표현-->
 					<c:forEach var="shop" items="${shopFind}" varStatus="status">
@@ -83,7 +82,8 @@
 						// 스크립트 반복문 사용을 위한 카운트 증가
 						count++;
 						%>
-					<c:set var="menu" value="${menuList[status.index]}"/>		
+					<c:set var="menu" value="${menuList[status.index]}"/>
+					<div class="line" style="display:none;">
 						<c:forEach var="x" items="${menu}" varStatus="t">
 							<div class="menulist${status.index}"
 								id="findmenu${status.index}${t.index}" style="display: none;">
@@ -91,8 +91,8 @@
 								</span><span class="menu">${menuList[status.index][t.index].menuPrice}원</span>
 							</div>
 						</c:forEach>
+					</div>	
 					</c:forEach>
-
 
 					<!--위도와 경도를 불러와 등록되어 있는 가게 위치 표시-->
 					<c:forEach var="shop" items="${find}" varStatus="status">
@@ -117,6 +117,7 @@
 		//const menuTitle = document.querySelector(".menuTitle")
 		const filteritemClose = document.querySelector(".item")
 		const filterClose = document.querySelector("#menu_wrap")
+		const line = document.querySelector(".line")
 		var mapClick = document.getElementById('map')
 
 		function onClicksubMit() {
@@ -138,8 +139,8 @@
 		function filterEvent() {
 			filterClose.style.opacity = "0";
 			filterClose.style.left = "-270px";
-			//menuTitle.style.display ="none";
 			filteritemClose.style.display = "none";
+			line.style.display = "none";
 		}
 
 		mapClick.addEventListener("click", filterEvent);
@@ -150,11 +151,12 @@
 
 		function filter() {
 
-			var value, name, item, i, background, menuList, menu;
+			var value, name, item, i, background, menuList, menu, menuLine;
 
 			value = document.getElementById("inputSearch").value.toUpperCase();
 			item = document.getElementsByClassName("item");
 			background = document.getElementById("menu_wrap")
+			menuLine = document.getElementsByClassName("line")
 			menuList = []
 
 
@@ -169,11 +171,13 @@
 						item[i].style.display = "block";
 						//menuTitle.style.display ="block";
 						menuList[i][j].style.display = "block";
+						menuLine[i].style.display = "block";
 						background.style.opacity = "100";
 						background.style.left = "0";
 					} else {
 						item[i].style.display = "none";
 						menuList[i][j].style.display = "none";
+						menuLine[i].style.display = "none";
 					}
 
 					if (value.length == 0) {
@@ -182,6 +186,7 @@
 						item[i].style.display = "none";
 						background.style.opacity = "0";
 						background.style.left = "-270px";
+						menuLine[i].style.display = "none";
 					}
 				}
 			}

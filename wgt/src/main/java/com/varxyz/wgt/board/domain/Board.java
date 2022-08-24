@@ -15,6 +15,7 @@ public class Board {
 	private String content;
 	private Date regDate;
 	private String imgname;
+	private String businessNumber;
 	private int likecount; //게시글 총 좋아요 개수
 	private String userId;
 	private String likeImg;

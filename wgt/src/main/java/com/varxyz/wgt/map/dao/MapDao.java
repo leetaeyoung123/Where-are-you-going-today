@@ -14,18 +14,14 @@ public class MapDao {
 	public MapDao(DataSource dataSourceConfig) {
 		jdbcTemplate = new JdbcTemplate(dataSourceConfig);
 	}
-//	public List<Map> search(String name) {
-//		String sql = "SELECT * FROM test WHERE name = ?";
-//		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class), name);
-//	}
 	
-	public List<Map> findAll(){
-		String sql = "SELECT * FROM test";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
+	public List<Map> findAll(String businessNumber){
+		String sql = "SELECT * FROM map WHERE businessNumber = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class), businessNumber);
 	}
 	
 	public List<Map> search(String name){
-		String sql = "SELECT * FROM test WHERE name like '%" + name +"%' ";
+		String sql = "SELECT * FROM map WHERE name like '%" + name +"%' ";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
 	}
 }

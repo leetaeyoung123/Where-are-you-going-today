@@ -25,7 +25,13 @@ import com.varxyz.wgt.shop.service.ShopServiceImpl;
 public class MapController {
 	MapService mapService = new MapServiceImpl();
 	ShopService shopService = new ShopServiceImpl();
-
+	
+	@GetMapping("/map/root")
+	public String rootFomr(Model model, HttpSession session) {
+		session.getAttribute("userId");
+		return "map/root";
+	}
+	
 	@GetMapping("/map/map")
 	public String mapForm(Model model, HttpSession session) {
 		// 모든 가게조회
@@ -33,15 +39,17 @@ public class MapController {
 		model.addAttribute("shopFind", list);
 
 		// 경도 위도 불러오기
-		model.addAttribute("find", mapService.findAll());
 		List<String> bnsList = shopService.findAllBns();
 		Set<String> set = new HashSet<String>(bnsList);
 		List<String> newBnsList = new ArrayList<>(set);
-		List<List<Menu>> test = new ArrayList<>();
+		List<List<Menu>> menuList = new ArrayList<>();
+		List<Map> findShop = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
-			test.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
+			menuList.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
+			findShop.addAll(mapService.findAll(newBnsList.get(i)));
 		}
-		model.addAttribute("menuList", test);
+		model.addAttribute("find", findShop);
+		model.addAttribute("menuList", menuList);
 
 		// 아이디 세션
 
