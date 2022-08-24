@@ -2,6 +2,7 @@ package com.varxyz.wgt.map.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -57,8 +58,11 @@ public class MapController {
 
 		// 경도 위도 불러오기
 		List<String> bnsList = shopService.findAllBns();
+		System.out.println("11: " + bnsList);
 		Set<String> set = new HashSet<String>(bnsList);
 		List<String> newBnsList = new ArrayList<>(set);
+		Collections.sort(newBnsList);
+		System.out.println("22: " + newBnsList);
 		List<List<Menu>> menuList = new ArrayList<>();
 		//List<Map> findShop = new ArrayList<>();
 		List<Map> map2 = mapService.findAll();

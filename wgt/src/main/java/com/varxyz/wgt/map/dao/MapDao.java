@@ -26,7 +26,7 @@ public class MapDao {
 	}
 	
 	public List<Map> findAll(){
-		String sql = "SELECT * FROM map ORDER BY mid ASC";
+		String sql = "SELECT * FROM map ORDER BY businessNumber ASC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Map>(Map.class));
 	}
 	

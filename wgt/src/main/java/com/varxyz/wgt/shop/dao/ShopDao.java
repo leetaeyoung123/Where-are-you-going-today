@@ -62,7 +62,6 @@ private JdbcTemplate jdbcTemplate;
 	// 사업자 번호로 매장 메뉴 전체 검색
 	public List<Menu> findShopMenuByBnsNum(String bnsNum) {
 		String sql = "SELECT * FROM menu WHERE businessNumber = ?";
-		System.out.println(jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(Menu.class), bnsNum));
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Menu>(Menu.class), bnsNum);
 	}
 	
@@ -123,7 +122,7 @@ private JdbcTemplate jdbcTemplate;
 	}
 
 	public List<String> findAllBns() {
-		String sql ="SELECT businessNumber FROM menu";
+		String sql ="SELECT businessNumber FROM menu ORDER BY businessNumber ASC";
 		List<String> data = jdbcTemplate.queryForList(sql ,String.class);
 		return data;
 	}
