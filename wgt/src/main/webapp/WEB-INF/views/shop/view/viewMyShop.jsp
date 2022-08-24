@@ -13,10 +13,9 @@
     <div id="wrap">
       <div style="width: 90%; height: 100%; background: white; margin-top: 30px; padding: 20px; box-shadow: 0 15px black; border-radius: 30px;">
       <form method="get" action="updateShop" class="flexForm" >
+	  <input name="shopName" type="text" class="text readonlyinput input_box2" readonly value="${shop.shopName }"/>
       <span class="text" style="color: #DA0037;">가게 사업자 번호</span>
         <input name="businessNumber"  type="text" class="text readonlyinput input_box2" readonly value="${shop.businessNumber }"/>
-      <span class="text" style="color: #DA0037;">가게 이름</span>
-	    <input name="shopName" type="text" class="text readonlyinput input_box2" readonly value="${shop.shopName }"/>
       <span class="text" style="color: #DA0037;">가게 번호</span>
       	<input name="shopTel" type="text" class="text readonlyinput input_box2" readonly value="${shop.shopTel }"/>
       <span class="text" style="color: #DA0037;">가게 주소</span>
