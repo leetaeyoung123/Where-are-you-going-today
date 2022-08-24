@@ -22,8 +22,8 @@ CREATE TABLE menu (
 	FOREIGN KEY(businessNumber) REFERENCES shop(businessNumber)
 );
 
-DELETE FROM shop;
-DELETE FROM MENU;
+DELETE FROM shop WHERE shopName = '크로바';
+DELETE FROM MENU WHERE businessNumber = '222-222-222';
 
 SELECT * FROM shop;
 SELECT * FROM MENU;
