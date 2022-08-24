@@ -25,7 +25,13 @@ import com.varxyz.wgt.shop.service.ShopServiceImpl;
 public class MapController {
 	MapService mapService = new MapServiceImpl();
 	ShopService shopService = new ShopServiceImpl();
-
+	
+	@GetMapping("/map/root")
+	public String rootFomr(Model model, HttpSession session) {
+		session.getAttribute("userId");
+		return "map/root";
+	}
+	
 	@GetMapping("/map/map")
 	public String mapForm(Model model, HttpSession session) {
 		// 모든 가게조회

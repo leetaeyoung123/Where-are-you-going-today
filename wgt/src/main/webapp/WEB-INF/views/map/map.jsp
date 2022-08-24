@@ -177,6 +177,7 @@
 					} else {
 						item[i].style.display = "none";
 						menuList[i][j].style.display = "none";
+						menuLine[i].style.display = "none";
 					}
 
 					if (value.length == 0) {
