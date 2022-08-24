@@ -31,7 +31,7 @@ public class MypageController {
 	@GetMapping("/board/mypage")
 	public String post(HttpSession session, Model model, Board board) {
 		List<User> userList = userService.inquiryUser((String) session.getAttribute("userId"));
-		System.out.println(session.getAttribute("userId")+"님 마이페이지 입장!");
+		System.out.println(session.getAttribute("userId")+"님의 마이페이지");
 //		session.getAttribute(service.read(board).get(0).getTitle());
 //		session.getAttribute(service.read(board).get(0).getContent());
 //		session.getAttribute(service.read(board).get(0).getImgname());

@@ -55,7 +55,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
-		<a href="javascript:history.back();"><img id="back"
+		<a href="../map/map;"><img id="gohome"
 			src="../resources/board/img/back.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
@@ -84,7 +84,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 								</span>
 							</div>
 						</div>
-						<p>
+						<p class="mypageregdate">
 							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm" value="${item.regDate}" />
 						</p>
 						<h4>${item.title}</h4>

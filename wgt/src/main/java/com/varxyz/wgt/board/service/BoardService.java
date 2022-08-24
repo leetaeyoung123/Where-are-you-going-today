@@ -26,6 +26,7 @@ public interface BoardService {
 		
 		// 게시글 읽기
 		public List<Board> read(Board board, String businessNumber);
+		public List<Board> readmypage(Board board, String userId);
 		
 		// 게시글 수정
 		public void update(Board board, String imgname);
