@@ -36,6 +36,7 @@ public class BoardController {
 			return "alert/alert";
 		}
 		
+		// 게시판에 들어갔을때 본인이 좋아요를 누른 게시글이 있는지 없는지 판단하는 로직
 		for (int i = 0; i < service.read(board).size(); i++) {
 			long boardNum = service.read(board).get(i).getNumber();
 			if( !service.findLikes(userId, boardNum).get(0).getUserId().equals("없음")) {
@@ -48,7 +49,6 @@ public class BoardController {
 				service.updateLikeImg(boardNum,"dislikeheart");
 			}
 		}
-		
 		model.addAttribute("board", service.read(board));
 		
 		return "board/home";
