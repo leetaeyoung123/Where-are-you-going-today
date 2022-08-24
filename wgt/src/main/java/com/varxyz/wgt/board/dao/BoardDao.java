@@ -22,14 +22,14 @@ public class BoardDao {
 	}
 
 	//게시글 생성
-	public void create(Board board, String imgName, String userId, String shop) {
+	public void create(Board board, String imgName, String userId, Shop shop) {
 		String sql = "INSERT INTO Board (title, content, imgname, userId) VALUES (?, ?, ?, ?)";
 		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName, userId, shop);
 	}
 	
 	//게시글 읽기
 	public List<Board> read(Board board) {
-		String sql = "SELECT * FROM Board ORDER BY regDate DESC WHERE businessNumber = ?";
+		String sql = "SELECT * FROM Board WHERE businessNumber ORDER BY regDate DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
 	}
 	
