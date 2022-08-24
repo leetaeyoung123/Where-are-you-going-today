@@ -32,7 +32,7 @@ public class AddMenuController {
 			model.addAttribute("url", "viewMyShop");
 			return "alert/alert";
 		}
-		model.addAttribute("menuListSize",service.findShopMenuByBnsNum("123-456-789").size());
+		model.addAttribute("menuListSize",service.findShopMenuByBnsNum(bNum).size());
 		return "shop/view/addMenu";
 	}
 
