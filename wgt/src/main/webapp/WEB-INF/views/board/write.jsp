@@ -46,7 +46,7 @@
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
-		<a href="map"><img id="back"
+		<a href="home;"><img id="gohome"
 			src="../resources/board/img/back.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>

@@ -92,7 +92,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 									<span class="liketext">좋아요 <span class="likesresult"><input
 											type="text" id="result" value="${item.likecount}"
 											name="likecount"
-											style="border: none; width: 7px; background: none;"></span>개
+											style="border: none; width: 7px; background: none; readonly" onfocus="this.blur()"></span>개
 									</span>
 								</div>
 
