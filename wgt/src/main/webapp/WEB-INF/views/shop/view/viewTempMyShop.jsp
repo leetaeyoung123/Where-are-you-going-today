@@ -45,7 +45,7 @@
               </tr>
       	</c:forEach>
       </table>
-      <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../map/map'">홈으로 돌아가기</button>
+      <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../viewMyShop'">홈으로 돌아가기</button>
     </div>
   </body>
 </html>
