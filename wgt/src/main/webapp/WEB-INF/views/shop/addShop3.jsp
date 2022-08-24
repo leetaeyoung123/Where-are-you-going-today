@@ -19,7 +19,7 @@
             <p>사장님만의 자신있는<br>가게 사진을 등록해주세요!</p>
             <div class="file_upload_wrap">
               <label for="upload_file" class="upload_label">사진 등록</label>
-              <input id="upload_file" type="file" name="shop_img" onchange="readURL(this)" accept="image/jpg">
+              <input id="upload_file" type="file" name="shop_img" onchange="readURL(this)" accept=".jpg">
               <br>
               <span style="margin-bottom: 15px; font-size: 28px;">미리보기</span>
               <img style="width: 380px; height: 400px;" id="preview" />

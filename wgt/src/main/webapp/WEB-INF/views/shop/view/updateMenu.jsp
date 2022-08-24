@@ -31,7 +31,7 @@
               </table>
               <div class="btn_wrap">
                 <label for="upload_file" class="upload_label">메뉴 사진 등록</label>
-                <input id="upload_file" type="file" name="menuImg" onchange="readURL(this)" accept="image/jpg" value="${menu.menuImg }">
+                <input id="upload_file" type="file" name="menuImg" onchange="readURL(this)" accept=".jpg" value="${menu.menuImg }">
               </div>
             </div>
             <hr class="hr">

@@ -32,7 +32,7 @@
               </table>
               <div class="btn_wrap">
                 <label for="upload_file" class="upload_label">메뉴 사진 등록</label>
-                <input id="upload_file" type="file" name="menu_img" onchange="readURL(this)" accept="image/jpg">
+                <input id="upload_file" type="file" name="menu_img" onchange="readURL(this)" accept=".jpg">
               </div>
             </div>
             <hr class="hr">
