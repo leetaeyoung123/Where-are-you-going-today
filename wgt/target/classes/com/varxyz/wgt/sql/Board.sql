@@ -1,12 +1,13 @@
 CREATE TABLE Board(
-   number		BIGINT			PRIMARY KEY AUTO_INCREMENT,
-   title		VARCHAR(100)	NOT NULL,
-   content		VARCHAR(150)	NOT NULL,
-   likecount	INT				DEFAULT 0,
-   regDate		TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
-   imgname		VARCHAR(100)	DEFAULT NULL,
-   userId		VARCHAR(20)		NOT NULL,
-   likeImg		VARCHAR(20)		DEFAULT "dislikeheart"
+   number			BIGINT			PRIMARY KEY AUTO_INCREMENT,
+   title			VARCHAR(100)	NOT NULL,
+   content			VARCHAR(150)	NOT NULL,
+   businessNumber	VARCHAR(13) 	NOT NULL,
+   likecount		INT				DEFAULT 0,
+   regDate			TIMESTAMP		DEFAULT CURRENT_TIMESTAMP,
+   imgname			VARCHAR(100)	DEFAULT NULL,
+   userId			VARCHAR(20)		NOT NULL,
+   likeImg			VARCHAR(20)		DEFAULT "dislikeheart"
 );
 
    CONSTRAINT Board_userId_FK FOREIGN KEY (userId) REFERENCES User(userId)

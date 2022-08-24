@@ -9,6 +9,7 @@ import com.varxyz.wgt.board.dao.BoardDao;
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
 import com.varxyz.wgt.data.DataSourceConfig;
+import com.varxyz.wgt.shop.domain.Shop;
 
 public interface BoardService {
 
@@ -21,7 +22,7 @@ public interface BoardService {
 		public List<Board> list();
 		
 		// 게시글 쓰기
-		public void create(Board board, String imgname, String userId);
+		public void create(Board board, String imgname, String userId, Shop shop);
 		
 		// 게시글 읽기
 		public List<Board> read(Board board);
