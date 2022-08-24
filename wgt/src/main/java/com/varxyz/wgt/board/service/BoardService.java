@@ -25,7 +25,7 @@ public interface BoardService {
 		public void create(Board board, String imgname, String userId, Shop shop);
 		
 		// 게시글 읽기
-		public List<Board> read(Board board);
+		public List<Board> read(Board board, String businessNumber);
 		
 		// 게시글 수정
 		public void update(Board board, String imgname);
