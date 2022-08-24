@@ -200,15 +200,23 @@ article{
 }
 
 .write h4 {
-	margin-top: 15px;
+	margin-top: 0px;
 	margin-bottom: -15px;
 }
-.write p {
+.write .homeregdate {
 	margin: 0;
     display: flex;
     position: absolute;
     right: 0%;
-    bottom: 11%;
+    bottom: 13%;
+    font-size: 15px;
+}
+.write .mypageregdate {
+	margin: 0;
+    display: flex;
+    position: absolute;
+    right: 0%;
+    bottom: 7%;
     font-size: 15px;
 }
 .WestagramTag span {
@@ -230,7 +238,7 @@ article{
     top: 16%;
     right: 2%;
 }
-.mypage #back {
+.mypage #gohome {
 	position: absolute;
     cursor: pointer;
     top: 16%;

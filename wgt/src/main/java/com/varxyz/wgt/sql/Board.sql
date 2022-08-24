@@ -16,6 +16,8 @@ SELECT * FROM Board ORDER BY regDate DESC;
 
 SELECT * FROM Board;
 
+SELECT * FROM Board WHERE businessNumber = '111-11-1111' ORDER BY regDate DESC
+
 DROP TABLE Board;
 
 SELECT DATE_FORMAT(regDate,'%y년 %m월 %d일 %H시 %i분') AS DATE FROM Board;

@@ -76,7 +76,7 @@ public class Writecontroller {
 		Shop shop = new Shop();
 		String bnsNum = (String) session.getAttribute("bnsNum");
 		service2.findShopByBnsNum(bnsNum);
-		System.out.println(service2.findShopByBnsNum(bnsNum));
+//		System.out.println(service2.findShopByBnsNum(bnsNum));
 		shop.setBusinessNumber(bnsNum);
 		
 		board.setTitle(request.getParameter("title"));
