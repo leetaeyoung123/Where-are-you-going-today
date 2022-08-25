@@ -26,7 +26,7 @@ import com.varxyz.wgt.shop.service.ShopServiceImpl;
 public class MapController {
 	MapService mapService = new MapServiceImpl();
 	ShopService shopService = new ShopServiceImpl();
-	
+
 	/*
 	 * @GetMapping("/map/root") public String rootFomr(Model model, HttpSession
 	 * session) { session.getAttribute("userId"); model.addAttribute("shop",
@@ -49,7 +49,7 @@ public class MapController {
 	 * map2.setLongitude(map.getLongitude()); mapService.insertPosition(map2);
 	 * return "redirect:/map/root"; }
 	 */
-	
+
 	@GetMapping("/map/map")
 	public String mapForm(Model model, HttpSession session) {
 		// 모든 가게조회
@@ -67,7 +67,7 @@ public class MapController {
 		List<Map> map2 = mapService.findAll();
 		for (int i = 0; i < list.size(); i++) {
 			menuList.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
-			System.out.println(i + ": " + menuList );
+			System.out.println(i + ": " + menuList);
 		}
 		System.out.println("List: " + menuList);
 		model.addAttribute("find", map2);
@@ -103,12 +103,11 @@ public class MapController {
 			shopImg.delete();
 			session.removeAttribute("tempShopImg");
 			// 문제 될시 주석 처리만 해주세용
-		}		
+		}
 		// bnsNum session delete
 		session.removeAttribute("bnsNum");
 		return "map/map";
 	}
-
 
 	@PostMapping("/map/map")
 	public String map(Shop shop, Map map, Model model) {
