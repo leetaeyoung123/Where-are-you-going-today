@@ -122,7 +122,7 @@ private JdbcTemplate jdbcTemplate;
 	}
 
 	public List<String> findAllBns() {
-		String sql ="SELECT businessNumber FROM menu ORDER BY businessNumber ASC";
+		String sql ="SELECT businessNumber FROM menu";
 		List<String> data = jdbcTemplate.queryForList(sql ,String.class);
 		return data;
 	}

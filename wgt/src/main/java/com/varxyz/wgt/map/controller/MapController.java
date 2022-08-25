@@ -64,13 +64,10 @@ public class MapController {
 		Collections.sort(newBnsList);
 		System.out.println("22: " + newBnsList);
 		List<List<Menu>> menuList = new ArrayList<>();
-		//List<Map> findShop = new ArrayList<>();
 		List<Map> map2 = mapService.findAll();
 		for (int i = 0; i < list.size(); i++) {
 			menuList.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
-			//findShop.addAll(mapService.findBnsMap(newBnsList.get(i)));
 			System.out.println(i + ": " + menuList );
-			//System.out.println(findShop.get(i));
 		}
 		System.out.println("List: " + menuList);
 		model.addAttribute("find", map2);
