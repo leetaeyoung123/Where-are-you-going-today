@@ -2,6 +2,7 @@ package com.varxyz.wgt.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
-import com.varxyz.wgt.user.domain.User;
 import com.varxyz.wgt.user.service.UserService;
 import com.varxyz.wgt.user.serviceImpl.UserServiceImpl;
 
@@ -27,25 +27,31 @@ public class MypageController {
 	BoardService service = new BoardServiceImpl();
 	UserService userService = new UserServiceImpl();
 
-	// 회원정보 가져오기
+	// 자기자신 게시글 가져오기
 	@GetMapping("/board/mypage")
-	public String post(HttpSession session, Model model, Board board) {
-		List<User> userList = userService.inquiryUser((String) session.getAttribute("userId"));
-		System.out.println(session.getAttribute("userId")+"님의 마이페이지");
+	public String post(HttpSession session, Model model, HttpServletRequest request ,Board board) {
+//		System.out.println(session.getAttribute("userId")+"님의 마이페이지");
+		// 로그인 안되었을때 유효성 검사
+		if (session.getAttribute("userId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요");
+			model.addAttribute("url", "../login");
+			return "alert/alert";
+		}
 		
-//		if (session.getAttribute("userId") == null) {
-//			model.addAttribute("msg", "로그인 후 이용해주세요");
-//			model.addAttribute("url", "../login");
-//			return "alert/alert";
-//		}
-			
-		String bnsNum = (String) session.getAttribute("bnsNum");
 		String userId = (String) session.getAttribute("userId");
-		model.addAttribute("userList", userList);
-		model.addAttribute("board", service.read(board, bnsNum));
-		session.setAttribute("number", board.getNumber());
-		model.addAttribute("mypageboard", service.readmypage(board, userId));
-		session.setAttribute("userId", board.getUserId());
+		String bnsNum = (String) session.getAttribute("bnsNum");
+		
+		// 유저아이디로 자기 게시글만 조회
+		List<Board> myBoard = new ArrayList<Board>();
+		for (int i = 0; i < service.read(bnsNum).size(); i++) {
+			if( service.read(bnsNum).get(i).getUserId().equals(userId) ) {
+				myBoard.add(service.read(bnsNum).get(i));
+			}
+		}
+		
+		model.addAttribute("userId", userId);
+		model.addAttribute("mypageboard", myBoard);
+		
 		return "/board/mypage";
 	}
 

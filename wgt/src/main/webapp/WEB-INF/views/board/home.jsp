@@ -49,7 +49,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						placeholder=" 게시글 검색" style="border: none; outline: none;">
 					<input type="submit" value="검색" style="display: none;">
 				</div>
-			<p>[${shop}]</p>
+			<%-- <p>[${shop}]</p> --%>
 			</div>
 		</form>
 	</header>

@@ -60,11 +60,9 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			style="cursor: pointer;">
 		</a>
 	</div>
-	<div class="userinfo" style="text-align: center; margin-top: 20px; font-size: 20px;">
-		<c:forEach var="user" items="${userList}">
- 			${user.userId}님의 마이페이지
-		</c:forEach>
-	</div>
+	<%-- <div class="userinfo" style="text-align: center; margin-top: 20px; font-size: 20px;">
+ 			${userId}님의 마이페이지
+	</div> --%>
 
 	<div class="body1">
 		<div class="feedReactionButton">
