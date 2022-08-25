@@ -10,7 +10,7 @@ CREATE TABLE Board(
    likeImg			VARCHAR(20)		DEFAULT "dislikeheart"
 );
 
-   CONSTRAINT Board_userId_FK FOREIGN KEY (userId) REFERENCES User(userId)
+   CONSTRAINT Board_userId_FK FOREIGN KEY (userId) REFERENCES User(userId);
 
 SELECT * FROM Board ORDER BY regDate DESC;
 
