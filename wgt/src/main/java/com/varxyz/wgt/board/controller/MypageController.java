@@ -124,7 +124,7 @@ public class MypageController {
 		board = service.searchByNumber(number);
 		String imgname = board.getImgname(); //bidboard 선언, imgname-board 객체변환
 		
-		String filePath = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload\\" + imgname + ".jpg";
+		String filePath = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload" + imgname + ".jpg";
         File file = new File(filePath);
         
         System.out.println(number);
