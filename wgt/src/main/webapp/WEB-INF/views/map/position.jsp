@@ -5,15 +5,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=no, 
+  maximum-scale=1.0, minimum-scale=1.0" />
 <title>position</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/mapcss/map.css'/>" />
 </head>
 <body>
-zz
-	<form action="position" method="post">
-		
-		<label>경도</label><input name="longitude">
-		<label>위도</label><input name="latitude">
-		<input type="submit">
-	</form>
+	<div class="outline" style="font-size: 30px; text-align: center;">
+		<div class="inline"
+			style="width: 300px; margin: 0 auto; border: 2px solid #DA0037; border-radius: 10px; height: 294px; margin-top: 105px;">
+			<form action="position" method="get" style="line-height: 50px;">
+				가게이름: ${shop.shopName}<br> 사업자 번호: ${shop.businessNumber}
+			</form>
+
+			<form action="position" method="post">
+				<label style="maring-top: 20px;">경도(longitude)</label><br> <input
+					name="longitude"
+					style="border: 1px solid #DA0037; border-radius: 10px; height: 27px; width: 100px;" /><br>
+				<label>위도(latitude)</label><br> <input
+					style="border: 1px solid #DA0037; border-radius: 10px; height: 27px; width: 100px;"
+					name="latitude" /><br>
+				<button
+					style="margin-right: 10px; background: none; border: 1px solid #DA0037; border-radius: 10px;"
+					type="button"
+					onclick="location.href='https://www.google.co.kr/maps/search/${shop.shopName}'">경도,
+					위도 찾기</button>
+				<input 
+				style="background: none; border: 1px solid #DA0037; border-radius: 10px;" 
+				type="submit" 
+				value="등록">
+			</form>
+		</div>
+	</div>
 </body>
 </html>

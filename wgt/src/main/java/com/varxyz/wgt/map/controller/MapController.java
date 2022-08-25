@@ -27,28 +27,45 @@ public class MapController {
 	MapService mapService = new MapServiceImpl();
 	ShopService shopService = new ShopServiceImpl();
 	
-	/*
-	 * @GetMapping("/map/root") public String rootFomr(Model model, HttpSession
-	 * session) { session.getAttribute("userId"); model.addAttribute("shop",
-	 * shopService.findAllShop()); model.addAttribute("findAll",
-	 * mapService.findAll()); return "map/root"; }
-	 * 
-	 * 
-	 * @PostMapping("/map/root") public String root(Shop shop, HttpSession session)
-	 * { session.setAttribute("shopBns", shop.getBusinessNumber());
-	 * System.out.println(shop.getBusinessNumber()); return "map/position";
-	 * 
-	 * }
-	 * 
-	 * @GetMapping("/map/position") public String positionForm(Model model,
-	 * HttpSession session) { session.getAttribute("shopBns"); return "map/root"; }
-	 * 
-	 * @PostMapping("/map/position") public String position(Map map, Model model,
-	 * HttpSession session) { Map map2 = new Map(); map2.setBusinessNumber((String)
-	 * session.getAttribute("shopBns")); map2.setLatitude(map.getLatitude());
-	 * map2.setLongitude(map.getLongitude()); mapService.insertPosition(map2);
-	 * return "redirect:/map/root"; }
-	 */
+	
+	  @GetMapping("/map/root") 
+	  public String rootFomr(Model model, HttpSession session) { 
+	  session.getAttribute("userId"); 
+	  model.addAttribute("shop", shopService.findAllShop());
+	  model.addAttribute("findAll", mapService.findAll()); 
+	  return "map/root"; 
+	  }
+	  
+	  
+	  @PostMapping("/map/root")
+	  public String root(Shop shop, HttpSession session) {
+		  System.out.println(1);
+	  session.setAttribute("shopBns", shop.getBusinessNumber());
+	  //System.out.println(shop.getBusinessNumber()); 
+	  
+	  return "redirect:/map/position";
+	  }
+	  
+	  @GetMapping("/map/position") 
+	  public String positionForm(Model model, HttpSession session) {
+		  System.out.println(2);
+		  session.getAttribute("shopBns");
+		  System.out.println(session.getAttribute("shopBns"));
+		  model.addAttribute("shop", shopService.findShopByBnsNum((String) session.getAttribute("shopBns")));
+		  System.out.println(shopService.findShopByBnsNum((String) session.getAttribute("shopBns")).getShopName());
+		  return "map/position";
+	  }
+	  
+	  @PostMapping("/map/position") 
+	  public String position(Map map, Model model,  HttpSession session) { 
+	  Map map2 = new Map(); 
+	  map2.setBusinessNumber((String) session.getAttribute("shopBns"));
+	  map2.setLatitude(map.getLatitude());
+	  map2.setLongitude(map.getLongitude());
+	  mapService.insertPosition(map2);
+	  return "redirect:/map/map"; 
+	  }
+	
 	
 	@GetMapping("/map/map")
 	public String mapForm(Model model, HttpSession session) {

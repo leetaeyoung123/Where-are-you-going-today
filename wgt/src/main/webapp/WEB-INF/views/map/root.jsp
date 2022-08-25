@@ -11,13 +11,15 @@
 <title>root page</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/resources/mapcss/map.css'/>" />
-<style>
-</style>
 </head>
 <body>
 	<form action="root" method="post">
 		<c:forEach var="shop" items="${shop}">
-				<button name="businessNumber" value="${shop.businessNumber}">가게이름: ${shop.shopName}<br>사업자 번호: ${shop.businessNumber}</button>
+			<button
+				style="margin-top: 14px; margin-left: 53px; width: 276px; height: 54px; border: 1px solid #DA0037; background: none; border-radius: 10px; justify-content: center; align-items: center; text-align: center;"
+				name="businessNumber" value="${shop.businessNumber}">
+				가게이름: ${shop.shopName}<br>사업자 번호: ${shop.businessNumber}
+			</button>
 		</c:forEach>
 	</form>
 </body>
