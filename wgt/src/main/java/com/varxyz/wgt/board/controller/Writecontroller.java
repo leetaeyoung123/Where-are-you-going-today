@@ -26,6 +26,7 @@ import com.varxyz.wgt.shop.service.ShopServiceImpl;
 public class Writecontroller {
 	BoardService service = new BoardServiceImpl();
 	ShopService service2 = new ShopServiceImpl();
+	
 	// 등록하기 화면
 	@GetMapping("/board/write")
 	public String post(HttpSession session, Model model) {
@@ -70,12 +71,17 @@ public class Writecontroller {
 			e.printStackTrace();
 		}catch (IOException e) {
 			e.printStackTrace();
-//			System.out.println("용량 초과로 인한 오류");
+//			System.out.println("사진 업로드 용량 초과로 인한 오류");
 		}
+		Shop shop = new Shop();
+		String bnsNum = (String) session.getAttribute("bnsNum");
+		service2.findShopByBnsNum(bnsNum);
+//		System.out.println(service2.findShopByBnsNum(bnsNum));
+		shop.setBusinessNumber(bnsNum);
 		
 		board.setTitle(request.getParameter("title"));
 		board.setContent(request.getParameter("content"));
-		Shop shop = new Shop();
+		
 		service.create(board, uniqueName, userId, service2.findShopByBnsNum(shop.getBusinessNumber()));
 		model.addAttribute(formatter);
 		model.addAttribute("msg", "게시글 작성을 완료하였습니다.");

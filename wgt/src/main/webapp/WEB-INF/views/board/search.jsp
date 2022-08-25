@@ -50,7 +50,12 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	<div class="mypage">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
-			style="cursor: pointer;"></a>
+			style="cursor: pointer;">
+		</a>
+		<a href="home;"><img id="gohome"
+			src="../resources/board/img/back.png" width="30px" height="30px"
+			style="cursor: pointer;">
+		</a>
 	</div>
 
 	<div class="body1">
@@ -59,19 +64,25 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			<div class="boardarea" style="margin-top: 20px;">
 				<c:forEach var="item" items="${list}">
 						<div class="write" style="margin-bottom: 30px;">
-				 	<p style="position:relative; margin-bottom:7px;">[No.${item.number}] ${item.title}</p>
+				 	<p style="position:relative; margin-bottom:7px; display:none;">[No.${item.number}] ${item.title}</p>
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
 							style="width: 370px; height: 330px"><br>
-						<div class="emptyheart">
-							<a class="likebtn"
-								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
-							<div class="feedReaction">
-								<span class="liketext">좋아요 <span class="likesresult">0</span>개
-								</span>
-							</div>
+							<div class="likearea">
+								<button>
+									<img id="likeCSS"
+										src="../resources/board/img/${item.likeImg}.png" width="30px"
+										height="30px" style="cursor: pointer;">
+								</button>
+								<div class="feedReaction">
+									<span class="liketext">좋아요 <span class="likesresult"><input
+											type="text" id="result" value="${item.likecount}"
+											name="likecount"
+											style="border: none; width: 7px; background: none; readonly" onfocus="this.blur()"></span>개
+									</span>
+								</div>
 
-						</div>
-						<p>
+							</div>
+						<p class="searchregdate">
 							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
 								value="${item.regDate}" />
 						</p>

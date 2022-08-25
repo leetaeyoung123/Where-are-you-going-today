@@ -27,6 +27,7 @@ public class SelectShopController {
 	@GetMapping("shop/viewMyShop")
 	public String viewMyShop(Model model, HttpSession session) {
 		String bNum = (String)session.getAttribute("bNum");
+		session.setAttribute("shopNameForManager", service.findShopByBnsNum(bNum).getShopName());
 		model.addAttribute("shop", service.findShopByBnsNum(bNum));
 		model.addAttribute("menus", service.findShopMenuByBnsNum(bNum));
 		return "shop/view/viewMyShop";

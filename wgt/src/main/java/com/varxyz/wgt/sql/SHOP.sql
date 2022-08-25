@@ -31,8 +31,17 @@ CREATE TABLE menu (
 	FOREIGN KEY(businessNumber) REFERENCES shop(businessNumber)
 );
 
-DELETE FROM shop WHERE businessNumber = '000-000-000';
-DELETE FROM MENU WHERE businessNumber = '222-222-222';
+-- 테스트 코드
+INSERT INTO shop VALUES('123-456-789', 'testShopName', '053-111-123', '1234', '1234', '1234', '1234', '1234', '1', '1', '1234');
+INSERT INTO menu VALUES('123-456-789', 'testMenu', 'testIntro', 1000, '1234');
+INSERT INTO shop VALUES('111-111-111', 'testShopName2', '053-111-123', '1234', '1234', '1234', '1234', '1234', '1', '1', '1234');
+INSERT INTO menu VALUES('111-111-111', 'testMenu2', 'testIntro', 12000, '1234');
+INSERT INTO menu VALUES('111-111-111', 'testMenu2', 'testIntro2', 22000, '1234');
+INSERT INTO shop VALUES('222-222-222', 'testShopName3', '053-111-123', '1234', '1234', '1234', '1234', '1234', '1', '1', '1234');
+INSERT INTO menu VALUES('222-222-222', 'testMenu3', 'testIntro3', 22000, '1234');
+
+DELETE FROM shop ;
+DELETE FROM MENU ;
 
 SELECT * FROM shop;
 SELECT * FROM MENU;
@@ -56,3 +65,9 @@ menu m WHERE s.BUSINESS_NUMBER = '123-4568-7891';
 SELECT * FROM shop WHERE BUSINESS_NUMBER = '123-456-789';
 
 SELECT businessNumber FROM menu;
+
+--가게 추가
+INSERT INTO shop VALUES('999-99-9999', 'testShopName', '053-111-123', '1234', '1234', '1234', '1234', '1234', '1', '1', '1234');
+
+--메뉴 추가
+INSERT INTO menu VALUES('999-99-9999', 'testMenu', 'testIntro', 1000, '1234');

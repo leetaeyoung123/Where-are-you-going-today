@@ -49,15 +49,16 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						placeholder=" 게시글 검색" style="border: none; outline: none;">
 					<input type="submit" value="검색" style="display: none;">
 				</div>
+			<p>[${shop}]</p>
 			</div>
 		</form>
 	</header>
-
+	
 	<div class="writearea">
 		<form action="write" method="post" style="text-align: center;">
 			<button class="writebtn" type="button" value="글쓰기"
 				onclick="location.href='write'"
-				style="position: relative; left: 1%; margin-top: 20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
+				style="position: relative; left: 0.5%; margin-top: 20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
 		</form>
 	</div>
 	<div class="mypage">
@@ -65,7 +66,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
-		<a href="javascript:history.back();"><img id="back"
+		<a href="../map/map;"><img id="gohome"
 			src="../resources/board/img/back.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
@@ -91,13 +92,13 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 									<span class="liketext">좋아요 <span class="likesresult"><input
 											type="text" id="result" value="${item.likecount}"
 											name="likecount"
-											style="border: none; width: 7px; background: none;"></span>개
+											style="border: none; width: 7px; background: none; readonly" onfocus="this.blur()"></span>개
 									</span>
 								</div>
 
 							</div>
 						</form>
-						<p>
+						<p class="homeregdate">
 							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
 								value="${item.regDate}" />
 						</p>
