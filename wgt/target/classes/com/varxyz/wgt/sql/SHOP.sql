@@ -56,3 +56,9 @@ menu m WHERE s.BUSINESS_NUMBER = '123-4568-7891';
 SELECT * FROM shop WHERE BUSINESS_NUMBER = '123-456-789';
 
 SELECT businessNumber FROM menu;
+
+--가게 추가
+INSERT INTO shop VALUES('999-99-9999', 'testShopName', '053-111-123', '1234', '1234', '1234', '1234', '1234', '1', '1', '1234');
+
+--메뉴 추가
+INSERT INTO menu VALUES('999-99-9999', 'testMenu', 'testIntro', 1000, '1234');
