@@ -19,6 +19,8 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" type="text/css"
 	href="../resources/board/home.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/board/mypage.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
 	rel="stylesheet">
@@ -105,10 +107,46 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						<h4>${item.title}</h4>
 						<br> ${item.content}<br>
 					</div>
+						<c:if test="${ownerchk == true}">
+							<div class="update_delete_area"	style="display: flex; justify-content: space-evenly; height: 30px; border-bottom: 2px solid #f1f1f1;">
+						<div class="deletearea">
+								<button class="deletebtn" type="button" value="삭제" onclick="delCheck(${item.number})"
+									style="position: relative; left: 1%; margin: 0 auto; cursor: pointer;">삭제</button>
+						</div>
+					</div>
+													<div class="feedReaction" style="display:none;">
+									<span class="liketext">좋아요 <span class="likesresult"><input
+											type="text" id="result" value="${item.likecount}"
+											name="likecount"
+											style="border: none; width: 7px; background: none; readonly" onfocus="this.blur()"></span>개
+									</span>
+								</div>
+						</c:if>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
+
+<script>
+	let like = document.querySelectorAll(".likebtn")
+
+	for(let i = 0; i < like.length; i++){
+		like[i].addEventListener('click', ()=> {
+			like[i].classList.toggle('open')
+		})
+	}
+
+	function delCheck(num) {
+		const link = "delete?number=" + num;
+		if(confirm("정말 삭제하시겠습니까?")){
+			/*console.log(num);*/
+ 			alert("삭제를 완료하였습니다.");
+			location.href=link;
+		}else{
+			alert("삭제를 취소하였습니다.")
+		}
+	};
+</script>
 
 </body>
 </html>

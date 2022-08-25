@@ -302,3 +302,8 @@ article{
 	width: 20px;
 	height:20px;
 }
+
+.searchresult {
+	text-align: center;
+    font-size: 30px;
+}

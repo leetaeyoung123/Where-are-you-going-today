@@ -27,12 +27,13 @@ public class MypageController {
 	BoardService service = new BoardServiceImpl();
 	UserService userService = new UserServiceImpl();
 
-	// 자기자신 게시글 가져오기
+	// 자기가 작성한 게시글만 가져오기
 	@GetMapping("/board/mypage")
 	public String post(HttpSession session, Model model, HttpServletRequest request ,Board board) {
 //		System.out.println(session.getAttribute("userId")+"님의 마이페이지");
+		
 		// 로그인 안되었을때 유효성 검사
-		if (session.getAttribute("userId") == null) {
+		if (session.getAttribute("userId") == null && session.getAttribute("dbOwner") == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요");
 			model.addAttribute("url", "../login");
 			return "alert/alert";

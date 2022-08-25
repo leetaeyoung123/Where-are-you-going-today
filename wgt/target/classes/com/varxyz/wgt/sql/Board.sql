@@ -29,8 +29,6 @@ CREATE TABLE Likes(
 	CONSTRAINT Likes_number_FK FOREIGN KEY (number) REFERENCES Board(number) ON DELETE CASCADE
 );
 
-	CONSTRAINT Likes_number_FK FOREIGN KEY (number) REFERENCES Board(number) ON DELETE CASCADE
-
 SELECT * FROM Likes;
 
 DROP TABLE Likes;
