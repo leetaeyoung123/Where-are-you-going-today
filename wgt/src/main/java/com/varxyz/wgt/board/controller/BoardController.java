@@ -36,9 +36,10 @@ public class BoardController {
 			return "alert/alert";
 		}
 		
-		for (int i = 0; i < service.read(board, bnsNum).size(); i++) {
-			long boardNum = service.read(board, bnsNum).get(i).getNumber();
+		for (int i = 0; i < service.read(bnsNum).size(); i++) {
+			long boardNum = service.read(bnsNum).get(i).getNumber();
 			if( !service.findLikes(userId, boardNum).get(0).getUserId().equals("없음")) {
+//				System.out.println(service.findLikes(userId, boardNum).get(0).getUserId());				
 				if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false") ) {
 					service.updateLikeImg(boardNum, "dislikeheart");
 				}else {
@@ -49,7 +50,8 @@ public class BoardController {
 			}
 		}
 		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName());
-		model.addAttribute("board", service.read(board, bnsNum));
+//		System.out.println(service.read(bnsNum));
+		model.addAttribute("board", service.read(bnsNum));
 		
 		return "board/home";
 	}
