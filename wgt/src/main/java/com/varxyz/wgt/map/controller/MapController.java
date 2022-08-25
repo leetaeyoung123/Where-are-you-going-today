@@ -69,26 +69,27 @@ public class MapController {
 	
 	@GetMapping("/map/map")
 	public String mapForm(Model model, HttpSession session) {
-		// 모든 가게조회
-		List<Shop> list = shopService.findAllShop();
-		model.addAttribute("shopFind", list);
-
-		// 경도 위도 불러오기
-		List<String> bnsList = shopService.findAllBns();
-		System.out.println("11: " + bnsList);
-		Set<String> set = new HashSet<String>(bnsList);
-		List<String> newBnsList = new ArrayList<>(set);
-		Collections.sort(newBnsList);
-		System.out.println("22: " + newBnsList);
-		List<List<Menu>> menuList = new ArrayList<>();
-		List<Map> map2 = mapService.findAll();
-		for (int i = 0; i < list.size(); i++) {
-			menuList.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
-			System.out.println(i + ": " + menuList );
+			// 모든 가게조회
+			List<Shop> list = shopService.findAllShop();
+			model.addAttribute("shopFind", list);
+			
+			//메뉴 출력
+			List<String> bnsList = shopService.findAllBns();
+			Set<String> set = new HashSet<String>(bnsList);
+			List<String> newBnsList = new ArrayList<>(set);
+			Collections.sort(newBnsList);
+			List<List<Menu>> menuList = new ArrayList<>();
+			for (int i = 0; i < list.size(); i++) {
+				menuList.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
+				System.out.println(i + ": " + menuList );
+			
+			//좌표 불러오기
+			List<Map> map2 = mapService.findAll();
+			
+			System.out.println("List: " + menuList);
+			model.addAttribute("find", map2);
+			model.addAttribute("menuList", menuList);
 		}
-		System.out.println("List: " + menuList);
-		model.addAttribute("find", map2);
-		model.addAttribute("menuList", menuList);
 
 		// 아이디 세션
 
@@ -97,7 +98,7 @@ public class MapController {
 			model.addAttribute("url", "../login");
 			return "alert/alert";
 		}
-
+		
 		model.addAttribute("userId", session.getAttribute("userId"));
 
 		/*
