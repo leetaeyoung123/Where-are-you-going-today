@@ -60,16 +60,14 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			style="cursor: pointer;">
 		</a>
 	</div>
-	<div class="userinfo" style="text-align: center; margin-top: 20px; font-size: 20px;">
-		<c:forEach var="user" items="${userList}">
- 			${user.userId}님의 마이페이지
-		</c:forEach>
-	</div>
+	<%-- <div class="userinfo" style="text-align: center; margin-top: 20px; font-size: 20px;">
+ 			${userId}님의 마이페이지
+	</div> --%>
 
 	<div class="body1">
 		<div class="feedReactionButton">
 			<div class="boardarea">
-				<c:forEach var="item" items="${board}" varStatus="status">
+				<c:forEach var="item" items="${mypageboard}" varStatus="status">
 					<h5	style="text-align: center; position: relative; margin-bottom: -25px; left: 1%;">
 						[No.${item.number}]
 					</h5>

@@ -31,7 +31,7 @@ public class MapDao {
 	}
 	
 	public void insertPosition(Map map) {
-		String sql = "INSERT INTO map  VALUES( ?,?,?)";
-		jdbcTemplate.update(sql,map.getBusinessNumber(), map.getLatitude(), map.getLongitude());
+		String sql = "INSERT INTO map (businessNumber, longitude, latitude) VALUES( ? ,? ,? )";
+		jdbcTemplate.update(sql,map.getBusinessNumber(), map.getLongitude(), map.getLatitude());
 	}
 }

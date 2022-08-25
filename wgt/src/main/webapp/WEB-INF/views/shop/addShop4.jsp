@@ -41,7 +41,7 @@
             </c:if>
             <button type="button" name="button" class="add" onclick="location.href='add_shop5'">여기까지만 메뉴 등록하기</button>
             <div class="btn_wrap">
-              <input type="button" value="취소하기" onclick="location.href='map/map'" class="prev_btn">
+              <input type="button" value="취소하기" onclick="location.href='login'" class="prev_btn">
               <input type="submit" value="다음으로" class="next_btn">
             </div>
           </form>

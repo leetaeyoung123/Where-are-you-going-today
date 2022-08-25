@@ -14,6 +14,8 @@ import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
+import com.varxyz.wgt.owner.service.OwnerService;
+import com.varxyz.wgt.owner.serviceImpl.OwnerServiceImpl;
 import com.varxyz.wgt.shop.service.ShopService;
 import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
@@ -21,6 +23,8 @@ import com.varxyz.wgt.shop.service.ShopServiceImpl;
 public class BoardController {
 	BoardService service = new BoardServiceImpl();
 	ShopService service2 = new ShopServiceImpl();
+	OwnerService service3 = new OwnerServiceImpl();
+	
 	// 게시판 화면
 	@GetMapping("/board/home")
 	public String list(HttpSession session, Model model, Board board) {
@@ -30,16 +34,19 @@ public class BoardController {
 //		System.out.println(service2.findShopByBnsNum(bnsNum));
 //		System.out.println(service2.findShopByBnsNum(bnsNum).getShopName());
 		
-		if (session.getAttribute("userId") == null) {
+		// 유저 로그인 세션
+		if (session.getAttribute("userId") == null && session.getAttribute("dbOwner") == null) {
 			model.addAttribute("msg", "로그인이 필요한 서비스입니다.");
 			model.addAttribute("url", "../login");
 			return "alert/alert";
 		}
 		
-		for (int i = 0; i < service.read(board, bnsNum).size(); i++) {
-			long boardNum = service.read(board, bnsNum).get(i).getNumber();
+		// 좋아요 화면 유지 로직
+		for (int i = 0; i < service.read(bnsNum).size(); i++) {
+			long boardNum = service.read(bnsNum).get(i).getNumber();
 			if( !service.findLikes(userId, boardNum).get(0).getUserId().equals("없음")) {
-				if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false") ) {
+//				System.out.println(service.findLikes(userId, boardNum).get(0).getUserId());				
+				if ( service.findLikes(userId, boardNum).get(0).getLikeCheck().equals("false")) {
 					service.updateLikeImg(boardNum, "dislikeheart");
 				}else {
 					service.updateLikeImg(boardNum, "likeheart");
@@ -48,12 +55,22 @@ public class BoardController {
 				service.updateLikeImg(boardNum,"dislikeheart");
 			}
 		}
-		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName());
-		model.addAttribute("board", service.read(board, bnsNum));
+//			System.out.println(service.read(bnsNum));
+//		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName());
+		model.addAttribute("board", service.read(bnsNum));
 		
+		// 점주일 때만 삭제 보이게 하는 로직
+		boolean ownerchk = false;
+		if(session.getAttribute("dbOwner") == null) {
+			model.addAttribute("ownerchk", ownerchk);
+		}else {
+			ownerchk = true;
+			model.addAttribute("ownerchk", ownerchk);
+		}
 		return "board/home";
 	}
 	
+	// 좋아요 기능
 	@GetMapping("/board/likes")
 	public String getLikes(HttpSession session, Model model, Board board, HttpServletRequest request) {
 		String userId = (String) session.getAttribute("userId");
@@ -110,5 +127,5 @@ public class BoardController {
 		model.addAttribute("list", list);
 		return "board/search";
 	}
-
+	
 }

@@ -27,51 +27,69 @@ public class MapController {
 	MapService mapService = new MapServiceImpl();
 	ShopService shopService = new ShopServiceImpl();
 	
-	/*
-	 * @GetMapping("/map/root") public String rootFomr(Model model, HttpSession
-	 * session) { session.getAttribute("userId"); model.addAttribute("shop",
-	 * shopService.findAllShop()); model.addAttribute("findAll",
-	 * mapService.findAll()); return "map/root"; }
-	 * 
-	 * 
-	 * @PostMapping("/map/root") public String root(Shop shop, HttpSession session)
-	 * { session.setAttribute("shopBns", shop.getBusinessNumber());
-	 * System.out.println(shop.getBusinessNumber()); return "map/position";
-	 * 
-	 * }
-	 * 
-	 * @GetMapping("/map/position") public String positionForm(Model model,
-	 * HttpSession session) { session.getAttribute("shopBns"); return "map/root"; }
-	 * 
-	 * @PostMapping("/map/position") public String position(Map map, Model model,
-	 * HttpSession session) { Map map2 = new Map(); map2.setBusinessNumber((String)
-	 * session.getAttribute("shopBns")); map2.setLatitude(map.getLatitude());
-	 * map2.setLongitude(map.getLongitude()); mapService.insertPosition(map2);
-	 * return "redirect:/map/root"; }
-	 */
+	
+	  @GetMapping("/map/root") 
+	  public String rootFomr(Model model, HttpSession session) { 
+	  session.getAttribute("userId"); 
+	  model.addAttribute("shop", shopService.findAllShop());
+	  model.addAttribute("findAll", mapService.findAll()); 
+	  return "map/root"; 
+	  }
+	  
+	  
+	  @PostMapping("/map/root")
+	  public String root(Shop shop, HttpSession session) {
+		  System.out.println(1);
+	  session.setAttribute("shopBns", shop.getBusinessNumber());
+	  //System.out.println(shop.getBusinessNumber()); 
+	  
+	  return "redirect:/map/position";
+	  }
+	  
+	  @GetMapping("/map/position") 
+	  public String positionForm(Model model, HttpSession session) {
+		  System.out.println(2);
+		  session.getAttribute("shopBns");
+		  System.out.println(session.getAttribute("shopBns"));
+		  model.addAttribute("shop", shopService.findShopByBnsNum((String) session.getAttribute("shopBns")));
+		  System.out.println(shopService.findShopByBnsNum((String) session.getAttribute("shopBns")).getShopName());
+		  return "map/position";
+	  }
+	  
+	  @PostMapping("/map/position") 
+	  public String position(Map map, Model model,  HttpSession session) { 
+	  Map map2 = new Map(); 
+	  map2.setBusinessNumber((String) session.getAttribute("shopBns"));
+	  map2.setLatitude(map.getLatitude());
+	  map2.setLongitude(map.getLongitude());
+	  mapService.insertPosition(map2);
+	  return "redirect:/map/map"; 
+	  }
+	
 	
 	@GetMapping("/map/map")
 	public String mapForm(Model model, HttpSession session) {
-		// 모든 가게조회
-		List<Shop> list = shopService.findAllShop();
-		model.addAttribute("shopFind", list);
-
-		// 경도 위도 불러오기
-		List<String> bnsList = shopService.findAllBns();
-		System.out.println("11: " + bnsList);
-		Set<String> set = new HashSet<String>(bnsList);
-		List<String> newBnsList = new ArrayList<>(set);
-		Collections.sort(newBnsList);
-		System.out.println("22: " + newBnsList);
-		List<List<Menu>> menuList = new ArrayList<>();
-		List<Map> map2 = mapService.findAll();
-		for (int i = 0; i < list.size(); i++) {
-			menuList.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
-			System.out.println(i + ": " + menuList );
+			// 모든 가게조회
+			List<Shop> list = shopService.findAllShop();
+			model.addAttribute("shopFind", list);
+			
+			//메뉴 출력
+			List<String> bnsList = shopService.findAllBns();
+			Set<String> set = new HashSet<String>(bnsList);
+			List<String> newBnsList = new ArrayList<>(set);
+			Collections.sort(newBnsList);
+			List<List<Menu>> menuList = new ArrayList<>();
+			for (int i = 0; i < list.size(); i++) {
+				menuList.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
+				System.out.println(i + ": " + menuList );
+			
+			//좌표 불러오기
+			List<Map> map2 = mapService.findAll();
+			
+			System.out.println("List: " + menuList);
+			model.addAttribute("find", map2);
+			model.addAttribute("menuList", menuList);
 		}
-		System.out.println("List: " + menuList);
-		model.addAttribute("find", map2);
-		model.addAttribute("menuList", menuList);
 
 		// 아이디 세션
 
@@ -80,7 +98,7 @@ public class MapController {
 			model.addAttribute("url", "../login");
 			return "alert/alert";
 		}
-
+		
 		model.addAttribute("userId", session.getAttribute("userId"));
 
 		/*
