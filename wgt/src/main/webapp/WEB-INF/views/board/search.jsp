@@ -74,7 +74,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 		</a>
 		</c:if>
 	</div>
-
+	
 	<c:if test="${empty list}">
 		<p class="searchresult">조회된 게시글이 없습니다.</p>
 	</c:if>
