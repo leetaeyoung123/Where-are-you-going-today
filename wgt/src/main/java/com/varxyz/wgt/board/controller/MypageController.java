@@ -27,12 +27,13 @@ public class MypageController {
 	BoardService service = new BoardServiceImpl();
 	UserService userService = new UserServiceImpl();
 
-	// 자기자신 게시글 가져오기
+	// 자기가 작성한 게시글만 가져오기
 	@GetMapping("/board/mypage")
 	public String post(HttpSession session, Model model, HttpServletRequest request ,Board board) {
 //		System.out.println(session.getAttribute("userId")+"님의 마이페이지");
+		
 		// 로그인 안되었을때 유효성 검사
-		if (session.getAttribute("userId") == null) {
+		if (session.getAttribute("userId") == null && session.getAttribute("dbOwner") == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요");
 			model.addAttribute("url", "../login");
 			return "alert/alert";
@@ -123,7 +124,7 @@ public class MypageController {
 		board = service.searchByNumber(number);
 		String imgname = board.getImgname(); //bidboard 선언, imgname-board 객체변환
 		
-		String filePath = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload\\" + imgname + ".jpg";
+		String filePath = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload" + imgname + ".jpg";
         File file = new File(filePath);
         
         System.out.println(number);
@@ -139,7 +140,17 @@ public class MypageController {
             System.out.println("파일이 존재하지 않습니다.");
         }
 		service.delete(number, imgname);
-		return "redirect:/board/mypage";
+		
+		boolean ownerchk = false;
+		if(session.getAttribute("dbOwner") == null) {
+			ownerchk = true;
+			model.addAttribute("ownerchk", ownerchk);
+			return "redirect:/board/mypage";
+		}else {
+			ownerchk = true;
+			model.addAttribute("ownerchk", ownerchk);
+			return "redirect:/board/home";
+		}
 	}
 
 }

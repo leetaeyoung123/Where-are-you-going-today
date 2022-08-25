@@ -47,7 +47,7 @@ public class OwnerLoginController {
 		
 		Owner dbOwner = new Owner();
 		dbOwner = ownerService.findAllOwner(owner.getOwnerId());
-		
+		session.setAttribute("bnsNum", dbOwner.getBnumber());
 		session.setAttribute("dbOwner", dbOwner);
 		
 		// 수정 전 코드
