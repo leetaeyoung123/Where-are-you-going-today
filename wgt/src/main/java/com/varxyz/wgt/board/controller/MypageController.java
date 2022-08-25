@@ -33,11 +33,11 @@ public class MypageController {
 		List<User> userList = userService.inquiryUser((String) session.getAttribute("userId"));
 		System.out.println(session.getAttribute("userId")+"님의 마이페이지");
 		
-//		if (session.getAttribute("userId") == null) {
-//			model.addAttribute("msg", "로그인 후 이용해주세요");
-//			model.addAttribute("url", "../login");
-//			return "alert/alert";
-//		}
+		if (session.getAttribute("userId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요");
+			model.addAttribute("url", "../login");
+			return "alert/alert";
+		}
 			
 		String bnsNum = (String) session.getAttribute("bnsNum");
 		String userId = (String) session.getAttribute("userId");
@@ -45,7 +45,6 @@ public class MypageController {
 		model.addAttribute("board", service.read(board, bnsNum));
 		session.setAttribute("number", board.getNumber());
 		model.addAttribute("mypageboard", service.readmypage(board, userId));
-		session.setAttribute("userId", board.getUserId());
 		return "/board/mypage";
 	}
 

@@ -30,11 +30,11 @@ public class BoardController {
 //		System.out.println(service2.findShopByBnsNum(bnsNum));
 //		System.out.println(service2.findShopByBnsNum(bnsNum).getShopName());
 		
-//		if (session.getAttribute("userId") == null) {
-//			model.addAttribute("msg", "로그인이 필요한 서비스입니다.");
-//			model.addAttribute("url", "../login");
-//			return "alert/alert";
-//		}
+		if (session.getAttribute("userId") == null) {
+			model.addAttribute("msg", "로그인이 필요한 서비스입니다.");
+			model.addAttribute("url", "../login");
+			return "alert/alert";
+		}
 		
 		for (int i = 0; i < service.read(board, bnsNum).size(); i++) {
 			long boardNum = service.read(board, bnsNum).get(i).getNumber();
