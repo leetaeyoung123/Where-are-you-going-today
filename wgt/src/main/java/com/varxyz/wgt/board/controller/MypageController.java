@@ -140,7 +140,17 @@ public class MypageController {
             System.out.println("파일이 존재하지 않습니다.");
         }
 		service.delete(number, imgname);
-		return "redirect:/board/mypage";
+		
+		boolean ownerchk = false;
+		if(session.getAttribute("dbOwner") == null) {
+			ownerchk = true;
+			model.addAttribute("ownerchk", ownerchk);
+			return "redirect:/board/mypage";
+		}else {
+			ownerchk = true;
+			model.addAttribute("ownerchk", ownerchk);
+			return "redirect:/board/home";
+		}
 	}
 
 }

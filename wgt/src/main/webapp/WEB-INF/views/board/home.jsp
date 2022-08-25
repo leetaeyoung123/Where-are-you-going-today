@@ -58,20 +58,41 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	
 	<div class="writearea">
 		<form action="write" method="post" style="text-align: center;">
+		<c:if test="${ownerchk != true}">
 			<button class="writebtn" type="button" value="글쓰기"
 				onclick="location.href='write'"
 				style="position: relative; left: 0.5%; margin-top: 20px; margin-bottom: 20px; cursor: pointer; z-index: 1000;">글쓰기</button>
+		</c:if>
+		<c:if test="${ownerchk == true}">
+			<button class="writebtn" style="display:none;"></button>
+		</c:if>
 		</form>
 	</div>
 	<div class="mypage">
+		<c:if test="${ownerchk != true}">
 		<a href="mypage"><img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
+		</c:if>
+		<c:if test="${ownerchk == true}">
+		<a href="mypage"><img id="user"
+			src="../resources/board/img/user.png" width="30px" height="30px"
+			style="cursor: pointer; display:none;">
+		</a>
+		</c:if>
+		<c:if test="${ownerchk != true}">
 		<a href="../map/map;"><img id="gohome"
 			src="../resources/board/img/back.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
+		</c:if>
+		<c:if test="${ownerchk == true}">
+		<a href="../shop/viewMyShop;"><img id="gohome"
+			src="../resources/board/img/back.png" width="30px" height="30px"
+			style="cursor: pointer;">
+		</a>
+		</c:if>
 	</div>
 
 	<div class="body1">
@@ -85,11 +106,20 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 							<input style="display: none;" name="number"
 								value="${item.number}" type="text">
 							<div class="likearea">
+										<c:if test="${ownerchk != true}">
 								<button>
 									<img id="likeCSS"
 										src="../resources/board/img/${item.likeImg}.png" width="30px"
 										height="30px" style="cursor: pointer;">
 								</button>
+								</c:if>
+								<c:if test="${ownerchk == true}">
+								<button type="button">
+									<img id="likeCSS"
+										src="../resources/board/img/${item.likeImg}.png" width="30px"
+										height="30px" style="cursor: pointer;">
+								</button>
+								</c:if>
 								<div class="feedReaction">
 									<span class="liketext">좋아요 <span class="likesresult"><input
 											type="text" id="result" value="${item.likecount}"
@@ -97,7 +127,6 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 											style="border: none; width: 7px; background: none; readonly" onfocus="this.blur()"></span>개
 									</span>
 								</div>
-
 							</div>
 						</form>
 						<p class="homeregdate">
@@ -114,13 +143,6 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 									style="position: relative; left: 1%; margin: 0 auto; cursor: pointer;">삭제</button>
 						</div>
 					</div>
-													<div class="feedReaction" style="display:none;">
-									<span class="liketext">좋아요 <span class="likesresult"><input
-											type="text" id="result" value="${item.likecount}"
-											name="likecount"
-											style="border: none; width: 7px; background: none; readonly" onfocus="this.blur()"></span>개
-									</span>
-								</div>
 						</c:if>
 				</c:forEach>
 			</div>
