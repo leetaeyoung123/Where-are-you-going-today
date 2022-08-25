@@ -69,7 +69,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	<div class="body1">
 		<div class="feedReactionButton">
 			<div class="boardarea">
-				<c:forEach var="item" items="${board}" varStatus="status">
+				<c:forEach var="item" items="${mypageboard}" varStatus="status">
 					<h5	style="text-align: center; position: relative; margin-bottom: -25px; left: 1%;">
 						[No.${item.number}]
 					</h5>
@@ -90,11 +90,11 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						<h4>${item.title}</h4>
 						<br> ${item.content}<br>
 					</div>
-					
+
 					<div class="update_delete_area"	style="display: flex; justify-content: space-evenly; height: 30px; border-bottom: 2px solid #f1f1f1;">
 						<div class="updateearea">
 							<form method="post" enctype="multipart/form-data">
-								<button class="updatebtn" type="button" value="수정"	onclick="upCheck(${item.number})" 
+								<button class="updatebtn" type="button" value="수정"	onclick="upCheck(${item.number})"
 								style="position: relative; left: 1%; margin: 0 auto; cursor: pointer;">수정</button>
 							</form>
 						</div>
@@ -110,18 +110,18 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 
 <script>
 	let like = document.querySelectorAll(".likebtn")
-	
+
 	for(let i = 0; i < like.length; i++){
 		like[i].addEventListener('click', ()=> {
 			like[i].classList.toggle('open')
 		})
 	}
-	
+
 	function upCheck(num) {
 		const link = "update?number=" + num;
 		location.href=link;
 	};
-	
+
 	function delCheck(num) {
 		const link = "delete?number=" + num;
 		if(confirm("정말 삭제하시겠습니까?")){
