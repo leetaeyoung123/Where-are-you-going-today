@@ -56,7 +56,7 @@ public class BoardController {
 			}
 		}
 //			System.out.println(service.read(bnsNum));
-//		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName());
+		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName()); // 상점명 불러오기
 		model.addAttribute("board", service.read(bnsNum));
 
 		// 점주일 때만 삭제 보이게 하는 로직
