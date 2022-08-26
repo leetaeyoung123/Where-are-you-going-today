@@ -94,7 +94,7 @@ public class MypageController {
 		System.out.println("용량크기(byte) : " + size);
 		
 		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-		String uploadFolder = "C:\\NCS\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
+		String uploadFolder = "C:\\wgt\\Where-are-you-going-today\\wgt\\src\\main\\webapp\\resources\\board\\img\\upload";
 
 		UUID uuid = UUID.randomUUID();
 		String[] uuids = uuid.toString().split("-");
