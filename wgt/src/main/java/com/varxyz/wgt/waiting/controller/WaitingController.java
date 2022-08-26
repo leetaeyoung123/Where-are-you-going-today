@@ -47,19 +47,21 @@ public class WaitingController {
 
 	@PostMapping("/controller/waiting")
 	public String waiting(Waiting waiting, Model model, HttpSession session) {
-		if (waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName() != "없음") {
+		String userId = (String) session.getAttribute("userId");
+		if (waitingService.findWaitingById(userId).get(0).getBarName() != "없음") {
 			model.addAttribute("msg", "웨이팅은 한 매장만 가능합니다.");
 			return "error/waitingError";
 		}
-		waitingService.addWaiting((String)session.getAttribute("shopName"), (String) session.getAttribute("userId"), waiting.getNum_people());
+		waitingService.addWaiting((String)session.getAttribute("shopName"), userId, waiting.getNum_people());
 		return "redirect:/controller/get_waiting";
 	}
 
 	@GetMapping("/controller/get_waiting")
 	public String getWaitingForm(Model model, HttpSession session) throws ParseException {
+		String userId = (String) session.getAttribute("userId");
 		// 웨이팅을 하지 않았을 때
-		if (waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName() == "없음") {
-			List<Waiting> noWaiting = waitingService.findWaitingById((String) session.getAttribute("userId"));
+		if (waitingService.findWaitingById(userId).get(0).getBarName() == "없음") {
+			List<Waiting> noWaiting = waitingService.findWaitingById(userId);
 			model.addAttribute("frontCount", "0");
 			model.addAttribute("allCount", "0");
 			model.addAttribute("waiting", noWaiting);
@@ -69,7 +71,7 @@ public class WaitingController {
 
 		// 웨이팅 해둔 상태 일때
 		List<Waiting> waitingList = waitingService.findAllWaiting(
-				waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName());
+				waitingService.findWaitingById(userId).get(0).getBarName());
 		long allCount = 0;
 		long frontCount = 0;
 
@@ -77,7 +79,7 @@ public class WaitingController {
 			Date day1;
 			Date day2;
 			day2 = format
-					.parse(waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getRegDate());
+					.parse(waitingService.findWaitingById(userId).get(0).getRegDate());
 			for (int i = 0; i < waitingList.size(); i++) {
 				allCount++; // 특정 매장에대한 나 포함 모든 웨이팅 수
 				day1 = format.parse(waitingList.get(i).getRegDate());
@@ -92,24 +94,25 @@ public class WaitingController {
 
 		model.addAttribute("frontCount", frontCount);
 		model.addAttribute("allCount", allCount);
-		model.addAttribute("waiting", waitingService.findWaitingById((String) session.getAttribute("userId")));
+		model.addAttribute("waiting", waitingService.findWaitingById(userId));
 		model.addAttribute("shopTel",
 				shopService.findAllByShopName(
-						waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getBarName()).get(0).getShopTel());
+						waitingService.findWaitingById(userId).get(0).getBarName()).get(0).getShopTel());
+		
 		// 내 앞 대기팀이 0팀 일때
 		if (frontCount == 0) {
 			// 언제까지오라는 시간 부여받지 않았을때 or waitingStartTime이 0 일때
-			if (waitingService.findWaitingById((String) session.getAttribute("userId")).get(0).getWaitingStartTime()
+			if (waitingService.findWaitingById(userId).get(0).getWaitingStartTime()
 					.equals("0")) {
 				SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm:ss");
 				Date nowDate = new Date();
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(nowDate);
-				cal.add(Calendar.MINUTE, 3);
+				cal.add(Calendar.MINUTE, 1); // 웨이팅 타이머 1 -> 1분
 				String outputText = outputFormat.format(cal.getTime());
 
-				waitingService.addWaitingTime((String) session.getAttribute("userId"), outputText);
-				String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
+				waitingService.addWaitingTime(userId, outputText);
+				String waitingTime = waitingService.findWaitingById(userId).get(0)
 						.getWaitingStartTime();
 				model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
 				return "waiting/get_waiting";
@@ -120,7 +123,7 @@ public class WaitingController {
 				Calendar cal = Calendar.getInstance();
 		        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				
-				String waitingTime = waitingService.findWaitingById((String) session.getAttribute("userId")).get(0)
+				String waitingTime = waitingService.findWaitingById(userId).get(0)
 						.getWaitingStartTime();
 				
 				cal.setTime(formatter.parse(waitingTime));
@@ -136,17 +139,19 @@ public class WaitingController {
 				model.addAttribute("msg", waitingTime + " 까지 와주시기 바랍니다. (자동취소 예정)");
 //				System.out.println("비교결과 : " + nowDate.after(cal.getTime()));
 				if ( nowDate.after(cal.getTime()) ) { 
-					waitingService.deleteWaiting((String) session.getAttribute("userId"));
-					return "waiting/get_waiting";
+					waitingService.deleteWaiting(userId);
+					return "redirect:/controller/get_waiting";
 				}
 			}
 		}
+		
 		return "waiting/get_waiting";
 	}
 
 	@PostMapping("/controller/get_waiting")
 	public String getWaiting(Model model, HttpSession session) {
-		waitingService.deleteWaiting((String) session.getAttribute("userId"));
+		String userId = (String) session.getAttribute("userId");
+		waitingService.deleteWaiting(userId);
 		return "redirect:/controller/get_waiting";
 	}
 
