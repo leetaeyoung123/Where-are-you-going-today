@@ -28,8 +28,10 @@
 	<input id="inputaddr" value="${addr}" style="display: none;" />
 	<nav id=gnb>
 		<ul>
-			<li class="sub1"><span>${userId}님<br> 반가워요 !</span></li>
-			<hr style="border: none; background-color: #DA0037; margin-bottom: 20px; height: 2px; width: 200px;">
+			<li class="sub1"><span>${userId}님<br> 반가워요 !
+			</span></li>
+			<hr
+				style="border: none; background-color: #DA0037; margin-bottom: 20px; height: 2px; width: 200px;">
 			<li class="sub2">
 				<form id="submitID" action="go_get_waiting" method="post">
 					<a onclick="submit_form()">나의 웨이팅</a>
@@ -41,73 +43,81 @@
 			</li>
 		</ul>
 	</nav>
-	<form class="header_form" action="map" method="post">
-		<ul class=headerMenu>
-			<li><a class="back" href="<c:url value='/login'/>"><img
-					src="../resources/mapcss/img/backicon.png"></a></li>
-			<!--검색어 입력창-->
-			<li><input onkeyup="filter()" id="inputSearch" class="inputtext"
-				type="text" value="" required></li>
-			<li><a class="userInformation"> <span></span></a></li>
-		</ul>
-		<%
-		// 스크립트 반복문 사용을 위한 count 선언
-		int count = 0;
-		%>
-		<div id="map" onclick=" filterEvent()"
-			style="width: 370px; height: 790px; margin-left: 10px;"></div>
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
-		<div class="map_wrap">
-			<div id="menu_wrap" class="bg_white">
-				<ul id="placesList">
-					<!--모든 가게이름을 다 불러와 맵에 마크와 컨테츠 표현-->
-					<c:forEach var="shop" items="${shopFind}" varStatus="status">
-						<div class="item" style="display: none; border-bottom: solid 1px #DA0037;"
-							onclick="location.href='../shop/viewUserShop?shopName=${shop.shopName}'">
-							<input name="shopName" class="shop" id="findname${status.index}"
-								value="${shop.shopName}" disabled
-								style="text-align: center; width: 100%; height: 40px; border: 0; background: none; font-size: 38px; font-weight: bold; color:#DA0037; font-family: 'KOTRAHOPE';" />
-							<input id="shopAddress${status.index}"
-								value="${shop.shopAddress}" style="display: none;">
-							<p class="name" style="display: none">${shop.shopName}</p>
-							<p class="address"
-								style="line-height: 30px; text-align: center; font-size: 15px;">${shop.shopAddress}</p>
-							<p
-								style="text-align: center; font-size: 24px;">${shop.shopTel}</p>
-								<span class="menuTitle" style="z-index:999;">메뉴</span>
-						</div>
-
-						<%
-						// 스크립트 반복문 사용을 위한 카운트 증가
-						count++;
-						%>
-					<c:set var="menu" value="${menuList[status.index]}"/>
-					<div class="line" style="display:none;">
-						<c:forEach var="x" items="${menu}" varStatus="t">
-							<div class="menulist${status.index}"
-								id="findmenu${status.index}${t.index}" style="display: none;">
-								<span class="menu" style="line-height: 24px;">${menuList[status.index][t.index].menuName}&nbsp; - &nbsp;
-								</span><span class="menu">${menuList[status.index][t.index].menuPrice}원</span>
-							</div>
-						</c:forEach>
-					</div>	
-					</c:forEach>
-
-					<!--위도와 경도를 불러와 등록되어 있는 가게 위치 표시-->
-					<c:forEach var="shop" items="${find}" varStatus="status">
-						<input id="longitude${status.index}" value="${shop.longitude}"
-							style="display: none;" />
-						<input id="latitude${status.index}" value="${shop.latitude}"
-							style="display: none;" />
-					</c:forEach>
+	<div class="header_form">
+		<form action="map" method="post">
+			<div class=headerMenu>
+				<ul>
+					<li><a class="back" href="<c:url value='/login'/>"><img
+							src="../resources/mapcss/img/backicon.png"></a></li>
+					<!--검색어 입력창-->
+					<li><input onkeyup="filter()" id="inputSearch"
+						class="inputtext" type="text" value="" required></li>
+					<li><a class="userInformation"> <span></span></a></li>
 				</ul>
 			</div>
-		</div>
-		<!--id값을 이용하여 스크립트에 반복문 사용을 위한 카운트 등록-->
-		<input id="count" value="<%=count%>" style="display: none;" />
-	</form>
+			<div class="click"
+				style="top: 75px; height: 96px; width: 100%; position: relative;">
+			</div>
+			<%
+			// 스크립트 반복문 사용을 위한 count 선언
+			int count = 0;
+			%>
+			<div id="map" onclick=" filterEvent()"
+				style=" top:98px; width: 370px; height: 650px; margin-left: 10px;"></div>
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
+			<div class="map_wrap">
+				<div id="menu_wrap" class="bg_white">
+					<ul id="placesList">
+						<!--모든 가게이름을 다 불러와 맵에 마크와 컨테츠 표현-->
+						<c:forEach var="shop" items="${shopFind}" varStatus="status">
+							<div class="item"
+								style="display: none; border-bottom: solid 1px #DA0037;"
+								onclick="location.href='../shop/viewUserShop?shopName=${shop.shopName}'">
+								<input name="shopName" class="shop" id="findname${status.index}"
+									value="${shop.shopName}" disabled
+									style="text-align: center; width: 100%; height: 40px; border: 0; background: none; font-size: 38px; font-weight: bold; color: #DA0037; font-family: 'KOTRAHOPE';" />
+								<input id="shopAddress${status.index}"
+									value="${shop.shopAddress}" style="display: none;">
+								<p class="name" style="display: none">${shop.shopName}</p>
+								<p class="address"
+									style="line-height: 30px; text-align: center; font-size: 15px;">${shop.shopAddress}</p>
+								<p style="text-align: center; font-size: 24px;">${shop.shopTel}</p>
+								<span class="menuTitle" style="z-index: 999;">메뉴</span>
+							</div>
+
+							<%
+							// 스크립트 반복문 사용을 위한 카운트 증가
+							count++;
+							%>
+							<c:set var="menu" value="${menuList[status.index]}" />
+							<div class="line" style="display: none;">
+								<c:forEach var="x" items="${menu}" varStatus="t">
+									<div class="menulist${status.index}"
+										id="findmenu${status.index}${t.index}" style="display: none;">
+										<span class="menu" style="line-height: 24px;">${menuList[status.index][t.index].menuName}&nbsp;
+											- &nbsp; </span><span class="menu">${menuList[status.index][t.index].menuPrice}원</span>
+									</div>
+								</c:forEach>
+							</div>
+						</c:forEach>
+
+						<!--위도와 경도를 불러와 등록되어 있는 가게 위치 표시-->
+						<c:forEach var="shop" items="${find}" varStatus="status">
+							<input id="longitude${status.index}" value="${shop.longitude}"
+								style="display: none;" />
+							<input id="latitude${status.index}" value="${shop.latitude}"
+								style="display: none;" />
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+			<!--id값을 이용하여 스크립트에 반복문 사용을 위한 카운트 등록-->
+			<input id="count" value="<%=count%>" style="display: none;" />
+		</form>
+	</div>
 	<script>
+		const bodyClick = document.querySelector(".click")
 		const count = document.getElementById("count").value
 		const toggleBtn = document.querySelector(".userInformation")
 		const gnbBtn = document.querySelector("#gnb")
@@ -148,6 +158,7 @@
 		toggleBtn.addEventListener("click", toggleHandler);
 
 		mapClick.addEventListener("click", removeOn);
+		bodyClick.addEventListener("click", removeOn);
 
 		function filter() {
 
@@ -159,14 +170,13 @@
 			menuLine = document.getElementsByClassName("line")
 			menuList = []
 
-
 			for (i = 0; i < item.length; i++) {
 				menuList.push(document.getElementsByClassName("menulist" + i));
 				name = item[i].getElementsByClassName("name")
-				
+
 				for (j = 0; j < menuList[i].length; j++) {
 					menu = menuList[i][j].getElementsByClassName("menu")
-					
+
 					if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
 						item[i].style.display = "block";
 						//menuTitle.style.display ="block";
@@ -194,9 +204,7 @@
 
 		var MARKER_WIDTH = 24, // 기본, 클릭 마커의 너비
 		MARKER_HEIGHT = 35, // 기본, 클릭 마커의 높이
-		GPS_MARKER_WIDTH = 20,
-		GPS_MARKER_HEIGHT = 20,
-		OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
+		GPS_MARKER_WIDTH = 20, GPS_MARKER_HEIGHT = 20, OFFSET_X = 12, // 기본, 클릭 마커의 기준 X좌표
 		OFFSET_Y = MARKER_HEIGHT, // 기본, 클릭 마커의 기준 Y좌표
 		OVER_MARKER_WIDTH = 31, // 오버 마커의 너비
 		OVER_MARKER_HEIGHT = 41, // 오버 마커의 높이
@@ -212,22 +220,21 @@
 				OVER_MARKER_HEIGHT), // 오버 마커의 크기
 		overMarkerOffset = new kakao.maps.Point(OVER_OFFSET_X, OVER_OFFSET_Y), // 오버 마커의 기준 좌표
 		clickMarkerSize = new kakao.maps.Size(CLICK_MARKER_WIDTH,
-				CLICK_MARKER_HEIGHT),
-		gpsMarkerSize = new kakao.maps.Size(GPS_MARKER_WIDTH, GPS_MARKER_HEIGHT);
+				CLICK_MARKER_HEIGHT), gpsMarkerSize = new kakao.maps.Size(
+				GPS_MARKER_WIDTH, GPS_MARKER_HEIGHT);
 
 		selectedMarker = null; // 클릭한 마커를 담을 변수
 		selectedContent = null;
 
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
-			center : new kakao.maps.LatLng(35.8704973,
-					128.5953778), // 지도의 중심좌표
+			center : new kakao.maps.LatLng(35.8704973, 128.5953778), // 지도의 중심좌표
 			level : 4
 		// 지도의 확대 레벨
 		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		
+
 		if (navigator.geolocation) {
 
 			// GeoLocation을 이용해서 접속 위치를 얻어옵니다
