@@ -30,7 +30,7 @@
       <span class="text" style="color: #DA0037;">가게 테이블당 최대 수용 인원 수</span>
       <input name="shopMaxPeoples" type="text" class="text readonlyinput input_box2" readonly value="${shop.shopMaxPeoples }"/>
       <span class="text" style="color: #DA0037;">가게 사진</span>
-      	<img src="../resources/shop/shop_Img/${shop.shopImg }.jpg" style="border-radius: 30px;" />
+      	<img src="../resources/shop/shop_Img/${shop.shopImg }.jpg" style="border-radius: 30px; width: 100%;" />
       	<input name="shopImg" type="text" value="${shop.shopImg }" style="display:none;">
       	<input type="submit" class="next_btn" style="margin-top: 10px; width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 5px black; margin-top: 10px;" value="가게 정보 수정하기">
       	</form>
