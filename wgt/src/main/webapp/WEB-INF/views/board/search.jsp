@@ -19,13 +19,15 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
 <link rel="stylesheet" type="text/css"
 	href="../resources/board/home.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/board/mypage.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
-<title>Board Home</title>
+<title>Board Search Home</title>
 </head>
 <body>
 
@@ -56,9 +58,9 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 		</a>
 		</c:if>
 		<c:if test="${ownerchk == true}">
-		<a href="mypage"><img id="user"
+		<a href="mypage"><!-- <img id="user"
 			src="../resources/board/img/user.png" width="30px" height="30px"
-			style="cursor: pointer; display:none;">
+			style="cursor: pointer; display:none;"> -->
 		</a>
 		</c:if>
 		<c:if test="${ownerchk != true}">
@@ -87,21 +89,29 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						<div class="write" style="margin-bottom: 30px;">
 				 	<p style="position:relative; margin-bottom:7px; display:none;">[No.${item.number}] ${item.title}</p>
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
-							style="width: 370px; height: 330px"><br>
+							style="width: 370px; height: 330px; border-radius: 5px;"><br>
 							<div class="likearea">
-								<button>
-									<img id="likeCSS"
-										src="../resources/board/img/${item.likeImg}.png" width="30px"
-										height="30px" style="cursor: pointer;">
-								</button>
+								<c:if test="${ownerchk != true}">
+									<button>
+										<img id="likeCSS"
+											src="../resources/board/img/${item.likeImg}.png" width="30px"
+											height="30px" style="cursor: pointer;">
+									</button>
+								</c:if>
+								<c:if test="${ownerchk == true}">
+									<button type="button">
+										<img id="likeCSS" src="../resources/board/img/likeheart.png"
+											width="30px" height="30px" style="cursor: pointer;">
+									</button>
+								</c:if>
 								<div class="feedReaction">
 									<span class="liketext">좋아요 <span class="likesresult"><input
 											type="text" id="result" value="${item.likecount}"
 											name="likecount"
-											style="border: none; width: 7px; background: none; readonly" onfocus="this.blur()"></span>개
+											style="border: none; width: 7px; background: none;"
+											onfocus="this.blur()"></span>개
 									</span>
 								</div>
-
 							</div>
 						<p class="searchregdate">
 							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm"
@@ -110,6 +120,16 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						<h4>${item.title}</h4>
 						<br> ${item.content}<br>
 					</div>
+					<c:if test="${ownerchk == true}">
+						<div class="update_delete_area"
+							style="display: flex; justify-content: space-evenly; height: 30px; border-bottom: 2px solid #f1f1f1;">
+							<div class="deletearea">
+								<button class="deletebtn" type="button" value="삭제"
+									onclick="delCheck(${item.number})"
+									style="position: relative; left: 1%; margin: 0 auto; cursor: pointer;">삭제</button>
+							</div>
+						</div>
+					</c:if>
 				</c:forEach>
 			</div>
 		</div>
@@ -123,7 +143,17 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			like[i].classList.toggle('open')
 		})
 	}
-
+	
+	function delCheck(num) {
+		const link = "delete?number=" + num;
+		if(confirm("정말 삭제하시겠습니까?")){
+			/*console.log(num);*/
+ 			alert("삭제를 완료하였습니다.");
+			location.href=link;
+		}else{
+			alert("삭제를 취소하였습니다.")
+		}
+	};
 </script>
 
 </body>
