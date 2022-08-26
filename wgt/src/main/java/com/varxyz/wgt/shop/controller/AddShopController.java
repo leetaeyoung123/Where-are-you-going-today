@@ -31,21 +31,18 @@ public class AddShopController {
 	@GetMapping("/add_shop")
 	public String addShopGo(HttpSession session, Model model) {
 		menuList.removeAll(menuList);
-		String bNum = (String)session.getAttribute("bNum");
-		if (bNum == null) {
+		String ownerId = (String)session.getAttribute("ownerId");
+		if (ownerId == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요");
 			model.addAttribute("url", "login");
 			return "alert/alert";
 		}
 		ShopService service = new ShopServiceImpl();
-		try {
-			service.findShopByBnsNum(bNum);
+			if(service.findShopByOwnerId(ownerId).getShopName() == null) {
+				return "shop/addShop";							
+			}
+				
 			return "redirect:/shop/viewMyShop";
-		}catch (EmptyResultDataAccessException e) {
-			
-		}
-		model.addAttribute("bNum", bNum);
-		return "shop/addShop";
 	}
 	
 	@GetMapping("/add_shop2")
@@ -78,12 +75,15 @@ public class AddShopController {
 			return "alert/back";
 		}
 		
+		session.setAttribute("bnsNum", bnsNum);
+		
 		shop.setBusinessNumber(bnsNum);	
 		shop.setShopName(shopName);
 		shop.setShopPostCode(shopPostCode);
 		shop.setShopAddress(shopAddress);
 		shop.setShopDetailAddress(shopDetailAddress);
 		shop.setShopExtraAddress(shopExtraAddress);
+		shop.setOwnerId((String)session.getAttribute("ownerId"));
 		
 		return "shop/addShop2";
 	}

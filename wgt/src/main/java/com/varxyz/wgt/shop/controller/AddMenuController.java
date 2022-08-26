@@ -25,7 +25,7 @@ public class AddMenuController {
 
 	@GetMapping("shop/addMenu")
 	public String addMenuGo(Model model, HttpSession session) {
-		String bNum = (String)session.getAttribute("bNum");
+		String bNum = (String)session.getAttribute("bnsNum");
 		
 		
 		if(service.findShopMenuByBnsNum(bNum).size() > 9) {
@@ -43,7 +43,7 @@ public class AddMenuController {
 							  @RequestParam("menu_price") int price,
 							  @RequestParam("menu_intro") String menuIntro,
 							  Model model, HttpSession session){
-		String bNum = (String)session.getAttribute("bNum");
+		String bNum = (String)session.getAttribute("bnsNum");
 		
 		if(!service.shopFindMenuCheck( menuName, bNum )) {
 			model.addAttribute("msg", "중복된 메뉴이름은 사용하실 수 없습니다.");

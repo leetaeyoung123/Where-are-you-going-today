@@ -3,6 +3,7 @@ package com.varxyz.wgt.login.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,8 @@ import com.varxyz.wgt.login.serviceImpl.OwnerLoginServiceImpl;
 import com.varxyz.wgt.owner.doamin.Owner;
 import com.varxyz.wgt.owner.service.OwnerService;
 import com.varxyz.wgt.owner.serviceImpl.OwnerServiceImpl;
+import com.varxyz.wgt.shop.service.ShopService;
+import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
 @Controller
 public class OwnerLoginController {
@@ -47,7 +50,6 @@ public class OwnerLoginController {
 		
 		Owner dbOwner = new Owner();
 		dbOwner = ownerService.findAllOwner(owner.getOwnerId());
-		session.setAttribute("bnsNum", dbOwner.getBnumber());
 		session.setAttribute("dbOwner", dbOwner);
 		
 		// 수정 전 코드
@@ -69,13 +71,15 @@ public class OwnerLoginController {
 		
 		// &&로 엮어서 조건을 구사 할 수도 있다.
 		if(owner.getOwnerId().equals(dbOwner.getOwnerId()) && 
-		   owner.getPasswd().equals(dbOwner.getPasswd()) && 
-		   owner.getBnumber().equals(dbOwner.getBnumber())) {
+		   owner.getPasswd().equals(dbOwner.getPasswd())) {
+
+			ShopService shopService = new ShopServiceImpl();
 			
-			System.out.println("로그인 성공");
-			session.setAttribute("bNum", request.getParameter("bnumber"));
+			session.setAttribute("bnsNum", shopService.findShopByOwnerId(owner.getOwnerId()).getBusinessNumber());
+			session.setAttribute("ownerId", request.getParameter("ownerId"));
 			return "redirect:/add_shop";
 		}
+		
 		System.out.println("로그인 실패");
 		
 		model.addAttribute("msg", "회원정보가 틀렸습니다");
@@ -83,8 +87,6 @@ public class OwnerLoginController {
 		
 		return "error/error";
 					
-		
-		
 		
 //		try {
 //			Owner ownerList = new Owner();

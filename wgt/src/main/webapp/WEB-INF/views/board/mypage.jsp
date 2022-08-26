@@ -74,14 +74,29 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 					<div class="write" style="margin-top: 30px; margin-bottom: 10px;">
 						<img src="../resources/board/img/upload/${item.imgname}.jpg"
 							style="width: 370px; height: 330px; border-radius: 5px;"><br>
-						<div class="likearea">
+						<!-- <div class="likearea">
 							<a class="likebtn"
 								style="display: flex; padding-left: 1px; margin-top: 1px;"></a>
 							<div class="feedReaction">
 								<span class="liketext" style="display:none;">좋아요 <span class="likesresult"></span>개
 								</span>
 							</div>
-						</div>
+						</div> -->
+						<div class="likearea">
+									<button>
+										<img id="likeCSS"
+											src="../resources/board/img/${item.likeImg}.png" width="30px"
+											height="30px" style="cursor: pointer;">
+									</button>
+								<div class="feedReaction">
+									<span class="liketext">좋아요 <span class="likesresult"><input
+											type="text" id="result" value="${item.likecount}"
+											name="likecount"
+											style="border: none; width: 7px; background: none;"
+											onfocus="this.blur()"></span>개
+									</span>
+								</div>
+							</div>
 						<p class="mypageregdate">
 							<fmt:formatDate pattern="yy년MM월dd일 a hh:mm" value="${item.regDate}" />
 						</p>

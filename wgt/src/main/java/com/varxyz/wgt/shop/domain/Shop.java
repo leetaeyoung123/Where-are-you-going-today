@@ -18,4 +18,5 @@ public class Shop {
 	private String shopTables;
 	private String shopMaxPeoples;
 	private String shopImg;
+	private String ownerId;
 }
