@@ -44,4 +44,7 @@ public interface ShopService {
 	
 	// 모든 사업자 번호 조회
 	public List<String> findAllBns();
+	
+	// 가게별 메뉴 이름 중복 검사
+	public boolean shopFindMenuCheck(String menuName, String bnsNum);
 }
