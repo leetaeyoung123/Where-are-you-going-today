@@ -14,8 +14,8 @@ import com.varxyz.wgt.board.domain.Board;
 import com.varxyz.wgt.board.domain.Likes;
 import com.varxyz.wgt.board.service.BoardService;
 import com.varxyz.wgt.board.service.BoardServiceImpl;
-import com.varxyz.wgt.owner.service.OwnerService;
-import com.varxyz.wgt.owner.serviceImpl.OwnerServiceImpl;
+//import com.varxyz.wgt.owner.service.OwnerService;
+//import com.varxyz.wgt.owner.serviceImpl.OwnerServiceImpl;
 import com.varxyz.wgt.shop.service.ShopService;
 import com.varxyz.wgt.shop.service.ShopServiceImpl;
 
