@@ -18,6 +18,7 @@
 			style="width: 300px; margin: 0 auto; border: 2px solid #DA0037; border-radius: 10px; height: 294px; margin-top: 105px;">
 			<form action="position" method="get" style="line-height: 50px;">
 				가게이름: ${shop.shopName}<br> 사업자 번호: ${shop.businessNumber}
+				${shop.shopAddress}
 			</form>
 
 			<form action="position" method="post">
