@@ -146,7 +146,7 @@
     
     function changeTables() {
 		document.querySelector("#tables").innerHTML =
-			'<select class="select_box" name="shop_table">' +
+			'<select class="select_box" name="shop_tables">' +
 	    	'<option value="1">1</option>' +
 	    	'<option value="2">2</option>' +
 	    	'<option value="3">3</option>' +

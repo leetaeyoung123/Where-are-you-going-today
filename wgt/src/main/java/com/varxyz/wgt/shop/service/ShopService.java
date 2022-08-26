@@ -47,4 +47,7 @@ public interface ShopService {
 	
 	// 가게별 메뉴 이름 중복 검사
 	public boolean shopFindMenuCheck(String menuName, String bnsNum);
+	
+	// 점주 ID로 매장 검색
+	public Shop findShopByOwnerId(String ownerId);
 }
