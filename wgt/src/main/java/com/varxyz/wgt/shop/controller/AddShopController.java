@@ -74,6 +74,13 @@ public class AddShopController {
 			return "alert/back";
 		}
 		
+		ShopService service = new ShopServiceImpl();
+		
+		if(service.findShopByBnsNum(bnsNum).getBusinessNumber() != null) {
+			model.addAttribute("msg", "중복된 사업자 번호입니다.");
+			return "alert/back";
+		}
+		
 		session.setAttribute("bnsNum", bnsNum);
 		
 		shop.setBusinessNumber(bnsNum);	
