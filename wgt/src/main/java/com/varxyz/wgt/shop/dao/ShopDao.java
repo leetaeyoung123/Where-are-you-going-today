@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -125,5 +126,16 @@ private JdbcTemplate jdbcTemplate;
 		String sql ="SELECT businessNumber FROM menu";
 		List<String> data = jdbcTemplate.queryForList(sql ,String.class);
 		return data;
+	}
+	
+	// 메뉴 중복 검사
+	public boolean shopFindMenuCheck(String menuName, String bnsNum) {
+		String sql = "SELECT * FROM menu WHERE menuName = ? AND businessNumber = ?";
+		try {
+			jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Menu>(Menu.class), menuName, bnsNum);			
+		}catch (EmptyResultDataAccessException e) {
+			return true;
+		}
+		return false;
 	}
 }

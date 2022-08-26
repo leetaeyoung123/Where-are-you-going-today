@@ -81,3 +81,5 @@ INSERT INTO shop VALUES('999-99-9999', 'testShopName', '053-111-123', '1234', '1
 
 --메뉴 추가
 INSERT INTO menu VALUES('999-99-9999', 'testMenu', 'testIntro', 1000, '1234');
+
+SELECT * FROM menu WHERE menuName = 'test10' AND businessNumber = '123-456-789';

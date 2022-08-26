@@ -28,7 +28,7 @@
       <span class="text" style="color: #DA0037;">가게 테이블당 최대 수용 인원 수</span>
       	<p class="text">${shop.shopMaxPeoples }</p>
       <span class="text" style="color: #DA0037;">가게 사진</span>
-      	<img src="../resources/shop/shop_Img/${shop.shopImg }.jpg" style="border-radius: 30px; margin: 0 auto;">
+      	<img src="../resources/shop/shop_Img/${shop.shopImg }.jpg" style="border-radius: 30px; width: 100%;">
       </div>
       <table style="color: black; border-radius: 30px;">
         <h1 class="title" style="color: white;">가게 메뉴</h1>

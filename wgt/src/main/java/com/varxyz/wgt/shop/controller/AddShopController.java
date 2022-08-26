@@ -30,6 +30,7 @@ public class AddShopController {
 	// 첫번째 폼
 	@GetMapping("/add_shop")
 	public String addShopGo(HttpSession session, Model model) {
+		menuList.removeAll(menuList);
 		String bNum = (String)session.getAttribute("bNum");
 		if (bNum == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요");
@@ -253,6 +254,13 @@ public class AddShopController {
 		
 			model.addAttribute("msg", "빈값은 입력하실 수 없습니다!");
 			return "alert/back";
+		}
+		
+		for (Menu checkMenu : menuList) {
+			if(checkMenu.getMenuName().equals(menuName)) {
+				model.addAttribute("msg", "중복된 이름의 메뉴는 등록하실수 없습니다.");
+				return "alert/back";
+			}
 		}
 		
 		menu.setMenuName(menuName);
