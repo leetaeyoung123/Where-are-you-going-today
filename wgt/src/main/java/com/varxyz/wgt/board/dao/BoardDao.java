@@ -27,13 +27,13 @@ public class BoardDao {
 		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName, userId, shop.getBusinessNumber());
 	}
 	
-	//게시글 읽기(businessNumber)
+	//게시글 조회(businessNumber)
 	public List<Board> read(String businessNumber) {
 		String sql = "SELECT * FROM Board WHERE Board.businessNumber =? ORDER BY regDate DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class), businessNumber);
 	}
 	
-	//게시글 읽기(ID)
+	//게시글 조회(ID)
 	public List<Board> readmypage(String userId) {
 		String sql = "SELECT * FROM Board WHERE userId =? ORDER BY regDate DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class), userId);
