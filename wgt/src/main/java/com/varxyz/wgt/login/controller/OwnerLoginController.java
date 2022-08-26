@@ -69,13 +69,12 @@ public class OwnerLoginController {
 		
 		// &&로 엮어서 조건을 구사 할 수도 있다.
 		if(owner.getOwnerId().equals(dbOwner.getOwnerId()) && 
-		   owner.getPasswd().equals(dbOwner.getPasswd()) && 
-		   owner.getBnumber().equals(dbOwner.getBnumber())) {
+		   owner.getPasswd().equals(dbOwner.getPasswd())) {
 			
-			System.out.println("로그인 성공");
-			session.setAttribute("bNum", request.getParameter("bnumber"));
+			session.setAttribute("ownerId", request.getParameter("ownerId"));
 			return "redirect:/add_shop";
 		}
+		
 		System.out.println("로그인 실패");
 		
 		model.addAttribute("msg", "회원정보가 틀렸습니다");
@@ -83,8 +82,6 @@ public class OwnerLoginController {
 		
 		return "error/error";
 					
-		
-		
 		
 //		try {
 //			Owner ownerList = new Owner();
