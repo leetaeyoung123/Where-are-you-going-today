@@ -17,7 +17,7 @@
 </style>
 </head>
 
-<body>
+<body id="body">
 	<script>
 		function submit_form() {
 			document.getElementById('submitID').submit();
@@ -52,7 +52,11 @@
 					<!--검색어 입력창-->
 					<li><input onkeyup="filter()" id="inputSearch"
 						class="inputtext" type="text" value="" required></li>
-					<li><a class="userInformation"> <span></span></a></li>
+					<li><jsp:include page="../incl/button.jsp">
+        				 <jsp:param name="subtitle"
+            			value="<%=URLEncoder.encode(\"map: map.jsp\", \"UTF-8\")%>" />
+      					</jsp:include>
+      				</li>
 				</ul>
 			</div>
 			<div class="click"
@@ -118,13 +122,13 @@
 	</div>
 	<script>
 		const bodyClick = document.querySelector(".click")
-		const count = document.getElementById("count").value
-		const toggleBtn = document.querySelector(".userInformation")
-		const gnbBtn = document.querySelector("#gnb")
 		const bodytoggle = document.querySelector(".header_form")
+		const gnbBtn = document.querySelector("#gnb")
+		const toggleBtn = document.querySelector(".userInformation")
+		
+		const count = document.getElementById("count").value
 		const searchbtn = document.querySelector(".searchbtn")
 		const shopName = document.querySelector(".shop")
-		//const menuTitle = document.querySelector(".menuTitle")
 		const filteritemClose = document.querySelector(".item")
 		const filterClose = document.querySelector("#menu_wrap")
 		const line = document.querySelector(".line")
@@ -156,7 +160,7 @@
 		mapClick.addEventListener("click", filterEvent);
 
 		toggleBtn.addEventListener("click", toggleHandler);
-
+		
 		mapClick.addEventListener("click", removeOn);
 		bodyClick.addEventListener("click", removeOn);
 
