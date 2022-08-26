@@ -36,12 +36,12 @@ private JdbcTemplate jdbcTemplate;
 	// 매장 추가
 	public boolean addShop(Shop shop) {
 		String sql = "INSERT INTO SHOP (businessNumber, shopName, shopTel, shopPostCode, shopAddress, "
-				+ " shopDetailAddress, shopExtraAddress, shopHours, shopTables, shopMaxPeoples, shopImg) "
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " shopDetailAddress, shopExtraAddress, shopHours, shopTables, shopMaxPeoples, shopImg, ownerId) "
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, shop.getBusinessNumber(), shop.getShopName(), shop.getShopTel(),
 								shop.getShopPostCode(), shop.getShopAddress(), shop.getShopDetailAddress(),
 								shop.getShopExtraAddress(), shop.getShopHours(), shop.getShopTables(), 
-								shop.getShopMaxPeoples(), shop.getShopImg());
+								shop.getShopMaxPeoples(), shop.getShopImg(), shop.getOwnerId());
 		return true;
 	}
 	
@@ -137,5 +137,16 @@ private JdbcTemplate jdbcTemplate;
 			return true;
 		}
 		return false;
+	}
+
+	public Shop findShopByOwnerId(String ownerId) {
+		String sql = "SELECT * FROM shop WHERE ownerId = ?";
+		Shop shop = new Shop();
+		try {
+			shop = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), ownerId);
+		}catch (EmptyResultDataAccessException e) {
+			return shop;
+		}
+		return shop;
 	}
 }

@@ -9,7 +9,10 @@ CREATE TABLE shop (
 	shopHours			VARCHAR(20)		NOT NULL,
 	shopTables			VARCHAR(2)		NOT NULL,
 	shopMaxPeoples		VARCHAR(2)		NOT NULL,
-	shopImg				VARCHAR(10)		NOT NULL DEFAULT 'default'
+	shopImg				VARCHAR(10)		NOT NULL DEFAULT 'default',
+	ownerId				VARCHAR(20)		NOT NULL,
+	CONSTRAINT Owner_Name_FK
+	FOREIGN KEY(ownerId) REFERENCES Owner(ownerId)
 );
 
 

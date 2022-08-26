@@ -85,4 +85,9 @@ public class ShopServiceImpl implements ShopService {
 	public boolean shopFindMenuCheck(String menuName, String bnsNum) {
 		return dao.shopFindMenuCheck(menuName, bnsNum);
 	}
+
+	@Override
+	public Shop findShopByOwnerId(String ownerId) {
+		return dao.findShopByOwnerId(ownerId);
+	}
 }
