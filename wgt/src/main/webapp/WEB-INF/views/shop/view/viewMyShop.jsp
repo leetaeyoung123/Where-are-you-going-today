@@ -53,13 +53,8 @@
                   <p style= "font-size: 24px;">${menu.menuIntro }</p>
                   <p style= "font-size: 24px;">${menu.menuPrice }원</p>
                 </label>
-                </td>
-                <c:if test="${status.index  != 0 }">                
+                </td>             
                 <td><input type="checkbox" name="check" value="${menu.menuName }" id="${menu.menuName }" style="width: 30px; height: 30px;"></td>
-                </c:if>
-                <c:if test="${status.index == 0 }">
-                <td style="width: 30px; height: 30px;"></td>
-                </c:if>
       			<td><button type="button" onclick="window.location.href='updateMenu?menuName=${menu.menuName}&menuPrice=${menu.menuPrice  }&menuIntro=${menu.menuIntro }&menuImg=${menu.menuImg}'" class="SubmitBtn"  style="height: 107.98px; font-size:25px; font-family: 'KOTRAHOPE';">수정</button>
               </tr>
       	</c:forEach>
