@@ -18,7 +18,6 @@
 			style="width: 300px; margin: 0 auto; border: 2px solid #DA0037; border-radius: 10px; height: 294px; margin-top: 105px;">
 			<form action="position" method="get" style="line-height: 50px;">
 				가게이름: ${shop.shopName}<br> 사업자 번호: ${shop.businessNumber}
-				${shop.shopAddress}
 			</form>
 
 			<form action="position" method="post">
@@ -28,13 +27,13 @@
 				<label>위도(latitude)</label><br> <input
 					style="border: 1px solid #DA0037; border-radius: 10px; height: 27px; width: 100px;"
 					name="latitude" /><br>
-				<button
-					style="margin-right: 10px; background: none; border: 1px solid #DA0037; border-radius: 10px;"
+				<a  target="_blank"
+					style="margin-right: 10px; background: none; border: 1px solid #DA0037; border-radius: 10px; font-size: 20px; color: black; text-decoration: none;"
 					type="button"
-					onclick="location.href='https://www.google.co.kr/maps/search/${shop.shopName}'">경도,
-					위도 찾기</button>
+					href="https://www.google.co.kr/maps/search/${shop.shopAddress}">경도,
+					위도 찾기</a>
 				<input 
-				style="background: none; border: 1px solid #DA0037; border-radius: 10px;" 
+				style="background: none; border: 1px solid #DA0037; border-radius: 10px; font-size: 16px;" 
 				type="submit" 
 				value="등록">
 			</form>

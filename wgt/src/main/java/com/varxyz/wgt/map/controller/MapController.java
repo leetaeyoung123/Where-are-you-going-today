@@ -39,20 +39,15 @@ public class MapController {
 	  
 	  @PostMapping("/map/root")
 	  public String root(Shop shop, HttpSession session) {
-		  System.out.println(1);
 	  session.setAttribute("shopBns", shop.getBusinessNumber());
-	  //System.out.println(shop.getBusinessNumber()); 
 	  
 	  return "redirect:/map/position";
 	  }
 	  
 	  @GetMapping("/map/position") 
 	  public String positionForm(Model model, HttpSession session) {
-		  System.out.println(2);
 		  session.getAttribute("shopBns");
-		  System.out.println(session.getAttribute("shopBns"));
 		  model.addAttribute("shop", shopService.findShopByBnsNum((String) session.getAttribute("shopBns")));
-		  System.out.println(shopService.findShopByBnsNum((String) session.getAttribute("shopBns")).getShopName());
 		  return "map/position";
 	  }
 	  
