@@ -70,7 +70,7 @@ public class OwnerLoginController {
 		// &&로 엮어서 조건을 구사 할 수도 있다.
 		if(owner.getOwnerId().equals(dbOwner.getOwnerId()) && 
 		   owner.getPasswd().equals(dbOwner.getPasswd())) {
-			
+//			ownerService.findAllOwner(request.getParameter("ownerId")).get사업자번호
 			session.setAttribute("ownerId", request.getParameter("ownerId"));
 			return "redirect:/add_shop";
 		}
