@@ -18,7 +18,7 @@ public class SelectShopController {
 	public String viewTempMyShop(Model model, HttpSession session) {
 		session.removeAttribute("tempImgList");
 		
-		String bNum = (String)session.getAttribute("bNum");
+		String bNum = (String)session.getAttribute("bnsNum");
 		model.addAttribute("shop", service.findShopByBnsNum(bNum));
 		model.addAttribute("menus", service.findShopMenuByBnsNum(bNum));
 		return "shop/view/viewTempMyShop";
@@ -26,7 +26,8 @@ public class SelectShopController {
 	
 	@GetMapping("shop/viewMyShop")
 	public String viewMyShop(Model model, HttpSession session) {
-		String bNum = (String)session.getAttribute("bNum");
+		String bNum = (String)session.getAttribute("bnsNum");
+		session.setAttribute("shopNameForManager", service.findShopByBnsNum(bNum).getShopName());
 		model.addAttribute("shop", service.findShopByBnsNum(bNum));
 		model.addAttribute("menus", service.findShopMenuByBnsNum(bNum));
 		return "shop/view/viewMyShop";
@@ -35,6 +36,7 @@ public class SelectShopController {
 	@GetMapping("shop/viewUserShop")
 	public String viewUserShop(Model model, HttpSession session, HttpServletRequest request) {
 		String bnsNum = service.findAllbyShopNameObject(request.getParameter("shopName")).getBusinessNumber();
+		session.setAttribute("bnsNum", bnsNum);
 		session.setAttribute("shopName", request.getParameter("shopName"));
 		model.addAttribute("shop", service.findShopByBnsNum(bnsNum));
 		model.addAttribute("menus", service.findShopMenuByBnsNum(bnsNum));

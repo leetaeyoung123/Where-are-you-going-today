@@ -45,7 +45,7 @@ li {
 }
 
 .header_form {
-	margin-top: -30px;
+	margin-top: -18px;
 }
 
 .header_form.on {
@@ -62,7 +62,7 @@ li {
 
 .userInformation {
     position: fixed;
-    top: 10px;
+    top: 22px;
     left: 345px;
     width: 24px;
     height: 24px;
@@ -143,7 +143,7 @@ li {
 
 #gnb {
 	margin-left: 177px;
-    margin-top: 80px;
+    margin-top: 277px;
 	position: fixed;
 	margin-left: 100%;
 	z-index: 998;
@@ -151,31 +151,31 @@ li {
 	width: 223px;
 	border: 3px solid #DA0037;
 	border-radius: 15px;
-	height: 750px;
+	height: 280px;
 	overflow: auto;
 	box-sizing: border-box;
-	padding: 50px 15px 60px 30px;
+	padding: 10px;
 	color: #3b3b3d;
 	transition: all 0.5s;
+	line-height: 66px;
 }
 
 #gnb.on {
 	margin-left: 177px;
-    margin-top: 80px;
-    line-height: 50px;
+    margin-top: 277px;
+    line-height: 52px;
 }
 
-.selectbox {
-	font-family: 'KOTRAHOPE';
-	font-size: 20px;
-	border-radius: 10px;
-	color: black;
-	border: 2px solid #DA0037;
-	width: 60px;
-	height: 35px;
-	margin-right: 5px;
-	text-align: center;
-	z-index: 99;
+#gnb ul li {
+	cursor: pointer;
+	font-size: 26px;
+}
+
+#gnb ul li:first-child {
+	cursor: default;
+	font-size: 26px;
+	line-height: 26px;
+	margin-bottom: 42px;
 }
 
 .inputtext {
@@ -185,7 +185,7 @@ li {
     border-radius: 10px;
     border: 2px solid #DA0037;
     display: inline-block;
-    width: 210px;
+    width: 280px;
     height: 30px;
 }
 
@@ -262,9 +262,9 @@ li {
 }
 
 #menu_wrap {
-	height: 700px;
+	height: 600px;
 	transition: all 0.3s;
-	top: 73px;
+	top: 184px;
 	left: -270px;
 	bottom: 0;
 	width: 170px;
@@ -287,7 +287,7 @@ li {
 	display: block;
 	height: 1px;
 	border: 0;
-	border-top: 2px solid #5F5F5F;
+	border-top: 2px solid #DA0037;
 	margin: 3px 0;
 }
 
@@ -314,7 +314,6 @@ li {
 
 #placesList .item {
 	position: relative;
-	border-bottom: 1px solid #888;
 	overflow: hidden;
 	cursor: pointer;
 	height: 98px;
@@ -323,4 +322,18 @@ li {
 #placesList .item span {
 	display: block;
 	margin-top: 4px;
+}
+
+#placesList .menu {
+	text-align: center;
+    font-size: 16px;
+}
+
+.menuTitle {
+	font-size: 18px;
+	margin-left: 66px;
+}
+
+.line {
+	border-bottom: 2px solid #DA0037;
 }
