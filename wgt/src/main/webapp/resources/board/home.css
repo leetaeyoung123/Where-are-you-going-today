@@ -16,9 +16,9 @@ body{
 ::-webkit-scrollbar {
   display: none;
 }
-.fa-fork-knife:before {
+/* .fa-utensils:before {
     color: #DA0037;
-}
+} */
 .container{
  border : 1px solid rgba(var(--b6a,219,219,219),1);;
  display : flex;
@@ -68,6 +68,7 @@ body{
 .bannerTag .shopname{
 	font-family: 'KOTRAHOPE';
 	font-size: 32px;
+	margin: 0 10px 0 10px;
 }
 .headerSearchBar{
     display : flex;
