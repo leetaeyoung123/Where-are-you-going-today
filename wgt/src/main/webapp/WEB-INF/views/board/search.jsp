@@ -33,13 +33,13 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 <body>
 
 	<header class="headerContainer">
-		<form action="search" method="post">
-			<!--상단 탭 만들기 뼈대구조-->
+		<!--상단 탭 만들기 뼈대구조-->
+		<form action="home" method="post">
 			<div class="headerContents">
 				<!--상단 탭 내용물 감싼구조-->
-				<div class="WestagramTag">
+				<div class="bannerTag">
 					<!--상단 좌측 내용물-->
-					<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
+					<a href="home"><i class="fa-solid fa-shop"></i><!--  |  --><span class="shopname">${shop}</span></a>
 				</div>
 				<div class="headerSearchBar" style="border-radius: 5px;">
 					<!--상단 중앙 내용물-->
