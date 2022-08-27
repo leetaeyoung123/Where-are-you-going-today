@@ -23,14 +23,20 @@ public class BoardDao {
 
 	//게시글 생성
 	public void create(Board board, String imgName, String userId, Shop shop) {
-		String sql = "INSERT INTO Board (title, content, imgname, userId) VALUES (?, ?, ?, ?)";
-		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName, userId, shop);
+		String sql = "INSERT INTO Board (title, content, imgname, userId, businessNumber) VALUES (?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, board.getTitle(), board.getContent(), imgName, userId, shop.getBusinessNumber());
 	}
 	
-	//게시글 읽기
-	public List<Board> read(Board board) {
-		String sql = "SELECT * FROM Board WHERE businessNumber ORDER BY regDate DESC";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class));
+	//게시글 조회(businessNumber)
+	public List<Board> read(String businessNumber) {
+		String sql = "SELECT * FROM Board WHERE Board.businessNumber =? ORDER BY regDate DESC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class), businessNumber);
+	}
+	
+	//게시글 조회(ID)
+	public List<Board> readmypage(String userId) {
+		String sql = "SELECT * FROM Board WHERE userId =? ORDER BY regDate DESC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Board>(Board.class), userId);
 	}
 	
 	//게시글 수정

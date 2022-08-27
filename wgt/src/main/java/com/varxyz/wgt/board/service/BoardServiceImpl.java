@@ -24,8 +24,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Board> read(Board board) {
-		return dao.read(board);
+	public List<Board> read(String businessNumber) {
+		return dao.read(businessNumber);
+	}
+	
+	@Override
+	public List<Board> readmypage(String userId) {
+		return dao.readmypage(userId);
 	}
 
 	@Override

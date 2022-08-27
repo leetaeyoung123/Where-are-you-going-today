@@ -25,7 +25,10 @@ public interface BoardService {
 		public void create(Board board, String imgname, String userId, Shop shop);
 		
 		// 게시글 읽기
-		public List<Board> read(Board board);
+		public List<Board> read(String businessNumber);
+		
+		// 유저 아이디로 게시글 정보 보기
+		public List<Board> readmypage(String userId);
 		
 		// 게시글 수정
 		public void update(Board board, String imgname);

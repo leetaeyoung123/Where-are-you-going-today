@@ -1,6 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.List, java.net.URLEncoder"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page import="java.io.*, java.text.*, java.util.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.net.URLDecoder" %>
+<%@ page isELIgnored="false"%>
 
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
@@ -46,7 +50,7 @@
 			src="../resources/board/img/user.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>
-		<a href="map"><img id="back"
+		<a href="home;"><img id="gohome"
 			src="../resources/board/img/back.png" width="30px" height="30px"
 			style="cursor: pointer;">
 		</a>

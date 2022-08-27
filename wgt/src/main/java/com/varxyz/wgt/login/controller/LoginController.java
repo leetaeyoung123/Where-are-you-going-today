@@ -43,12 +43,14 @@ public class LoginController {
 			
 			if(user.getUserId().equals("root") && user.getPasswd().equals(userList.getPasswd())) {
 				session.setAttribute("userId", user.getUserId());
+				
 				return "redirect:/map/root";
 			}
 
 			else if(user.getUserId().equals(userList.getUserId()) && user.getPasswd().equals(userList.getPasswd())) {
 				session.setAttribute("userId", user.getUserId());
-			return "redirect:/map/map";
+			
+				return "redirect:/map/map";
 			}
 			
 
