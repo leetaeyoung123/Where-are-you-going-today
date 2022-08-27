@@ -16,7 +16,7 @@ body{
 ::-webkit-scrollbar {
   display: none;
 }
-.fa-shop:before {
+.fa-fork-knife:before {
     color: #DA0037;
 }
 .container{

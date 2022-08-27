@@ -26,7 +26,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+	href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
 
 <title>Board Home</title>
 </head>
@@ -44,7 +44,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 				<!--상단 탭 내용물 감싼구조-->
 				<div class="bannerTag">
 					<!--상단 좌측 내용물-->
-					<a href="home"><i class="fa-solid fa-shop"></i><!--  |  --><span class="shopname">${shop}</span></a>
+					<a href="home"><i class="fa-solid fa-utensils"> </i><!--  |  --><span class="shopname">${shop}</span></a>
 				</div>
 				<div class="headerSearchBar" style="border-radius: 5px;">
 					<!--상단 중앙 내용물-->
