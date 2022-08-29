@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+li {
+	list-style: none;
+}
+
 /*햄버거 버튼*/
 .userInformation {
     position: fixed;
