@@ -146,9 +146,9 @@ li {
 }
 
 #menu_wrap {
-	height: 600px;
+	height: 500px;
 	transition: all 0.3s;
-	top: 184px;
+	top: 223px;
 	left: -270px;
 	bottom: 0;
 	width: 170px;
@@ -279,7 +279,7 @@ li {
 
 .custom_zoomcontrol {
 	position: absolute;
-	top: 237px;
+	top: 246px;
 	right: 10px;
 	width: 36px;
 	height: 80px;
