@@ -47,7 +47,7 @@
         <h1 class="title" style="color: white;">가게 메뉴</h1>
       	<c:forEach var="menu" items="${menus }" varStatus="status">
             <tr style="background: white;">
-              <td style="width: 150px;"> 
+              <td style="width: 150px;">
                <label for=${menu.menuName }><img src="../resources/shop/menu_img/${menu.menuImg }.jpg" class="preview img" style="min-width: 150px; height: 150px;" /></label>
                 </td>
                 <td>
@@ -56,14 +56,14 @@
                   <p style= "font-size: 24px;">${menu.menuIntro }</p>
                   <p style= "font-size: 24px;">${menu.menuPrice }원</p>
                 </label>
-                </td>             
+                </td>
                 <td><input type="checkbox" name="check" value="${menu.menuName }" id="${menu.menuName }" style="width: 30px; height: 30px;"></td>
       			<td><button type="button" onclick="window.location.href='updateMenu?menuName=${menu.menuName}&menuPrice=${menu.menuPrice  }&menuIntro=${menu.menuIntro }&menuImg=${menu.menuImg}'" class="SubmitBtn"  style="height: 107.98px; font-size:25px; font-family: 'KOTRAHOPE';">수정</button>
               </tr>
       	</c:forEach>
       </table>
       <c:if test="${menus[1] != null }">
-      <input style="margin-top: 20px; margin-bottom: 20px; background: gray; border-radius: 40px; width: 80%; " type="submit" value="삭제" class="next_btn">      
+      <input style="margin-top: 20px; margin-bottom: 20px; background: gray; border-radius: 40px; width: 80%; " type="submit" value="삭제" class="next_btn">
       </c:if>
       <input type="button" value="메뉴 추가" class="SubmitBtn next_btn" style=" margin-top: 20px; margin-bottom: 20px; color: black; width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 5px black; margin-top: 10px; background: white;" onclick="location.href='addMenu'">
       </form>
