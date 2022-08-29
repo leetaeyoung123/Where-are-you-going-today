@@ -21,7 +21,7 @@
 			<hr style="border: none; background-color: #DA0037; margin-bottom: 20px; height: 2px; width: 200px;">
 			<li class="sub2">
 				<form id="submitID" action="go_get_waiting" method="post">
-					<a onclick="submit_form()">나의 웨이팅</a>
+					<a onclick="location.href='/wgt/controller/get_waiting';">나의 웨이팅</a>
 				</form>
 			</li>
 			<li class="sub3"><a onclick="location.href='/wgt/userInfo';">회원정보
@@ -137,6 +137,11 @@ const gnbBtn = document.querySelector("#gnb")
 			bodytoggle.classList.remove("on")
 			toggleBtn.classList.remove("open")
 			gnbBtn.classList.remove("on")
+		}
+		
+		function submit_form() {
+			document.getElementById('submitID').submit();
+
 		}
 
 		toggleBtn.addEventListener("click", toggleHandler);
