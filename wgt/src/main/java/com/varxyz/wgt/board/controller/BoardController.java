@@ -138,6 +138,7 @@ public class BoardController {
 	@PostMapping("/board/search")
 	public String getsearchlist(Board board, Model model, HttpSession session) {
 		List<Board> list = service.search(board.getTitle());
+		String bnsNum = (String) session.getAttribute("bnsNum");
 		
 		// 점주일 때만 삭제 보이게 하는 로직
 		boolean ownerchk = false;
@@ -148,6 +149,7 @@ public class BoardController {
 			model.addAttribute("ownerchk", ownerchk); // 점주일 때
 		}
 		model.addAttribute("list", list);
+		model.addAttribute("board", service.read(bnsNum));
 		return "board/search";
 	}
 	
