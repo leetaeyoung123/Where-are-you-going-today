@@ -63,6 +63,9 @@ public class MypageController {
 	@GetMapping("/board/update")
 	public String updateget(@RequestParam("number") int number, MultipartFile file, HttpServletRequest request,
 			HttpSession session, Model model, Board board) {
+		String userId = (String) session.getAttribute("userId");
+		String bnsNum = (String) session.getAttribute("bnsNum");
+		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName()); // 상점명 불러오기
 		model.addAttribute("board", service.searchByNumber(number));
 //		System.out.println(service.searchByNumber(number));
 		return "board/update";
