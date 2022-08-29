@@ -24,39 +24,20 @@
 
 		}
 	</script>
-	<!--검색어 입력에 맞는 주소로 이동.-->
 	<input id="inputaddr" value="${addr}" style="display: none;" />
-	<nav id=gnb>
-		<ul>
-			<li class="sub1"><span>${userId}님<br> 반가워요 !
-			</span></li>
-			<hr
-				style="border: none; background-color: #DA0037; margin-bottom: 20px; height: 2px; width: 200px;">
-			<li class="sub2">
-				<form id="submitID" action="go_get_waiting" method="post">
-					<a onclick="submit_form()">나의 웨이팅</a>
-				</form>
-			</li>
-			<li class="sub3"><a onclick="location.href='/wgt/userInfo';">회원정보
-					보기</a></li>
-			<li class="sub4"><a onclick="location.href='/wgt/logOut';">로그아웃</a>
-			</li>
-		</ul>
-	</nav>
 	<div class="header_form">
 		<form action="map" method="post">
 			<div class=headerMenu>
 				<ul>
-					<li><a class="back" href="<c:url value='/login'/>"><img
+					<li class="headerMenuli"><a class="back" href="<c:url value='/login'/>"><img
 							src="../resources/mapcss/img/backicon.png"></a></li>
 					<!--검색어 입력창-->
-					<li><input onkeyup="filter()" id="inputSearch"
+					<li class="headerMenuli"><input onkeyup="filter()" id="inputSearch"
 						class="inputtext" type="text" value="" required></li>
 					<li><jsp:include page="../incl/button.jsp">
-        				 <jsp:param name="subtitle"
-            			value="<%=URLEncoder.encode(\"map: button.jsp\", \"UTF-8\")%>" />
-      					</jsp:include>
-      				</li>
+							<jsp:param name="subtitle"
+								value="<%=URLEncoder.encode(\"map: button.jsp\", \"UTF-8\")%>" />
+						</jsp:include></li>
 				</ul>
 			</div>
 			<div class="click"
@@ -67,7 +48,7 @@
 			int count = 0;
 			%>
 			<div id="map" onclick=" filterEvent()"
-				style=" top:98px; width: 370px; height: 650px; margin-left: 10px;"></div>
+				style="top: 98px; width: 370px; height: 650px; margin-left: 10px;"></div>
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5b341178fe09d0d9b1f0550b3aa199be&libraries=services"></script>
 			<div class="map_wrap">
@@ -121,12 +102,8 @@
 		</form>
 	</div>
 	<script>
-		const bodyClick = document.querySelector(".click")
-		const bodytoggle = document.querySelector(".header_form")
-		const gnbBtn = document.querySelector("#gnb")
-		const toggleBtn = document.querySelector(".userInformation")
-		
 		const count = document.getElementById("count").value
+		const bodyClick = document.querySelector(".click")
 		const searchbtn = document.querySelector(".searchbtn")
 		const shopName = document.querySelector(".shop")
 		const filteritemClose = document.querySelector(".item")
@@ -134,36 +111,18 @@
 		const line = document.querySelector(".line")
 		var mapClick = document.getElementById('map')
 
-		function onClicksubMit() {
-			bodytoggle.submit(event.target.value);
-		}
-
-		function toggleHandler() {
-			toggleBtn.classList.toggle("open")
-			gnbBtn.classList.toggle("on")
-			bodytoggle.classList.toggle("on")
-		}
-
-		function removeOn() {
-			bodytoggle.classList.remove("on")
-			toggleBtn.classList.remove("open")
-			gnbBtn.classList.remove("on")
-		}
-
 		function filterEvent() {
 			filterClose.style.opacity = "0";
 			filterClose.style.left = "-270px";
 			filteritemClose.style.display = "none";
 			line.style.display = "none";
 		}
-
-		mapClick.addEventListener("click", filterEvent);
-
-		toggleBtn.addEventListener("click", toggleHandler);
 		
+		mapClick.addEventListener("click", filterEvent);
 		mapClick.addEventListener("click", removeOn);
 		bodyClick.addEventListener("click", removeOn);
-
+		
+		
 		function filter() {
 
 			var value, name, item, i, background, menuList, menu, menuLine;

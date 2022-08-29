@@ -26,6 +26,7 @@
 			</li>
 			<li class="sub3"><a onclick="location.href='/wgt/userInfo';">회원정보
 					보기</a></li>
+			<hr style="border: none; width: 200px;">
 			<li class="sub4"><a onclick="location.href='/wgt/logOut';">로그아웃</a>
 			</li>
 		</ul>
@@ -114,6 +115,31 @@ const gnbBtn = document.querySelector("#gnb")
 		
 		위에 2번에 해당하는 부분을 클릭했을때 원래 화면으로 돌아오는 addEventListener
 		bodyClick.addEventListener("click", removeOn);
-		*/		
+		*/
+		
+		const bodytoggle = document.querySelector(".header_form")
+		const gnbBtn = document.querySelector("#gnb")
+		const toggleBtn = document.querySelector(".userInformation")
+		
+
+
+		function onClicksubMit() {
+			bodytoggle.submit(event.target.value);
+		}
+
+		function toggleHandler() {
+			toggleBtn.classList.toggle("open")
+			gnbBtn.classList.toggle("on")
+			bodytoggle.classList.toggle("on")
+		}
+
+		function removeOn() {
+			bodytoggle.classList.remove("on")
+			toggleBtn.classList.remove("open")
+			gnbBtn.classList.remove("on")
+		}
+
+		toggleBtn.addEventListener("click", toggleHandler);
+
 </script>
 </html>
