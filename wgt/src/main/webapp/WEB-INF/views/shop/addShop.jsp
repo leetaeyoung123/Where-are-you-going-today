@@ -96,6 +96,9 @@
     	  target.value = target.value
     	   .replace(/[^0-9]/g, '');
     	  }
+    <jsp:include page="../incl/button.jsp">
+    <jsp:param name="subtitle" value="<%=URLEncoder.encode(\"map: map.jsp\", \"UTF-8\")%>" />
+    </jsp:include>
 </script>
   </body>
 </html>
