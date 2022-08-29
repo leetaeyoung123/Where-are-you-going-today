@@ -119,11 +119,3 @@
 	line-height: 26px;
 	margin-bottom: 30px;
 }
-
-/*header_form*/
-.header_form {
-}
-
-.header_form.on {
-	opacity: 15%;
-}
