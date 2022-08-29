@@ -62,7 +62,7 @@ public class BoardController {
 		// 점주일 때만 삭제 보이게 하는 로직
 		boolean ownerchk = false;
 		if (session.getAttribute("dbOwner") == null) { // 유저일 때
-			model.addAttribute("ownerchk", ownerchk); // OwnerLoginController에서 session.setAttribute("bnsNum", dbOwner.getBnumber()); 세팅 후 받아옴
+			model.addAttribute("ownerchk", ownerchk); // shop에서 bnsNum sessino 받아옴
 		} else {
 			ownerchk = true;
 			model.addAttribute("ownerchk", ownerchk); // 점주일 때
@@ -117,11 +117,12 @@ public class BoardController {
 		// 점주일 때만 삭제 보이게 하는 로직
 		boolean ownerchk = false;
 		if (session.getAttribute("dbOwner") == null) { // 유저일 때
-			model.addAttribute("ownerchk", ownerchk); // OwnerLoginController에서 session.setAttribute("bnsNum", dbOwner.getBnumber()); 세팅 후 받아옴
+			model.addAttribute("ownerchk", ownerchk);
 		} else {
 			ownerchk = true;
 			model.addAttribute("ownerchk", ownerchk); // 점주일 때
 		}
+		model.addAttribute("board", service.read(bnsNum));
 		model.addAttribute("list", list);
 		return "board/search";
 	}
@@ -129,6 +130,8 @@ public class BoardController {
 	// 검색 화면
 	@GetMapping("/board/search")
 	public String searchlist(HttpSession session, Model model) {
+		String bnsNum = (String) session.getAttribute("bnsNum");
+		model.addAttribute("board", service.read(bnsNum));
 		return "board/search";
 	}
 
@@ -139,7 +142,7 @@ public class BoardController {
 		// 점주일 때만 삭제 보이게 하는 로직
 		boolean ownerchk = false;
 		if (session.getAttribute("dbOwner") == null) { // 유저일 때
-			model.addAttribute("ownerchk", ownerchk); // OwnerLoginController에서 session.setAttribute("bnsNum", dbOwner.getBnumber()); 세팅 후 받아옴
+			model.addAttribute("ownerchk", ownerchk);
 		} else {
 			ownerchk = true;
 			model.addAttribute("ownerchk", ownerchk); // 점주일 때
