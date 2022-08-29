@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.net.URLDecoder"%>
+<%@ page import="java.net.URLEncoder"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,11 @@
 <title>가게 메뉴 정보 수정</title>
 </head>
   <body style="background: #DA0037;">
+  	<div class="header_form">
+	 <jsp:include page="../incl/button.jsp">
+	<jsp:param name="subtitle" value="<%=URLEncoder.encode(\"map: map.jsp\", \"UTF-8\")%>" />
+	</jsp:include>
+	</div>
     <div id="wrap">
       <div style="width: 90%; height: 100%; background: white; margin-top: 30px; padding: 20px; box-shadow: 0 15px black; border-radius: 30px;">
       <form method="get" action="updateShop" class="flexForm" >
@@ -68,5 +75,24 @@
       <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../board/home'">지금 우리는 🤭</button>
       <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../ownerLogOut'">로그아웃</button>
     </div>
+    <script type="text/javascript">
+    
+    const bodytoggle = document.querySelector(".header_form");
+    const toggleBtn = document.querySelector(".userInformation");
+    const gnbBtn = document.querySelector("#gnb");
+    
+    function toggleHandler() {
+		toggleBtn.classList.toggle("open");
+		gnbBtn.classList.toggle("on");
+		bodytoggle.classList.toggle("on");
+	}
+    
+	 function removeOn() {
+			bodytoggle.classList.remove("on")
+			toggleBtn.classList.remove("open")
+			gnbBtn.classList.remove("on")
+	 }
+    
+    </script>
   </body>
 </html>
