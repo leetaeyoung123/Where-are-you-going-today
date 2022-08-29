@@ -54,7 +54,7 @@
 						class="inputtext" type="text" value="" required></li>
 					<li><jsp:include page="../incl/button.jsp">
         				 <jsp:param name="subtitle"
-            			value="<%=URLEncoder.encode(\"map: map.jsp\", \"UTF-8\")%>" />
+            			value="<%=URLEncoder.encode(\"map: button.jsp\", \"UTF-8\")%>" />
       					</jsp:include>
       				</li>
 				</ul>
