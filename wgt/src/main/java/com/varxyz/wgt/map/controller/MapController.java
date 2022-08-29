@@ -39,18 +39,16 @@ public class MapController {
 
 	@PostMapping("/map/root")
 	public String root(Shop shop, Model model, HttpSession session, HttpServletRequest request) {
-		model.addAttribute("shop", shopService.findAllShop());
 		session.setAttribute("shopBns", shop.getBusinessNumber());
-		session.setAttribute("shopName", shop.getShopName());
-		return "map/position";
+		return "redirect:/map/position";
 
 	}
 
 	@GetMapping("/map/position")
 	public String positionForm(Model model, HttpSession session) {
-		model.addAttribute("shopName",session.getAttribute("shopName"));
-		model.addAttribute("shopName",session.getAttribute("shopBns"));
-		return "map/root";
+		model.addAttribute("shop", shopService.findShopByBnsNum((String) session.getAttribute("shopBns")));
+		System.out.println(session.getAttribute("shopBns"));
+		return "map/position";
 	}
 
 	@PostMapping("/map/position")
@@ -69,23 +67,17 @@ public class MapController {
 		List<Shop> list = shopService.findAllShop();
 		model.addAttribute("shopFind", list);
 
-		// 경도 위도 불러오기
+		// 메뉴 불러오기
 		List<String> bnsList = shopService.findAllBns();
-		System.out.println("11: " + bnsList);
 		Set<String> set = new HashSet<String>(bnsList);
 		List<String> newBnsList = new ArrayList<>(set);
 		Collections.sort(newBnsList);
-		System.out.println("22: " + newBnsList);
 		List<List<Menu>> menuList = new ArrayList<>();
 		// List<Map> findShop = new ArrayList<>();
 		List<Map> map2 = mapService.findAll();
 		for (int i = 0; i < list.size(); i++) {
 			menuList.add(shopService.findShopMenuByBnsNum(newBnsList.get(i)));
-			// findShop.addAll(mapService.findBnsMap(newBnsList.get(i)));
-			System.out.println(i + ": " + menuList);
-			// System.out.println(findShop.get(i));
 		}
-		System.out.println("List: " + menuList);
 		model.addAttribute("find", map2);
 		model.addAttribute("menuList", menuList);
 
@@ -96,7 +88,7 @@ public class MapController {
 			model.addAttribute("url", "../login");
 			return "alert/alert";
 		}
-
+		
 		model.addAttribute("userId", session.getAttribute("userId"));
 
 		/*
