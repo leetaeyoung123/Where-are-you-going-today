@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8" import="java.util.List, java.net.URLEncoder"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.net.URLDecoder"%>
-<%@ page import="java.net.URLEncoder"%>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,24 +71,5 @@
       <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../board/home'">지금 우리는 🤭</button>
       <button type="button" name="button" class="next_btn" style=" width: 80%; margin: 15px 0 25px; border: 5px solid white; border-radius: 30px; box-shadow: 0 10px black;" onclick="location.href='../ownerLogOut'">로그아웃</button>
     </div>
-    <script type="text/javascript">
-    
-    const bodytoggle = document.querySelector(".header_form");
-    const toggleBtn = document.querySelector(".userInformation");
-    const gnbBtn = document.querySelector("#gnb");
-    
-    function toggleHandler() {
-		toggleBtn.classList.toggle("open");
-		gnbBtn.classList.toggle("on");
-		bodytoggle.classList.toggle("on");
-	}
-    
-	 function removeOn() {
-			bodytoggle.classList.remove("on")
-			toggleBtn.classList.remove("open")
-			gnbBtn.classList.remove("on")
-	 }
-    
-    </script>
   </body>
 </html>
