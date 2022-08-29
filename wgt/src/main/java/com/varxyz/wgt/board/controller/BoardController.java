@@ -56,7 +56,7 @@ public class BoardController {
 			}
 		}
 //			System.out.println(service.read(bnsNum));
-//		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName());
+		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName()); // 상점명 불러오기
 		model.addAttribute("board", service.read(bnsNum));
 
 		// 점주일 때만 삭제 보이게 하는 로직
@@ -111,6 +111,9 @@ public class BoardController {
 	@PostMapping("/board/home")
 	public String search(HttpSession session, Board board, Model model) {
 		List<Board> list = service.search(board.getTitle());
+		String bnsNum = (String) session.getAttribute("bnsNum");
+		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName()); // 상점명 불러오기
+		
 		// 점주일 때만 삭제 보이게 하는 로직
 		boolean ownerchk = false;
 		if (session.getAttribute("dbOwner") == null) { // 유저일 때
@@ -125,13 +128,14 @@ public class BoardController {
 
 	// 검색 화면
 	@GetMapping("/board/search")
-	public String searchlist(Model model) {
+	public String searchlist(HttpSession session, Model model) {
 		return "board/search";
 	}
 
 	@PostMapping("/board/search")
 	public String getsearchlist(Board board, Model model, HttpSession session) {
 		List<Board> list = service.search(board.getTitle());
+		
 		// 점주일 때만 삭제 보이게 하는 로직
 		boolean ownerchk = false;
 		if (session.getAttribute("dbOwner") == null) { // 유저일 때
