@@ -18,12 +18,6 @@
 </head>
 
 <body id="body">
-	<script>
-		function submit_form() {
-			document.getElementById('submitID').submit();
-
-		}
-	</script>
 	<input id="inputaddr" value="${addr}" style="display: none;" />
 	<div class="header_form">
 		<form action="map" method="post">
@@ -118,9 +112,13 @@
 			line.style.display = "none";
 		}
 		
+
+		
 		mapClick.addEventListener("click", filterEvent);
 		mapClick.addEventListener("click", removeOn);
 		bodyClick.addEventListener("click", removeOn);
+		
+
 		
 		
 		function filter() {
