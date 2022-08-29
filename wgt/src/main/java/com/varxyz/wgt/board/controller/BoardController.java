@@ -155,6 +155,6 @@ public class BoardController {
 	
 	@PostMapping("/board/go_get_waiting")
 	public String goGetWaiting() {
-		return "redirect:/waiting/get_waiting";
+		return "redirect:/controller/get_waiting";
 	}
 }
