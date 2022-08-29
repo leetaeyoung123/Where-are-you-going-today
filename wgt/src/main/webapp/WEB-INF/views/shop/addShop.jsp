@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.net.URLDecoder"%>
+<%@ page import="java.net.URLEncoder"%>
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
   <head>
@@ -96,9 +98,6 @@
     	  target.value = target.value
     	   .replace(/[^0-9]/g, '');
     	  }
-    <jsp:include page="../incl/button.jsp">
-    <jsp:param name="subtitle" value="<%=URLEncoder.encode(\"map: map.jsp\", \"UTF-8\")%>" />
-    </jsp:include>
 </script>
   </body>
 </html>

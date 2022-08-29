@@ -13,7 +13,7 @@
 </head>
   <body style="background: #DA0037;">
   	<div class="header_form">
-	 <jsp:include page="../incl/button.jsp">
+	 <jsp:include page="../../incl/button.jsp">
 	<jsp:param name="subtitle" value="<%=URLEncoder.encode(\"map: map.jsp\", \"UTF-8\")%>" />
 	</jsp:include>
 	</div>
