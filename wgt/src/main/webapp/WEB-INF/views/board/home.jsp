@@ -199,8 +199,8 @@ function reload(){
 		}
 	};
 </script>
-
-	<script>	
+	<c:if test="${ownerchk != true}">
+		<script>	
 	const bodytoggle = document.querySelector(".header_form")
 	const bodyClick = document.querySelector(".click")
 	const toggleBtn = document.querySelector(".userInformation")
@@ -221,5 +221,6 @@ function reload(){
 		toggleBtn.addEventListener("click", toggleHandler);
 		bodyClick.addEventListener("click", removeOn);
 </script>
+	</c:if>
 </body>
 </html>
