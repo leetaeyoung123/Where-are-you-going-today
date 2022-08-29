@@ -9,14 +9,9 @@
 <link rel="stylesheet" href="../resources/shopStyle.css">
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,  maximum-scale=1.0, minimum-scale=1.0">
-<title>가게 메뉴 정보 수정</title>
+<title>내 가게 정보 확인</title>
 </head>
   <body style="background: #DA0037;">
-  	<div class="header_form">
-	 <jsp:include page="../incl/button.jsp">
-	<jsp:param name="subtitle" value="<%=URLEncoder.encode(\"map: map.jsp\", \"UTF-8\")%>" />
-	</jsp:include>
-	</div>
     <div id="wrap">
       <div style="width: 90%; height: 100%; background: white; margin-top: 30px; padding: 20px; box-shadow: 0 15px black; border-radius: 30px;">
       <form method="get" action="updateShop" class="flexForm" >
