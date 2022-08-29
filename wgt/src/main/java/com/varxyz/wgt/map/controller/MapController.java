@@ -42,7 +42,7 @@ public class MapController {
 		model.addAttribute("shop", shopService.findAllShop());
 		session.setAttribute("shopBns", shop.getBusinessNumber());
 		session.setAttribute("shopName", shop.getShopName());
-		return "map/position";
+		return "redirect:/map/position";
 
 	}
 
@@ -50,7 +50,7 @@ public class MapController {
 	public String positionForm(Model model, HttpSession session) {
 		model.addAttribute("shopName",session.getAttribute("shopName"));
 		model.addAttribute("shopName",session.getAttribute("shopBns"));
-		return "map/root";
+		return "map/position";
 	}
 
 	@PostMapping("/map/position")
