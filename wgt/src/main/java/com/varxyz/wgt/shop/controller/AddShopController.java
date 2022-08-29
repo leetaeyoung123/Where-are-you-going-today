@@ -9,7 +9,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,6 +71,13 @@ public class AddShopController {
 		   shopExtraAddress.trim().isEmpty()) {
 		
 			model.addAttribute("msg", "빈값은 입력하실 수 없습니다!");
+			return "alert/back";
+		}
+		
+		ShopService service = new ShopServiceImpl();
+		
+		if(service.findShopByBnsNum(bnsNum).getBusinessNumber() != null) {
+			model.addAttribute("msg", "중복된 사업자 번호입니다.");
 			return "alert/back";
 		}
 		
