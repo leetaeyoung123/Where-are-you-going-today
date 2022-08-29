@@ -111,7 +111,7 @@ public class BoardController {
 	@PostMapping("/board/home")
 	public String search(HttpSession session, Board board, Model model) {
 		String bnsNum = (String) session.getAttribute("bnsNum");
-		List<Board> list = service.search(board.getTitle(),bnsNum);
+		List<Board> list = service.search(board.getTitle(), bnsNum);
 		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName()); // 상점명 불러오기
 		
 		// 점주일 때만 삭제 보이게 하는 로직
@@ -136,7 +136,7 @@ public class BoardController {
 	@PostMapping("/board/search")
 	public String getsearchlist(Board board, Model model, HttpSession session) {
 		String bnsNum = (String) session.getAttribute("bnsNum");
-		List<Board> list = service.search(board.getTitle(),bnsNum);
+		List<Board> list = service.search(board.getTitle(), bnsNum);
 		
 		System.out.println(service.read(board.getBusinessNumber()));
 		// 점주일 때만 삭제 보이게 하는 로직
