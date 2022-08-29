@@ -20,6 +20,10 @@
 			locate.reload();
 		}
 		
+		function go_back() {
+			history.back();
+		}
+		
 	</script>
 	<div id="wrap">
 		<header id="header">
@@ -43,14 +47,14 @@
 					<div class="btn_wrap">
 						<a class="prev_btn"
 							style="width: 386px; height: 63px; line-height: 30px;"
-							aria-current="page" href='<c:url value="/map/map"/>'>홈</a> <input
+							aria-current="page" onclick="go_back()" >뒤로가기</a> <input
 							type="submit" value="웨이팅 취소" class="next_btn">
 					</div>
 				</c:if>
 				<c:if test="${shopTel == '-'}">
 					<div class="btn_wrap">
 						<a class="prev_btn" style="margin-right: 10px;"
-							aria-current="page" href='<c:url value="/map/map"/>'>홈</a>
+							aria-current="page" onclick="go_back()">뒤로가기</a>
 					</div>
 				</c:if>
 			</form>
