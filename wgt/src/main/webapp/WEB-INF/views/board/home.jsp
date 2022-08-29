@@ -74,7 +74,7 @@ function reload(){
 					<!--상단 탭 내용물 감싼구조-->
 					<div class="bannerTag">
 						<!--상단 좌측 내용물-->
-						<a href="home"><i class="fa-solid fa-utensils"> </i> <!--  |  -->
+						<a href="home"><i class="fa-solid fa-utensils"></i>
 							<span class="shopname">${shop}</span></a>
 					</div>
 					<div class="headerSearchBar" style="border-radius: 5px;">

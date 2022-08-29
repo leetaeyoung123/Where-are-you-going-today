@@ -47,8 +47,8 @@
 					<div class="btn_wrap">
 						<a class="prev_btn"
 							style="width: 386px; height: 63px; line-height: 30px;"
-							aria-current="page" onclick="go_back()" >뒤로가기</a> <input
-							type="submit" value="웨이팅 취소" class="next_btn">
+							aria-current="page" onclick="go_back()">뒤로가기</a> <input t
+							ype="submit" value="웨이팅 취소" class="next_btn">
 					</div>
 				</c:if>
 				<c:if test="${shopTel == '-'}">
