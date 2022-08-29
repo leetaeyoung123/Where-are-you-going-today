@@ -35,25 +35,27 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 </head>
 <body>
 
-	<a class="userInformation"> <span></span></a>
-	<nav id=gnb>
-		<ul>
-			<!-- userId를 세션으로 받아서 사용하세요  -->
-			<li class="sub1"><span>${userId}님<br> 반가워요 !
-			</span></li>
-			<hr
-				style="border: none; background-color: #DA0037; margin-bottom: 20px; height: 2px; width: 200px;">
-			<li class="sub2">
-				<form id="submitID" action="go_get_waiting" method="post">
-					<a onclick="submit_form()">나의 웨이팅</a>
-				</form>
-			</li>
-			<li class="sub3"><a onclick="location.href='/wgt/userInfo';">회원정보
-					보기</a></li>
-			<li class="sub4"><a onclick="location.href='/wgt/logOut';">로그아웃</a>
-			</li>
-		</ul>
-	</nav>
+<c:if test="${ownerchk != true}">
+		<a class="userInformation"> <span></span></a>
+		<nav id=gnb>
+			<ul>
+				<!-- userId를 세션으로 받아서 사용하세요  -->
+				<li class="sub1"><span>${userId}님<br> 반가워요 !
+				</span></li>
+				<hr
+					style="border: none; background-color: #DA0037; margin-bottom: 20px; height: 2px; width: 200px;">
+				<li class="sub2">
+					<form id="submitID" action="go_get_waiting" method="post">
+						<a onclick="submit_form()">나의 웨이팅</a>
+					</form>
+				</li>
+				<li class="sub3"><a onclick="location.href='/wgt/userInfo';">회원정보
+						보기</a></li>
+				<li class="sub4"><a onclick="location.href='/wgt/logOut';">로그아웃</a>
+				</li>
+			</ul>
+		</nav>
+	</c:if>
 
 	<div class="header_form">
 		<header class="headerContainer">
