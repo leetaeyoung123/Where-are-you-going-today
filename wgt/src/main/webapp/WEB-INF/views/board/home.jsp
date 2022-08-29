@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.List, java.net.URLEncoder"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.io.*, java.text.*, java.util.*"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.net.URLDecoder" %>
+<%@ page isELIgnored="false"%>
 <%
 Date nowTime = new Date();
 SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
@@ -21,29 +22,49 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	href="../resources/board/home.css">
 <link rel="stylesheet" type="text/css"
 	href="../resources/board/mypage.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/board/banner.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+	href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
 
 <title>Board Home</title>
 </head>
 <body>
-	<script>
-	function reload(){
-		location.reload();
-	}
+<script>
+function reload(){
+	location.reload();
+}
 </script>
 
+	<a class="userInformation"> <span></span></a>
+		<nav id=gnb>
+		<ul>
+			<!-- userId를 세션으로 받아서 사용하세요  -->
+			<li class="sub1"><span>${userId}님<br> 반가워요 !</span></li>
+			<hr style="border: none; background-color: #DA0037; margin-bottom: 20px; height: 2px; width: 200px;">
+			<li class="sub2">
+				<form id="submitID" action="go_get_waiting" method="post">
+					<a onclick="submit_form()">나의 웨이팅</a>
+				</form>
+			</li>
+			<li class="sub3"><a onclick="location.href='/wgt/userInfo';">회원정보
+					보기</a></li>
+			<li class="sub4"><a onclick="location.href='/wgt/logOut';">로그아웃</a>
+			</li>
+		</ul>
+	</nav>
+<div class="header_form">
 	<header class="headerContainer">
 		<!--상단 탭 만들기 뼈대구조-->
 		<form action="home" method="post">
 			<div class="headerContents">
 				<!--상단 탭 내용물 감싼구조-->
-				<div class="WestagramTag">
+				<div class="bannerTag">
 					<!--상단 좌측 내용물-->
-					<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
+					<a href="home"><i class="fa-solid fa-utensils"> </i><!--  |  --><span class="shopname">${shop}</span></a>
 				</div>
 				<div class="headerSearchBar" style="border-radius: 5px;">
 					<!--상단 중앙 내용물-->
@@ -51,7 +72,6 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 						placeholder=" 게시글 검색" style="border: none; outline: none;">
 					<input type="submit" value="검색" style="display: none;">
 				</div>
-				<%-- <p>[${shop}]</p> --%>
 			</div>
 		</form>
 	</header>
@@ -90,7 +110,7 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 				style="cursor: pointer;"> </a>
 		</c:if>
 	</div>
-
+<div class="click">
 	<div class="body1">
 		<div class="feedReactionButton">
 			<div class="boardarea" style="margin-top: 20px;">
@@ -146,7 +166,8 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 			</div>
 		</div>
 	</div>
-
+	</div>
+</div>
 	<script>
 	let like = document.querySelectorAll(".likebtn")
 
@@ -168,5 +189,26 @@ SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm");
 	};
 </script>
 
+	<script>	
+	const bodytoggle = document.querySelector(".header_form")
+	const bodyClick = document.querySelector(".click")
+	const toggleBtn = document.querySelector(".userInformation")
+	const gnbBtn = document.querySelector("#gnb")
+	
+	function toggleHandler() {
+			toggleBtn.classList.toggle("open")
+			gnbBtn.classList.toggle("on")
+			bodytoggle.classList.toggle("on")
+		}
+		
+	function removeOn() {
+			bodytoggle.classList.remove("on")
+			toggleBtn.classList.remove("open")
+			gnbBtn.classList.remove("on")
+	 }
+	
+		toggleBtn.addEventListener("click", toggleHandler);
+		bodyClick.addEventListener("click", removeOn);
+</script>
 </body>
 </html>

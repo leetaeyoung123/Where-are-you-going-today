@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.varxyz</groupId>
 	<artifactId>wgt</artifactId>
@@ -49,22 +51,22 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
 		<dependency>
-    		<groupId>org.springframework.data</groupId>
-    		<artifactId>spring-data-commons</artifactId>
-    		<version>2.7.2</version>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>2.7.2</version>
 		</dependency>
-		
-		<!-- [for Connection Pool]  -->
+
+		<!-- [for Connection Pool] -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jdbc</artifactId>
 			<version>${org.tomcat.jdbc-version}</version>
 		</dependency>
 
-		<!-- [for MySQL Driver]  -->
+		<!-- [for MySQL Driver] -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -204,7 +206,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- 서블릿 3.0이상 사용 가능한 파일 업로드 api-->
+		<!-- 서블릿 3.0이상 사용 가능한 파일 업로드 api -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -224,14 +226,6 @@
 			<version>4.5.2</version>
 			<scope>runtime</scope>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
-		<dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-commons</artifactId>
-		    <version>2.7.2</version>
-		</dependency>
-		
 	</dependencies>
 
 
@@ -270,6 +264,10 @@
 				<configuration>
 					<mainClass>org.test.int1.Main</mainClass>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.2</version>
 			</plugin>
 		</plugins>
 	</build>

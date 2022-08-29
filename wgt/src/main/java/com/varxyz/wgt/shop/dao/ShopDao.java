@@ -57,7 +57,13 @@ private JdbcTemplate jdbcTemplate;
 	// 사업자 번호로 매장 검색
 	public Shop findShopByBnsNum(String bnsNum) {
 		String sql = "SELECT * FROM shop WHERE businessNumber = ?";
-		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), bnsNum);
+		Shop shop = new Shop();
+		try {
+			shop = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Shop>(Shop.class), bnsNum);
+		}catch (EmptyResultDataAccessException e) {			
+			return shop;
+		}
+		return shop;
 	}
 	
 	// 사업자 번호로 매장 메뉴 전체 검색

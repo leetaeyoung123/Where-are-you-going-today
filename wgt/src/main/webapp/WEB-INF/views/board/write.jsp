@@ -1,6 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.List, java.net.URLEncoder"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page import="java.io.*, java.text.*, java.util.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.net.URLDecoder" %>
+<%@ page isELIgnored="false"%>
 
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
@@ -27,9 +31,9 @@
 		<form action="home" method="post">
 			<div class="headerContents">
 				<!--상단 탭 내용물 감싼구조-->
-				<div class="WestagramTag">
+				<div class="bannerTag">
 					<!--상단 좌측 내용물-->
-					<a href="home"><i class="fab fa-instagram"></i> | <span>Wgt</span>agram</a>
+					<a href="home"><i class="fa-solid fa-fork-knife"></i><!--  |  --><span class="shopname">${shop}</span></a>
 				</div>
 				<div class="headerSearchBar" style="border-radius: 5px;">
 					<!--상단 중앙 내용물-->
