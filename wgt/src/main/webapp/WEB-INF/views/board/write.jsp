@@ -26,6 +26,26 @@
 	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 <body>
+
+	<a class="userInformation"> <span></span></a>
+		<nav id=gnb>
+		<ul>
+			<!-- userId를 세션으로 받아서 사용하세요  -->
+			<li class="sub1"><span>${userId}님<br> 반가워요 !</span></li>
+			<hr style="border: none; background-color: #DA0037; margin-bottom: 20px; height: 2px; width: 200px;">
+			<li class="sub2">
+				<form id="submitID" action="go_get_waiting" method="post">
+					<a onclick="submit_form()">나의 웨이팅</a>
+				</form>
+			</li>
+			<li class="sub3"><a onclick="location.href='/wgt/userInfo';">회원정보
+					보기</a></li>
+			<li class="sub4"><a onclick="location.href='/wgt/logOut';">로그아웃</a>
+			</li>
+		</ul>
+	</nav>
+	
+	<div class="header_form">
 	<header class="headerContainer">
 		<!--상단 탭 만들기 뼈대구조-->
 		<form action="home" method="post">
@@ -72,7 +92,7 @@
 		</form>
 		<button class="go_home" onclick="location.href='home'">목록으로</button>
 	</div>
-
+</div>
 </body>
 <script type="text/javascript">
 		// 이미지 파일 보이기
@@ -102,5 +122,26 @@
 				imgTag.src = "";
 			}
 		}
+</script>
+<script>	
+	const bodytoggle = document.querySelector(".header_form")
+	const bodyClick = document.querySelector(".click")
+	const toggleBtn = document.querySelector(".userInformation")
+	const gnbBtn = document.querySelector("#gnb")
+	
+	function toggleHandler() {
+			toggleBtn.classList.toggle("open")
+			gnbBtn.classList.toggle("on")
+			bodytoggle.classList.toggle("on")
+		}
+		
+	function removeOn() {
+			bodytoggle.classList.remove("on")
+			toggleBtn.classList.remove("open")
+			gnbBtn.classList.remove("on")
+	 }
+	
+		toggleBtn.addEventListener("click", toggleHandler);
+		bodyClick.addEventListener("click", removeOn);
 </script>
 </html>
