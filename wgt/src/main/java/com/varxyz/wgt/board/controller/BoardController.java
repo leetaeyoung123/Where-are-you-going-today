@@ -147,4 +147,9 @@ public class BoardController {
 		model.addAttribute("list", list);
 		return "board/search";
 	}
+	
+	@PostMapping("/board/go_get_waiting")
+	public String goGetWaiting() {
+		return "redirect:/waiting/get_waiting";
+	}
 }

@@ -2,7 +2,7 @@
 
 /*햄버거 버튼*/
 .userInformation {
-    position: fixed;
+    position: absolute;
     top: 40px;
     left: 355px;
     width: 24px;
