@@ -110,7 +110,7 @@ public class BoardController {
 
 	@PostMapping("/board/home")
 	public String search(HttpSession session, Board board, Model model) {
-		List<Board> list = service.search(board.getTitle());
+//		List<Board> list = service.search(board.getTitle());
 		String bnsNum = (String) session.getAttribute("bnsNum");
 		model.addAttribute("shop", service2.findShopByBnsNum(bnsNum).getShopName()); // 상점명 불러오기
 		
@@ -122,8 +122,8 @@ public class BoardController {
 			ownerchk = true;
 			model.addAttribute("ownerchk", ownerchk); // 점주일 때
 		}
-		model.addAttribute("board", service.read(bnsNum));
-		model.addAttribute("list", list);
+		model.addAttribute("board", service.read(bnsNum)); // 각 상점 게시판 불러오기
+//		model.addAttribute("list", list);
 		return "board/search";
 	}
 
