@@ -61,22 +61,25 @@ public class OwnerLoginController {
 		dbOwner = ownerService.findAllOwner(owner.getOwnerId());
 		session.setAttribute("dbOwner", dbOwner);
 		
-		if(owner.getOwnerId().equals(dbOwner.getOwnerId()) &&
-		   owner.getPasswd().equals(dbOwner.getPasswd())) {
+			if(owner.getOwnerId().equals(dbOwner.getOwnerId()) &&
+					owner.getPasswd().equals(dbOwner.getPasswd())) {
+				
+				ShopService shopService = new ShopServiceImpl();
 
-			ShopService shopService = new ShopServiceImpl();
-
-			session.setAttribute("bnsNum", shopService.findShopByOwnerId(owner.getOwnerId()).getBusinessNumber());
-			session.setAttribute("ownerId", request.getParameter("ownerId"));
-			return "redirect:/add_shop";
-		}
-
-		System.out.println("로그인 실패");
-
-		model.addAttribute("msg", "회원정보가 틀렸습니다");
-		model.addAttribute("url", "ownerLogin");
-
+				session.setAttribute("bnsNum", shopService.findShopByOwnerId(owner.getOwnerId()).getBusinessNumber());
+				session.setAttribute("ownerId", request.getParameter("ownerId"));
+				return "redirect:/add_shop";
+			} else if(!owner.getOwnerId().equals(dbOwner.getOwnerId())) {
+				
+				model.addAttribute("msg", "아이디를 다시 확인하세요!!");
+				
+				return "error/error";
+		} 
+		
+		model.addAttribute("msg", "비밀번호를 다시 확인해주세요!!");
+		 
 		return "error/error";
+
 	}
 	// 로그아웃
 	@GetMapping("/ownerLogOut")
