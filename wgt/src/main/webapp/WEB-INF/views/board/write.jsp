@@ -92,7 +92,7 @@
 					<span style="font-size: 20px;">내용</span>
 					<textarea class="content_area" name="content" required
 						maxlength="120" placeholder=" 내용을 입력하세요(최대 120자)"></textarea>
-					사진 선택 : <span><input type="file" accept=".jpg,.jpeg" name="file"
+					사진 선택 : <span><input type="file" accept=".jpg,image/jpeg" name="file"
 						required="required"><br></span> <img id="profileImg"
 						src="../resources/board/img/upload/${board.imgname}.jpg"
 						style="width: 50px; height: 50px; margin: 0 auto; margin-top: 5px;">이미지
