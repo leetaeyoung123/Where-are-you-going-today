@@ -49,7 +49,7 @@ function reload(){
 		<a class="userInformation"> <span></span></a>
 		<nav id=gnb>
 			<ul>
-				<!-- userId를 세션으로 받아서 사용하세요  -->
+				<!-- userId를 세션으로 받아오기 -->
 				<li class="sub1"><span>${userId}님<br> 반가워요 !
 				</span></li>
 				<hr
