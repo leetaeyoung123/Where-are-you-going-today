@@ -154,8 +154,6 @@ public void insertPosition(Map map) {
 ### 검색 화면
 
 ![search](https://user-images.githubusercontent.com/100547893/189856373-da80fd30-b1df-4675-b671-35f9ba2c003d.png)
-
-### 관리자 페이지
   
 ## 전체 구현화면
 
