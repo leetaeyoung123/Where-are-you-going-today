@@ -1,7 +1,7 @@
 # Where-are-you-going-today
 * 매장 웨이팅 등록 및 매장 개인 게시판 기능
 
-### 팀 구성
+## 팀 구성
 * 총 5명 
   * [이태영](https://github.com/leetaeyoung123) 
   * [한태우](https://github.com/workhan0918) 
